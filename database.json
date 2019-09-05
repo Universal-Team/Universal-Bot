@@ -1,0 +1,36 @@
+{
+    "default": {
+        "prefix": ".",
+        "messages": {
+            "welcome": {
+                "string": "Welcome {user.ping} to {guild.name}, hope you enjoy your stay! The amount of members now is {guild.amount}",
+                "enabled": true
+            },
+            "goodbye": {
+                "string": "Goodbye {user.tag}... The amount of members now is {guild.amount}",
+                "enabled": true
+            }
+        }
+    },
+    "developers": [
+        "327757456673472523",
+        "404682150370082817",
+        "398661839182888960",
+        "545821283372498944",
+        "260277536464961537",
+        "293573287697580034"
+    ],
+    "568119817320792074": {
+        "prefix": ".",
+        "messages": {
+            "welcome": {
+                "string": "Welcome {user.ping} to {guild.name}, hope you enjoy your stay! The amount of members now is {guild.amount}",
+                "enabled": true
+            },
+            "goodbye": {
+                "string": "Goodbye {user.tag}... The amount of members now is {guild.amount}",
+                "enabled": true
+            }
+        }
+    }
+}

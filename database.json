@@ -1,13 +1,15 @@
 {
     "default": {
-        "prefix": ".",
+        "prefix": "?",
         "messages": {
             "welcome": {
-                "string": "Welcome {user.ping} to {guild.name}, hope you enjoy your stay! The amount of members now is {guild.amount}",
+                "channel": "sys",
+                "string": "Welcome **${user.ping}** to **${guild.name}**!, hope you enjoy your stay! The amount of members now is **${guild.amount}**",
                 "enabled": true
             },
             "goodbye": {
-                "string": "Goodbye {user.tag}... The amount of members now is {guild.amount}",
+                "channel": "sys",
+                "string": "Goodbye **${user.tag}**... The amount of members now is **${guild.amount}**",
                 "enabled": true
             }
         }
@@ -21,14 +23,46 @@
         "293573287697580034"
     ],
     "568119817320792074": {
-        "prefix": ".",
+        "prefix": "?",
         "messages": {
             "welcome": {
-                "string": "Welcome {user.ping} to {guild.name}, hope you enjoy your stay! The amount of members now is {guild.amount}",
+                "channel": "sys",
+                "string": "Welcome **${user.ping}** to **${guild.name}**!, hope you enjoy your stay! The amount of members now is **${guild.amount}**",
                 "enabled": true
             },
             "goodbye": {
-                "string": "Goodbye {user.tag}... The amount of members now is {guild.amount}",
+                "channel": "sys",
+                "string": "Yaarr! Goodbye my Friend!",
+                "enabled": true
+            }
+        }
+    },
+    "607895116413403137": {
+        "prefix": "?",
+        "messages": {
+            "welcome": {
+                "channel": "sys",
+                "string": "Welcome **${user.ping}** to **${guild.name}**!, hope you enjoy your stay! The amount of members now is **${guild.amount}**",
+                "enabled": true
+            },
+            "goodbye": {
+                "channel": "sys",
+                "string": "Goodbye **${user.tag}**... The amount of members now is **${guild.amount}**",
+                "enabled": true
+            }
+        }
+    },
+    "592183831860215808": {
+        "prefix": "?",
+        "messages": {
+            "welcome": {
+                "channel": "592183866857488404",
+                "string": "Welcome **${user.ping}** to **${guild.name}**!, hope you enjoy your stay! The amount of members now is **${guild.amount}**",
+                "enabled": true
+            },
+            "goodbye": {
+                "channel": "sys",
+                "string": "Goodbye **${user.tag}**... The amount of members now is **${guild.amount}**",
                 "enabled": true
             }
         }

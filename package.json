@@ -10,7 +10,8 @@
     "express": "^4.16.4",
     "discord.js": "^11.5.1",
     "consolefs": "^2.0.6",
-    "request": "^2.88.0"
+    "request": "^2.88.0",
+    "ts2c": "^2.2.6"
   },
   "engines": {
     "node": "8.x"

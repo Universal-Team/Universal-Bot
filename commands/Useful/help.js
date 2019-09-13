@@ -3,12 +3,14 @@ const ConsoleFS = require('consolefs');
 function isCategory(UnivBot, name) {
   name = name.toLowerCase().trim();
   let ctg;
-  for (var category of UnivBot.categories) {
-    if (category.toLowerCase() == name) {
-      ctg = category;
-      break;
+  if(name.length > 0) { 
+    for (var category of UnivBot.categories) {
+      if (category.toLowerCase().substr(0, name.length) == name) {
+        ctg = category;
+        break;
+      }
     }
-  };
+  }
   return ctg;
 };
 
@@ -49,6 +51,7 @@ module.exports = {
         var path = '/app/commands/'+category+'/desc.txt';
         if (ConsoleFS.exist(path))
           desc = ConsoleFS.read.INT(path);
+        category += '   ['+ConsoleFS.list('/app/commands/'+category).filter(cmd => cmd.endsWith('.js')).length+']';
         embed.addField(category, desc, true);
       };
     };

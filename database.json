@@ -53,10 +53,55 @@
         }
     },
     "592183831860215808": {
-        "prefix": "?",
+        "prefix": "!",
         "messages": {
             "welcome": {
                 "channel": "592183866857488404",
+                "string": "Welcome **${user.ping}** to **${guild.name}**!, hope you enjoy your stay! The amount of members now is **${guild.amount}**",
+                "enabled": true
+            },
+            "goodbye": {
+                "channel": "sys",
+                "string": "Goodbye **${user.tag}**... The amount of members now is **${guild.amount}**",
+                "enabled": true
+            }
+        }
+    },
+    "614278143527878656": {
+        "prefix": "?",
+        "messages": {
+            "welcome": {
+                "channel": "sys",
+                "string": "Welcome **${user.ping}** to **${guild.name}**!, hope you enjoy your stay! The amount of members now is **${guild.amount}**",
+                "enabled": true
+            },
+            "goodbye": {
+                "channel": "sys",
+                "string": "Goodbye **${user.tag}**... The amount of members now is **${guild.amount}**",
+                "enabled": true
+            }
+        }
+    },
+    "604318242315436062": {
+        "prefix": "%FF%FEs%00k%00e%00n%00f%00o%00d%00m%00e%00j%00f%00o%00l%00e%00k%00e%00jjjjjjjjjjjjiiiiiieeeokdlapwkdjxoienencienicneicneifneidneifjeidjenciemmejosoakekdjjmfnekeowowowooeoeoeoeoeoeooeoeoeoeoeoeoeoeoeoeoeoeooeeopwpwpwpwpwppqqpqppqqoqoqoqooqoooooooooooiiiiiiiuuuuuuuuyyyyyyyytttttttttrnciiiememwooaowkdnfidijendifienduneufneucndufneufneufneufheudneudneudneudneudneudneudh",
+        "messages": {
+            "welcome": {
+                "channel": "sys",
+                "string": "Welcome **${user.ping}** to **${guild.name}**!, hope you enjoy your stay! The amount of members now is **${guild.amount}**",
+                "enabled": true
+            },
+            "goodbye": {
+                "channel": "sys",
+                "string": "Goodbye **${user.tag}**... The amount of members now is **${guild.amount}**",
+                "enabled": true
+            }
+        }
+    },
+    "619694932889698324": {
+        "prefix": ".",
+        "messages": {
+            "welcome": {
+                "channel": "sys",
                 "string": "Welcome **${user.ping}** to **${guild.name}**!, hope you enjoy your stay! The amount of members now is **${guild.amount}**",
                 "enabled": true
             },

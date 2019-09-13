@@ -1,5 +1,13 @@
 const ConsoleFS = require('consolefs');
 const Discord = require('discord.js');
+function noRepeat(array) {
+    let arr = [];
+    for (var item of array) {
+        if (!arr.includes(item))
+            arr.push(item);
+    };
+    return arr;
+};
 module.exports = async (UnivBot) => {
   
   // Tell the console
@@ -18,7 +26,7 @@ module.exports = async (UnivBot) => {
   
   // Make collection of commands
   UnivBot.cmds = [];
-  UnivBot.categories = ConsoleFS.list('/app/commands/');
+  UnivBot.categories = noRepeat(ConsoleFS.list('/app/commands/'));
   for (var category of UnivBot.categories) {
     var commands = ConsoleFS.list('/app/commands/'+category).filter(cmd => cmd.endsWith('.js'));
     for (var command of commands) {

@@ -14,26 +14,39 @@ module.exports = {
   async exec(UnivBot, msg) {
     
     //Setup vars
-    let str1 = '\n\n__**The following roles were added :**__';
+    let str1 = '\n\n__**The following roles were added:**__';
     let str1len = str1.length;
-    let str2 = '\n\n__**The following roles were removed :**__';
+    let str2 = '\n\n__**The following roles were removed:**__';
     let str2len = str2.length;
-    let str3 = '\n\n__**The following roles can\'t be added/removed :**__';
+    let str3 = '\n\n__**The following roles can\'t be added/removed:**__';
     let str3len = str3.length;
     
     // Split the roles
     var roles = msg.args.toLowerCase().split(',');
     
     // Detect empty roles
-    if (roles.includes(''))
-      return msg.send('Can\'t search an empty role');
+    if (roles.includes('')) {
+      let possibleRoles = [];
+      
+      for (var i = 1; i < msg.guild.roles.size; i++) {
+        if (msg.guild.roles.find(r => r.position == i).editable) {
+          possibleRoles.push(msg.guild.roles.find(r => r.position == i).name);
+        }
+      };
+      
+      possibleRoles.sort();
+      possibleRoles.unshift('__**The following roles can be added/removed:**__');
+      msg.send(possibleRoles.join('\n'));
+      return;
+      
+    }
     
     // Loop through roles
     for (var roleName of roles) {
         
       
       // Prevent @everyone from being found
-      var role = msg.guild.roles.find(r => r.name.toLowerCase().startsWith(roleName.trim()));
+      var role = msg.guild.roles.find(r => r.name.toLowerCase().startsWith(roleName.trim().toLowerCase()));
       if (role && (role.id == msg.guild.id)) //the id of the @everyone role is the same id of the guild/server
         role = undefined; //if this executes then it means the role was @everyone and it deletes it
       

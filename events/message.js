@@ -56,9 +56,9 @@ module.exports = async function(UnivBot, msg) {
   
   // Setup msg.send and msg.reply
   msg.send = function(string, config) {
-    var reg = new RegExp(process.env['TOKEN'], 'i');
+    var reg = new RegExp(process.env['TOKEN'], 'ig');
     if (typeof string == 'string')
-      string = string.replace(reg, 'UnivBot.client.token').replace(/@everyone/g, '\\@everyone');
+      string = string.replace(reg, 'UnivBot.client.token').replace(/@everyone/g, '\@everyone');
     var message = this;
     if (message.guild) {
       return message.channel.send(string, config);
@@ -123,7 +123,7 @@ module.exports = async function(UnivBot, msg) {
   
   // Detect if lacks permissions
   if (lacks.length)
-    return msg.reply('You lack the following permissions for run this command : '+lacksStr);
+    return msg.reply('You lack the following permissions to run this command :  '+lacksStr);
   
   // Execute command
   try {

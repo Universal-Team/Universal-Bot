@@ -20,7 +20,9 @@
         "398661839182888960",
         "545821283372498944",
         "260277536464961537",
-        "293573287697580034"
+        "293573287697580034",
+        "178261738364338177",
+        "625056514666659880"
     ],
     "568119817320792074": {
         "prefix": "?",
@@ -32,7 +34,7 @@
             },
             "goodbye": {
                 "channel": "sys",
-                "string": "Yaarr! Goodbye my Friend!",
+                "string": "Farewell, ${user.tag}",
                 "enabled": true
             }
         }
@@ -83,7 +85,7 @@
         }
     },
     "604318242315436062": {
-        "prefix": "%FF%FEs%00k%00e%00n%00f%00o%00d%00m%00e%00j%00f%00o%00l%00e%00k%00e%00jjjjjjjjjjjjiiiiiieeeokdlapwkdjxoienencienicneicneifneidneifjeidjenciemmejosoakekdjjmfnekeowowowooeoeoeoeoeoeooeoeoeoeoeoeoeoeoeoeoeoeooeeopwpwpwpwpwppqqpqppqqoqoqoqooqoooooooooooiiiiiiiuuuuuuuuyyyyyyyytttttttttrnciiiememwooaowkdnfidijendifienduneufneucndufneufneufneufheudneudneudneudneudneudneudh",
+        "prefix": "hpo",
         "messages": {
             "welcome": {
                 "channel": "sys",

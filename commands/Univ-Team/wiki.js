@@ -1,17 +1,17 @@
 module.exports = {
-  name: 'release',
+  name: 'wiki',
   usage: '<project>',
-  desc: 'Sends the link to a release of a Universal Team app',
+  desc: 'Sends the link to a wifi for a Universal Team app',
   DM: true,
   permissions: [],
   exec(UnivBot, msg) {
 
     let projects = [
-      ['BetterDex', 0x000080, '<:BetterDex:630493895859503139>'],
-      ['iDex', 0x000080, '<:iDex:597625862069682176>'],
+      // ['BetterDex', 0x000080, '<:BetterDex:630493895859503139>'],
+      // ['iDex', 0x000080, '<:iDex:597625862069682176>'],
       ['LeafEdit', 0x04B324, '<:leafEdit:630495340281462853>'],
       ['pkmn-chest', 0xBF0300, '<:pkmnchest:613597377625980939>'],
-      ['Relaunch', 0x606060, '<:relaunch:620365238243688467>'],
+      // ['Relaunch', 0x606060, '<:relaunch:620365238243688467>'],
       ['Universal-Manager', 0x002F50, '<:universalManager:615582592942735360>']
     ];
     
@@ -40,7 +40,7 @@ module.exports = {
     msg.send({
       embed: {
         color: project[1],
-        description: project[2]+' You can get the latest release of **'+project[0]+'** [here](https://github.com/Universal-Team/'+project[0]+'/releases/latest)'
+        description: project[2]+' You find the wiki for **'+project[0]+'** [here](https://github.com/Universal-Team/'+project[0]+'/wiki)'
        }
     })
   }

@@ -7,7 +7,9 @@ module.exports = {
   exec(UnivBot, msg) {
 
     let projects = [
-      ['LeafEdit', 0x04B324, '<:leafEdit:615581725346627603>'],
+      // ['BetterDex', 0x000080, '<:BetterDex:630493895859503139>'],
+      // ['iDex', 0x000080, '<:iDex:597625862069682176>'],
+      ['LeafEdit', 0x04B324, '<:leafEdit:630495340281462853>'],
       ['pkmn-chest', 0xBF0300, '<:pkmnchest:613597377625980939>'],
       ['Relaunch', 0x606060, '<:relaunch:620365238243688467>'],
       ['Universal-Manager', 0x002F50, '<:universalManager:615582592942735360>']

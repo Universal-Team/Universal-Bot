@@ -1,0 +1,10 @@
+{
+    "Game Server Statistics": {
+        "color": "GREEN",
+        "description": "Get statistics on servers for games such as Minecraft, Call Of Duty and much more"
+    },
+    "Experience Points": {
+        "color": "YELLOW",
+        "description": "Allows users to earn experience points on servers as they send messages."
+    }
+}

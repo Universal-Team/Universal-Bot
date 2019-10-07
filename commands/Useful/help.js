@@ -12,7 +12,23 @@ function isCategory(UnivBot, name) {
     }
   }
   return ctg;
-};
+}
+function isCommand(UnivBot, name) {
+  name = name.toLowerCase().trim();
+  let command;
+  if(name.length > 0) { 
+    for(let cmd of UnivBot.cmds) {
+      cmd = require(cmd);
+      for(let cmdName of cmd.name) {
+        if(cmdName.toLowerCase().substr(0, name.length) == name) {
+          command = cmd;
+          break;
+        }
+      }
+    }
+  }
+  return command;
+}
 
 module.exports = {
   name: [ 'help', 'cmds', 'commands' ],
@@ -28,7 +44,10 @@ module.exports = {
     if (isCategory(UnivBot, msg.args)) {
       title = 'List of commands';
       type = 'file';
-    };
+    } else if (isCommand(UnivBot, msg.args)) {
+      title = 'Command info';
+      type = 'cmd';
+    }
     
     // Create embed
     let color = 8557055;
@@ -39,7 +58,7 @@ module.exports = {
       color = msg.guild.bot.displayHexColor;
     let embed = new Discord.RichEmbed()
       .setColor(color)
-      .setDescription('Here you can see a list of categories or commands. In order to get the commands of a category please use ``'+msg.prefix+'help <Category Name>`` or just use ``'+msg.prefix+'help`` for get a list of categories')
+      .setDescription('Here you can get info on commands. To see the categories, use ``'+msg.prefix+'help``, to see commands in a category, do ``'+msg.prefix+'help <Category Name>``, or to see info on a command, do ``'+msg.prefix+'help <Command Name>``.')
       .setThumbnail(image)
       .setTitle(title);
     
@@ -73,6 +92,21 @@ module.exports = {
           name = msg.prefix+name;
           embed.addField(name, desc, true);
         };
+      };
+    };
+    if (type == 'cmd') {
+      var desc = isCommand(UnivBot, msg.args).desc;
+      var name = isCommand(UnivBot, msg.args).name;
+      if ((name instanceof Array)) {
+        var nameStr = name[0];
+        // nameStr += ' '+require('/app/commands/'+category+'/'+command).usage;
+        nameStr = msg.prefix+nameStr;
+        desc += '\n(Other names : **'+name.slice(1).join('**, **')+'**)'
+        embed.addField(nameStr, desc, true);
+      } else {
+        // name += ' '+require('/app/commands/'+category+'/'+command).usage;
+        name = msg.prefix+name;
+        embed.addField(name, desc, true);
       };
     };
     

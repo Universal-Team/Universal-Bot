@@ -19,8 +19,15 @@ function isCommand(UnivBot, name) {
   if(name.length > 0) { 
     for(let cmd of UnivBot.cmds) {
       cmd = require(cmd);
-      for(let cmdName of cmd.name) {
-        if(cmdName.toLowerCase().substr(0, name.length) == name) {
+      if((cmd.name instanceof Array)) {
+        for(let cmdName of cmd.name) {
+          if(cmdName.toLowerCase().substr(0, name.length) == name) {
+            command = cmd;
+            break;
+          }
+        }
+      } else {
+        if(cmd.name.toLowerCase().substr(0, name.length) == name) {
           command = cmd;
           break;
         }
@@ -33,7 +40,7 @@ function isCommand(UnivBot, name) {
 module.exports = {
   name: [ 'help', 'cmds', 'commands' ],
   usage: '<Category>',
-  desc: 'Gives info about a specific category or a list of all categories',
+  desc: 'Gives info about a command, category, or lists the categories',
   DM: true,
   permissions: [],
   exec(UnivBot, msg) {
@@ -95,18 +102,14 @@ module.exports = {
       };
     };
     if (type == 'cmd') {
-      var desc = isCommand(UnivBot, msg.args).desc;
-      var name = isCommand(UnivBot, msg.args).name;
-      if ((name instanceof Array)) {
-        var nameStr = name[0];
-        // nameStr += ' '+require('/app/commands/'+category+'/'+command).usage;
-        nameStr = msg.prefix+nameStr;
-        desc += '\n(Other names : **'+name.slice(1).join('**, **')+'**)'
-        embed.addField(nameStr, desc, true);
+      let cmd = isCommand(UnivBot, msg.args);
+      if ((cmd.name instanceof Array)) {
+        var nameStr = msg.prefix+cmd.name[0]+' '+cmd.usage;
+        cmd.desc += '\n(Other names: **'+cmd.name.slice(1).join('**, **')+'**)'
+        embed.addField(nameStr, cmd.desc, true);
       } else {
-        // name += ' '+require('/app/commands/'+category+'/'+command).usage;
-        name = msg.prefix+name;
-        embed.addField(name, desc, true);
+        name = msg.prefix+cmd.name+' '+cmd.usage;
+        embed.addField(name, cmd.desc, true);
       };
     };
     

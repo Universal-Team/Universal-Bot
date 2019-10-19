@@ -113,5 +113,35 @@
                 "enabled": true
             }
         }
+    },
+    "629863772294742016": {
+        "prefix": "!",
+        "messages": {
+            "welcome": {
+                "channel": "sys",
+                "string": "Welcome **${user.ping}** to **${guild.name}**!, hope you enjoy your stay! The amount of members now is **${guild.amount}**",
+                "enabled": true
+            },
+            "goodbye": {
+                "channel": "sys",
+                "string": "Goodbye **${user.tag}**... The amount of members now is **${guild.amount}**",
+                "enabled": true
+            }
+        }
+    },
+    "631492694711205907": {
+        "prefix": "?",
+        "messages": {
+            "welcome": {
+                "channel": "sys",
+                "string": "Welcome **${user.ping}** to **${guild.name}**!, hope you enjoy your stay! The amount of members now is **${guild.amount}**",
+                "enabled": true
+            },
+            "goodbye": {
+                "channel": "sys",
+                "string": "Goodbye **${user.tag}**... The amount of members now is **${guild.amount}**",
+                "enabled": true
+            }
+        }
     }
 }

@@ -410,3 +410,4 @@ Arguments.isArgs = function(args) {
 // Export constructor
 // ===========================
 global.Arguments = Arguments;
+module.exports = Arguments;

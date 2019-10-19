@@ -1,3 +1,21 @@
+function findRole(msg, name) {
+  if(name.length > 0) {
+    let possibleRoles = [];
+
+    for (let i = 1; i < msg.guild.roles.size; i++) {
+      if (msg.guild.roles.find(r => r.position == i).editable) {
+        possibleRoles.push(msg.guild.roles.find(r => r.position == i).name.toLowerCase().search(name.toLowerCase()));
+      }
+    }
+    
+    for(let i in possibleRoles) {
+      if(possibleRoles[i] == -1) possibleRoles[i] = Infinity;
+    }
+
+    return msg.guild.roles.find(r => r.position == possibleRoles.indexOf(Math.min.apply(Math, possibleRoles)) + 1);
+  }
+}
+
 function hasRole(member, id) {
   if (member.roles.get(id)) {
     return true;
@@ -28,11 +46,11 @@ module.exports = {
     if (roles.includes('')) {
       let possibleRoles = [];
       
-      for (var i = 1; i < msg.guild.roles.size; i++) {
+      for (let i = 1; i < msg.guild.roles.size; i++) {
         if (msg.guild.roles.find(r => r.position == i).editable) {
           possibleRoles.push(msg.guild.roles.find(r => r.position == i).name);
         }
-      };
+      }
       
       possibleRoles.sort();
       possibleRoles.unshift('__**The following roles can be added/removed:**__');
@@ -46,7 +64,7 @@ module.exports = {
         
       
       // Prevent @everyone from being found
-      var role = msg.guild.roles.find(r => r.name.toLowerCase().startsWith(roleName.trim().toLowerCase()));
+      var role = findRole(msg, roleName);
       if (role && (role.id == msg.guild.id)) //the id of the @everyone role is the same id of the guild/server
         role = undefined; //if this executes then it means the role was @everyone and it deletes it
       

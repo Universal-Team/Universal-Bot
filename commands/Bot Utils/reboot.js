@@ -1,8 +1,8 @@
 var terminal = require('child_process').execSync;
-const ConsoleFS = require('consolefs');
+const fs = require('fs');
 
 module.exports = {
-  name: ['reboot','restart'],
+  name: ['reboot','restart','refresh'],
   usage: '',
   desc: 'Reboots the bot',
   DM: true,
@@ -16,7 +16,7 @@ module.exports = {
         UnivBot.db.reboot = { msg: message.id, channel: message.channel.id, guild: message.guild.id, start: new Date().getTime() };
       if (!msg.guild)
         UnivBot.db.reboot = { msg: message.id, author: msg.author.id, start: new Date().getTime() };
-      ConsoleFS.write.JSON(UnivBot.db, '/app/database.json');
+      fs.writeFileSync('/app/database.json', JSON.stringify(UnivBot.db, null, 4));
       terminal('refresh');
     });
     

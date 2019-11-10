@@ -1,7 +1,6 @@
 // ===========================================================
 // Setup variables
 // ===========================================================
-const ConsoleFS = require('consolefs');
 const Discord = require('discord.js');
 
 // ===========================================================
@@ -10,8 +9,7 @@ const Discord = require('discord.js');
 const UnivBot = {
   client: new Discord.Client()
 };
-ConsoleFS.read.ENV('./.env');
-UnivBot.db = ConsoleFS.read.JSON('./database.json');
+UnivBot.db = require('./database.json');
 UnivBot.client.login(process.env['TOKEN']);
 
 // ===========================================================

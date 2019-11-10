@@ -1,1 +1,1 @@
-Commands for the bot's developers
+Commands for the bot's developers for manage the bot

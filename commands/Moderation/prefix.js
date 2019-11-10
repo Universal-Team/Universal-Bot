@@ -1,6 +1,6 @@
-const ConsoleFS = require('consolefs');
+const fs = require('fs');
 function updateDB(UnivBot) {
-  ConsoleFS.write.JSON(UnivBot.db, '/app/database.json');
+  fs.writeFileSync('/app/database.json', JSON.stringify(UnivBot.db, null, 4));
 };
 
 module.exports = {

@@ -1,4 +1,4 @@
-const ConsoleFS = require('consolefs');
+const fs = require('fs');
 const Discord = require('discord.js');
 function noRepeat(array) {
     let arr = [];
@@ -26,9 +26,9 @@ module.exports = async (UnivBot) => {
   
   // Make collection of commands
   UnivBot.cmds = [];
-  UnivBot.categories = noRepeat(ConsoleFS.list('/app/commands/'));
+  UnivBot.categories = fs.readdirSync('/app/commands/');
   for (var category of UnivBot.categories) {
-    var commands = ConsoleFS.list('/app/commands/'+category).filter(cmd => cmd.endsWith('.js'));
+    var commands = fs.readdirSync('/app/commands/'+category).filter(cmd => cmd.endsWith('.js'));
     for (var command of commands) {
       UnivBot.cmds.push('/app/commands/'+category+'/'+command);
     };
@@ -46,12 +46,12 @@ module.exports = async (UnivBot) => {
       msg.then(msg => {
           msg.edit('Done rebooting! It took '+time+' seconds');
           UnivBot.db.reboot = undefined;
-          ConsoleFS.write.JSON(UnivBot.db, '/app/database.json');
+          fs.writeFileSync('/app/database.json', JSON.stringify(UnivBot.db, null, 4));
       })
       msg.catch(() => {
           user.send('Done rebooting! It took '+time+' seconds');
           UnivBot.db.reboot = undefined;
-          ConsoleFS.write.JSON(UnivBot.db, '/app/database.json');
+          fs.writeFileSync('/app/database.json', JSON.stringify(UnivBot.db, null, 4));
       });
     } else {
       var guild = UnivBot.client.guilds.get(reb.guild);
@@ -61,12 +61,12 @@ module.exports = async (UnivBot) => {
       msg.then(msg => {
           msg.edit('Done rebooting! It took '+time+' seconds');
           UnivBot.db.reboot = undefined;
-          ConsoleFS.write.JSON(UnivBot.db, '/app/database.json');
+          fs.writeFileSync('/app/database.json', JSON.stringify(UnivBot.db, null, 4));
       })
       msg.catch(() => {
           channel.send('Done rebooting! It took '+time+' seconds');
           UnivBot.db.reboot = undefined;
-          ConsoleFS.write.JSON(UnivBot.db, '/app/database.json');
+          fs.writeFileSync('/app/database.json', JSON.stringify(UnivBot.db, null, 4));
       });
     };
     

@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const ConsoleFS = require('consolefs');
+const fs = require('fs');
 function isCategory(UnivBot, name) {
   name = name.toLowerCase().trim();
   let ctg;
@@ -75,15 +75,15 @@ module.exports = {
       for (var category of UnivBot.categories) {
         var desc = 'No description yet'
         var path = '/app/commands/'+category+'/desc.txt';
-        if (ConsoleFS.exist(path))
-          desc = ConsoleFS.read.INT(path);
-        category += '   ['+ConsoleFS.list('/app/commands/'+category).filter(cmd => cmd.endsWith('.js')).length+']';
+        if (fs.existsSync(path))
+          desc = fs.readFileSync(path);
+        category += '   ['+fs.readdirSync('/app/commands/'+category).filter(cmd => cmd.endsWith('.js')).length+']';
         embed.addField(category, desc, true);
       };
     };
     if (type == 'file') {
       var category = isCategory(UnivBot, msg.args);
-      var commands = ConsoleFS.list('/app/commands/'+category).filter(cmd => cmd.endsWith('.js'));
+      var commands = fs.readdirSync('/app/commands/'+category).filter(cmd => cmd.endsWith('.js'));
       embed.setFooter('• Amount of commands in '+category+' : '+commands.length, UnivBot.client.user.avatarURL);
       for (var command of commands) {
         var desc = require('/app/commands/'+category+'/'+command).desc;

@@ -1,26 +1,126 @@
-let projects = [
-  ['BetterDex', 0x000080, '<:BetterDex:630493895859503139>'],
-  // ['iDex', 0x000080, '<:iDex:597625862069682176>'],
-  ['LeafEdit', 0x04B324, '<:leafEdit:630495340281462853>'],
-  ['pkmn-chest', 0xBF0300, '<:pkmnchest:613597377625980939>'],
-  ['Relaunch', 0x606060, '<:relaunch:620365238243688467>'],
-  ['Universal-Manager', 0x002F50, '<:universalManager:615582592942735360>']
-];
-
-function findProject(name) {
-  if(name.length > 0) {
-    let possibleProjects = [];
-    for(let i in projects) {
-      possibleProjects.push(projects[i][0].toLowerCase().search(name.toLowerCase()));
-    }
+const projects = [
+  { name: 'BetterDex',
+    color: 0x000080,
+    emoji: '<:BetterDex:630493895859503139>' },
     
-    for(let i in possibleProjects) {
-    if(possibleProjects[i] == -1) possibleProjects[i] = Infinity;
-    }
+  /*{ name: 'iDex',
+    color: 0x000080,
+    emoji: '<:iDex:597625862069682176>' },*/
+    
+  { name: 'LeafEdit',
+    color: 0x04B324,
+    emoji: '<:leafEdit:630495340281462853>' },
+    
+  { name: 'pkmn-chest',
+    color: 0xBF0300,
+    emoji: '<:pkmnchest:613597377625980939>' },
+  
+  { name: 'Project-Athena',
+    color: 0xAEDCDA,
+    emoji: '<:projectathena:635958083172171786>' },
+  
+  { name: 'Relaunch',
+    color: 0x606060,
+    emoji: '<:relaunch:620365238243688467>' },
+  
+  { name: 'Universal-Updater',
+    color: 0x002F50,
+    emoji: '<:universalupdater:641744724549697576>' }
+];
+projects.embed = function() {
+	let description = ['Please rerun the command followed by one of the following project names:\n'];
+	this.forEach(object =>
+		description.push(`${object.emoji} **${object.name}**`)
+	);
+	
+	description     = description.join('\n');
+	let embed       = {
+        embed: {
+            color: 0x00c882,
+            title: 'Invalid project name!',
+            description: description
+        }
+	};
+	
+	return embed;
+};
 
-    return projects[possibleProjects.indexOf(Math.min.apply(Math, possibleProjects))];
-  }
-}
+// Constructor
+function Project(string, data) {
+	string = string
+	          .replace(/\s/g, '')
+	          .replace(/\-/g, '')
+	          .toLowerCase();
+	
+ if (!string.length) {
+ 		this.invalid = true;
+ 	 return this;
+ 	};
+ 
+ let match;
+ let matches = data.filter(object => {
+ 	 if (match) {
+ 	 	 this.invalid = true;
+ 	  return this;
+ 	 };
+ 	
+ 	 let name = object.name.toLowerCase()
+ 	  .replace(/\-/g, '')
+ 	  .replace(/\s/g, '');
+ 	 
+ 	 if (name.startsWith(string))
+ 	  match = object;
+ 	 
+ 	 return name.includes(string);
+ 	});
+ 	
+ 	if (!match)
+ 	 match = matches[0];
+ 	if (!match) {
+ 		this.invalid = true;
+ 	 return this;
+ 	};
+ 	
+ 	this.invalid = false;
+ 	this.name = match.name;
+ 	this.color = match.color;
+ 	this.emoji = match.emoji;
+ 	
+ 	return this;
+};
+
+// Prototypes
+Project.prototype.toString = function() {
+	if (this.invalid)
+	 return '**null**';
+	 
+	return `**${this.name}**`;
+};
+
+Project.prototype.github = function() {
+	let target = this.name;
+	if (!target)
+	 target = 'null';
+	 
+	let object = {};
+	let io = `https://universal-team.github.io/${target.toLowerCase()}`;
+	let url = `https://github.com/Universal-Team/${target}`;
+	let raw = `https://raw.githubusercontent.com/Universal-Team/extras/master/builds/${target}`;
+	object.cia = {
+		file: raw + `/${target}.cia`,
+		QR: raw + `/${target}.png`
+	};
+	object.nightly = {
+		file: `https://github.com/Universal-Team/extras/tree/master/builds/${target}`
+	};
+	object.release = {
+		file: url + '/releases/latest'
+	};
+	object.wiki = url + '/wiki';
+	object.site = io;
+	
+	return object;
+};
 
 module.exports = {
   name: 'cia',
@@ -29,37 +129,19 @@ module.exports = {
   DM: true,
   permissions: [],
   exec(UnivBot, msg) {
-    let project = findProject(msg.args);
+    const app = new Project(msg.args, projects);
+    if (app.invalid)
+      return msg.send(projects.embed());
     
-    let description = ['Please rerun the command followed by one of the following project names:\n'];
-    if (!project) {
-      for (var item of projects) {
-        description.push(item[2] + ' **' + item[0] + '**');
-      };
-      description = description.join('\n');
-
-      msg.send({
-        embed: {
-            color: 0x00c882,
-            title: 'Invalid project name!',
-            description: description
-        }
-      });
-      
-      return;
-    };
-    
-    var name = project[2]+' '+project[0];
-    var desc = 'Use the link above or\nthis **QR** for install the cia';
-    
+    const github = app.github();
     msg.send({
       embed: {
-        color: project[1],
-        title: name,
-        description: desc,
-        image: { url: 'https://raw.githubusercontent.com/Universal-Team/extras/master/builds/'+project[0]+'/'+project[0]+'.png' },
-        url: 'https://raw.githubusercontent.com/Universal-Team/extras/master/builds/'+project[0]+'/'+project[0]+'.cia'
-      }
+        color: app.color,
+        title: `${app.emoji} ${app.name}`,
+        description: 'Use the link or\n QR above to install the cia',
+        url: github.cia.file
+      },
+      file: github.cia.QR
     });
   }
 };

@@ -7,14 +7,13 @@
     "start": "node server.js"
   },
   "dependencies": {
-    "express": "^4.16.4",
     "discord.js": "^11.5.1",
-    "consolefs": "^2.0.6",
-    "request": "^2.88.0",
-    "ts2c": "^2.2.6"
+    "express": "^4.16.4",
+    "ts2c": "^2.2.6",
+    "website-obj": "^1.0.4"
   },
   "engines": {
-    "node": "8.x"
+    "node": "13.0.1"
   },
   "repository": {
     "url": "https://glitch.com/edit/#!/univ-bot"

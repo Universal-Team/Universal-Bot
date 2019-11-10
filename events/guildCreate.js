@@ -1,13 +1,13 @@
 // Setup vars
 const Discord = require('discord.js');
-const ConsoleFS = require('consolefs');
+const fs = require('fs');
 function cloneDB(UnivBot, id) {
   var db = UnivBot.db.default;
   db = JSON.stringify(db);
   db = JSON.parse(db);
   if (!UnivBot.db[id]) {
     UnivBot.db[id] = db;
-    ConsoleFS.write.JSON(UnivBot.db, './database.json');
+    fs.writeFileSync('/app/database.json', JSON.stringify(UnivBot.db, null, 4));
   };
 };
 

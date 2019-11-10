@@ -12,7 +12,7 @@ module.exports = {
     
     
     let hexColor = '#';
-    colors.forEach(color => {
+    for (let color of colors) {
       color = parseInt(color);
       
       if (color.toString() == 'NaN')
@@ -25,7 +25,7 @@ module.exports = {
       
       hexColor += color.toString(16)
                        .padStart(2, 0);
-    });
+    };
     
     return msg.send({
       embed: {

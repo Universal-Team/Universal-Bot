@@ -1,7 +1,7 @@
 module.exports = {
-  name: [ 'rgbToHex', 'rgb2hex' ],
-  usage: '<red> <green> <blue>',
-  desc: 'converts 3 rgb values to a hex color',
+  name: [ 'rgbToHex', 'rgb2hex', 'r2h' ],
+  usage: '<Red> <Green> <Blue>',
+  desc: 'converts 3 RGB values to a hex color',
   DM: true,
   permissions: [],
   exec(UnivBot, msg) {
@@ -10,12 +10,22 @@ module.exports = {
     if (colors.length < 3)
       return msg.send('**Oops!** You didn\'t provide enough arguments');
     
+    
     let hexColor = '#';
-    for(let color of colors) {
-      if(color > 255)  color = 255;
-      else if(color < 0)  color = 0;
-      hexColor += parseInt(color).toString(16).padStart(2, 0);
-    }
+    colors.forEach(color => {
+      color = parseInt(color);
+      
+      if (color.toString() == 'NaN')
+        return msg.send('Invalid numbers!');
+      
+      if (color > 255)
+        color = 255
+      else if(color < 0)
+        color = 0;
+      
+      hexColor += color.toString(16)
+                       .padStart(2, 0);
+    });
     
     return msg.send({
       embed: {

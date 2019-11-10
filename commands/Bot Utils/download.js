@@ -9,6 +9,8 @@ module.exports = {
   permissions: [ 'DEV' ],
   
   async exec(UnivBot, msg) {
+    return msg.send('Ooops, im still being made, don\'t use me yet please.');
+    
     let URL  = msg.split(' ')[0];
     let file = msg.split(' ')[1];
     

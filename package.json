@@ -7,9 +7,11 @@
     "start": "node server.js"
   },
   "dependencies": {
+    "bmp-js": "^0.1.0",
     "discord.js": "^11.5.1",
     "express": "^4.16.4",
     "ts2c": "^2.2.6",
+    "typescript": "^3.7.2",
     "website-obj": "^1.0.4"
   },
   "engines": {

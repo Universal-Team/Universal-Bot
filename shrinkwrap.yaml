@@ -1,7 +1,9 @@
 dependencies:
+  bmp-js: 0.1.0
   discord.js: 11.5.1
   express: 4.16.4
   ts2c: 2.2.6
+  typescript: 3.7.2
   website-obj: 1.0.4
 packages:
   /accepts/1.3.5:
@@ -21,6 +23,10 @@ packages:
     dev: false
     resolution:
       integrity: sha512-csOlWGAcRFJaI6m+F2WKdnMKr4HhdhFVBk0H/QbJFMCr+uO2kwohwXQPxw/9OCxp05r5ghVBFSyioixx3gfkNQ==
+  /bmp-js/0.1.0:
+    dev: false
+    resolution:
+      integrity: sha1-4Fpj95amwf8l9Hcex62twUjAcjM=
   /body-parser/1.18.3:
     dependencies:
       bytes: 3.0.0
@@ -404,6 +410,13 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-K7g15Bb6Ra4lKf7Iq2l/I5/En+hLIHmxWZGq3D4DIRNFxMNV6j2SHSvDOqs2tGd4UvD/fJvrwopzQXjLrT7Itw==
+  /typescript/3.7.2:
+    dev: false
+    engines:
+      node: '>=4.2.0'
+    hasBin: true
+    resolution:
+      integrity: sha512-ml7V7JfiN2Xwvcer+XAf2csGO1bPBdRbFCkYBczNZggrBZ9c7G3riSUeJmqEU5uOtXNPMhE3n+R4FA/3YOAWOQ==
   /unpipe/1.0.0:
     dev: false
     engines:
@@ -436,7 +449,9 @@ registry: 'https://registry.npmjs.org/'
 shrinkwrapMinorVersion: 9
 shrinkwrapVersion: 3
 specifiers:
+  bmp-js: ^0.1.0
   discord.js: ^11.5.1
   express: ^4.16.4
   ts2c: ^2.2.6
+  typescript: ^3.7.2
   website-obj: ^1.0.4

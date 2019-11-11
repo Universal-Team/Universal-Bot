@@ -30,7 +30,6 @@ module.exports = {
   desc: 'Adds/removes roles',
   permissions: [],
   async exec(UnivBot, msg) {
-    
     //Setup vars
     let str1 = '\n\n__**The following roles were added:**__';
     let str1len = str1.length;

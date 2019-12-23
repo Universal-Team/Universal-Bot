@@ -12,8 +12,9 @@ module.exports = {
     
       let command;
       for (var path of UnivBot.cmds) {
-        var cmd = require(path);
+        let cmd = require(path);
         let name = cmd.name;
+        
         if ((name instanceof Array)) {
           let matches = false;
           for (var i = 0; i < name.length; i++)

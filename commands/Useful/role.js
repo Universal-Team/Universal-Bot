@@ -12,6 +12,7 @@ function findRole(msg, name) {
       if(possibleRoles[i] == -1) possibleRoles[i] = Infinity;
     }
 
+    if(Math.min.apply(Math, possibleRoles) == Infinity) return;
     return msg.guild.roles.find(r => r.position == possibleRoles.indexOf(Math.min.apply(Math, possibleRoles)) + 1);
   }
 }
@@ -43,16 +44,32 @@ module.exports = {
     
     // Detect empty roles
     if (roles.includes('')) {
-      let possibleRoles = [];
+      let possibleAdd = [];
+      let possibleRemove = [];
       
       for (let i = 1; i < msg.guild.roles.size; i++) {
         if (msg.guild.roles.find(r => r.position == i).editable) {
-          possibleRoles.push(msg.guild.roles.find(r => r.position == i).name);
+          if(hasRole(msg.member, msg.guild.roles.find(r => r.position == i).id)) { 
+            possibleRemove.push(msg.guild.roles.find(r => r.position == i).name);
+          } else {
+            possibleAdd.push(msg.guild.roles.find(r => r.position == i).name);
+          }
         }
       }
       
-      possibleRoles.sort();
-      possibleRoles.unshift('__**The following roles can be added/removed:**__');
+      let possibleRoles = [];
+      if(possibleAdd.length > 0) {
+        possibleAdd.sort();
+        possibleRoles.push('__**The following roles can be added:**__');
+        possibleRoles = possibleRoles.concat(possibleAdd);
+      }
+      if(possibleRemove.length > 0) {
+        if(possibleRoles.length > 0) possibleRoles.push(''); // For a newline
+
+        possibleRemove.sort();
+        possibleRoles.push('__**The following roles can be removed:**__');
+        possibleRoles = possibleRoles.concat(possibleRemove);
+      }
       msg.send(possibleRoles.join('\n'));
       return;
       
@@ -60,42 +77,59 @@ module.exports = {
     
     // Loop through roles
     for (var roleName of roles) {
-        
+      // If --all, toggle all roles
+      if(roleName == '--all') {
+        for (let i = 1; i < msg.guild.roles.size; i++) {
+          if (msg.guild.roles.find(r => r.position == i).editable) {
+            let role = msg.guild.roles.find(r => r.position == i);
+            if (!hasRole(msg.member, role.id)) {
+              // Add role and detect if it was added or not
+              try {
+                await msg.member.addRole(role.id);
+                str1 += '\n'+role.name;
+              } catch(e) {
+                str3 += '\n'+role.name;
+              }
+            } else {
+              try {
+                await msg.member.removeRole(role.id);
+                str2 += '\n'+role.name;
+              } catch(e) {
+                str3 += '\n'+role.name;
+              }
+            }
+          }
+        }
+        break;
+      }
       
       // Prevent @everyone from being found
-      var role = findRole(msg, roleName);
+      var role = findRole(msg, roleName.trim());
       if (role && (role.id == msg.guild.id)) //the id of the @everyone role is the same id of the guild/server
         role = undefined; //if this executes then it means the role was @everyone and it deletes it
       
       // Add/remove role
       if (role) {
-        
           if (!hasRole(msg.member, role.id)) {
-            
             // Add role and detect if it was added or not
             try {
               await msg.member.addRole(role.id);
               str1 += '\n'+role.name;
             } catch(e) {
               str3 += '\n'+role.name;
-            };
-            
+            }
           } else {
-            
             try {
               await msg.member.removeRole(role.id);
               str2 += '\n'+role.name;
             } catch(e) {
               str3 += '\n'+role.name;
-            };
-            
-          };
-        
+            }
+          }
       } else {
           str3 += '\n'+roleName.trim(); // here role.name can't be used because if this else runs is because the role wans't found
-      };
-      
-    };
+      }
+    }
     
     let str4 = ''
     if (str1.length !== str1len)

@@ -2,6 +2,7 @@
 // Setup variables
 // ===========================================================
 const Discord = require('discord.js');
+require('/app/utils/Prototypes');
 
 // ===========================================================
 // Client

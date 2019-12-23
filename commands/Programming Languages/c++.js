@@ -17,6 +17,8 @@ module.exports = {
       if (obj.flags.includes('--template'))
 				obj.string = `
 #include <stdio.h>
+#include <string>
+#include <vector>
 
 int main(int argc, char *argv[]) {
   ${obj.string}

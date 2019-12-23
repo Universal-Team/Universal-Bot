@@ -22,7 +22,8 @@
         "260277536464961537",
         "293573287697580034",
         "178261738364338177",
-        "625056514666659880"
+        "625056514666659880",
+        "644449298087411732"
     ],
     "568119817320792074": {
         "prefix": "?",
@@ -100,7 +101,7 @@
         }
     },
     "619694932889698324": {
-        "prefix": ".",
+        "prefix": "?",
         "messages": {
             "welcome": {
                 "channel": "sys",
@@ -145,6 +146,21 @@
         }
     },
     "569857378816884751": {
+        "prefix": "?",
+        "messages": {
+            "welcome": {
+                "channel": "sys",
+                "string": "Welcome **${user.ping}** to **${guild.name}**!, hope you enjoy your stay! The amount of members now is **${guild.amount}**",
+                "enabled": true
+            },
+            "goodbye": {
+                "channel": "sys",
+                "string": "Goodbye **${user.tag}**... The amount of members now is **${guild.amount}**",
+                "enabled": true
+            }
+        }
+    },
+    "651867559976763392": {
         "prefix": "?",
         "messages": {
             "welcome": {

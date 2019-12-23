@@ -13,6 +13,6 @@ module.exports = {
 };
 
 function bruhify(text) {
- return text
-  .replace(/[ ]/gm, " bruh ");
+ return 'BRUH ' + text
+  .replace(/[ ]/gm, " bruh ") + ' BRUH';
 };

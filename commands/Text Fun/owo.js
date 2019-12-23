@@ -13,12 +13,12 @@ module.exports = {
 };
 
 function OwOify(text) {
- return text
+ return 'OwO ' + text
   .replace('speak', 'spweak')
   .replace('need', 'nweed')
   .replace('stand', 'stwand')
   .replace(/[rl]/gm, "w")
   .replace(/[RL]/gm, "W")
   .replace(/ove/g, 'uv')
-  .trim();
+  .trim() + ' OwO';
 };

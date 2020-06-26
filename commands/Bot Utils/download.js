@@ -1,5 +1,5 @@
-const Website = require('website-obj');
-const fs      = require('fs');
+const fetch = require('node-fetch');
+const fs    = require('fs');
 
 module.exports = {
   name: ['download', 'request'],
@@ -25,11 +25,13 @@ module.exports = {
     
     if (fs.existsSync(file))
       return msg.send('Can\'t save website as '+file+' since it already exists');
-    
-    const Web = new Website(URL);
+
     try {
-      let response = await Web.request({ redirections: true, maxRedirections: Infinity });
-      fs.writeFileSync(file, response.body);
+      fetch(URL)
+        .then(res => {
+          const dest = fs.createWriteStream('./octocat.png');
+          res.body.pipe(dest);
+        });
     } catch(e) {
       return msg.send('The URL doens\'t exists!');
     };

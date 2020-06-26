@@ -12,7 +12,7 @@
     "express": "^4.16.4",
     "ts2c": "^2.2.6",
     "typescript": "^3.7.2",
-    "website-obj": "^1.0.4"
+    "node-fetch": "^2.6.0"
   },
   "engines": {
     "node": "13.0.1"

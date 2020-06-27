@@ -12,7 +12,8 @@
     "express": "^4.17.1",
     "ts2c": "^2.2.7",
     "typescript": "^3.9.5",
-    "node-fetch": "^2.6.0"
+    "node-fetch": "^2.6.0",
+    "dotenv": "^8.2.0"
   },
   "engines": {
     "node": "13.0.1"

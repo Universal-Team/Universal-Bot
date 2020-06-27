@@ -3,6 +3,7 @@
 // ===========================================================
 const Discord = require('discord.js');
 require('/app/utils/Prototypes');
+require('dotenv').config();
 
 // ===========================================================
 // Client

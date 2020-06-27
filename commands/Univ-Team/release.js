@@ -2,30 +2,27 @@ const projects = [
   { name: 'BetterDex',
     color: 0x000080,
     emoji: '<:BetterDex:630493895859503139>' },
-    
   { name: 'iDex',
     color: 0x000080,
     emoji: '<:iDex:597625862069682176>' },
-    
   { name: 'LeafEdit',
     color: 0x04B324,
     emoji: '<:leafEdit:630495340281462853>' },
-    
   { name: 'pkmn-chest',
     color: 0xBF0300,
     emoji: '<:pkmnchest:613597377625980939>' },
-  
   { name: 'Project-Athena',
     color: 0xAEDCDA,
     emoji: '<:projectathena:635958083172171786>' },
-  
   { name: 'Relaunch',
     color: 0x606060,
     emoji: '<:relaunch:620365238243688467>' },
-  
   { name: 'Universal-Updater',
     color: 0x002F50,
-    emoji: '<:universalupdater:641744724549697576>' }
+    emoji: '<:universalupdater:641744724549697576>' },
+  { name: '3DEins',
+    color: 0xDCA000,
+	emoji: '<:3deins:726443365184307280>' }
 ];
 projects.embed = function() {
 	let description = ['Please rerun the command followed by one of the following project names:\n'];

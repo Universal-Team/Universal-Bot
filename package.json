@@ -9,11 +9,11 @@
   "dependencies": {
     "bmp-js": "^0.1.0",
     "discord.js": "^11.6.4",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "ts2c": "^2.2.7",
-    "typescript": "^3.9.5",
     "node-fetch": "^2.6.0",
-    "dotenv": "^8.2.0"
+    "ts2c": "^2.2.7",
+    "typescript": "^3.9.5"
   },
   "engines": {
     "node": "13.0.1"

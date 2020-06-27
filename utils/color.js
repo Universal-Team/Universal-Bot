@@ -12,14 +12,17 @@ function closest(array, number) {
 	let index = 0;
 	let diffe = Infinity;
 	array.forEach((int, key) => {
-		let current = difference(int, number);;
-		if (current < diffe) {
-			diffe = current;
+		let r = difference(int >> 0x10, number >> 0x10);
+		let g = difference((int >> 0x5) & 0xFF, (number >> 0x5) & 0xFF);
+		let b = difference(int & 0xFF, number & 0xFF);
+		let average = (r + g + b) / 3;
+		if (average < diffe) {
+			diffe = average;
 			index = key;
-	 };
+		}
 	});
 	return index;
-};
+}
 
 const list = [
     { Name: 'Maroon', Decimal: 8388608 },

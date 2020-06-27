@@ -21,7 +21,7 @@ function compile(code, type) {
   
   sourceFile += '.' + extension;
   fs.writeFileSync(sourceFile, new Buffer.from(code));
-  let stdio = spawnSync('g++', ['-std=c++11', sourceFile, '-o', compiledFile], { encoding: 'utf-8' });
+  let stdio = spawnSync('g++', ['-std=c++17', sourceFile, '-o', compiledFile], { encoding: 'utf-8' });
   
   let exec = spawnSync(compiledFile, { encoding: 'utf-8' });
   fs.unlinkSync(sourceFile);

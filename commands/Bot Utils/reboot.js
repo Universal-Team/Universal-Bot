@@ -17,7 +17,7 @@ module.exports = {
       if (!msg.guild)
         UnivBot.db.reboot = { msg: message.id, author: msg.author.id, start: new Date().getTime() };
       fs.writeFileSync('/app/database.json', JSON.stringify(UnivBot.db, null, 4));
-      terminal('refresh');
+      terminal('pm2 restart univ-bot');
     });
     
   }

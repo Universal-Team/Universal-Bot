@@ -15,7 +15,7 @@ module.exports = {
 			let res;
 			// Search titles
 			json.some(app => {
-				if(app.title && app.title.toLowerCase().includes(msg.args)) {
+				if(app.title && app.title.toLowerCase().includes(query)) {
 					res = app;
 					return true;
 				}

@@ -43,7 +43,11 @@ module.exports = {
 					},
 					"description": res.description,
 					"fields": [],
-					"image": {}
+					"image": {},
+					"footer": {
+						"icon_url": res.icon || res.image,
+						"text": res.author ? "By: " + res.author : ""
+					}
 				}};
 				for(let item in res.downloads) {
 					embed.embed.fields.push({

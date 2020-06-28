@@ -80,6 +80,19 @@ module.exports = {
         category += '   ['+fs.readdirSync('/app/commands/'+category).filter(cmd => cmd.endsWith('.js')).length+']';
         embed.addField(category, desc, true);
       };
+
+      let usefulCommands = [];
+      switch (msg.channel.id) {
+        case '589882205556310076':
+          usefulCommands.push("**?wiki Universal Updater** - Sends a link to Universal Updater's wiki")
+          usefulCommands.push('**?cia Universal Updater** - Sends a QR code for the latest version of Universal Updater')
+          usefulCommands.push("**?site Universal Updater** - Sends a link to Universal Updater's page on the Universal Team website")
+          usefulCommands.push('**?nightly Universal Updater** - Sends a link to a build for the latest nightly version of Universal Updater')
+          usefulCommands.push('**?release Universal Updater** - Sends a link to a build for the latest release version of Universal Updater')
+      }
+      
+      if (usefulCommands.length)
+        embed.addField('Useful Commands', usefulCommands.join('\n'))
     };
     if (type == 'file') {
       var category = isCategory(UnivBot, msg.args);

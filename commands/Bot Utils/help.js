@@ -69,6 +69,10 @@ module.exports = {
       .setThumbnail(image)
       .setTitle(title);
     
+    function formatCommand(title, desc) {
+      return `**${msg.prefix}${title}** - ${desc}`
+    }
+    
     // Add commands/categories to embed
     if (type == 'dir') {
       embed.setFooter('• Amount of categories : '+UnivBot.categories.length, UnivBot.client.user.avatarURL);
@@ -84,11 +88,33 @@ module.exports = {
       let usefulCommands = [];
       switch (msg.channel.id) {
         case '589882205556310076':
-          usefulCommands.push("**?wiki Universal Updater** - Sends a link to Universal Updater's wiki")
-          usefulCommands.push('**?cia Universal Updater** - Sends a QR code for the latest version of Universal Updater')
-          usefulCommands.push("**?site Universal Updater** - Sends a link to Universal Updater's page on the Universal Team website")
-          usefulCommands.push('**?nightly Universal Updater** - Sends a link to a build for the latest nightly version of Universal Updater')
-          usefulCommands.push('**?release Universal Updater** - Sends a link to a build for the latest release version of Universal Updater')
+          usefulCommands.push(formatCommand("wiki Universal Updater", "Sends a link to Universal Updater's wiki"))
+          usefulCommands.push(formatCommand('cia Universal Updater', 'Sends a QR code for the latest version of Universal Updater'))
+          usefulCommands.push(formatCommand('site Universal Updater', "Sends a link to Universal Updater's page on the Universal Team website"))
+          usefulCommands.push(formatCommand('nightly Universal Updater', 'Sends a link to a build for the latest nightly version of Universal Updater'))
+          usefulCommands.push(formatCommand('release Universal Updater', 'Sends a link to a build for the latest release version of Universal Updater'))
+          break;
+        case '588780299199184937':
+          usefulCommands.push(formatCommand("wiki pkmn-chest", "Sends a link to pkmn-chest's wiki"))
+          usefulCommands.push(formatCommand('cia pkmn-chest', 'Sends a QR code for the latest version of pkmn-chest'))
+          usefulCommands.push(formatCommand('site pkmn-chest', "Sends a link to pkmn-chest's page on the Universal Team website"))
+          usefulCommands.push(formatCommand('nightly pkmn-chest', 'Sends a link to a build for the latest nightly version of pkmn-chest'))
+          usefulCommands.push(formatCommand('release pkmn-chest', 'Sends a link to a build for the latest release version of pkmn-chest'))
+          break;
+        case '610817877276360734':
+        case '693691078498451486':
+          usefulCommands.push(formatCommand("wiki LeafEdit", "Sends a link to LeafEdit's wiki"))
+          usefulCommands.push(formatCommand('cia LeafEdit', 'Sends a QR code for the latest version of LeafEdit'))
+          usefulCommands.push(formatCommand('site LeafEdit', "Sends a link to LeafEdit's page on the Universal Team website"))
+          usefulCommands.push(formatCommand('nightly LeafEdit', 'Sends a link to a build for the latest nightly version of LeafEdit'))
+          usefulCommands.push(formatCommand('release LeafEdit', 'Sends a link to a build for the latest release version of LeafEdit'))
+          break;
+        case '590552111289466890':
+          //usefulCommands.push(formatCommand("wiki relaunch", "Sends a link to relaunch's wiki"))
+          //usefulCommands.push(formatCommand('cia relaunch', 'Sends a QR code for the latest version of relaunch'))
+          usefulCommands.push(formatCommand('site relaunch', "Sends a link to relaunch's page on the Universal Team website"))
+          usefulCommands.push(formatCommand('nightly relaunch', 'Sends a link to a build for the latest nightly version of relaunch'))
+          usefulCommands.push(formatCommand('release relaunch', 'Sends a link to a build for the latest release version of relaunch'))
       }
       
       if (usefulCommands.length)

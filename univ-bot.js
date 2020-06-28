@@ -8,19 +8,18 @@ require('dotenv').config();
 // ===========================================================
 // Client
 // ===========================================================
-const UnivBot = {
-  client: new Discord.Client()
-};
+const UnivBot = { client: new Discord.Client() };
 UnivBot.db = require('./database.json');
 UnivBot.client.login(process.env['TOKEN']);
 
 // ===========================================================
 // Handle the events
 // ===========================================================
-UnivBot.client.on('ready', () => require('/app/events/ready')(UnivBot));
-UnivBot.client.on('message', msg => require('/app/events/message')(UnivBot, msg));
-UnivBot.client.on('messageUpdate', (orgMsg, msg) => require('/app/events/message')(UnivBot, msg));
-UnivBot.client.on('guildCreate', guild => require('/app/events/guildCreate')(UnivBot, guild));
-UnivBot.client.on('guildDelete', guild => require('/app/events/guildDelete')(UnivBot, guild));
-UnivBot.client.on('guildMemberAdd', member => require('/app/events/guildMemberAdd')(UnivBot, member));
-UnivBot.client.on('guildMemberRemove', member => require('/app/events/guildMemberRemove')(UnivBot, member));
+fs.readdir("./events/", (err, files) => {
+  if (err) return console.error(err);
+  files.forEach(file => {
+    const event = require(`./events/${file}`);
+    let eventName = file.split(".")[0];
+    UnivBot.client.on(eventName, event.bind(null, UnivBot));
+  });
+});

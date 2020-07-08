@@ -1,179 +1,185 @@
 {
-    "default": {
-        "prefix": "?",
-        "messages": {
-            "welcome": {
-                "channel": "sys",
-                "string": "Welcome **${user.ping}** to **${guild.name}**!, hope you enjoy your stay! The amount of members now is **${guild.amount}**",
-                "enabled": true
-            },
-            "goodbye": {
-                "channel": "sys",
-                "string": "Goodbye **${user.tag}**... The amount of members now is **${guild.amount}**",
-                "enabled": true
-            }
-        }
-    },
-    "developers": [
-        "327757456673472523",
-        "404682150370082817",
-        "398661839182888960",
-        "545821283372498944",
-        "260277536464961537",
-        "293573287697580034",
-        "178261738364338177",
-        "625056514666659880",
-        "644449298087411732",
-        "305817665082097665"
-    ],
-    "568119817320792074": {
-        "prefix": "?",
-        "messages": {
-            "welcome": {
-                "channel": "sys",
-                "string": "Welcome **${user.ping}** to **${guild.name}**!, hope you enjoy your stay! The amount of members now is **${guild.amount}**",
-                "enabled": true
-            },
-            "goodbye": {
-                "channel": "sys",
-                "string": "Farewell, ${user.tag}",
-                "enabled": true
-            }
-        }
-    },
-    "607895116413403137": {
-        "prefix": "?",
-        "messages": {
-            "welcome": {
-                "channel": "sys",
-                "string": "Welcome **${user.ping}** to **${guild.name}**!, hope you enjoy your stay! The amount of members now is **${guild.amount}**",
-                "enabled": true
-            },
-            "goodbye": {
-                "channel": "sys",
-                "string": "Goodbye **${user.tag}**... The amount of members now is **${guild.amount}**",
-                "enabled": true
-            }
-        }
-    },
-    "592183831860215808": {
-        "prefix": "!",
-        "messages": {
-            "welcome": {
-                "channel": "592183866857488404",
-                "string": "Welcome **${user.ping}** to **${guild.name}**!, hope you enjoy your stay! The amount of members now is **${guild.amount}**",
-                "enabled": true
-            },
-            "goodbye": {
-                "channel": "sys",
-                "string": "Goodbye **${user.tag}**... The amount of members now is **${guild.amount}**",
-                "enabled": true
-            }
-        }
-    },
-    "614278143527878656": {
-        "prefix": "?",
-        "messages": {
-            "welcome": {
-                "channel": "sys",
-                "string": "Welcome **${user.ping}** to **${guild.name}**!, hope you enjoy your stay! The amount of members now is **${guild.amount}**",
-                "enabled": true
-            },
-            "goodbye": {
-                "channel": "sys",
-                "string": "Goodbye **${user.tag}**... The amount of members now is **${guild.amount}**",
-                "enabled": true
-            }
-        }
-    },
-    "604318242315436062": {
-        "prefix": "?",
-        "messages": {
-            "welcome": {
-                "channel": "sys",
-                "string": "Welcome **${user.ping}** to **${guild.name}**!, hope you enjoy your stay! The amount of members now is **${guild.amount}**",
-                "enabled": true
-            },
-            "goodbye": {
-                "channel": "sys",
-                "string": "Goodbye **${user.tag}**... The amount of members now is **${guild.amount}**",
-                "enabled": true
-            }
-        }
-    },
-    "619694932889698324": {
-        "prefix": "?",
-        "messages": {
-            "welcome": {
-                "channel": "sys",
-                "string": "Welcome **${user.ping}** to **${guild.name}**!, hope you enjoy your stay! The amount of members now is **${guild.amount}**",
-                "enabled": true
-            },
-            "goodbye": {
-                "channel": "sys",
-                "string": "Goodbye **${user.tag}**... The amount of members now is **${guild.amount}**",
-                "enabled": true
-            }
-        }
-    },
-    "629863772294742016": {
-        "prefix": "!",
-        "messages": {
-            "welcome": {
-                "channel": "sys",
-                "string": "Welcome **${user.ping}** to **${guild.name}**!, hope you enjoy your stay! The amount of members now is **${guild.amount}**",
-                "enabled": true
-            },
-            "goodbye": {
-                "channel": "sys",
-                "string": "Goodbye **${user.tag}**... The amount of members now is **${guild.amount}**",
-                "enabled": true
-            }
-        }
-    },
-    "631492694711205907": {
-        "prefix": "?",
-        "messages": {
-            "welcome": {
-                "channel": "sys",
-                "string": "Welcome **${user.ping}** to **${guild.name}**!, hope you enjoy your stay! The amount of members now is **${guild.amount}**",
-                "enabled": true
-            },
-            "goodbye": {
-                "channel": "sys",
-                "string": "Goodbye **${user.tag}**... The amount of members now is **${guild.amount}**",
-                "enabled": true
-            }
-        }
-    },
-    "569857378816884751": {
-        "prefix": "?",
-        "messages": {
-            "welcome": {
-                "channel": "sys",
-                "string": "Welcome **${user.ping}** to **${guild.name}**!, hope you enjoy your stay! The amount of members now is **${guild.amount}**",
-                "enabled": true
-            },
-            "goodbye": {
-                "channel": "sys",
-                "string": "Goodbye **${user.tag}**... The amount of members now is **${guild.amount}**",
-                "enabled": true
-            }
-        }
-    },
-    "651867559976763392": {
-        "prefix": "?",
-        "messages": {
-            "welcome": {
-                "channel": "sys",
-                "string": "Welcome **${user.ping}** to **${guild.name}**!, hope you enjoy your stay! The amount of members now is **${guild.amount}**",
-                "enabled": true
-            },
-            "goodbye": {
-                "channel": "sys",
-                "string": "Goodbye **${user.tag}**... The amount of members now is **${guild.amount}**",
-                "enabled": true
-            }
-        }
-    }
+	"default": {
+		"prefix": "?",
+		"messages": {
+			"welcome": {
+				"channel": "sys",
+				"string": "Welcome **${user.ping}** to **${guild.name}**!, hope you enjoy your stay! The amount of members now is **${guild.amount}**",
+				"enabled": true
+			},
+			"goodbye": {
+				"channel": "sys",
+				"string": "Goodbye **${user.tag}**... The amount of members now is **${guild.amount}**",
+				"enabled": true
+			}
+		}
+	},
+	"developers": [
+		"327757456673472523",
+		"404682150370082817",
+		"398661839182888960",
+		"545821283372498944",
+		"260277536464961537",
+		"293573287697580034",
+		"178261738364338177",
+		"625056514666659880",
+		"644449298087411732",
+		"305817665082097665"
+	],
+	"568119817320792074": {
+		"prefix": "?",
+		"messages": {
+			"welcome": {
+				"channel": "sys",
+				"string": "Welcome **${user.ping}** to **${guild.name}**!, hope you enjoy your stay! The amount of members now is **${guild.amount}**",
+				"enabled": true
+			},
+			"goodbye": {
+				"channel": "sys",
+				"string": "Farewell, ${user.tag}",
+				"enabled": true
+			}
+		}
+	},
+	"607895116413403137": {
+		"prefix": "?",
+		"messages": {
+			"welcome": {
+				"channel": "sys",
+				"string": "Welcome **${user.ping}** to **${guild.name}**!, hope you enjoy your stay! The amount of members now is **${guild.amount}**",
+				"enabled": true
+			},
+			"goodbye": {
+				"channel": "sys",
+				"string": "Goodbye **${user.tag}**... The amount of members now is **${guild.amount}**",
+				"enabled": true
+			}
+		}
+	},
+	"592183831860215808": {
+		"prefix": "!",
+		"messages": {
+			"welcome": {
+				"channel": "592183866857488404",
+				"string": "Welcome **${user.ping}** to **${guild.name}**!, hope you enjoy your stay! The amount of members now is **${guild.amount}**",
+				"enabled": true
+			},
+			"goodbye": {
+				"channel": "sys",
+				"string": "Goodbye **${user.tag}**... The amount of members now is **${guild.amount}**",
+				"enabled": true
+			}
+		}
+	},
+	"614278143527878656": {
+		"prefix": "uwu",
+		"messages": {
+			"welcome": {
+				"channel": "sys",
+				"string": "Welcome **${user.ping}** to **${guild.name}**!, hope you enjoy your stay! The amount of members now is **${guild.amount}**",
+				"enabled": true
+			},
+			"goodbye": {
+				"channel": "sys",
+				"string": "Goodbye **${user.tag}**... The amount of members now is **${guild.amount}**",
+				"enabled": true
+			}
+		}
+	},
+	"604318242315436062": {
+		"prefix": "?",
+		"messages": {
+			"welcome": {
+				"channel": "sys",
+				"string": "Welcome **${user.ping}** to **${guild.name}**!, hope you enjoy your stay! The amount of members now is **${guild.amount}**",
+				"enabled": true
+			},
+			"goodbye": {
+				"channel": "sys",
+				"string": "Goodbye **${user.tag}**... The amount of members now is **${guild.amount}**",
+				"enabled": true
+			}
+		}
+	},
+	"619694932889698324": {
+		"prefix": "?",
+		"messages": {
+			"welcome": {
+				"channel": "sys",
+				"string": "Welcome **${user.ping}** to **${guild.name}**!, hope you enjoy your stay! The amount of members now is **${guild.amount}**",
+				"enabled": true
+			},
+			"goodbye": {
+				"channel": "sys",
+				"string": "Goodbye **${user.tag}**... The amount of members now is **${guild.amount}**",
+				"enabled": true
+			}
+		}
+	},
+	"629863772294742016": {
+		"prefix": "!",
+		"messages": {
+			"welcome": {
+				"channel": "sys",
+				"string": "Welcome **${user.ping}** to **${guild.name}**!, hope you enjoy your stay! The amount of members now is **${guild.amount}**",
+				"enabled": true
+			},
+			"goodbye": {
+				"channel": "sys",
+				"string": "Goodbye **${user.tag}**... The amount of members now is **${guild.amount}**",
+				"enabled": true
+			}
+		}
+	},
+	"631492694711205907": {
+		"prefix": "?",
+		"messages": {
+			"welcome": {
+				"channel": "sys",
+				"string": "Welcome **${user.ping}** to **${guild.name}**!, hope you enjoy your stay! The amount of members now is **${guild.amount}**",
+				"enabled": true
+			},
+			"goodbye": {
+				"channel": "sys",
+				"string": "Goodbye **${user.tag}**... The amount of members now is **${guild.amount}**",
+				"enabled": true
+			}
+		}
+	},
+	"569857378816884751": {
+		"prefix": "?",
+		"messages": {
+			"welcome": {
+				"channel": "sys",
+				"string": "Welcome **${user.ping}** to **${guild.name}**!, hope you enjoy your stay! The amount of members now is **${guild.amount}**",
+				"enabled": true
+			},
+			"goodbye": {
+				"channel": "sys",
+				"string": "Goodbye **${user.tag}**... The amount of members now is **${guild.amount}**",
+				"enabled": true
+			}
+		}
+	},
+	"651867559976763392": {
+		"prefix": "?",
+		"messages": {
+			"welcome": {
+				"channel": "sys",
+				"string": "Welcome **${user.ping}** to **${guild.name}**!, hope you enjoy your stay! The amount of members now is **${guild.amount}**",
+				"enabled": true
+			},
+			"goodbye": {
+				"channel": "sys",
+				"string": "Goodbye **${user.tag}**... The amount of members now is **${guild.amount}**",
+				"enabled": true
+			}
+		}
+	},
+	"reboot": {
+		"msg": "730284890859241513",
+		"channel": "625519299666378753",
+		"guild": "614278143527878656",
+		"start": 1594183886171
+	}
 }

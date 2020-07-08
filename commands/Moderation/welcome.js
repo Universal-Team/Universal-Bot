@@ -73,7 +73,7 @@ include those 'variables' in the text :
 				return msg.send('Sucessfully changed the welcome channel to the system channel'+makeJSON(db.messages.welcome));
 			}
 			var ID = arg.substr(0, arg.length-1).substr(2);
-			var channel = msg.guild.channels.get(ID);
+			var channel = msg.guild.channels.cache.get(ID);
 			if (!channel)
 				return msg.send(err2);
 			db.messages.welcome.channel = ID;

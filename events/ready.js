@@ -14,9 +14,9 @@ module.exports = async (UnivBot) => {
   console.log(UnivBot.client.user.tag+' is ready');
   
   // Setup activities
-  var status = UnivBot.client.guilds.size+' Servers | ?help';
-  if (UnivBot.client.guilds.size == 1)
-    status = UnivBot.client.guilds.size+' Server | ?help';
+  var status = UnivBot.client.guilds.cache.size+' Servers | ?help';
+  if (UnivBot.client.guilds.cache.size == 1)
+    status = UnivBot.client.guilds.cache.size+' Server | ?help';
   UnivBot.client.user.setActivity("Booted!");
   setTimeout(() =>
     UnivBot.client.user.setActivity(status, {

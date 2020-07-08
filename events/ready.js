@@ -30,7 +30,7 @@ module.exports = async (UnivBot) => {
   for (var category of UnivBot.categories) {
     var commands = fs.readdirSync('commands/'+category).filter(cmd => cmd.endsWith('.js'));
     for (var command of commands) {
-      UnivBot.cmds.push('../commands/'+category+'/'+command);
+      UnivBot.cmds.push('commands/'+category+'/'+command);
     };
   };
   

@@ -27,7 +27,7 @@ module.exports = {
 
 		let message = await msg.send('Running typescript can be slow, please be patient...');
 		let output = ts2js(obj.string);
-		message.delete(1);
+		message.delete({timeout: 1, reason: "Done running ts2js"});
 
 		if (output.stderr || output.stdout) {
 			let err = output.stderr;

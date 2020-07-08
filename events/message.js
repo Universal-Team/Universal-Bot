@@ -32,7 +32,11 @@ function isDev(UnivBot, user) {
 }
 
 // Event handler
-module.exports = async function(UnivBot, msg) {
+module.exports = async function(UnivBot, msg, nmsg) {
+	// If edit, use new message
+	if(nmsg)
+		msg = nmsg;
+
 	// Check for prefixes
 	if (!msg.guild && msg.content.startsWith('?'))
 		msg.content = msg.content.substr(1);

@@ -26,11 +26,11 @@ module.exports = async (UnivBot) => {
   
   // Make collection of commands
   UnivBot.cmds = [];
-  UnivBot.categories = fs.readdirSync('/app/commands/');
+  UnivBot.categories = fs.readdirSync('commands/');
   for (var category of UnivBot.categories) {
-    var commands = fs.readdirSync('/app/commands/'+category).filter(cmd => cmd.endsWith('.js'));
+    var commands = fs.readdirSync('commands/'+category).filter(cmd => cmd.endsWith('.js'));
     for (var command of commands) {
-      UnivBot.cmds.push('/app/commands/'+category+'/'+command);
+      UnivBot.cmds.push('../commands/'+category+'/'+command);
     };
   };
   
@@ -46,12 +46,12 @@ module.exports = async (UnivBot) => {
       msg.then(msg => {
           msg.edit('Done rebooting! It took '+time+' seconds');
           UnivBot.db.reboot = undefined;
-          fs.writeFileSync('/app/database.json', JSON.stringify(UnivBot.db, null, 4));
+          fs.writeFileSync('../database.json', JSON.stringify(UnivBot.db, null, 4));
       })
       msg.catch(() => {
           user.send('Done rebooting! It took '+time+' seconds');
           UnivBot.db.reboot = undefined;
-          fs.writeFileSync('/app/database.json', JSON.stringify(UnivBot.db, null, 4));
+          fs.writeFileSync('../database.json', JSON.stringify(UnivBot.db, null, 4));
       });
     } else {
       var guild = UnivBot.client.guilds.get(reb.guild);
@@ -61,12 +61,12 @@ module.exports = async (UnivBot) => {
       msg.then(msg => {
           msg.edit('Done rebooting! It took '+time+' seconds');
           UnivBot.db.reboot = undefined;
-          fs.writeFileSync('/app/database.json', JSON.stringify(UnivBot.db, null, 4));
+          fs.writeFileSync('../database.json', JSON.stringify(UnivBot.db, null, 4));
       })
       msg.catch(() => {
           channel.send('Done rebooting! It took '+time+' seconds');
           UnivBot.db.reboot = undefined;
-          fs.writeFileSync('/app/database.json', JSON.stringify(UnivBot.db, null, 4));
+          fs.writeFileSync('../database.json', JSON.stringify(UnivBot.db, null, 4));
       });
     };
     

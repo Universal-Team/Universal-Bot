@@ -1,8 +1,9 @@
 // ===========================================================
 // Setup variables
 // ===========================================================
+const fs = require('fs');
 const Discord = require('discord.js');
-require('/app/utils/Prototypes');
+require('./utils/Prototypes');
 require('dotenv').config();
 
 // ===========================================================

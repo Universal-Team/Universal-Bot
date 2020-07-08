@@ -3,7 +3,7 @@ const charsets = {
   dec: [ '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' ],
 };
 
-const color = require('/app/utils/color');
+const color = require('../../utils/color');
 
 module.exports = {
   name: [ 'color', 'color-code' ],

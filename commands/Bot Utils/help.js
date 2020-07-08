@@ -78,10 +78,10 @@ module.exports = {
       embed.setFooter('• Amount of categories : '+UnivBot.categories.length, UnivBot.client.user.avatarURL);
       for (var category of UnivBot.categories) {
         var desc = 'No description yet'
-        var path = '/app/commands/'+category+'/desc.txt';
+        var path = 'commands/'+category+'/desc.txt';
         if (fs.existsSync(path))
           desc = fs.readFileSync(path);
-        category += '   ['+fs.readdirSync('/app/commands/'+category).filter(cmd => cmd.endsWith('.js')).length+']';
+        category += '   ['+fs.readdirSync('commands/'+category).filter(cmd => cmd.endsWith('.js')).length+']';
         embed.addField(category, desc, true);
       };
 
@@ -122,19 +122,19 @@ module.exports = {
     };
     if (type == 'file') {
       var category = isCategory(UnivBot, msg.args);
-      var commands = fs.readdirSync('/app/commands/'+category).filter(cmd => cmd.endsWith('.js'));
+      var commands = fs.readdirSync('commands/'+category).filter(cmd => cmd.endsWith('.js'));
       embed.setFooter('• Amount of commands in '+category+' : '+commands.length, UnivBot.client.user.avatarURL);
       for (var command of commands) {
-        var desc = require('/app/commands/'+category+'/'+command).desc;
-        var name = require('/app/commands/'+category+'/'+command).name;
+        var desc = require('commands/'+category+'/'+command).desc;
+        var name = require('commands/'+category+'/'+command).name;
         if ((name instanceof Array)) {
           var nameStr = name[0];
-          nameStr += ' '+require('/app/commands/'+category+'/'+command).usage;
+          nameStr += ' '+require('commands/'+category+'/'+command).usage;
           nameStr = msg.prefix+nameStr;
           desc += ' (Other names : **'+name.slice(1).join('**, **')+'**)'
           embed.addField(nameStr, desc, true);
         } else {
-          name += ' '+require('/app/commands/'+category+'/'+command).usage;
+          name += ' '+require('commands/'+category+'/'+command).usage;
           name = msg.prefix+name;
           embed.addField(name, desc, true);
         };

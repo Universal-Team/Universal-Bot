@@ -7,7 +7,7 @@ module.exports = {
   permissions: [],
   exec(UnivBot, msg) {
     
-    var modules = require('/app/package.json').dependencies;
+    var modules = require('../../package.json').dependencies;
     modules = Object.keys(modules);
     var link = 'https://discordapp.com/oauth2/authorize?client_id=618835289531613205&scope=bot&permissions=8';
     let embed = new Discord.RichEmbed()

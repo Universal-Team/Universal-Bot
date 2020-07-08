@@ -1,7 +1,7 @@
 const { spawnSync } = require('child_process');
-const compiled      = '/app/typescript.js';
-const source        = '/app/typescript.ts';
-const tsc           = '/app/node_modules/typescript/bin/tsc';
+const compiled      = '../typescript.js';
+const source        = '../typescript.ts';
+const tsc           = '../node_modules/typescript/bin/tsc';
 const fs            = require('fs');
 
 function ts2js(string) {

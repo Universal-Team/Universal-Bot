@@ -1,6 +1,6 @@
 var terminal = require('child_process').execSync;
-const searchFlags = require('/app/utils/searchFlags');
-const MessageAttachment = require('/app/utils/MessageAttachment');
+const searchFlags = require('../../utils/searchFlags');
+const MessageAttachment = require('../../utils/MessageAttachment');
 
 module.exports = {
   name: 'Bash',

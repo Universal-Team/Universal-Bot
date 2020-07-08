@@ -1,9 +1,9 @@
 const { spawnSync } = require('child_process');
-const compiledFile  = '/app/utils/compile.bin';
+const compiledFile  = '../utils/compile.bin';
 const fs            = require('fs');
 
 function compile(code, type) {
-  let sourceFile    = '/app/utils/compile';
+  let sourceFile    = '../utils/compile';
   
   let extension = 'cpp';
   switch(type.toLowerCase()) {

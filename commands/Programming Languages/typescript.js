@@ -1,6 +1,6 @@
-const ts2js = require('/app/utils/ts2js');
-const searchFlags = require('/app/utils/searchFlags');
-const MessageAttachment = require('/app/utils/MessageAttachment');
+const ts2js = require('../../utils/ts2js');
+const searchFlags = require('../../utils/searchFlags');
+const MessageAttachment = require('../../utils/MessageAttachment');
 
 module.exports = {
   name: ['TypeScript', 'TS'],

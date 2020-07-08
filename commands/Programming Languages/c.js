@@ -1,6 +1,6 @@
-const searchFlags = require('/app/utils/searchFlags');
-const MessageAttachment = require('/app/utils/MessageAttachment');
-const compile = require('/app/utils/compile');
+const searchFlags = require('../../utils/searchFlags');
+const MessageAttachment = require('../../utils/MessageAttachment');
+const compile = require('../../utils/compile');
 
 module.exports = {
   name: 'C',

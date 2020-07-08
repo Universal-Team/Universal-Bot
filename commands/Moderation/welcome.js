@@ -1,6 +1,6 @@
 const fs = require('fs');
 function updateDB(UnivBot) {
-  fs.writeFileSync('/app/database.json', JSON.stringify(UnivBot.db, null, 4));
+  fs.writeFileSync('../../database.json', JSON.stringify(UnivBot.db, null, 4));
 };
 function makeJSON(obj) {
   obj = JSON.parse(JSON.stringify(obj));

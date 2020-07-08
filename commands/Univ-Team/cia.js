@@ -114,10 +114,10 @@ module.exports = {
 			embed: {
 				color: app.color,
 				title: `${app.emoji} ${app.name}`,
-				description: 'Use the link or\n QR above to install the cia',
+				description: 'Use the link or QR above to install the cia',
 				url: github.cia.file
 			},
-			file: github.cia.QR
+			files: [github.cia.QR]
 		});
 	}
 }

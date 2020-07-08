@@ -2,9 +2,9 @@ function findRole(msg, name) {
 	if(name.length > 0) {
 		let possibleRoles = [];
 
-		for (let i = 1; i < msg.guild.roles.size; i++) {
-			if (msg.guild.roles.find(r => r.position == i).editable) {
-				possibleRoles.push(msg.guild.roles.find(r => r.position == i).name.toLowerCase().search(name.toLowerCase()));
+		for (let i = 1; i < msg.guild.roles.cache.size; i++) {
+			if (msg.guild.roles.cache.find(r => r.position == i).editable) {
+				possibleRoles.push(msg.guild.roles.cache.find(r => r.position == i).name.toLowerCase().search(name.toLowerCase()));
 			}
 		}
 
@@ -13,12 +13,12 @@ function findRole(msg, name) {
 		}
 
 		if(Math.min.apply(Math, possibleRoles) == Infinity) return;
-		return msg.guild.roles.find(r => r.position == possibleRoles.indexOf(Math.min.apply(Math, possibleRoles)) + 1);
+		return msg.guild.roles.cache.find(r => r.position == possibleRoles.indexOf(Math.min.apply(Math, possibleRoles)) + 1);
 	}
 }
 
 function hasRole(member, id) {
-	if (member.roles.get(id)) {
+	if (member.roles.cache.get(id)) {
 		return true;
 	} else {
 		return false;
@@ -27,7 +27,7 @@ function hasRole(member, id) {
 
 module.exports = {
 	name: 'role',
-	usage: '[Role names, comma separated]',
+	usage: '[--all] [Role names, comma separated]',
 	desc: 'Adds/removes roles. Sends a list if no roles given',
 	permissions: [],
 	async exec(UnivBot, msg) {
@@ -47,12 +47,12 @@ module.exports = {
 			let possibleAdd = [];
 			let possibleRemove = [];
 
-			for (let i = 1; i < msg.guild.roles.size; i++) {
-				if (msg.guild.roles.find(r => r.position == i).editable) {
-					if(hasRole(msg.member, msg.guild.roles.find(r => r.position == i).id)) {
-						possibleRemove.push(msg.guild.roles.find(r => r.position == i).name);
+			for (let i = 1; i < msg.guild.roles.cache.size; i++) {
+				if (msg.guild.roles.cache.find(r => r.position == i).editable) {
+					if(hasRole(msg.member, msg.guild.roles.cache.find(r => r.position == i).id)) {
+						possibleRemove.push(msg.guild.roles.cache.find(r => r.position == i).name);
 					} else {
-						possibleAdd.push(msg.guild.roles.find(r => r.position == i).name);
+						possibleAdd.push(msg.guild.roles.cache.find(r => r.position == i).name);
 					}
 				}
 			}
@@ -79,20 +79,20 @@ module.exports = {
 		for (var roleName of roles) {
 			// If --all, toggle all roles
 			if(roleName == '--all') {
-				for (let i = 1; i < msg.guild.roles.size; i++) {
-					if (msg.guild.roles.find(r => r.position == i).editable) {
-						let role = msg.guild.roles.find(r => r.position == i);
+				for (let i = 1; i < msg.guild.roles.cache.size; i++) {
+					if (msg.guild.roles.cache.find(r => r.position == i).editable) {
+						let role = msg.guild.roles.cache.find(r => r.position == i);
 						if (!hasRole(msg.member, role.id)) {
 							// Add role and detect if it was added or not
 							try {
-								await msg.member.addRole(role.id);
+								await msg.member.roles.add(role.id);
 								str1 += '\n'+role.name;
 							} catch(e) {
 								str3 += '\n'+role.name;
 							}
 						} else {
 							try {
-								await msg.member.removeRole(role.id);
+								await msg.member.roles.remove(role.id);
 								str2 += '\n'+role.name;
 							} catch(e) {
 								str3 += '\n'+role.name;
@@ -113,14 +113,14 @@ module.exports = {
 					if (!hasRole(msg.member, role.id)) {
 						// Add role and detect if it was added or not
 						try {
-							await msg.member.addRole(role.id);
+							await msg.member.roles.add(role.id);
 							str1 += '\n'+role.name;
 						} catch(e) {
 							str3 += '\n'+role.name;
 						}
 					} else {
 						try {
-							await msg.member.removeRole(role.id);
+							await msg.member.roles.remove(role.id);
 							str2 += '\n'+role.name;
 						} catch(e) {
 							str3 += '\n'+role.name;

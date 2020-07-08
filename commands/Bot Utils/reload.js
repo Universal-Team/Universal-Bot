@@ -12,6 +12,7 @@ module.exports = {
     
       let command;
       for (var path of UnivBot.cmds) {
+        path = "../../" + path;
         let cmd = require(path);
         let name = cmd.name;
         

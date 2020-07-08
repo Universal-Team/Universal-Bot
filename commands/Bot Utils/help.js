@@ -18,7 +18,7 @@ function isCommand(UnivBot, name) {
   let command;
   if(name.length > 0) { 
     for(let cmd of UnivBot.cmds) {
-      cmd = require(cmd);
+      cmd = require("../../" + cmd);
       if((cmd.name instanceof Array)) {
         for(let cmdName of cmd.name) {
           if(cmdName.toLowerCase().substr(0, name.length) == name) {
@@ -125,16 +125,16 @@ module.exports = {
       var commands = fs.readdirSync('commands/'+category).filter(cmd => cmd.endsWith('.js'));
       embed.setFooter('• Amount of commands in '+category+' : '+commands.length, UnivBot.client.user.avatarURL);
       for (var command of commands) {
-        var desc = require('commands/'+category+'/'+command).desc;
-        var name = require('commands/'+category+'/'+command).name;
+        var desc = require('../../commands/'+category+'/'+command).desc;
+        var name = require('../../commands/'+category+'/'+command).name;
         if ((name instanceof Array)) {
           var nameStr = name[0];
-          nameStr += ' '+require('commands/'+category+'/'+command).usage;
+          nameStr += ' '+require('../../commands/'+category+'/'+command).usage;
           nameStr = msg.prefix+nameStr;
           desc += ' (Other names : **'+name.slice(1).join('**, **')+'**)'
           embed.addField(nameStr, desc, true);
         } else {
-          name += ' '+require('commands/'+category+'/'+command).usage;
+          name += ' '+require('../../commands/'+category+'/'+command).usage;
           name = msg.prefix+name;
           embed.addField(name, desc, true);
         };

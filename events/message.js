@@ -95,7 +95,7 @@ module.exports = async function(UnivBot, msg) {
   // Get command
   let command;
   for (var cmd of UnivBot.cmds) {
-    cmd = require(cmd);
+    cmd = require("../" + cmd);
     if (typeof cmd.name == 'string' && (cmd.name.toLowerCase() == msg.cmd) || (cmd.name instanceof Array) && (cmd.name.filter(name => name.toLowerCase() == msg.cmd)).length) {
       command = cmd;
       break;

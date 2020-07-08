@@ -7,7 +7,7 @@ function cloneDB(UnivBot, id) {
 	db = JSON.parse(db);
 	if (!UnivBot.db[id]) {
 		UnivBot.db[id] = db;
-		fs.writeFileSync('../database.json', JSON.stringify(UnivBot.db, null, 4));
+		fs.writeFileSync('database.json', JSON.stringify(UnivBot.db, null, '\t'));
 	}
 }
 

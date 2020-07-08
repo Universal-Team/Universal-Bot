@@ -39,10 +39,10 @@ module.exports = (UnivBot, member) => {
 
 	// Check config and send message
 	var db = UnivBot.db[member.guild.id];
-	if (((member.guild.systemChannel && db.messages.welcome.channel == 'sys') || member.guild.channels.get(db.messages.welcome.channel)) && db.messages.welcome.enabled) {
+	if (((member.guild.systemChannel && db.messages.welcome.channel == 'sys') || member.guild.channels.cache.get(db.messages.welcome.channel)) && db.messages.welcome.enabled) {
 		let channel = member.guild.systemChannel;
 		if (db.messages.welcome.channel !== 'sys')
-			channel = member.guild.channels.get(db.messages.welcome.channel);
+			channel = member.guild.channels.cache.get(db.messages.welcome.channel);
 		channel.send(rep(db.messages.welcome.string, member))
 	}
 }

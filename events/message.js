@@ -76,7 +76,7 @@ module.exports = async function(UnivBot, msg) {
   if (msg.guild)
     msg.guild.image = `https://cdn.discordapp.com/icons/${msg.guild.id}/${msg.guild.icon}.png?size=2048`;
   if (msg.guild)
-    msg.guild.bot = msg.guild.members.get(UnivBot.client.user.id);
+    msg.guild.bot = msg.guild.members.cache.get(UnivBot.client.user.id);
   
   // Handle DM messages
   let db = { prefix: '' };

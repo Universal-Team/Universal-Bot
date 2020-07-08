@@ -63,7 +63,7 @@ module.exports = {
       image = msg.guild.image;
     if (msg.guild)
       color = msg.guild.bot.displayHexColor;
-    let embed = new Discord.RichEmbed()
+    let embed = new Discord.MessageEmbed()
       .setColor(color)
       .setDescription('Here you can get info on commands. To see the categories, use ``'+msg.prefix+'help``, to see commands in a category, do ``'+msg.prefix+'help <Category Name>``, or to see info on a command, do ``'+msg.prefix+'help <Command Name>``.')
       .setThumbnail(image)

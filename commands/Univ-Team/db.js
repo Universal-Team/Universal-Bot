@@ -35,9 +35,12 @@ module.exports = {
 			}
 
 			for(let res of out) {
+				for(let i = 1; i < res.systems.length; i++)
+					 res.description += "\n[Also on " + res.systems[i] + "](https://db.universal-team.net/" + res.systems[i].toLowerCase() + "/" + Array.from(res.title.toLowerCase().replace(/ /g, "-")).filter(r => "abcdefghijklmnopqrstuvwxyz0123456789-_.".includes(r)).join("") + ")";
+
 				let embed = {"embed": {
 					"title": res.title,
-					"url": "https://db.universal-team.net/" + res.system.toLowerCase() + "/" + Array.from(res.title.toLowerCase().replace(/ /g, "-")).filter(r => "abcdefghijklmnopqrstuvwxyz0123456789-_.".includes(r)).join(""),
+					"url": "https://db.universal-team.net/" + res.systems[0].toLowerCase() + "/" + Array.from(res.title.toLowerCase().replace(/ /g, "-")).filter(r => "abcdefghijklmnopqrstuvwxyz0123456789-_.".includes(r)).join(""),
 					"thumbnail": {
 						"url": res.image || res.icon
 					},

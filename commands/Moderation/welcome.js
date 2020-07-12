@@ -4,12 +4,11 @@ function updateDB(UnivBot) {
 }
 function makeJSON(obj) {
 	obj = JSON.parse(JSON.stringify(obj));
-	var object = {};
-	object.Message = obj.string;
-	object.ChannelID = obj.channel;
-	if (object.ChannelID == 'sys')
-		object.ChannelID = 'System Channel';
-	object.MessagesEnabled = obj.enabled;
+	const object = {
+		Message: obj.string,
+		ChannelID: (obj.channel == 'sys' ? 'System Channel' : obj.channel),
+		MessageEnabled: obj.enabled
+	};
 	return '\n__**Welcome Message Config :**__```json\n'+JSON.stringify(object, null, 4)+'\n```';
 }
 
@@ -54,40 +53,38 @@ include those 'variables' in the text :
 		var arg = msg.args.split(' ').slice(1).join(' ').trim();
 
 		// Check for enable and disable
-		if (option == '--enable') {
-			db.messages.welcome.enabled = true;
-			updateDB(UnivBot);
-			return msg.send('Enabled welcome messages'+makeJSON(db.messages.welcome));
-		}
-		if (option == '--disable') {
-			db.messages.welcome.enabled = false;
-			updateDB(UnivBot);
-			return msg.send('Disabled welcome messages'+makeJSON(db.messages.welcome));
-		}
-
-		// Check for channel
-		if (option == '--channel') {
-			if (arg.toLowerCase() == 'default') {
-				db.messages.welcome.channel = 'sys';
+		switch (option) {
+			case '--enable':
+				db.messages.welcome.enabled = true;
 				updateDB(UnivBot);
-				return msg.send('Sucessfully changed the welcome channel to the system channel'+makeJSON(db.messages.welcome));
-			}
-			var ID = arg.substr(0, arg.length-1).substr(2);
-			var channel = msg.guild.channels.cache.get(ID);
-			if (!channel)
-				return msg.send(err2);
-			db.messages.welcome.channel = ID;
-			updateDB(UnivBot);
-			return msg.send('Sucessfully changed the welcome channel to **<#'+ID+'>**'+makeJSON(db.messages.welcome));
-		}
-
-		// Check for message
-		if (option == '--message') {
-			if (!arg.length)
-				return msg.send(err1);
-			db.messages.welcome.string = arg;
-			updateDB(UnivBot);
-			return msg.send('Sucessfully changed the welcome message'+makeJSON(db.messages.welcome));
+				return msg.send('Enabled welcome messages'+makeJSON(db.messages.welcome));
+				break;
+			case '--disable':
+				db.messages.welcome.enabled = false;
+				updateDB(UnivBot);
+				return msg.send('Disabled welcome messages'+makeJSON(db.messages.welcome));
+				break;
+			case '--channel':
+				if (arg.toLowerCase() == 'default') {
+					db.messages.welcome.channel = 'sys';
+					updateDB(UnivBot);
+					return msg.send('Sucessfully changed the welcome channel to the system channel'+makeJSON(db.messages.welcome));
+				}
+				var ID = arg.substr(0, arg.length-1).substr(2);
+				var channel = msg.guild.channels.cache.get(ID);
+				if (!channel)
+					return msg.send(err2);
+				db.messages.welcome.channel = ID;
+				updateDB(UnivBot);
+				return msg.send('Sucessfully changed the welcome channel to **<#'+ID+'>**'+makeJSON(db.messages.welcome));
+				break;
+			case '--message':
+				if (!arg.length)
+					return msg.send(err1);
+				db.messages.welcome.string = arg;
+				updateDB(UnivBot);
+				return msg.send('Sucessfully changed the welcome message'+makeJSON(db.messages.welcome));
+				break;
 		}
 
 		// Send list of options

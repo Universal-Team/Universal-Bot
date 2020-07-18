@@ -17,7 +17,7 @@ module.exports = {
 			.setURL(link)
 			.setTitle(UnivBot.client.user.username+'\'s Information');
 		embed.addField(':pencil2: Language used', '__**JavaScript**__ (Node.js)', true);
-		embed.addField(':busts_in_silhouette: Coders', '__**Javier107**__, __**Pk11**__ and __**VoltZ**__', true);
+		embed.addField(':busts_in_silhouette: Coders', '__**Javier107**__, __**Pk11**__ and __**StackZ**__', true);
 		embed.addField(':bell: Add bot to server', '[Click here to invite]('+link+')', true);
 		embed.addField(':clipboard: Database used', '**J**ava**S**cript**O**bject**N**otation', true);
 		embed.addField(':satellite: Host used', '[Raspberry Pi](https://www.raspberrypi.org)', true);

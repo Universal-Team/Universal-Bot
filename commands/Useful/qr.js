@@ -3,7 +3,7 @@ const MessageAttachment = require('../../utils/MessageAttachment');
 const fs                = require('fs');
 
 module.exports = {
-	name: [ 'qr' ],
+	name: [ 'qr', 'qrencode' ],
 	usage: '<text>',
 	desc: 'Generates a QR code of the provided text',
 	DM: true,
@@ -12,7 +12,7 @@ module.exports = {
 		if(!msg.args)
 			return msg.send('Enter some text!');
 
-		spawnSync('qrencode', ['-o', 'qr.png', msg.args], { encoding: 'utf-8' });
+		spawnSync('qrencode', ['-o', 'qr.png'].concat(msg.args.split(' ')), { encoding: 'utf-8' });
 		if (fs.existsSync('qr.png')) {
 			qr = fs.readFileSync('qr.png');
 			fs.unlinkSync('qr.png');

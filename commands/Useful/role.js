@@ -75,34 +75,23 @@ module.exports = {
 
 		}
 
-		// Loop through roles
-		for (var roleName of roles) {
-			// If --all, toggle all roles
-			if(roleName == '--all') {
-				for (let i = 1; i < msg.guild.roles.cache.size; i++) {
-					if (msg.guild.roles.cache.find(r => r.position == i).editable) {
-						let role = msg.guild.roles.cache.find(r => r.position == i);
-						if (!hasRole(msg.member, role.id)) {
-							// Add role and detect if it was added or not
-							try {
-								await msg.member.roles.add(role.id);
-								str1 += '\n'+role.name;
-							} catch(e) {
-								str3 += '\n'+role.name;
-							}
-						} else {
-							try {
-								await msg.member.roles.remove(role.id);
-								str2 += '\n'+role.name;
-							} catch(e) {
-								str3 += '\n'+role.name;
-							}
-						}
+		let addRoles = [];
+		let removeRoles = [];
+
+		if (roles.join(' ') == '--all') {
+			for (let i = 1; i < msg.guild.roles.cache.size; i++) {
+				if (msg.guild.roles.cache.find(r => r.position == i).editable) {
+					let role = msg.guild.roles.cache.find(r => r.position == i);
+					if (!hasRole(msg.member, role.id)) {
+						addRoles.push(role.id);
+						str1 += '\n'+role.name;
+					} else {
+						removeRoles.push(role.id);
+						str2 += '\n'+role.name;
 					}
 				}
-				break;
 			}
-
+		} else for (var roleName of roles) {
 			// Prevent @everyone from being found
 			var role = findRole(msg, roleName.trim());
 			if (role && (role.id == msg.guild.id)) //the id of the @everyone role is the same id of the guild/server
@@ -110,26 +99,22 @@ module.exports = {
 
 			// Add/remove role
 			if (role) {
-					if (!hasRole(msg.member, role.id)) {
-						// Add role and detect if it was added or not
-						try {
-							await msg.member.roles.add(role.id);
-							str1 += '\n'+role.name;
-						} catch(e) {
-							str3 += '\n'+role.name;
-						}
-					} else {
-						try {
-							await msg.member.roles.remove(role.id);
-							str2 += '\n'+role.name;
-						} catch(e) {
-							str3 += '\n'+role.name;
-						}
-					}
-			} else {
-					str3 += '\n'+roleName.trim(); // here role.name can't be used because if this else runs is because the role wans't found
-			}
+				if (!hasRole(msg.member, role.id)) {
+					addRoles.push(role.id);
+					str1 += '\n'+role.name;
+				} else {
+					removeRoles.push(role.id);
+					str2 += '\n'+role.name;
+				}
+			} else
+				str3 += '\n'+roleName.trim(); // here role.name can't be used because if this else runs is because the role wans't found
 		}
+		
+		if (addRoles.length)
+			await msg.member.roles.add(addRoles);
+
+		if (removeRoles.length)
+			await msg.member.roles.remove(removeRoles);
 
 		let str4 = ''
 		if (str1.length !== str1len)

@@ -62,7 +62,8 @@ module.exports = async function(UnivBot, msg, nmsg) {
 	msg.send = function(string, config) {
 		var reg = new RegExp(process.env['TOKEN'], 'ig');
 		if (typeof string == 'string')
-			string = string.replace(reg, 'UnivBot.client.token').replace(/@everyone/g, '\@everyone');
+			string = string.replace(reg, 'UnivBot.client.token').replace(/@everyone/g, '@/everyone').replace(/@here/g, '@/here').replace(/<@&.*>/g, 'role').replace(/<@&.*>/g, 'role').replace(/<@!.*>/g, 'person')
+			// .replace(/<@&.*>/g, '@/' + message.guild.roles.cache.find(r => r == "605585039417278465").name);
 		var message = this;
 		if (message.guild) {
 			return message.channel.send(string, config);

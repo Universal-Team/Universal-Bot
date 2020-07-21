@@ -38,13 +38,19 @@ I do know some good ones for:
 			case 'virtual boy':
 			case 'virtualboy':
 			case 'vb':
-				guide = '<https://youtu.be/dQw4w9WgXcQ>';
+				guide = 'https://www.youtube.com/watch?v​=avE3-KomeWI&v=dQw4w9WgXcQ&feature=youtu.be';
 				break;
 		}
 
 		if (guide)
-			msg.send('Hey look, I actually found a good one! ' + guide);
+			msg.send('', {'embed': {
+				'title': 'Video Guide',
+				'description': '[Hey look, I actually found a good one!](' + guide + ')'
+			}});
 		else
-			msg.send('Darn, there don\'t seem to be any good ones, just look for a good text guide ;P');
+			msg.send('', {'embed': {
+				'title': 'Video Guide',
+				'description': 'Darn, there don\'t seem to be any good ones, just look for a good text guide ;P'
+			}});
 	}
 }

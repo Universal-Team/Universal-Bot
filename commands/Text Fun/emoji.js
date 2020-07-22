@@ -5,6 +5,9 @@ module.exports = {
 	DM: true,
 	permissions: [],
 	exec(UnivBot, msg) {
+		if(!msg.args)
+			return msg.send("Nothing isn't an emoji...");
+
 		let emoji = [];
 		msg.args.split(" ").forEach(r => {
 			let temp;
@@ -19,7 +22,8 @@ module.exports = {
 					}
 				});
 			});
-			emoji.push(temp);
+			if(temp)
+				emoji.push(temp);
 		});
 
 		let str = '';

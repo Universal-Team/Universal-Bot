@@ -5,24 +5,24 @@ module.exports = {
 	DM: true,
 	permissions: [],
 	exec(UnivBot, msg) {
-		let emoji;
+		if(!msg.args)
+			return msg.send("Nothing isn't an emoji...");
 
 		if(msg.args.match(/<:.*:.*>/))
 			msg.args = msg.args.substr(msg.args.indexOf(':') + 1, msg.args.lastIndexOf(':') - msg.args.indexOf(':') - 1);
 
-		let temp;
+		let emoji;
 		UnivBot.client.guilds.cache.some(guild => {
 			return guild.emojis.cache.some(e => {
 				if(e.name.toLowerCase() == msg.args.toLowerCase()) {
-					temp = e;
+					emoji = e;
 					return true;
 				} else if(e.name.toLowerCase().includes(msg.args.toLowerCase())) {
-					if(!temp)
-						temp = e;
+					if(!emoji)
+						emoji = e;
 				}
 			});
 		});
-		emoji = temp;
 
 		if(emoji) {
 			msg.send('', {embed: {
@@ -45,10 +45,5 @@ module.exports = {
 		} else {
 			msg.send('Aww, no emoji found...');
 		}
-		// emoji.forEach(r => {
-		// 	let out = '<' + (r.animated ? 'a' : '') + ':' + r.name + ':' + r.id + '> ';
-		// 	if((str + out).length < 2000)
-		// 		str += '<' + (r.animated ? 'a' : '') + ':' + r.name + ':' + r.id + '> ';
-		// });
 	}
 }

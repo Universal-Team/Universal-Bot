@@ -15,7 +15,7 @@ module.exports = {
 function OwOify(text) {
 	var random_number = Math.round(Math.random());
 	var owo_text = '';
-	if (random_numver == 1){
+	if (random_number == 1){
 		owo_text += 'OwO';
 		} else {
 			owo_text += 'UwU'

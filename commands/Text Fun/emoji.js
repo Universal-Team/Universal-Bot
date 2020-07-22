@@ -1,19 +1,35 @@
 module.exports = {
-	name: 'emoji',
+	name: ['emoji', '絵文字'],
 	usage: '[-a] <id>',
-	desc: 'Sends any Discord emoji with it\'s ID',
+	desc: 'Sends any Discord emoji from a guild Universal-Bot is in',
 	DM: true,
 	permissions: [],
 	exec(UnivBot, msg) {
-		var args = msg.args.split(' ');
-		var id = args[0];
-		var animated = false;
-		for(var arg of args) {
-			if(arg.trim() == '-a') animated = true;
-			else id = arg;
-		}
+		let emoji = [];
+		msg.args.split(" ").forEach(r => {
+			let temp;
+			UnivBot.client.guilds.cache.some(guild => {
+				return guild.emojis.cache.some(e => {
+					if(e.name.toLowerCase() == r.toLowerCase()) {
+						temp = e;
+						return true;
+					} else if(e.name.toLowerCase().includes(r.toLowerCase())) {
+						if(!temp)
+							temp = e;
+					}
+				});
+			});
+			emoji.push(temp);
+		});
 
-		if(animated) return msg.send('<a\:emoji:'+id+'>');
-		else return msg.send('<\:emoji:'+id+'>');
+		let str = '';
+		emoji.forEach(r => {
+			let out = '<' + (r.animated ? 'a' : '') + ':' + r.name + ':' + r.id + '> ';
+			if((str + out).length < 2000)
+				str += out;
+		});
+		if(!str)
+			str = 'Aww, no emoji found...';
+		return msg.send(str);
 	}
 }

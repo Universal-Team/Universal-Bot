@@ -175,5 +175,20 @@
 				"enabled": true
 			}
 		}
+	},
+	"704065693246685225": {
+		"prefix": "?",
+		"messages": {
+			"welcome": {
+				"channel": "sys",
+				"string": "Welcome, ${user.ping} to ${guild.name}! Please read through the rules before continuing.",
+				"enabled": true
+			},
+			"goodbye": {
+				"channel": "sys",
+				"string": "Goodbye, ${user.ping}! I hope you enjoyed your stay!",
+				"enabled": true
+			}
+		}
 	}
 }

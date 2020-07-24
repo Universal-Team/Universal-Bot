@@ -2,7 +2,7 @@ const faces = ['OwO', 'UwU', '>w<', '^w^', '-w-', 'XwX', 'TwT'];
 
 module.exports = {
 	name: ['owo', 'owoify', 'uwu', 'uwuify'],
-	usage: '<message> [--last] [-l]',
+	usage: '[--last|-l] [message]',
 	desc: 'OwO-ify a message',
 	DM: true,
 	permissions: [],

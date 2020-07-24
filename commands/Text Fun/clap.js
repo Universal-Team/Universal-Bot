@@ -7,7 +7,8 @@ module.exports = {
 	exec(UnivBot, msg) {
 		if(msg.args == '-l' || msg.args == '--last')
 			msg.args = msg.channel.messages.cache.array()[msg.channel.messages.cache.size - 2].content;
-		else if(!msg.args.includes(' '))
+
+			if(!msg.args.includes(' '))
 			return msg.send('One clap for you :clap:');
 
 		msg.send(msg.args.replace(/ /g, ':clap:'));

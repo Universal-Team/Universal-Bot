@@ -7,7 +7,7 @@ module.exports = {
 	DM: true,
 	permissions: [],
 	exec(UnivBot, msg) {
-		if (!msg.args.length)
+		if(!msg.args.length)
 			return msg.send('No ' + faces[Math.floor(Math.random() * faces.length)] + ' fow you');
 		else if(msg.args == '-l' || msg.args == '--last')
 			msg.args = msg.channel.messages.cache.array()[msg.channel.messages.cache.size - 2].content;

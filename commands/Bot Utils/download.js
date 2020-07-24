@@ -13,7 +13,7 @@ module.exports = {
 		let URL  = msg.split(' ')[0];
 		let file = msg.split(' ')[1];
 
-		if (!URL || !file)
+		if(!URL || !file)
 			return msg.send('**Oops!** You didn\'t provided enough arguments');
 
 		try {
@@ -22,7 +22,7 @@ module.exports = {
 			return msg.send('Invalid path! Can\'t create folder inside a file');
 		}
 
-		if (fs.existsSync(file))
+		if(fs.existsSync(file))
 			return msg.send('Can\'t save website as '+file+' since it already exists');
 
 		try {

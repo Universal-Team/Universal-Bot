@@ -5,7 +5,7 @@ function cloneDB(UnivBot, id) {
 	var db = UnivBot.db.default;
 	db = JSON.stringify(db);
 	db = JSON.parse(db);
-	if (!UnivBot.db[id]) {
+	if(!UnivBot.db[id]) {
 		UnivBot.db[id] = db;
 		fs.writeFileSync('database.json', JSON.stringify(UnivBot.db, null, '\t'));
 	}
@@ -39,9 +39,9 @@ module.exports = (UnivBot, member) => {
 
 	// Check config and send message
 	var db = UnivBot.db[member.guild.id];
-	if (((member.guild.systemChannel && db.messages.goodbye.channel == 'sys') || member.guild.channels.cache.get(db.messages.goodbye.channel)) && db.messages.goodbye.enabled) {
+	if(((member.guild.systemChannel && db.messages.goodbye.channel == 'sys') || member.guild.channels.cache.get(db.messages.goodbye.channel)) && db.messages.goodbye.enabled) {
 		let channel = member.guild.systemChannel;
-		if (db.messages.goodbye.channel !== 'sys')
+		if(db.messages.goodbye.channel !== 'sys')
 			channel = member.guild.channels.cache.get(db.messages.goodbye.channel);
 		channel.send(rep(db.messages.goodbye.string, member))
 	}

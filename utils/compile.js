@@ -27,13 +27,13 @@ function compile(code, type) {
 	fs.unlinkSync(sourceFile);
 
 	let binary;
-	if (fs.existsSync(compiledFile)) {
+	if(fs.existsSync(compiledFile)) {
 		binary = fs.readFileSync(compiledFile);
 		fs.unlinkSync(compiledFile);
 	}
 
-	if (!stdio.stderr.length)
-		if (!exec.stderr.length)
+	if(!stdio.stderr.length)
+		if(!exec.stderr.length)
 			return { binary: binary, path: compiledFile, stdout: exec.stdout }
 		else
 			return exec.stderr;

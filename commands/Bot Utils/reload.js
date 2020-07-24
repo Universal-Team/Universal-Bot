@@ -5,35 +5,35 @@ module.exports = {
 	DM: true,
 	permissions: [ 'DEV' ],
 	exec(UnivBot, msg) {
-		if (!msg.args.length)
+		if(!msg.args.length)
 			return msg.send('**Oops!** You didn\'t provided enough arguments');
 
 		let command;
-		for (var path of UnivBot.cmds) {
+		for(var path of UnivBot.cmds) {
 			path = "../../" + path;
 			let cmd = require(path);
 			let name = cmd.name;
 
-			if ((name instanceof Array)) {
+			if((name instanceof Array)) {
 				let matches = false;
-				for (var i = 0; i < name.length; i++)
-					if (name[i].toLowerCase() == msg.args.toLowerCase()) {
+				for(var i = 0; i < name.length; i++)
+					if(name[i].toLowerCase() == msg.args.toLowerCase()) {
 						matches = true;
 						break;
 					}
-				if (matches) {
+				if(matches) {
 					command = path;
 					break;
 				}
 				name = name.join('/');
 			}
-			if (name.toLowerCase() == msg.args) {
+			if(name.toLowerCase() == msg.args) {
 				command = path;
 				break;
 			}
 		}
 
-		if (command) {
+		if(command) {
 			delete require.cache[require.resolve(command)]
 			msg.send('Successfully reloaded the '+msg.args+' command');
 		} else {

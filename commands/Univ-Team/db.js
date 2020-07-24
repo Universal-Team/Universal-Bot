@@ -5,7 +5,7 @@ module.exports = {
 	DM: true,
 	permissions: [],
 	exec(UnivBot, msg) {
-		if (msg.args.length == 0)
+		if(msg.args.length == 0)
 			return msg.send('**Error:** Please enter a search term');
 		
 

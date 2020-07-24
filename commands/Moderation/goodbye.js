@@ -7,7 +7,7 @@ function makeJSON(obj) {
 	var object = {};
 	object.Message = obj.string;
 	object.ChannelID = obj.channel;
-	if (object.ChannelID == 'sys')
+	if(object.ChannelID == 'sys')
 		object.ChannelID = 'System Channel';
 	object.MessagesEnabled = obj.enabled;
 	return '\n__**Goodbye Message Config: **__```json\n'+JSON.stringify(object, null, 4)+'\n```';
@@ -54,27 +54,27 @@ include those 'variables' in the text:
 		var arg = msg.args.split(' ').slice(1).join(' ').trim();
 
 		// Check for enable and disable
-		if (option == '--enable') {
+		if(option == '--enable') {
 			db.messages.goodbye.enabled = true;
 			updateDB(UnivBot);
 			return msg.send('Enabled goodbye messages'+makeJSON(db.messages.goodbye));
 		}
-		if (option == '--disable') {
+		if(option == '--disable') {
 			db.messages.goodbye.enabled = false;
 			updateDB(UnivBot);
 			return msg.send('Disabled goodbye messages'+makeJSON(db.messages.goodbye));
 		}
 
 		// Check for channel
-		if (option == '--channel') {
-			if (arg.toLowerCase() == 'default') {
+		if(option == '--channel') {
+			if(arg.toLowerCase() == 'default') {
 				db.messages.goodbye.channel = 'sys';
 				updateDB(UnivBot);
 				return msg.send('Sucessfully changed the goodbye channel to the system channel'+makeJSON(db.messages.goodbye));
 			}
 			var ID = arg.substr(0, arg.length-1).substr(2);
 			var channel = msg.guild.channels.cache.get(ID);
-			if (!channel)
+			if(!channel)
 				return msg.send(err2);
 			db.messages.goodbye.channel = ID;
 			updateDB(UnivBot);
@@ -82,8 +82,8 @@ include those 'variables' in the text:
 		}
 
 		// Check for message
-		if (option == '--message') {
-			if (!arg.length)
+		if(option == '--message') {
+			if(!arg.length)
 				return msg.send(err1);
 			db.messages.goodbye.string = arg;
 			updateDB(UnivBot);

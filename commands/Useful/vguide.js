@@ -5,7 +5,7 @@ module.exports = {
 	DM: true,
 	permissions: [],
 	exec(UnivBot, msg) {
-		if (!msg.args)
+		if(!msg.args)
 			return msg.send(`Hmm, a video guide on how to do nothing... They might actually not mess that one up, I\'d still look for a text guide though.
 I do know some good ones for:
 - **TWiLight Menu++**
@@ -16,7 +16,7 @@ I do know some good ones for:
 - **Virtual Boy**`);
 
 		guide = '';
-		switch (msg.args.toLowerCase()) {
+		switch(msg.args.toLowerCase()) {
 			case 'twilight':
 			case 'twilight menu':
 			case 'twilight menu++':
@@ -42,7 +42,7 @@ I do know some good ones for:
 				break;
 		}
 
-		if (guide)
+		if(guide)
 			msg.send('', {'embed': {
 				'title': 'Video Guide',
 				'description': '[Hey look, I actually found a good one!](' + guide + ')'

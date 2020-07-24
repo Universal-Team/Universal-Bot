@@ -1,9 +1,9 @@
 function MessageAttachment(buffer, filename) {
-	if (!arguments.length) {
+	if(!arguments.length) {
 		this.files = [];
 		return this;
 	}
-	if (!Buffer.isBuffer(buffer))
+	if(!Buffer.isBuffer(buffer))
 		buffer = Buffer.from(buffer);
 	this.files = [{}];
 	this.files[0].attachment = buffer;

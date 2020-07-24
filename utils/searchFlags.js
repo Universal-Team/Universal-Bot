@@ -3,8 +3,8 @@
 const firstFlag = function(target, flags) {
 	target = target.toLowerCase();
 
-	for (let flag of flags) {
-		if (target.startsWith(flag.toLowerCase()))
+	for(let flag of flags) {
+		if(target.startsWith(flag.toLowerCase()))
 			return flag;
 	}
 
@@ -20,7 +20,7 @@ const firstFlag = function(target, flags) {
 function searchFlags(target, flags) {
 	let foundFlags = []
 
-	for (let flag  = firstFlag(target, flags); flag.length > 0; flag = firstFlag(target, flags)) {
+	for(let flag  = firstFlag(target, flags); flag.length > 0; flag = firstFlag(target, flags)) {
 		target     = target.substr(flag.length).trim();
 
 		foundFlags.push(flag);

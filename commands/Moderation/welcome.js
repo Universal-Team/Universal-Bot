@@ -53,7 +53,7 @@ include those 'variables' in the text:
 		var arg = msg.args.split(' ').slice(1).join(' ').trim();
 
 		// Check for enable and disable
-		switch (option) {
+		switch(option) {
 			case '--enable':
 				db.messages.welcome.enabled = true;
 				updateDB(UnivBot);
@@ -65,21 +65,21 @@ include those 'variables' in the text:
 				return msg.send('Disabled welcome messages'+makeJSON(db.messages.welcome));
 				break;
 			case '--channel':
-				if (arg.toLowerCase() == 'default') {
+				if(arg.toLowerCase() == 'default') {
 					db.messages.welcome.channel = 'sys';
 					updateDB(UnivBot);
 					return msg.send('Sucessfully changed the welcome channel to the system channel'+makeJSON(db.messages.welcome));
 				}
 				var ID = arg.substr(0, arg.length-1).substr(2);
 				var channel = msg.guild.channels.cache.get(ID);
-				if (!channel)
+				if(!channel)
 					return msg.send(err2);
 				db.messages.welcome.channel = ID;
 				updateDB(UnivBot);
 				return msg.send('Sucessfully changed the welcome channel to **<#'+ID+'>**'+makeJSON(db.messages.welcome));
 				break;
 			case '--message':
-				if (!arg.length)
+				if(!arg.length)
 					return msg.send(err1);
 				db.messages.welcome.string = arg;
 				updateDB(UnivBot);

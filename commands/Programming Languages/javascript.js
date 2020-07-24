@@ -14,40 +14,40 @@ module.exports = {
 		let hide = false;
 		let del = false;
 
-		if (obj.flags.includes('--hide'))
+		if(obj.flags.includes('--hide'))
 				hide = true;
-		if (obj.flags.includes('--del'))
+		if(obj.flags.includes('--del'))
 				del = true;
-		if (obj.flags.includes('--string'))
+		if(obj.flags.includes('--string'))
 				stringify = variable => variable.toString();
 
-		if (!obj.string.length)
+		if(!obj.string.length)
 			return msg.send('**Oops!** You didn\'t provided enough arguments');
 
 		let output;
 		try {
 			output = await eval(obj.string);
-			if (typeof output !== 'function')
+			if(typeof output !== 'function')
 				output = stringify(output);
-			if (typeof output !== 'string')
+			if(typeof output !== 'string')
 				output = output.toString();
 		} catch(e) {
-			if (!hide)
+			if(!hide)
 				return msg.send(e.toString(), {code: 'js'});
 			return;
 		}
 
-		if (del && msg.guild) {
+		if(del && msg.guild) {
 			msg.delete();
 		}
-		if (hide) {
+		if(hide) {
 			return;
 		}
 
 		let config = new MessageAttachment(output, 'output.txt');
 		config.code = 'js';
 
-		if (output.length >= 1024) {
+		if(output.length >= 1024) {
 			await msg.send('The output has been trimmed to the first 1024 characters.');
 			msg.send(output.substr(0, 1024), config);
 		} else {

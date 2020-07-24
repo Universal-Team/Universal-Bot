@@ -10,9 +10,9 @@ module.exports = {
 	exec(UnivBot, msg) {
 		var prom = msg.send('Rebooting...')
 		prom.then(message => {
-			if (msg.guild)
+			if(msg.guild)
 				UnivBot.db.reboot = { msg: message.id, channel: message.channel.id, guild: message.guild.id, start: new Date().getTime() };
-			if (!msg.guild)
+			if(!msg.guild)
 				UnivBot.db.reboot = { msg: message.id, author: msg.author.id, start: new Date().getTime() };
 			fs.writeFileSync('database.json', JSON.stringify(UnivBot.db, null, '\t'));
 			terminal('pm2 restart univ-bot');

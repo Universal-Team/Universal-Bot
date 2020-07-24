@@ -5,7 +5,7 @@ module.exports = {
 	DM: true,
 	permissions: [],
 	exec(UnivBot, msg) {
-		if (msg.args.length) {
+		if(msg.args.length) {
 			let message = '';
 			for(let char of msg.args.split(' ')) {
 				message += String.fromCharCode(parseInt(char));

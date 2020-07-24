@@ -5,7 +5,7 @@ module.exports = {
 	DM: true,
 	permissions: [],
 	exec(UnivBot, msg) {
-		if (msg.args.length) {
+		if(msg.args.length) {
 			let message = '';
 			for(let i=0;i<msg.args.length;i++) {
 				message += '0x' + msg.args.charCodeAt(i).toString(16).padStart(4, '0') + ' ';

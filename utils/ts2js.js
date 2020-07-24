@@ -10,13 +10,13 @@ function ts2js(string) {
 	let stdio = spawnSync(tsc, [ source ], { encoding: 'utf-8' });
 
 	let code;
-	if (fs.existsSync(compiled)) {
+	if(fs.existsSync(compiled)) {
 		code = fs.readFileSync(compiled).toString('utf-8');
 		fs.unlinkSync(compiled);
 	}
 	fs.unlinkSync(source);
 
-	if (stdio.status)
+	if(stdio.status)
 		return { stderr: stdio.stderr, stdout: stdio.stdout };
 
 	return { compiled: code };

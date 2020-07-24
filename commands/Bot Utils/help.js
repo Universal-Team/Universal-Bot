@@ -4,8 +4,8 @@ function isCategory(UnivBot, name) {
 	name = name.toLowerCase().trim();
 	let ctg;
 	if(name.length > 0) {
-		for (var category of UnivBot.categories) {
-			if (category.toLowerCase().substr(0, name.length) == name) {
+		for(var category of UnivBot.categories) {
+			if(category.toLowerCase().substr(0, name.length) == name) {
 				ctg = category;
 				break;
 			}
@@ -47,10 +47,10 @@ module.exports = {
 		// Detect if a category was given
 		let title = 'List of categories';
 		let type = 'dir';
-		if (isCategory(UnivBot, msg.args)) {
+		if(isCategory(UnivBot, msg.args)) {
 			title = 'List of commands';
 			type = 'file';
-		} else if (isCommand(UnivBot, msg.args)) {
+		} else if(isCommand(UnivBot, msg.args)) {
 			title = 'Command info';
 			type = 'cmd';
 		}
@@ -58,9 +58,9 @@ module.exports = {
 		// Create embed
 		let color = 8557055;
 		let image = UnivBot.client.user.avatarURL;
-		if (msg.guild)
+		if(msg.guild)
 			image = msg.guild.image;
-		if (msg.guild)
+		if(msg.guild)
 			color = msg.guild.bot.displayHexColor;
 		let embed = new Discord.MessageEmbed()
 			.setColor(color)
@@ -73,19 +73,19 @@ module.exports = {
 		}
 
 		// Add commands/categories to embed
-		if (type == 'dir') {
+		if(type == 'dir') {
 			embed.setFooter('• Amount of categories: '+UnivBot.categories.length, UnivBot.client.user.avatarURL);
-			for (var category of UnivBot.categories) {
+			for(var category of UnivBot.categories) {
 				var desc = 'No description yet'
 				var path = 'commands/'+category+'/desc.txt';
-				if (fs.existsSync(path))
+				if(fs.existsSync(path))
 					desc = fs.readFileSync(path);
 				category += ' ['+fs.readdirSync('commands/'+category).filter(cmd => cmd.endsWith('.js')).length+']';
 				embed.addField(category, desc);
 			}
 
 			let usefulCommands = [];
-			switch (msg.channel.id) {
+			switch(msg.channel.id) {
 				case '589882205556310076':
 					usefulCommands.push(formatCommand("wiki Universal Updater", "Sends a link to Universal Updater's wiki"))
 					usefulCommands.push(formatCommand('cia Universal Updater', 'Sends a QR code for the latest version of Universal Updater'))
@@ -116,17 +116,17 @@ module.exports = {
 					usefulCommands.push(formatCommand('release relaunch', 'Sends a link to a build for the latest release version of relaunch'))
 			}
 
-			if (usefulCommands.length)
+			if(usefulCommands.length)
 				embed.addField('Useful Commands', usefulCommands.join('\n'))
 		}
-		if (type == 'file') {
+		if(type == 'file') {
 			var category = isCategory(UnivBot, msg.args);
 			var commands = fs.readdirSync('commands/'+category).filter(cmd => cmd.endsWith('.js'));
 			embed.setFooter('• Amount of commands in '+category+': '+commands.length, UnivBot.client.user.avatarURL);
-			for (var command of commands) {
+			for(var command of commands) {
 				var desc = require('../../commands/'+category+'/'+command).desc;
 				var name = require('../../commands/'+category+'/'+command).name;
-				if ((name instanceof Array)) {
+				if((name instanceof Array)) {
 					var nameStr = name[0];
 					nameStr += ' '+require('../../commands/'+category+'/'+command).usage;
 					nameStr = msg.prefix+nameStr;
@@ -139,9 +139,9 @@ module.exports = {
 				}
 			}
 		}
-		if (type == 'cmd') {
+		if(type == 'cmd') {
 			let cmd = isCommand(UnivBot, msg.args);
-			if ((cmd.name instanceof Array)) {
+			if((cmd.name instanceof Array)) {
 				var nameStr = msg.prefix+cmd.name[0]+' '+cmd.usage;
 				cmd.desc += '\n(Other names: **'+cmd.name.slice(1).join('**, **')+'**)'
 				embed.addField(nameStr, cmd.desc);

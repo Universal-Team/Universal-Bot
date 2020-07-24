@@ -27,14 +27,14 @@ function Project(string, data) {
 			 .replace(/\-/g, '')
 			 .toLowerCase();
 
-	if (!string.length) {
+	if(!string.length) {
 		this.invalid = true;
 		return this;
 	}
 
 	let match;
 	let matches = data.filter(object => {
-		if (match) {
+		if(match) {
 			this.invalid = true;
 			return this;
 		}
@@ -43,15 +43,15 @@ function Project(string, data) {
 				.replace(/\-/g, '')
 				.replace(/\s/g, '');
 
-		if (name.startsWith(string))
+		if(name.startsWith(string))
 			match = object;
 
 		return name.includes(string);
 	});
 
-	if (!match)
+	if(!match)
 		match = matches[0];
-	if (!match) {
+	if(!match) {
 		this.invalid = true;
 		return this;
 	}
@@ -66,7 +66,7 @@ function Project(string, data) {
 
 // Prototypes
 Project.prototype.toString = function() {
-	if (this.invalid)
+	if(this.invalid)
 		return '**null**';
 
 	return `**${this.name}**`;
@@ -74,7 +74,7 @@ Project.prototype.toString = function() {
 
 Project.prototype.github = function() {
 	let target = this.name;
-	if (!target)
+	if(!target)
 		target = 'null';
 
 	let object = {};
@@ -105,7 +105,7 @@ module.exports = {
 	permissions: [],
 	exec(UnivBot, msg) {
 		const app = new Project(msg.args, projects);
-		if (app.invalid)
+		if(app.invalid)
 			return msg.send(projects.embed());
 
 		const github = app.github();

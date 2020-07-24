@@ -2,8 +2,8 @@ const fs = require('fs');
 const Discord = require('discord.js');
 function noRepeat(array) {
 		let arr = [];
-		for (var item of array) {
-			if (!arr.includes(item))
+		for(var item of array) {
+			if(!arr.includes(item))
 				arr.push(item);
 		}
 		return arr;
@@ -16,7 +16,7 @@ module.exports = async (UnivBot) => {
 
 	// Setup activities
 	var status = UnivBot.client.guilds.cache.size+' Servers | ?help';
-	if (UnivBot.client.guilds.cache.size == 1)
+	if(UnivBot.client.guilds.cache.size == 1)
 		status = UnivBot.client.guilds.cache.size+' Server | ?help';
 	UnivBot.client.user.setActivity("Booted!");
 	setTimeout(() =>
@@ -28,17 +28,17 @@ module.exports = async (UnivBot) => {
 	// Make collection of commands
 	UnivBot.cmds = [];
 	UnivBot.categories = fs.readdirSync('commands/');
-	for (var category of UnivBot.categories) {
+	for(var category of UnivBot.categories) {
 		var commands = fs.readdirSync('commands/'+category).filter(cmd => cmd.endsWith('.js'));
-		for (var command of commands) {
+		for(var command of commands) {
 			UnivBot.cmds.push('commands/'+category+'/'+command);
 		}
 	}
 
 	// Detect reboot
-	if (UnivBot.db.reboot) {
+	if(UnivBot.db.reboot) {
 		var reb = UnivBot.db.reboot;
-		if (!reb.guild) {
+		if(!reb.guild) {
 			console.log(reb.author)
 			var user = UnivBot.client.users.get(reb.author);
 			var channel = await user.createDM();

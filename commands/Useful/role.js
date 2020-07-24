@@ -2,8 +2,8 @@ function findRole(msg, name) {
 	if(name.length > 0) {
 		let possibleRoles = [];
 
-		for (let i = 1; i < msg.guild.roles.cache.size; i++) {
-			if (msg.guild.roles.cache.find(r => r.position == i).editable) {
+		for(let i = 1; i < msg.guild.roles.cache.size; i++) {
+			if(msg.guild.roles.cache.find(r => r.position == i).editable) {
 				possibleRoles.push(msg.guild.roles.cache.find(r => r.position == i).name.toLowerCase().search(name.toLowerCase()));
 			}
 		}
@@ -18,7 +18,7 @@ function findRole(msg, name) {
 }
 
 function hasRole(member, id) {
-	if (member.roles.cache.get(id)) {
+	if(member.roles.cache.get(id)) {
 		return true;
 	} else {
 		return false;
@@ -43,12 +43,12 @@ module.exports = {
 		var roles = msg.args.toLowerCase().split(',');
 
 		// Detect empty roles
-		if (roles.includes('')) {
+		if(roles.includes('')) {
 			let possibleAdd = [];
 			let possibleRemove = [];
 
-			for (let i = 1; i < msg.guild.roles.cache.size; i++) {
-				if (msg.guild.roles.cache.find(r => r.position == i).editable) {
+			for(let i = 1; i < msg.guild.roles.cache.size; i++) {
+				if(msg.guild.roles.cache.find(r => r.position == i).editable) {
 					if(hasRole(msg.member, msg.guild.roles.cache.find(r => r.position == i).id)) {
 						possibleRemove.push(msg.guild.roles.cache.find(r => r.position == i).name);
 					} else {
@@ -78,11 +78,11 @@ module.exports = {
 		let addRoles = [];
 		let removeRoles = [];
 
-		if (roles.join(' ') == '--all') {
-			for (let i = 1; i < msg.guild.roles.cache.size; i++) {
-				if (msg.guild.roles.cache.find(r => r.position == i).editable) {
+		if(roles.join(' ') == '--all') {
+			for(let i = 1; i < msg.guild.roles.cache.size; i++) {
+				if(msg.guild.roles.cache.find(r => r.position == i).editable) {
 					let role = msg.guild.roles.cache.find(r => r.position == i);
-					if (!hasRole(msg.member, role.id)) {
+					if(!hasRole(msg.member, role.id)) {
 						addRoles.push(role.id);
 						str1 += '\n'+role.name;
 					} else {
@@ -91,15 +91,15 @@ module.exports = {
 					}
 				}
 			}
-		} else for (var roleName of roles) {
+		} else for(var roleName of roles) {
 			// Prevent @everyone from being found
 			var role = findRole(msg, roleName.trim());
-			if (role && (role.id == msg.guild.id)) //the id of the @everyone role is the same id of the guild/server
+			if(role && (role.id == msg.guild.id)) //the id of the @everyone role is the same id of the guild/server
 				role = undefined; //if this executes then it means the role was @everyone and it deletes it
 
 			// Add/remove role
-			if (role) {
-				if (!hasRole(msg.member, role.id)) {
+			if(role) {
+				if(!hasRole(msg.member, role.id)) {
 					addRoles.push(role.id);
 					str1 += '\n'+role.name;
 				} else {
@@ -110,18 +110,18 @@ module.exports = {
 				str3 += '\n'+roleName.trim(); // here role.name can't be used because if this else runs is because the role wans't found
 		}
 		
-		if (addRoles.length)
+		if(addRoles.length)
 			await msg.member.roles.add(addRoles);
 
-		if (removeRoles.length)
+		if(removeRoles.length)
 			await msg.member.roles.remove(removeRoles);
 
 		let str4 = ''
-		if (str1.length !== str1len)
+		if(str1.length !== str1len)
 			str4 += str1;
-		if (str2.length !== str2len)
+		if(str2.length !== str2len)
 			str4 += str2;
-		if (str3.length !== str3len)
+		if(str3.length !== str3len)
 			str4 += str3;
 		msg.send(str4);
 	}

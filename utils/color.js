@@ -1,7 +1,7 @@
 'use strict';
 
 function difference(_0x01, _0x02) {
-	if (_0x01 > _0x02) {
+	if(_0x01 > _0x02) {
 		return (_0x01 - _0x02);
 	} else {
 		return (_0x02 - _0x01);
@@ -16,7 +16,7 @@ function closest(array, number) {
 		let g = difference((int >> 0x5) & 0xFF, (number >> 0x5) & 0xFF);
 		let b = difference(int & 0xFF, number & 0xFF);
 		let average = (r + g + b) / 3;
-		if (average < diffe) {
+		if(average < diffe) {
 			diffe = average;
 			index = key;
 		}

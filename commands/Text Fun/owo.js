@@ -55,7 +55,7 @@ function OwOify(text) {
 		.replace(/na/gi, 'nya')
 		.replace(/ove/gi, 'uv')
 		.replace(/['’]/g, '')
-		.replace(/(\b[OUXTq][wuox][OUXTq]\b|[OUXTq>^\-][_\-/][OUXTq<^\-]|[>^\-][wuox][<^\-]|[;:x][)(pd]|[;:x]-[)(pd])/gi, () => face())
+		.replace(/(\b[OUXTq][wuox][OUXTq]\b|[OUXTq>^\-][_\-/][OUXTq<^\-]|[>^\-][wuox][<^\-]|[;:]-*[)(pd]|\b[xb]-*[)(pd]\b)/gi, () => face())
 		.replace(/\?/g, '?'.repeat(Math.ceil(Math.random() * 3)))
 		.replace(/\b(ha|hah|heh|hehe)+\b/g, 'hehe xD')
 		.trim() + ' ' + face();

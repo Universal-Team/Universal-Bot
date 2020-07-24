@@ -32,10 +32,6 @@ module.exports = {
 
 function OwOify(text) {
 	return text
-		.replace(/[rl]/g, 'w')
-		.replace(/[RL]/g, 'W')
-		.replace(/na/gi, 'nya')
-		.replace(/ove/gi, 'uv')
 		.replace(/\bi['’]m\b/gi, 'im')
 		.replace(/\bi['’]ve/gi, 'ive')
 		.replace(/\bi\b/gi, 'me')
@@ -52,6 +48,10 @@ function OwOify(text) {
 		.replace(/worse/gi, 'wose')
 		.replace(/your/gi, 'ur')
 		.replace(/you/gi, 'u')
+		.replace(/[rl]/g, 'w')
+		.replace(/[RL]/g, 'W')
+		.replace(/na/gi, 'nya')
+		.replace(/ove/gi, 'uv')
 		.replace(/['’]/g, '')
 		.replace(/(uwu|owo)/gi, face())
 		.replace(/\?/g, '?'.repeat(Math.ceil(Math.random() * 3)))

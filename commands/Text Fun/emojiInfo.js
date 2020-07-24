@@ -1,6 +1,6 @@
 module.exports = {
 	name: ['emojiInfo', '絵文字Info'],
-	usage: '[-a] <id>',
+	usage: '<emoji name>',
 	desc: 'Sends info about an emoji in a guild Universal-Bot is in',
 	DM: true,
 	permissions: [],
@@ -26,7 +26,7 @@ module.exports = {
 
 		if(emoji) {
 			msg.send('', {embed: {
-				title: ':' + emoji.name + ': info',
+				title: '\\:' + emoji.name + '\\: info',
 				fields: [
 					{
 						name: "Guild",

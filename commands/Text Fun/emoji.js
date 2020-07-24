@@ -1,6 +1,6 @@
 module.exports = {
 	name: ['emoji', '絵文字'],
-	usage: '[-a] <id>',
+	usage: '<emoji names>',
 	desc: 'Sends any Discord emoji from a guild Universal-Bot is in',
 	DM: true,
 	permissions: [],
@@ -29,7 +29,7 @@ module.exports = {
 		let str = '';
 		emoji.forEach(r => {
 			let out = '<' + (r.animated ? 'a' : '') + ':' + r.name + ':' + r.id + '> ';
-			if((str + out).length < 2000)
+			if(str.length + out.length <= 2000)
 				str += out;
 		});
 		if(!str)

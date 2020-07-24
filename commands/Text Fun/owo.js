@@ -10,7 +10,7 @@ module.exports = {
 		if (!msg.args.length)
 			return msg.send('No ' + faces[Math.floor(Math.random() * faces.length)] + ' fow you');
 		else if(msg.args == '-l' || msg.args == '--last')
-			msg.args = Array.from(msg.channel.messages.cache)[msg.channel.messages.cache.size - 2][1].content;
+			msg.args = msg.channel.messages.cache.array()[msg.channel.messages.cache.size - 2].content;
 
 		msg.send('**' + msg.author.tag + '**: ' + OwOify(msg.args));
 	}

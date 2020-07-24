@@ -39,8 +39,8 @@ function isCommand(UnivBot, name) {
 
 module.exports = {
 	name: [ 'help', 'cmds', 'commands' ],
-	usage: '<Category>',
-	desc: 'Gives info about a command, category, or lists the categories',
+	usage: '[Category]',
+	desc: 'Gives info about a the categories, a category, or a command',
 	DM: true,
 	permissions: [],
 	exec(UnivBot, msg) {
@@ -80,8 +80,8 @@ module.exports = {
 				var path = 'commands/'+category+'/desc.txt';
 				if (fs.existsSync(path))
 					desc = fs.readFileSync(path);
-				category += '   ['+fs.readdirSync('commands/'+category).filter(cmd => cmd.endsWith('.js')).length+']';
-				embed.addField(category, desc, true);
+				category += ' ['+fs.readdirSync('commands/'+category).filter(cmd => cmd.endsWith('.js')).length+']';
+				embed.addField(category, desc);
 			}
 
 			let usefulCommands = [];
@@ -130,12 +130,12 @@ module.exports = {
 					var nameStr = name[0];
 					nameStr += ' '+require('../../commands/'+category+'/'+command).usage;
 					nameStr = msg.prefix+nameStr;
-					desc += ' (Other names: **'+name.slice(1).join('**, **')+'**)'
-					embed.addField(nameStr, desc, true);
+					desc += '\n(Other names: **'+name.slice(1).join('**, **')+'**)'
+					embed.addField(nameStr, desc);
 				} else {
 					name += ' '+require('../../commands/'+category+'/'+command).usage;
 					name = msg.prefix+name;
-					embed.addField(name, desc, true);
+					embed.addField(name, desc);
 				}
 			}
 		}
@@ -144,10 +144,10 @@ module.exports = {
 			if ((cmd.name instanceof Array)) {
 				var nameStr = msg.prefix+cmd.name[0]+' '+cmd.usage;
 				cmd.desc += '\n(Other names: **'+cmd.name.slice(1).join('**, **')+'**)'
-				embed.addField(nameStr, cmd.desc, true);
+				embed.addField(nameStr, cmd.desc);
 			} else {
 				name = msg.prefix+cmd.name+' '+cmd.usage;
-				embed.addField(name, cmd.desc, true);
+				embed.addField(name, cmd.desc);
 			}
 		}
 

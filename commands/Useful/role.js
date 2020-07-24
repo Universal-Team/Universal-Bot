@@ -27,7 +27,7 @@ function hasRole(member, id) {
 
 module.exports = {
 	name: 'role',
-	usage: '[--all] [Role names, comma separated]',
+	usage: '[--all] <role names, comma separated>',
 	desc: 'Adds/removes roles. Sends a list if no roles given',
 	permissions: [],
 	async exec(UnivBot, msg) {

@@ -4,7 +4,7 @@ const compile = require('../../utils/compile');
 
 module.exports = {
 	name: ['ASM', 'Assembly'],
-	usage: '<Code>',
+	usage: '<code>',
 	desc: 'Executes ASM code. Use --hide for hide the output and --del for delete the invocation message.',
 	DM: true,
 	permissions: [ 'DEV' ],

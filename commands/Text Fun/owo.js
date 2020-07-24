@@ -2,7 +2,7 @@ const faces = ['OwO', 'UwU', '>w<', '^w^', '-w-', 'XwX', 'TwT'];
 
 module.exports = {
 	name: ['owo', 'owoify', 'uwu', 'uwuify'],
-	usage: '<Text> [--last] [-l]',
+	usage: '<message> [--last] [-l]',
 	desc: 'OwO-ify a message',
 	DM: true,
 	permissions: [],
@@ -12,7 +12,7 @@ module.exports = {
 		else if(msg.args == '-l' || msg.args == '--last')
 			msg.args = msg.channel.messages.cache.array()[msg.channel.messages.cache.size - 2].content;
 
-		msg.send('**' + msg.author.tag + '**: ' + OwOify(msg.args));
+		msg.send(OwOify(msg.args));
 	}
 }
 

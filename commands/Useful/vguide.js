@@ -1,6 +1,6 @@
 module.exports = {
 	name: ['vguide', 'video guide'],
-	usage: '<guide>',
+	usage: '<system>',
 	desc: 'Sends the recommended video guide for the specified system',
 	DM: true,
 	permissions: [],

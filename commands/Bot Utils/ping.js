@@ -1,7 +1,7 @@
 module.exports = {
 	name: 'ping',
 	usage: '',
-	desc: 'Checks the speed of the Bot',
+	desc: 'Checks the speed of the bot',
 	DM: true,
 	permissions: [],
 	exec(UnivBot, msg) {

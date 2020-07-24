@@ -3,7 +3,7 @@ const fs    = require('fs');
 
 module.exports = {
 	name: ['download', 'request'],
-	usage: '<URL> <Output File>',
+	usage: '<URL|output file>',
 	desc: 'Downloads a file from a url onto the bot\'s repo',
 	DM: true,
 	permissions: [ 'DEV' ],

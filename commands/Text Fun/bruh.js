@@ -1,6 +1,6 @@
 module.exports = {
 	name: 'bruh',
-	usage: '<Text>',
+	usage: '<message>',
 	desc: 'Replaces all the spaces with a nice bruh',
 	DM: true,
 	permissions: [],
@@ -8,7 +8,7 @@ module.exports = {
 		if (!msg.args.length)
 			return msg.send('no bruh for bruh you');
 
-		msg.send('**' + msg.author.tag + '**: ' + bruhify(msg.args));
+		msg.send(bruhify(msg.args));
 	}
 }
 

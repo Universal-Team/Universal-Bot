@@ -7,7 +7,7 @@ function MessageAttachment(buffer, filename) {
 const ts2c = require("ts2c");
 module.exports = {
 	name: ['js2c', 'ts2c'],
-	usage: '',
+	usage: '<code>',
 	desc: 'Uses andrei\'s ts2c module for transpile TS/JS to C',
 	DM: true,
 	permissions: [],

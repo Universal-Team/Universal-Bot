@@ -39,7 +39,7 @@ function findRule(name) {
 }
 module.exports = {
 	name: 'rule',
-	usage: '[rule]',
+	usage: '<rule>',
 	desc: 'Sends the specified rule',
 	DM: true,
 	permissions: [],

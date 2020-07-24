@@ -14,7 +14,7 @@ function makeJSON(obj) {
 
 module.exports = {
 	name: ['welcome', 'welcome-message', 'welcome-cfg'],
-	usage: '',
+	usage: '<--disable|--enable|--channel|--message>',
 	desc: 'Configures the welcome messages',
 	permissions: [ 'ADMINISTRATOR' ],
 	exec(UnivBot, msg) {

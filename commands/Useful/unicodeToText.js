@@ -1,7 +1,7 @@
 module.exports = {
 	name: ['unicodeToText', 'utt', 'text'],
 	usage: '<character codes>',
-	desc: 'Converts a unicode character codes to their characters',
+	desc: 'Converts unicode character codes to their characters',
 	DM: true,
 	permissions: [],
 	exec(UnivBot, msg) {

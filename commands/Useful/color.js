@@ -7,8 +7,8 @@ const color = require('../../utils/color');
 
 module.exports = {
 	name: [ 'color', 'color-code' ],
-	usage: '<Hex color> or <RGB color> or <Decimal color>',
-	desc: 'parses a hex, rgb or decimal color and converts it',
+	usage: '<color>',
+	desc: 'Displays an #RGB, #RRGGBB, RRR GGG BBB, or BGR15 color',
 	DM: true,
 	permissions: [],
 	exec(UnivBot, msg) {

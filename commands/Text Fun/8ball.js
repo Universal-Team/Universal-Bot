@@ -1,6 +1,6 @@
 module.exports = {
 	name: ['8-ball', '8ball', 'magicball'],
-	usage: '<Question>',
+	usage: '<question>',
 	desc: 'The :8ball: answers to a question',
 	DM: true,
 	permissions: [],

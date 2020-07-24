@@ -5,7 +5,7 @@ function updateDB(UnivBot) {
 
 module.exports = {
 	name: ['setprefix', 'prefix', 'prefix-cfg'],
-	usage: '<Prefix>',
+	usage: '<prefix>',
 	desc: 'Changes the prefix for commands on the server',
 	permissions: [ 'ADMINISTRATOR' ],
 	exec(UnivBot, msg) {

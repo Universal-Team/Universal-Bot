@@ -4,7 +4,7 @@ const MessageAttachment = require('../../utils/MessageAttachment');
 
 module.exports = {
 	name: ['Py3', 'Python3'],
-	usage: '<Code>',
+	usage: '<code>',
 	desc: 'Executes Python 3 code. Use --hide for hide the output and --del for delete the invocation message',
 	DM: true,
 	permissions: [ 'DEV' ],

@@ -1,6 +1,6 @@
 module.exports = {
 	name: [ 'JSyntax', 'CheckJSyntax' ],
-	usage: '<JS Code>',
+	usage: '<code>',
 	desc: 'Checks the syntax of JS code',
 	DM: true,
 	permissions: [],

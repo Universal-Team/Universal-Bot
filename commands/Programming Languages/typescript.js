@@ -4,7 +4,7 @@ const MessageAttachment = require('../../utils/MessageAttachment');
 
 module.exports = {
 	name: ['TypeScript', 'TS'],
-	usage: '<Code>',
+	usage: '<code>',
 	desc: 'Executes TS code. Use --hide for hide the output, --string for not inspect the output and --del for delete the invocation message',
 	DM: true,
 	permissions: [ 'DEV' ],

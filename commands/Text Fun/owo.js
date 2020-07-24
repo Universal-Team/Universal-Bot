@@ -1,5 +1,5 @@
 const eyes = ['O', 'o', 'U', 'u', '>', '^', '-', 'X', 'T', 'q'];
-const mouths = ['w', 'u', '\\_', '-', 'x', '///'];
+const mouths = ['w', 'u', 'o', '\\_', '-', 'x', '///'];
 const extras = [['', ''], ['', ''], ['', ''], ['', '-☆'], ['=', '='], ['d', 'b♪']];
 
 function face() {
@@ -38,13 +38,15 @@ function OwOify(text) {
 		.replace(/\bmy\b/gi, 'me')
 		.replace(/need/gi, 'nweed')
 		.replace(/oh no/gi, 'ono')
+		.replace(/s's/gi, 's')
 		.replace(/speak/gi, 'spweak')
 		.replace(/stand/gi, 'stwand')
 		.replace(/(thanks|thank you)/gi, 'thankies')
 		.replace(/time/gi, 'tim')
 		.replace(/that/gi, 'dat')
-		.replace(/the/gi, 'da')
-		.replace(/(this|this's)/gi, 'dis')
+		.replace(/(than|then)/gi, 'den')
+		.replace(/\bthe\b/gi, 'da')
+		.replace(/this/gi, 'dis')
 		.replace(/worse/gi, 'wose')
 		.replace(/your/gi, 'ur')
 		.replace(/you/gi, 'u')
@@ -53,7 +55,7 @@ function OwOify(text) {
 		.replace(/na/gi, 'nya')
 		.replace(/ove/gi, 'uv')
 		.replace(/['’]/g, '')
-		.replace(/(uwu|owo)/gi, () => face())
+		.replace(/(\b[OUXTq][wuox][OUXTq]\b|[OUXTq>^\-][_\-/][OUXTq<^\-]|[>^\-][wuox][<^\-]|[;:x][)(pd]|[;:x]-[)(pd])/gi, () => face())
 		.replace(/\?/g, '?'.repeat(Math.ceil(Math.random() * 3)))
 		.replace(/\b(ha|hah|heh|hehe)+\b/g, 'hehe xD')
 		.trim() + ' ' + face();

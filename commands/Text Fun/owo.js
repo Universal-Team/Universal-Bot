@@ -1,5 +1,5 @@
 const eyes = ['O', 'o', 'U', 'u', '>', '^', '-', 'X', 'T', 'q'];
-const mouths = ['w', 'u', '_', '-', 'x', '///'];
+const mouths = ['w', 'u', '\\_', '-', 'x', '///'];
 const extras = [['', ''], ['', ''], ['', ''], ['', '-☆'], ['=', '='], ['d', 'b♪']];
 
 function face() {
@@ -53,7 +53,7 @@ function OwOify(text) {
 		.replace(/na/gi, 'nya')
 		.replace(/ove/gi, 'uv')
 		.replace(/['’]/g, '')
-		.replace(/(uwu|owo)/gi, face())
+		.replace(/(uwu|owo)/gi, () => face())
 		.replace(/\?/g, '?'.repeat(Math.ceil(Math.random() * 3)))
 		.replace(/\b(ha|hah|heh|hehe)+\b/g, 'hehe xD')
 		.trim() + ' ' + face();

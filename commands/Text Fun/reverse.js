@@ -6,7 +6,7 @@ module.exports = {
 	permissions: [],
 	exec(UnivBot, msg) {
 		if (msg.args.length)
-			return msg.send('**'+msg.author.tag+'** : '+msg.args.split('').reverse().join(''));
+			return msg.send('**'+msg.author.tag+'**: '+msg.args.split('').reverse().join(''));
 		return msg.send('I can\'t reverse the void');
 	}
 }

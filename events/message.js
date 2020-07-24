@@ -128,7 +128,7 @@ module.exports = async function(UnivBot, msg, nmsg) {
 
 	// Detect if lacks permissions
 	if (lacks.length)
-		return msg.reply('You lack the following permissions to run this command :  '+lacksStr);
+		return msg.reply('You lack the following permissions to run this command: '+lacksStr);
 
 	// Execute command
 	try {

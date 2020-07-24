@@ -10,7 +10,7 @@ function makeJSON(obj) {
 	if (object.ChannelID == 'sys')
 		object.ChannelID = 'System Channel';
 	object.MessagesEnabled = obj.enabled;
-	return '\n__**Goodbye Message Config :**__```json\n'+JSON.stringify(object, null, 4)+'\n```';
+	return '\n__**Goodbye Message Config: **__```json\n'+JSON.stringify(object, null, 4)+'\n```';
 }
 
 module.exports = {
@@ -21,9 +21,9 @@ module.exports = {
 	exec(UnivBot, msg) {
 		// Setup vars
 		var db = UnivBot.db[msg.guild.id];
-		var err1 = '**Error :** Can\'t use an empty message for the goodbye messages';
-		var err2 = '**Error :** Cant find that channel'
-		var err3 = `__**Invalid option! Follow one of those examples :**__
+		var err1 = '**Error:** Can\'t use an empty message for the goodbye messages';
+		var err2 = '**Error:** Cant find that channel'
+		var err3 = `__**Invalid option! Follow one of those examples:**__
 
 This disables the goodbye messages
 \`${msg.prefix}goodbye --disable\`
@@ -36,7 +36,7 @@ You can type "default" for use the system channel
 \`${msg.prefix}goodbye --channel #channel-name\`
 
 This is the goodbye message itself. You can
-include those 'variables' in the text :
+include those 'variables' in the text:
 \`\`\`js
 \`List of variables
 

@@ -74,7 +74,7 @@ module.exports = {
 
 		// Add commands/categories to embed
 		if (type == 'dir') {
-			embed.setFooter('• Amount of categories : '+UnivBot.categories.length, UnivBot.client.user.avatarURL);
+			embed.setFooter('• Amount of categories: '+UnivBot.categories.length, UnivBot.client.user.avatarURL);
 			for (var category of UnivBot.categories) {
 				var desc = 'No description yet'
 				var path = 'commands/'+category+'/desc.txt';
@@ -122,7 +122,7 @@ module.exports = {
 		if (type == 'file') {
 			var category = isCategory(UnivBot, msg.args);
 			var commands = fs.readdirSync('commands/'+category).filter(cmd => cmd.endsWith('.js'));
-			embed.setFooter('• Amount of commands in '+category+' : '+commands.length, UnivBot.client.user.avatarURL);
+			embed.setFooter('• Amount of commands in '+category+': '+commands.length, UnivBot.client.user.avatarURL);
 			for (var command of commands) {
 				var desc = require('../../commands/'+category+'/'+command).desc;
 				var name = require('../../commands/'+category+'/'+command).name;
@@ -130,7 +130,7 @@ module.exports = {
 					var nameStr = name[0];
 					nameStr += ' '+require('../../commands/'+category+'/'+command).usage;
 					nameStr = msg.prefix+nameStr;
-					desc += ' (Other names : **'+name.slice(1).join('**, **')+'**)'
+					desc += ' (Other names: **'+name.slice(1).join('**, **')+'**)'
 					embed.addField(nameStr, desc, true);
 				} else {
 					name += ' '+require('../../commands/'+category+'/'+command).usage;

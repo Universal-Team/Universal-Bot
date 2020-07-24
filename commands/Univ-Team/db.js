@@ -49,7 +49,7 @@ module.exports = {
 					"image": {},
 					"footer": {
 						"icon_url": res.icon || res.image,
-						"text": res.author ? "By: " + res.author : ""
+						"text": res.author ? "By: " + res.author: ""
 					}
 				}};
 				for(let item in res.downloads) {

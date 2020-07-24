@@ -6,7 +6,7 @@ module.exports = {
 	permissions: [],
 	exec(UnivBot, msg) {
 		if (msg.args.length)
-			return msg.send('**'+msg.author.tag+'** : '+msg.args.toUpperCase().split('').join(' '));
+			return msg.send('**'+msg.author.tag+'**: '+msg.args.toUpperCase().split('').join(' '));
 		return msg.send('The void is not angry');
 	}
 }

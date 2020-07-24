@@ -6,10 +6,10 @@ function makeJSON(obj) {
 	obj = JSON.parse(JSON.stringify(obj));
 	const object = {
 		Message: obj.string,
-		ChannelID: (obj.channel == 'sys' ? 'System Channel' : obj.channel),
+		ChannelID: (obj.channel == 'sys' ? 'System Channel': obj.channel),
 		MessageEnabled: obj.enabled
 	};
-	return '\n__**Welcome Message Config :**__```json\n'+JSON.stringify(object, null, 4)+'\n```';
+	return '\n__**Welcome Message Config:**__```json\n'+JSON.stringify(object, null, 4)+'\n```';
 }
 
 module.exports = {
@@ -20,9 +20,9 @@ module.exports = {
 	exec(UnivBot, msg) {
 		// Setup vars
 		var db = UnivBot.db[msg.guild.id];
-		var err1 = '**Error :** Can\'t use an empty message for the welcome messages';
-		var err2 = '**Error :** Cant find that channel'
-		var err3 = `__**Invalid option! Follow one of those examples :**__
+		var err1 = '**Error:** Can\'t use an empty message for the welcome messages';
+		var err2 = '**Error:** Cant find that channel'
+		var err3 = `__**Invalid option! Follow one of those examples:**__
 
 This disables the welcome messages
 \`${msg.prefix}welcome --disable\`
@@ -35,7 +35,7 @@ You can type "default" for use the system channel
 \`${msg.prefix}welcome --channel #channel-name\`
 
 This is the welcome message itself. You can
-include those 'variables' in the text :
+include those 'variables' in the text:
 \`\`\`js
 \`List of variables
 

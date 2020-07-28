@@ -32,7 +32,7 @@ module.exports = {
 			if(fs.existsSync('qr.png')) {
 				fs.unlinkSync('qr.png');
 			}
-			msg.send(out.stdout);
+			return msg.send(out.stdout);
 		}).catch(e => {
 			return msg.send('Invalid URL!');
 		});

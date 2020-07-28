@@ -9,6 +9,9 @@ module.exports = {
 	DM: true,
 	permissions: [],
 	exec(UnivBot, msg) {
+		if(msg.attachments.first())
+			msg.args = msg.attachments.first().attachment;
+
 		if(!msg.args)
 			return msg.send('Enter some text!');
 

@@ -36,6 +36,7 @@ function OwOify(text) {
 		.replace(/\bi['’]ve/gi, 'ive')
 		.replace(/\bi\b/gi, 'me')
 		.replace(/\bmy\b/gi, 'me')
+		.replace(/\band\b/, 'an')
 		.replace(/need/gi, 'nweed')
 		.replace(/oh no/gi, 'ono')
 		.replace(/s's/gi, 's')

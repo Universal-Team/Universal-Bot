@@ -8,7 +8,7 @@ module.exports = {
 		if(msg.args.length) {
 			let message = '';
 			for(let i=0;i<msg.args.length;i++) {
-				message += '0x' + msg.args.charCodeAt(i).toString(16).padStart(4, '0') + ' ';
+				message += 'U+' + msg.args.charCodeAt(i).toString(16).padStart(4, '0') + ' ';
 			}
 			return msg.send(message);
 		}

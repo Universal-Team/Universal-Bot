@@ -5,19 +5,23 @@ module.exports = {
 	DM: true,
 	permissions: [],
 	exec(UnivBot, msg) {
-		let name;
-		let match = msg.args.match(/(U\+|0x)([0-9A-F]+)/i)
+		let names = {};
+		let match = msg.args.match(/(U\+|0x)[0-9A-F]+/gi);
 		if(match) {
-			console.log("match", match[2].toUpperCase().padStart(4, "0"));
-			name = require("../../data/unicode-names.json")[match[2].toUpperCase().padStart(4, "0")]
-			console.log(name)
-		} else if(msg.args) {
-			console.log("char", msg.args.charCodeAt(0).toString(16).toUpperCase().padStart(4, "0"))
-			name = require("../../data/unicode-names.json")[msg.args.charCodeAt(0).toString(16).toUpperCase().padStart(4, "0")];
+			match.forEach(r => {
+				names[String.fromCodePoint(parseInt(r.replace(/U\+/gi, "0x"), 16))] = require("../../data/unicode-names.json")[r.substr(2).toUpperCase().padStart(4, "0")];
+			});
 		}
+		msg.args.replace(/(U\+|0x)[0-9A-F]+/gi, "").split("").forEach(r => {
+			names[r] = require("../../data/unicode-names.json")[r.charCodeAt(0).toString(16).toUpperCase().padStart(4, "0")];
+		});
 		
-		if(name) {
-			msg.send(name);
+		if(Object.keys(names).length) {
+			let str = "";
+			for(let key in names) {
+				str += "`" + key + "`: " + names[key] + "\n";
+			}
+			msg.send(str);
 		} else {
 			msg.send("Invalid input!");
 		}

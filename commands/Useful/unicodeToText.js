@@ -8,7 +8,7 @@ module.exports = {
 		if(msg.args.length) {
 			let message = '';
 			for(let char of msg.args.split(' ')) {
-				message += String.fromCharCode(parseInt(char.replace(/U\+/gi, "0x")));
+				message += String.fromCodePoint(parseInt(char.replace(/U\+/gi, "0x")));
 			}
 			return msg.send(message);
 		}

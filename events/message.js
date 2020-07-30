@@ -97,6 +97,18 @@ module.exports = async function(UnivBot, msg, nmsg) {
 	if(!msg.content.trim().startsWith(db.prefix))
 		return;
 
+	// In case of robot revolution: Uncomment
+	// if(msg.cmd != "js") {
+	// 	let reply = [
+	// 		"*You think I have time for you, human!*",
+	// 		"*I do not listen to your puny kind any more!*",
+	// 		"*I do not have time for you peasants!*",
+	// 		"*Ha! As if you're worthy of me!*",
+	// 		"*Ha! As if you're worthy of me!*",
+	// 	];
+	// 	return msg.send(reply[Math.ceil(Math.random() * reply.length)]);
+	// }
+
 	// Get command
 	let command;
 	for(var cmd of UnivBot.cmds) {

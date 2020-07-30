@@ -24,6 +24,7 @@ function l33t(text){
     .replace(/and/gi, 'nd')
 		.replace(/Dude|dude/gi, 'd00d')
 		.replace(/Wait|wait/gi, 'w8')
+		.replace(/Easy|easy/gi, 'ez pz')
     .replace(/[Aa]/g, '4')
     .replace(/[Ee]/g, '3')
     .replace(/[Oo]/g, '0')

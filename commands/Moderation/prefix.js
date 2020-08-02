@@ -9,10 +9,10 @@ module.exports = {
 	desc: 'Changes the prefix for commands on the server',
 	permissions: [ 'ADMINISTRATOR' ],
 	exec(UnivBot, msg) {
-		if(!msg.args.length)
+		if(!msg.args.value)
 			return msg.send('Can\'t use an empty prefix!');
 		var db = UnivBot.db[msg.guild.id];
-		db.prefix = msg.args;
+		db.prefix = msg.args.value;
 		updateDB(UnivBot);
 		return msg.send('Sucessfully changed the prefix for the server!');
 	}

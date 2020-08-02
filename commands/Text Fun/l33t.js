@@ -1,17 +1,17 @@
 module.exports = {
 	name: ['leet', 'l33t', '1337', 'h4x0r'],
-	usage: '[--last|-l] [message]',
+	usage: '[-__l__ast] [message]',
 	desc: 'l33t pr0gr4m1ng sp33ch',
 	DM: true,
 	permissions: [],
 	exec(UnivBot, msg) {
-		if(msg.args == '-l' || msg.args == '--last')
-			msg.args = msg.channel.messages.cache.array()[msg.channel.messages.cache.size - 2].content;
+		if(msg.args.last || msg.args.l)
+			msg.args.value = msg.channel.messages.cache.array()[msg.channel.messages.cache.size - 2].content;
 
-		if(!msg.args.length)
+		if(!msg.args.value)
 			return msg.send('git gut scrub');
 
-		msg.send(l33t(msg.args));
+		msg.send(l33t(msg.args.value));
 	}
 }
 

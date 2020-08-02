@@ -1,17 +1,17 @@
 module.exports = {
 	name: 'bruh',
-	usage: '[--last|-l] [message]',
+	usage: '[-__l__ast] [message]',
 	desc: 'Replaces all the spaces with a nice bruh',
 	DM: true,
 	permissions: [],
 	exec(UnivBot, msg) {
-		if(msg.args == '-l' || msg.args == '--last')
-			msg.args = msg.channel.messages.cache.array()[msg.channel.messages.cache.size - 2].content;
+		if(msg.args.last || msg.args.l)
+			msg.args.value = msg.channel.messages.cache.array()[msg.channel.messages.cache.size - 2].content;
 
-		if(!msg.args.length)
+		if(!msg.args.value)
 			return msg.send('no bruh for bruh you');
 
-		msg.send(bruhify(msg.args));
+		msg.send(bruhify(msg.args.value));
 	}
 }
 

@@ -5,11 +5,11 @@ module.exports = {
 	DM: true,
 	permissions: [],
 	exec(UnivBot, msg) {
-		if(msg.args.length) {
+		if(msg.args.value) {
 			let message = '';
-			for(let i=0;i<msg.args.length;i++) {
-				message += 'U+' + msg.args.charCodeAt(i).toString(16).padStart(4, '0') + ' ';
-			}
+			Array.from(msg.args.value).forEach(r => {
+				message += 'U+' + r.charCodeAt(0).toString(16).padStart(4, '0') + ' ';
+			});
 			return msg.send(message);
 		}
 		return msg.send('I can\'t convert nothing...');

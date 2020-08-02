@@ -15,7 +15,7 @@ function makeJSON(obj) {
 
 module.exports = {
 	name: ['goodbye', 'goodbye-message', 'goodbye-cfg'],
-	usage: '<--disable|--enable|--channel|--message>',
+	usage: '<-__d__isable|-__e__nable|--__c__hannel|--__m__essage>',
 	desc: 'Configures the goodbye messages',
 	permissions: [ 'ADMINISTRATOR' ],
 	exec(UnivBot, msg) {
@@ -26,10 +26,10 @@ module.exports = {
 		var err3 = `__**Invalid option! Follow one of those examples:**__
 
 This disables the goodbye messages
-\`${msg.prefix}goodbye --disable\`
+\`${msg.prefix}goodbye -disable\`
 
 This enables the goodbye messages
-\`${msg.prefix}goodbye --enable\`
+\`${msg.prefix}goodbye -enable\`
 
 This selects a channel for the messages.
 You can type "default" for use the system channel
@@ -49,30 +49,28 @@ include those 'variables' in the text:
 \${guild.amount} Amount of users in the server\`\`\`
 \`${msg.prefix}goodbye --message <Text for goodbye message>\``
 
-		// Get option and args
-		var option = msg.args.split(' ')[0].toLowerCase();
-		var arg = msg.args.split(' ').slice(1).join(' ').trim();
-
 		// Check for enable and disable
-		if(option == '--enable') {
+		if(msg.args.enable || msg.args.e) {
 			db.messages.goodbye.enabled = true;
 			updateDB(UnivBot);
 			return msg.send('Enabled goodbye messages'+makeJSON(db.messages.goodbye));
 		}
-		if(option == '--disable') {
+		if(msg.args.disable || msg.args.d) {
 			db.messages.goodbye.enabled = false;
 			updateDB(UnivBot);
 			return msg.send('Disabled goodbye messages'+makeJSON(db.messages.goodbye));
 		}
 
 		// Check for channel
-		if(option == '--channel') {
-			if(arg.toLowerCase() == 'default') {
+		if(typeof(msg.args.c) == 'string')
+			msg.args.channel = msg.args.c;
+		if(typeof(msg.args.channel) == 'string') {
+			if(msg.args.channel.toLowerCase() == 'default') {
 				db.messages.goodbye.channel = 'sys';
 				updateDB(UnivBot);
 				return msg.send('Sucessfully changed the goodbye channel to the system channel'+makeJSON(db.messages.goodbye));
 			}
-			var ID = arg.substr(0, arg.length-1).substr(2);
+			var ID = msg.args.channel.substr(0, msg.args.channel.length-1).substr(2);
 			var channel = msg.guild.channels.cache.get(ID);
 			if(!channel)
 				return msg.send(err2);
@@ -82,10 +80,12 @@ include those 'variables' in the text:
 		}
 
 		// Check for message
-		if(option == '--message') {
-			if(!arg.length)
+		if(typeof(msg.args.m) == 'string')
+			msg.args.message = msg.args.m;
+		if(typeof(msg.args.message) == 'string') {
+			if(!msg.args.message)
 				return msg.send(err1);
-			db.messages.goodbye.string = arg;
+			db.messages.goodbye.string = msg.args.message;
 			updateDB(UnivBot);
 			return msg.send('Sucessfully changed the goodbye message'+makeJSON(db.messages.goodbye));
 		}

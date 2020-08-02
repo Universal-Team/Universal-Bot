@@ -44,9 +44,9 @@ module.exports = {
 	DM: true,
 	permissions: [],
 	exec(UnivBot, msg) {
-		let ruleNo = Number(msg.args);
+		let ruleNo = Number(msg.args.value);
 		if(isNaN(ruleNo)) {
-			ruleNo = findRule(msg.args);
+			ruleNo = findRule(msg.args.value);
 		}
 
 		if(ruleNo <= rules.length && ruleNo > 0) {

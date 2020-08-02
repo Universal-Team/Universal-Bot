@@ -10,12 +10,12 @@ module.exports = {
 	permissions: [],
 	exec(UnivBot, msg) {
 		if(msg.attachments.first())
-			msg.args = msg.attachments.first().attachment;
+			msg.args.value = msg.attachments.first().attachment;
 
-		if(!msg.args)
+		if(!msg.args.value)
 			return msg.send('Enter some text!');
 
-		spawnSync('qrencode', ['-o', 'qr.png'].concat(msg.args.split(' ')), { encoding: 'utf-8' });
+		spawnSync('qrencode', ['-o', 'qr.png'].concat(msg.args.value.split(' ')), { encoding: 'utf-8' });
 		if(fs.existsSync('qr.png')) {
 			qr = fs.readFileSync('qr.png');
 			fs.unlinkSync('qr.png');

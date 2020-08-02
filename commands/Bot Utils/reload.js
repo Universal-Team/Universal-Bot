@@ -5,7 +5,7 @@ module.exports = {
 	DM: true,
 	permissions: [ 'DEV' ],
 	exec(UnivBot, msg) {
-		if(!msg.args.length)
+		if(!msg.args.value)
 			return msg.send('**Oops!** You didn\'t provided enough arguments');
 
 		let command;
@@ -17,7 +17,7 @@ module.exports = {
 			if((name instanceof Array)) {
 				let matches = false;
 				for(var i = 0; i < name.length; i++)
-					if(name[i].toLowerCase() == msg.args.toLowerCase()) {
+					if(name[i].toLowerCase() == msg.args.value.toLowerCase()) {
 						matches = true;
 						break;
 					}
@@ -27,7 +27,7 @@ module.exports = {
 				}
 				name = name.join('/');
 			}
-			if(name.toLowerCase() == msg.args) {
+			if(name.toLowerCase() == msg.args.value) {
 				command = path;
 				break;
 			}
@@ -35,7 +35,7 @@ module.exports = {
 
 		if(command) {
 			delete require.cache[require.resolve(command)]
-			msg.send('Successfully reloaded the '+msg.args+' command');
+			msg.send('Successfully reloaded the ' + msg.args.value + ' command');
 		} else {
 			msg.send('Couldnt find that command!');
 		}

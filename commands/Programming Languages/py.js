@@ -4,37 +4,27 @@ const MessageAttachment = require('../../utils/MessageAttachment');
 
 module.exports = {
 	name: ['Py', 'Py2', 'Python', 'Python2'],
-	usage: '<code>',
-	desc: 'Executes Python 2 code. Use --hide for hide the output and --del for delete the invocation message',
+	usage: '[-__h__ide|-__d__el] <code>',
+	desc: 'Executes Python 2 code. Use -hide for hide the output and -del for delete the invocation message',
 	DM: true,
 	permissions: [ 'DEV' ],
 	async exec(UnivBot, msg) {
-		let obj = searchFlags(msg.args.trim(), ['--hide', '--del' ])
-
-		let hide = false;
-		let del = false;
-
-		if(obj.flags.includes('--hide'))
-				hide = true;
-		if(obj.flags.includes('--del'))
-				del = true;
-
-		if(!obj.string.length)
+		if(!msg.args.value)
 			return msg.send('**Oops!** You didn\'t provided enough arguments');
 
 		let output;
 		try {
-			output = terminal('echo "' + obj.string.replace(/"/g, '\\"').replace(/`/g, '\\`') + '" | python2', {shell: '/bin/bash'}).toString();
+			output = terminal('echo "' + msg.args.value.replace(/"/g, '\\"').replace(/`/g, '\\`') + '" | python2', {shell: '/bin/bash'}).toString();
 		} catch(e) {
 			if(!hide)
 				return msg.send(e.toString(), {code: 'js'});
 			return;
 		}
 
-		if(del && msg.guild) {
+		if((msg.args.del || msg.args.d) && msg.guild) {
 			msg.delete();
 		}
-		if(hide) {
+		if(msg.args.hide || msg.args.h) {
 			return;
 		}
 

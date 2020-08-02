@@ -10,7 +10,7 @@ module.exports = {
 	DM: true,
 	permissions: [],
 	exec(UnivBot, msg) {
-		let link = msg.args;
+		let link = msg.args.value;
 		if(msg.attachments.first())
 			link = msg.attachments.first().attachment;
 

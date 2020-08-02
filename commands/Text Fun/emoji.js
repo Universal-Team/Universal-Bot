@@ -5,11 +5,11 @@ module.exports = {
 	DM: true,
 	permissions: [],
 	exec(UnivBot, msg) {
-		if(!msg.args)
+		if(!msg.args.value)
 			return msg.send("Nothing isn't an emoji...");
 
 		let emoji = [];
-		msg.args.split(" ").forEach(r => {
+		msg.args.value.split(" ").forEach(r => {
 			let temp;
 			UnivBot.client.guilds.cache.some(guild => {
 				return guild.emojis.cache.some(e => {

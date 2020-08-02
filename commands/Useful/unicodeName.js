@@ -6,13 +6,13 @@ module.exports = {
 	permissions: [],
 	exec(UnivBot, msg) {
 		let names = {};
-		let match = msg.args.match(/(U\+|0x)[0-9A-F]+/gi);
+		let match = msg.args.value.match(/(U\+|0x)[0-9A-F]+/gi);
 		if(match) {
 			match.forEach(r => {
 				names[String.fromCodePoint(parseInt(r.replace(/U\+/gi, "0x"), 16))] = require("../../data/unicode-names.json")[r.substr(2).toUpperCase().padStart(4, "0")];
 			});
 		}
-		msg.args.replace(/(U\+|0x)[0-9A-F]+/gi, "").split("").forEach(r => {
+		msg.args.value.replace(/(U\+|0x)[0-9A-F]+/gi, "").split("").forEach(r => {
 			names[r] = require("../../data/unicode-names.json")[r.charCodeAt(0).toString(16).toUpperCase().padStart(4, "0")];
 		});
 		

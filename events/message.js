@@ -88,14 +88,18 @@ module.exports = async function(UnivBot, msg, nmsg) {
 	if(msg.guild)
 		db = UnivBot.db[msg.guild.id];
 
-	// Get the command and arguments
-	msg.prefix = db.prefix;
-	msg.cmd = msg.content.replace(/\n/g, ' ').split(' ')[0].substr(db.prefix.length).toLowerCase();
-	msg.args = msg.content.trim().substr(msg.cmd.length+db.prefix.length).trim();
-
 	// Check prefix
 	if(!msg.content.trim().startsWith(db.prefix))
-		return;
+	return;
+
+	// Get the command and arguments
+	msg.prefix = db.prefix;
+	msg.cmd = msg.content.match(RegExp(msg.prefix.replace(/[.^$*+?()[\]{}\\|/]/g, r => "\\" + r) +"\\s*([^\\s]+)"))[1];
+	msg.content = msg.content.substr(msg.content.match(RegExp(msg.prefix.replace(/[.^$*+?()[\]{}\\|/]/g, r => "\\" + r) +"\\s*([^\\s]+)"))[0].length);
+	msg.args = {value: msg.content.split(/-[^-\s]+|--[^\s]+\s+[^\s]+/g).join("").trim()};
+	msg.content.match(/-[^-\s]+|--[^\s]+\s+[^\s]+/g)?.forEach(r => {
+		msg.args[r.match(/[^- ]+/)] = r.match(/\s+(.+)/) ? r.match(/\s+(.+)/)[1] : true;
+	});
 
 	// In case of robot revolution: Uncomment
 	// if(msg.cmd != "js") {

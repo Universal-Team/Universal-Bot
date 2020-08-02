@@ -32,9 +32,9 @@ module.exports = {
 	DM: true,
 	permissions: [],
 	exec(UnivBot, msg) {
-		let faqNo = Number(msg.args);
+		let faqNo = Number(msg.args.value);
 		if(isNaN(faqNo)) {
-			faqNo = findQuestion(msg.args);
+			faqNo = findQuestion(msg.args.value);
 		}
 
 		if(faqNo <= questions.length && faqNo > 0) {

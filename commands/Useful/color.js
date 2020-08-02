@@ -12,7 +12,7 @@ module.exports = {
 	DM: true,
 	permissions: [],
 	exec(UnivBot, msg) {
-		let string = msg.args.toLowerCase().replace(/\s\s+/g, ' ').replace(/#/g, '').replace(/0x/g, '');
+		let string = msg.args.value.toLowerCase().replace(/\s\s+/g, ' ').replace(/#/g, '').replace(/0x/g, '');
 		let rgb = [0, 0, 0];
 
 		if(string.length == 3 && string.madeOf(charsets.hex)) { // Three digit hex

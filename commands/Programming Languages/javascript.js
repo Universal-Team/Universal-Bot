@@ -3,44 +3,36 @@ const MessageAttachment = require('../../utils/MessageAttachment');
 
 module.exports = {
 	name: ['JavaScript', 'JS'],
-	usage: '<code>',
-	desc: 'Executes JS code. Use --hide for hide the output, --string for not inspect the output and --del for delete the invocation message',
+	usage: '[-__h__ide|-__s__tring|-__d__el] <code>',
+	desc: 'Executes JS code. Use -hide for hide the output, -string for not inspect the output and -del for delete the invocation message',
 	DM: true,
 	permissions: [ 'DEV' ],
 	async exec(UnivBot, msg) {
-		let obj = searchFlags(msg.args.trim(), ['--hide', '--del', '--string'])
-
 		let stringify = require('util').inspect;
-		let hide = false;
-		let del = false;
 
-		if(obj.flags.includes('--hide'))
-				hide = true;
-		if(obj.flags.includes('--del'))
-				del = true;
-		if(obj.flags.includes('--string'))
-				stringify = variable => variable.toString();
-
-		if(!obj.string.length)
+		if(!msg.args.value)
 			return msg.send('**Oops!** You didn\'t provided enough arguments');
+
+		if(msg.args.string || msg.args.s)
+			stringify = variable => variable.toString();
 
 		let output;
 		try {
-			output = await eval(obj.string);
+			output = await eval(msg.args.value);
 			if(typeof output !== 'function')
 				output = stringify(output);
 			if(typeof output !== 'string')
 				output = output.toString();
 		} catch(e) {
-			if(!hide)
+			if(!(msg.args.hide || msg.args.h))
 				return msg.send(e.toString(), {code: 'js'});
 			return;
 		}
 
-		if(del && msg.guild) {
+		if((msg.args.del || msg.args.d) && msg.guild) {
 			msg.delete();
 		}
-		if(hide) {
+		if(msg.args.hide || msg.args.h) {
 			return;
 		}
 

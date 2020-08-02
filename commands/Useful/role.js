@@ -27,7 +27,7 @@ function hasRole(member, id) {
 
 module.exports = {
 	name: 'role',
-	usage: '[--all] <role names, comma separated>',
+	usage: '[-__a__ll] <role names, comma separated>',
 	desc: 'Adds/removes roles. Sends a list if no roles given',
 	permissions: [],
 	async exec(UnivBot, msg) {
@@ -40,7 +40,7 @@ module.exports = {
 		let str3len = str3.length;
 
 		// Split the roles
-		var roles = msg.args.toLowerCase().split(',');
+		var roles = msg.args.value.toLowerCase().split(',');
 
 		// Detect empty roles
 		if(roles.includes('')) {
@@ -78,7 +78,7 @@ module.exports = {
 		let addRoles = [];
 		let removeRoles = [];
 
-		if(roles.join(' ') == '--all') {
+		if(msg.args.all || msg.args.a) {
 			for(let i = 1; i < msg.guild.roles.cache.size; i++) {
 				if(msg.guild.roles.cache.find(r => r.position == i).editable) {
 					let role = msg.guild.roles.cache.find(r => r.position == i);

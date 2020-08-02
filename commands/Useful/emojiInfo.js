@@ -5,19 +5,19 @@ module.exports = {
 	DM: true,
 	permissions: [],
 	exec(UnivBot, msg) {
-		if(!msg.args)
+		if(!msg.args.value)
 			return msg.send("Nothing isn't an emoji...");
 
-		if(msg.args.match(/<:.*:.*>/))
-			msg.args = msg.args.substr(msg.args.indexOf(':') + 1, msg.args.lastIndexOf(':') - msg.args.indexOf(':') - 1);
+		if(msg.args.value.match(/<:.*:.*>/))
+			msg.args.value = msg.args.value.substr(msg.args.value.indexOf(':') + 1, msg.args.value.lastIndexOf(':') - msg.args.value.indexOf(':') - 1);
 
 		let emoji;
 		UnivBot.client.guilds.cache.some(guild => {
 			return guild.emojis.cache.some(e => {
-				if(e.name.toLowerCase() == msg.args.toLowerCase()) {
+				if(e.name.toLowerCase() == msg.args.value.toLowerCase()) {
 					emoji = e;
 					return true;
-				} else if(e.name.toLowerCase().includes(msg.args.toLowerCase())) {
+				} else if(e.name.toLowerCase().includes(msg.args.value.toLowerCase())) {
 					if(!emoji)
 						emoji = e;
 				}

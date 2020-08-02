@@ -4,23 +4,21 @@ const compile = require('../../utils/compile');
 
 module.exports = {
 	name: ['ASM', 'Assembly'],
-	usage: '<code>',
-	desc: 'Executes ASM code. Use --hide for hide the output and --del for delete the invocation message.',
+	usage: '[-__h__ide|-__d__el] <code>',
+	desc: 'Executes ASM code. Use -hide for hide the output and -del for delete the invocation message.',
 	DM: true,
 	permissions: [ 'DEV' ],
-	async exec(UnivBot, msg) {
-		let obj = searchFlags(msg.args, ['--del', '--hide']);
-	
-		if(!obj.string.length)
+	async exec(UnivBot, msg) {	
+		if(!msg.args.value)
 			return msg.send('**Oops!** You didn\'t provided enough arguments');
 	
-		if(obj.flags.includes('--del') && msg.guild)
+		if((msg.args.del || msg.args.d) && msg.guild)
 			msg.delete();
 
 		let output;
-		let object = compile(obj.string, 'asm');
+		let object = compile(msg.args.value, 'asm');
 	
-		if(obj.flags.includes('--hide'))
+		if(msg.args.hide || msg.args.h)
 			return;
 	
 		if(typeof object !== 'object')

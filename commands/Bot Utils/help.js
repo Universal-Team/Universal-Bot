@@ -39,7 +39,7 @@ function isCommand(UnivBot, name) {
 
 module.exports = {
 	name: [ 'help', 'cmds', 'commands' ],
-	usage: '[Category]',
+	usage: '[category]',
 	desc: 'Gives info about a the categories, a category, or a command',
 	DM: true,
 	permissions: [],
@@ -47,10 +47,10 @@ module.exports = {
 		// Detect if a category was given
 		let title = 'List of categories';
 		let type = 'dir';
-		if(isCategory(UnivBot, msg.args)) {
+		if(isCategory(UnivBot, msg.args.value)) {
 			title = 'List of commands';
 			type = 'file';
-		} else if(isCommand(UnivBot, msg.args)) {
+		} else if(isCommand(UnivBot, msg.args.value)) {
 			title = 'Command info';
 			type = 'cmd';
 		}
@@ -120,7 +120,7 @@ module.exports = {
 				embed.addField('Useful Commands', usefulCommands.join('\n'))
 		}
 		if(type == 'file') {
-			var category = isCategory(UnivBot, msg.args);
+			var category = isCategory(UnivBot, msg.args.value);
 			var commands = fs.readdirSync('commands/'+category).filter(cmd => cmd.endsWith('.js'));
 			embed.setFooter('• Amount of commands in '+category+': '+commands.length, UnivBot.client.user.avatarURL);
 			for(var command of commands) {
@@ -140,7 +140,7 @@ module.exports = {
 			}
 		}
 		if(type == 'cmd') {
-			let cmd = isCommand(UnivBot, msg.args);
+			let cmd = isCommand(UnivBot, msg.args.value);
 			if((cmd.name instanceof Array)) {
 				var nameStr = msg.prefix+cmd.name[0]+' '+cmd.usage;
 				cmd.desc += '\n(Other names: **'+cmd.name.slice(1).join('**, **')+'**)'

@@ -4,34 +4,32 @@ const compile = require('../../utils/compile');
 
 module.exports = {
 	name: ['C++', 'CPP'],
-	usage: '<code>',
-	desc: 'Executes C++ code. Use --hide for hide the output, --del for delete the invocation message and --template for automatically add stdio.h, main and booleans.',
+	usage: '[-__h__ide|-__d__el|-__t__emplate] <code>',
+	desc: 'Executes C++ code. Use -hide for hide the output, -del for delete the invocation message and -template for automatically add stdio.h, string, and vector.',
 	DM: true,
 	permissions: [ 'DEV' ],
 	async exec(UnivBot, msg) {
-		let obj = searchFlags(msg.args, ['--template', '--del', '--hide']);
-
-		if(!obj.string.length)
+		if(!msg.args.value)
 			return msg.send('**Oops!** You didn\'t provided enough arguments');
 
-		if(obj.flags.includes('--template'))
-			obj.string = `
+		if(msg.args.template || msg.args.t)
+			msg.args.value = `
 #include <stdio.h>
 #include <string>
 #include <vector>
 
 int main(int argc, char *argv[]) {
-${obj.string}
+${msg.args.value}
 return 0;
 }`;
 
-		if(obj.flags.includes('--del') && msg.guild)
+		if((msg.args.delete || msg.args.d) && msg.guild)
 			msg.delete();
 
 		let output;
-		let object = compile(obj.string, 'cpp');
+		let object = compile(msg.args.value, 'cpp');
 
-		if(obj.flags.includes('--hide'))
+		if(msg.args.hide || msg.args.h)
 			return;
 
 		if(typeof object !== 'object')

@@ -1,21 +1,18 @@
 module.exports = {
 	name: ['DB', 'UniversalDB'],
-	usage: '<app|description> [--all|--random|-r|--search|-s]',
+	usage: '[-__a__ll|-__r__andom|-__s__earch] <app|description>',
 	desc: 'Search for an application on Universal DB',
 	DM: true,
 	permissions: [],
 	exec(UnivBot, msg) {
-		if(msg.args.length == 0)
+		if(!msg.args.value)
 			return msg.send('**Error:** Please enter a search term');
 
-		let query = msg.args.trim().split(" ");
-		let all = query.includes("--all");
-		let random = query.includes("-r") || query.includes("--random");
-		let search = query.includes("-s") || query.includes("--search");
+		let query = msg.args.value.trim().split(" ");
 		query = query.filter(r => !r.startsWith("-")).join(" ");
 		
 		require('node-fetch')("https://db.universal-team.net/data/full.json", {"method": "Get"}).then(r => r.json()).then(json => {
-			if(random)
+			if(msg.args.random || msg.args.r)
 				query = json[Math.floor(Math.random() * json.length)].title;
 
 			let out = [];
@@ -23,22 +20,22 @@ module.exports = {
 			json.some(app => {
 				if(app.title && app.title.toLowerCase().includes(query.toLowerCase())) {
 					out.push(app);
-					return !(all || search);
+					return !(msg.args.all || msg.args.a || msg.args.search || msg.args.s);
 				}
 			});
 
-			if(out.length == 0 || all || search) {
+			if(out.length == 0 || msg.args.all || msg.args.a || msg.args.search || msg.args.s) {
 				// Search descriptions
 				json.some(app => {
 					if(app.description && app.description.toLowerCase().includes(query.toLowerCase())) {
 						if(!out.includes(app))
 							out.push(app);
-						return !all;
+						return !(msg.args.all || msg.args.a);
 					}
 				});
 			}
 
-			if(search) {
+			if(msg.args.search || msg.args.s) {
 				let embed = {"embed": {
 					"title": 'Results',
 					"fields": []

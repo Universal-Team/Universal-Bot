@@ -5,11 +5,11 @@ module.exports = {
 	DM: true,
 	permissions: [],
 	exec(UnivBot, msg) {
-		if(!msg.args.length)
+		if(!msg.args.value)
 			return msg.send('**Oops!** You didn\'t provided enough arguments');
 
 		try {
-			new Function(msg.args);
+			new Function(msg.args.value);
 			msg.reply('Your code has no syntax errors');
 		} catch(e) {
 			var error = '``'+e.toString().split('Error')[0]+'`` error. The problem is: ``'+e.toString().split(' ').slice(1).join(' ')+'``';

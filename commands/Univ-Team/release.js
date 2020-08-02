@@ -106,7 +106,7 @@ module.exports = {
 	DM: true,
 	permissions: [],
 	exec(UnivBot, msg) {
-		const app = new Project(msg.args, projects);
+		const app = new Project(msg.args.value, projects);
 		if(app.invalid)
 			return msg.send(projects.embed());
 

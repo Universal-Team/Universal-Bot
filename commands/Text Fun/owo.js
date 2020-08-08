@@ -43,7 +43,7 @@ function OwOify(text) {
 		.replace(/speak/gi, 'spweak')
 		.replace(/stand/gi, 'stwand')
 		.replace(/(thanks|thank you)/gi, 'tankies')
-		.replace(/\bthe\b/, 'da')
+		.replace(/\bthe\b/gi, 'da')
 		.replace(/time/gi, 'tim')
 		.replace(/worse/gi, 'wose')
 		.replace(/your/gi, 'ur')

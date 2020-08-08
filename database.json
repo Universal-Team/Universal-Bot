@@ -220,5 +220,20 @@
 				"enabled": true
 			}
 		}
+	},
+	"737446318993047592": {
+		"prefix": "?",
+		"messages": {
+			"welcome": {
+				"channel": "sys",
+				"string": "Welcome **${user.ping}** to **${guild.name}**!, hope you enjoy your stay! The amount of members now is **${guild.amount}**",
+				"enabled": true
+			},
+			"goodbye": {
+				"channel": "sys",
+				"string": "Goodbye **${user.tag}**... The amount of members now is **${guild.amount}**",
+				"enabled": true
+			}
+		}
 	}
 }

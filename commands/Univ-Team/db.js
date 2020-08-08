@@ -5,15 +5,14 @@ module.exports = {
 	DM: true,
 	permissions: [],
 	exec(UnivBot, msg) {
-		if(!msg.args.value)
-			return msg.send('**Error:** Please enter a search term');
-
-		let query = msg.args.value.trim().split(" ");
-		query = query.filter(r => !r.startsWith("-")).join(" ");
+		let query = msg.args.value;
 		
 		require('node-fetch')("https://db.universal-team.net/data/full.json", {"method": "Get"}).then(r => r.json()).then(json => {
 			if(msg.args.random || msg.args.r)
 				query = json[Math.floor(Math.random() * json.length)].title;
+
+			if(!query)
+				return msg.send('**Error:** Please enter a search term');
 
 			let out = [];
 			// Search titles

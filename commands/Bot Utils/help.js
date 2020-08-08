@@ -21,15 +21,19 @@ function isCommand(UnivBot, name) {
 			cmd = require("../../" + cmd);
 			if((cmd.name instanceof Array)) {
 				for(let cmdName of cmd.name) {
-					if(cmdName.toLowerCase().substr(0, name.length) == name) {
-						command = cmd;
-						break;
+					if(cmdName.toLowerCase() == name) {
+						return cmd;
+					} else if(cmdName.toLowerCase().substr(0, name.length) == name) {
+						if(!command)
+							command = cmd;
 					}
 				}
 			} else {
-				if(cmd.name.toLowerCase().substr(0, name.length) == name) {
-					command = cmd;
-					break;
+				if(cmd.name.toLowerCase() == name) {
+					return cmd;
+				} else if(cmd.name.toLowerCase().substr(0, name.length) == name) {
+					if(!command)
+						command = cmd;
 				}
 			}
 		}

@@ -8,32 +8,30 @@ module.exports = {
 		if(!msg.args.value)
 			return msg.send("Nothing isn't an emoji...");
 
-		let emoji = [];
-		msg.args.value.split(" ").forEach(r => {
-			let temp;
+		let out = msg.args.value.replace(/[^\s]+/g, r => {
+			let emoji;
 			UnivBot.client.guilds.cache.some(guild => {
 				return guild.emojis.cache.some(e => {
 					if(e.name.toLowerCase() == r.toLowerCase()) {
-						temp = e;
+						emoji = e;
 						return true;
 					} else if(e.name.toLowerCase().includes(r.toLowerCase())) {
-						if(!temp)
-							temp = e;
+						if(!emoji)
+							emoji = e;
 					}
 				});
 			});
-			if(temp)
-				emoji.push(temp);
+			if(emoji)
+				return '<' + (emoji.animated ? 'a' : '') + ':' + emoji.name + ':' + emoji.id + '> '
+			else
+				return r;
 		});
 
-		let str = '';
-		emoji.forEach(r => {
-			let out = '<' + (r.animated ? 'a' : '') + ':' + r.name + ':' + r.id + '> ';
-			if(str.length + out.length <= 2000)
-				str += out;
-		});
-		if(!str)
-			str = 'Aww, no emoji found...';
-		return msg.send(str);
+		if(out.length > 2000) {
+			out = out.substr(0, 2000);
+			out = out.substr(0, out.lastIndexOf('<') - 1);
+		}
+
+		msg.send(out);
 	}
 }

@@ -147,8 +147,7 @@ module.exports = {
 			let cmd = isCommand(UnivBot, msg.args.value);
 			if((cmd.name instanceof Array)) {
 				var nameStr = msg.prefix+cmd.name[0]+' '+cmd.usage;
-				cmd.desc += '\n(Other names: **'+cmd.name.slice(1).join('**, **')+'**)'
-				embed.addField(nameStr, cmd.desc);
+				embed.addField(nameStr, cmd.desc + '\n(Other names: **'+cmd.name.slice(1).join('**, **')+'**)');
 			} else {
 				name = msg.prefix+cmd.name+' '+cmd.usage;
 				embed.addField(name, cmd.desc);

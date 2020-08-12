@@ -1,12 +1,13 @@
+const {VM} = require('vm2');
 const searchFlags = require('../../utils/searchFlags');
 const MessageAttachment = require('../../utils/MessageAttachment');
 
 module.exports = {
 	name: ['JavaScript', 'JS'],
-	usage: '[-__h__ide|-__s__tring|-__d__el] <code>',
+	usage: '[-__h__ide|-__s__tring|-__d__el|-de__v__] <code>',
 	desc: 'Executes JS code. Use -hide for hide the output, -string for not inspect the output and -del for delete the invocation message',
 	DM: true,
-	permissions: [ 'DEV' ],
+	permissions: [],
 	async exec(UnivBot, msg) {
 		let stringify = require('util').inspect;
 
@@ -18,16 +19,26 @@ module.exports = {
 
 		let output;
 		try {
-			output = await eval(msg.args.value);
-			if(typeof output !== 'function')
-				output = stringify(output);
-			if(typeof output !== 'string')
-				output = output.toString();
+			if(msg.args.dev || msg.args.v) {
+				if(msg.dev) {
+					output = await eval(msg.args.value);
+				} else {
+					return msg.reply("You need BOT_DEVELOPER permission to run this command!");
+				}
+			} else {
+				const vm = new VM({timeout: 10000});
+				output = vm.run("eval(`" + msg.args.value.replace(/`/g, "\\`") +"`)");
+			}
 		} catch(e) {
 			if(!(msg.args.hide || msg.args.h))
 				return msg.send(e.toString(), {code: 'js'});
 			return;
 		}
+
+		if(typeof output !== 'function')
+			output = stringify(output);
+		if(typeof output !== 'string')
+			output = output.toString();
 
 		if((msg.args.del || msg.args.d) && msg.guild) {
 			msg.delete();

@@ -7,14 +7,14 @@
 		"start": "node server.js"
 	},
 	"dependencies": {
-		"bmp-js": "^0.1.0",
 		"discord.js": "^12.2.0",
 		"dotenv": "^8.2.0",
 		"express": "^4.17.1",
 		"jimp": "^0.14.0",
 		"node-fetch": "^2.6.0",
 		"ts2c": "^2.2.7",
-		"typescript": "^3.9.5"
+		"typescript": "^3.9.5",
+		"vm2": "^3.9.2"
 	},
 	"engines": {
 		"node": "13.0.1"

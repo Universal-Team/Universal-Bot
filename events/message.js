@@ -27,7 +27,7 @@ function isDev(UnivBot, user) {
 	let id = user.id;
 	let db = UnivBot.db;
 	if(db.developers.includes(id))
-			return true;
+		return true;
 	return false;
 }
 
@@ -133,7 +133,7 @@ module.exports = async function(UnivBot, msg, nmsg) {
 	let lacks = [];
 	if(command.permissions.includes('DEV') && !msg.dev)
 		lacks.push('``BOT_DEVELOPER``');
-	var perms = command.permissions.filter(perm => perm !== 'DEV');
+		var perms = command.permissions.filter(perm => perm !== 'DEV');
 	if(!msg.guild && perms.length)
 		return msg.reply('You can\'t use this command on DM!');
 	if(msg.guild) for(var perm of perms) {

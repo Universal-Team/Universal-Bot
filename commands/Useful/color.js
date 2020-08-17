@@ -7,7 +7,7 @@ const color = require('../../utils/color');
 
 module.exports = {
 	name: [ 'color', 'color-code' ],
-	usage: '<color>',
+	usage: '[-__r__andom] [color]',
 	desc: 'Displays an #RGB, #RRGGBB, RRR GGG BBB, or BGR15 color',
 	DM: true,
 	permissions: [],
@@ -15,22 +15,26 @@ module.exports = {
 		let string = msg.args.value.toLowerCase().replace(/\s\s+/g, ' ').replace(/#/g, '').replace(/0x/g, '');
 		let rgb = [0, 0, 0];
 
-		if(string.length == 3 && string.madeOf(charsets.hex)) { // Three digit hex
-			for(let i in rgb)
-				rgb[i] = parseInt(string[i] + string[i], 16);
-		} else if(string.length == 6 && string.madeOf(charsets.hex)) { // Six digit hex
-			for(let i in rgb)
-				rgb[i] = parseInt(string.substr(i * 2, 2), 16);
-		} else if(string.length == 4 && string.madeOf(charsets.hex)) { // BGR15
-			let val = parseInt(string, 16);
-			rgb[0] = Math.round(( val         & 0x1F) * 255 / 31);
-			rgb[1] = Math.round(((val >> 0x5) & 0x1F) * 255 / 31);
-			rgb[2] = Math.round(((val >> 0xA) & 0x1F) * 255 / 31);
-		} else if(string.split(" ").filter(r => r.madeOf(charsets.dec)).length == 3) { // Three dec numbers
-			for(let i in rgb)
-				rgb[i] = parseInt(string.split(" ")[i]);
+		if(msg.args.random || msg.args.r) {
+			rgb = [Math.floor(Math.random() * 256), Math.floor(Math.random() * 256), Math.floor(Math.random() * 256)];
 		} else {
-			return msg.send("**Error:** Invalid color!")
+			if(string.length == 3 && string.madeOf(charsets.hex)) { // Three digit hex
+				for(let i in rgb)
+					rgb[i] = parseInt(string[i] + string[i], 16);
+			} else if(string.length == 6 && string.madeOf(charsets.hex)) { // Six digit hex
+				for(let i in rgb)
+					rgb[i] = parseInt(string.substr(i * 2, 2), 16);
+			} else if(string.length == 4 && string.madeOf(charsets.hex)) { // BGR15
+				let val = parseInt(string, 16);
+				rgb[0] = Math.round(( val         & 0x1F) * 255 / 31);
+				rgb[1] = Math.round(((val >> 0x5) & 0x1F) * 255 / 31);
+				rgb[2] = Math.round(((val >> 0xA) & 0x1F) * 255 / 31);
+			} else if(string.split(" ").filter(r => r.madeOf(charsets.dec)).length == 3) { // Three dec numbers
+				for(let i in rgb)
+					rgb[i] = parseInt(string.split(" ")[i]);
+			} else {
+				return msg.send("**Error:** Invalid color!")
+			}
 		}
 
 		let rgbColor = '``RGB ' + rgb.join(' ') + '``';

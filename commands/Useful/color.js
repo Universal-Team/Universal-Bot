@@ -60,10 +60,7 @@ ${hexColor}
 ${rgbColor}
 
 **BGR15 Color**
-${bgr15}
-
-**Decimal color**
-\`\`${parseInt(hex, 16)}\`\``,
+${bgr15},
 				color: parseInt(hex, 16)
 			}
 		});

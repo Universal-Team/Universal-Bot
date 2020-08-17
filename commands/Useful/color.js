@@ -12,7 +12,7 @@ module.exports = {
 	DM: true,
 	permissions: [],
 	exec(UnivBot, msg) {
-		let string = msg.args.value.toLowerCase().replace(/\s\s+/g, ' ').replace(/#/g, '').replace(/0x/g, '');
+		let string = msg.args.value.toLowerCase().replace(/\s+/g, ' ').replace(/#/g, '').replace(/0x/g, '');
 		let rgb = [0, 0, 0];
 
 		if(msg.args.random || msg.args.r) {
@@ -20,7 +20,7 @@ module.exports = {
 		} else {
 			if(string.length == 3 && string.madeOf(charsets.hex)) { // Three digit hex
 				for(let i in rgb)
-					rgb[i] = parseInt(string[i] + string[i], 16);
+				rgb[i] = parseInt(string[i] + string[i], 16);
 			} else if(string.length == 6 && string.madeOf(charsets.hex)) { // Six digit hex
 				for(let i in rgb)
 					rgb[i] = parseInt(string.substr(i * 2, 2), 16);
@@ -32,15 +32,15 @@ module.exports = {
 			} else if(string.split(" ").filter(r => r.madeOf(charsets.dec)).length == 3) { // Three dec numbers
 				for(let i in rgb)
 					rgb[i] = parseInt(string.split(" ")[i]);
-			} else if(names.some(r => r.name.toLowerCase().includes(msg.args.value.toLowerCase()))) {
-				let color = names.sort((a, b) => (a.name.length > b.name.length) ? 1 : -1).filter(r => r.name.toLowerCase().includes(msg.args.value.toLowerCase()))[0].decimal;
+			} else if(string && names.some(r => r.name.toLowerCase().includes(string.toLowerCase()))) {
+				let color = names.sort((a, b) => (a.name.length > b.name.length) ? 1 : -1).filter(r => r.name.toLowerCase().includes(string.toLowerCase()))[0].decimal;
 				rgb = [color >> 0x10, (color >> 0x8) & 0xFF, color & 0xFF];
 			} else {
 				return msg.send("**Error:** Invalid color!")
 			}
 		}
 
-		let rgbColor = '``RGB ' + rgb.join(' ') + '``';
+		let rgbColor = '``' + rgb.join(' ') + '``';
 
 		let bgr15 = (((rgb[2] * 31 / 255) & 0x1F) << 10 | ((rgb[1] * 31 / 255) & 0x1F) << 5 | ((rgb[0] * 31 / 255) & 0x1F));
 		bgr15 = '``0x' + bgr15.toString(16).padStart(4, '0') + '``\n``0x' + (bgr15 | 1 << 15).toString(16) + '``';
@@ -53,13 +53,13 @@ module.exports = {
 		return msg.send({
 			embed: {
 				title: `Color: ${name.name}`,
-				description: `**HEX Color**
+				description: `**Hex color** 
 ${hexColor}
 
-**RGB Color**
+**RGB color**
 ${rgbColor}
 
-**BGR15 Color**
+**BGR15 color**
 ${bgr15}`,
 				color: parseInt(hex, 16)
 			}

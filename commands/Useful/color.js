@@ -60,7 +60,7 @@ ${hexColor}
 ${rgbColor}
 
 **BGR15 Color**
-${bgr15},
+${bgr15}`,
 				color: parseInt(hex, 16)
 			}
 		});

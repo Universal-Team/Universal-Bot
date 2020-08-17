@@ -3,12 +3,12 @@ const charsets = {
 	dec: [ '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' ],
 };
 
-const color = require('../../utils/color');
+const {color, names} = require('../../utils/color');
 
 module.exports = {
 	name: [ 'color', 'color-code' ],
 	usage: '[-__r__andom] [color]',
-	desc: 'Displays an #RGB, #RRGGBB, RRR GGG BBB, or BGR15 color',
+	desc: 'Displays information about a color in #RGB, #RRGGBB, RRR GGG BBB, BGR15, or by name',
 	DM: true,
 	permissions: [],
 	exec(UnivBot, msg) {
@@ -32,6 +32,9 @@ module.exports = {
 			} else if(string.split(" ").filter(r => r.madeOf(charsets.dec)).length == 3) { // Three dec numbers
 				for(let i in rgb)
 					rgb[i] = parseInt(string.split(" ")[i]);
+			} else if(names.some(r => r.name.toLowerCase().includes(msg.args.value.toLowerCase()))) {
+				let color = names.sort((a, b) => (a.name.length > b.name.length) ? 1 : -1).filter(r => r.name.toLowerCase().includes(msg.args.value.toLowerCase()))[0].decimal;
+				rgb = [color >> 0x10, (color >> 0x8) & 0xFF, color & 0xFF];
 			} else {
 				return msg.send("**Error:** Invalid color!")
 			}
@@ -49,7 +52,7 @@ module.exports = {
 		let name = color(parseInt(hex, 16));
 		return msg.send({
 			embed: {
-				title: `Color: ${name.Name}`,
+				title: `Color: ${name.name}`,
 				description: `**HEX Color**
 ${hexColor}
 

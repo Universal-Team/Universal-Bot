@@ -1,19 +1,6 @@
 function findRole(msg, name) {
-	if(name.length > 0) {
-		let possibleRoles = [];
-
-		for(let i = 1; i < msg.guild.roles.cache.size; i++) {
-			if(msg.guild.roles.cache.find(r => r.position == i).editable) {
-				possibleRoles.push(msg.guild.roles.cache.find(r => r.position == i).name.toLowerCase().search(name.toLowerCase()));
-			}
-		}
-
-		for(let i in possibleRoles) {
-			if(possibleRoles[i] == -1) possibleRoles[i] = Infinity;
-		}
-
-		if(Math.min.apply(Math, possibleRoles) == Infinity) return;
-		return msg.guild.roles.cache.find(r => r.position == possibleRoles.indexOf(Math.min.apply(Math, possibleRoles)) + 1);
+	if(name) {
+		return msg.guild.roles.cache.sort((a, b) => (a.length < b.length) ? -1 : 1).find(r => r.editable && r.name.toLowerCase().includes(name.toLowerCase()));
 	}
 }
 

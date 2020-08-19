@@ -11,8 +11,8 @@ module.exports = {
 	async exec(UnivBot, msg) {
 		// Send lists if no roles requested
 		if(!(msg.args.value || msg.args.all || msg.args.a)) {
-			let possibleAdd = msg.guild.roles.cache.filter(r => r.editable && r.id != msg.guild.id && msg.member.roles.cache.has(r.id));
-			let possibleRemove = msg.guild.roles.cache.filter(r => r.editable && r.id != msg.guild.id && !msg.member.roles.cache.has(r.id));
+			let possibleAdd = msg.guild.roles.cache.filter(r => r.editable && r.id != msg.guild.id && !msg.member.roles.cache.has(r.id));
+			let possibleRemove = msg.guild.roles.cache.filter(r => r.editable && r.id != msg.guild.id && msg.member.roles.cache.has(r.id));
 
 			let out = "";
 			if(possibleAdd.size) {

@@ -4,7 +4,7 @@
 	"description": "A simple discord bot.",
 	"main": "server.js",
 	"scripts": {
-		"start": "node server.js"
+		"start": "node univ-bot.js"
 	},
 	"dependencies": {
 		"discord.js": "^12.2.0",

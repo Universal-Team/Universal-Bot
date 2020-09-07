@@ -30,15 +30,19 @@ module.exports = {
 				rgb[1] = Math.round(((val >> 0x5) & 0x1F) * 255 / 31);
 				rgb[2] = Math.round(((val >> 0xA) & 0x1F) * 255 / 31);
 			} else if(string.split(" ").filter(r => r.madeOf(charsets.dec)).length == 3) { // Three dec numbers
-				for(let i in rgb)
+				for(let i in rgb) {
 					rgb[i] = parseInt(string.split(" ")[i]);
+				}
 			} else if(string && names.some(r => r.name.toLowerCase().includes(string.toLowerCase()))) {
 				let color = names.sort((a, b) => (a.name.length > b.name.length) ? 1 : -1).filter(r => r.name.toLowerCase().includes(string.toLowerCase()))[0].decimal;
 				rgb = [color >> 0x10, (color >> 0x8) & 0xFF, color & 0xFF];
 			} else {
-				return msg.send("**Error:** Invalid color!")
+				return msg.send("**Error:** Invalid color!");
 			}
 		}
+
+		if(!rgb.every(r => r >= 0 && r < 256))
+			return msg.send("**Error:** Invalid color!");
 
 		let rgbColor = '``' + rgb.join(' ') + '``';
 

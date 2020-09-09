@@ -46,7 +46,7 @@ module.exports = {
 
 		let rgbColor = '``' + rgb.join(' ') + '``';
 
-		let bgr15 = (((rgb[2] * 31 / 255) & 0x1F) << 10 | ((rgb[1] * 31 / 255) & 0x1F) << 5 | ((rgb[0] * 31 / 255) & 0x1F));
+		let bgr15 = ((Math.round(rgb[2] * 31 / 255) & 0x1F) << 10 | (Math.round(rgb[1] * 31 / 255) & 0x1F) << 5 | (Math.round(rgb[0] * 31 / 255) & 0x1F));
 		bgr15 = '``0x' + bgr15.toString(16).padStart(4, '0') + '``\n``0x' + (bgr15 | 1 << 15).toString(16) + '``';
 
 		hex = "";

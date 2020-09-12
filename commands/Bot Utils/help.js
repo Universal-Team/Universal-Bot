@@ -5,7 +5,7 @@ function isCategory(UnivBot, name) {
 	let ctg;
 	if(name.length > 0) {
 		for(var category of UnivBot.categories) {
-			if(category.toLowerCase().substr(0, name.length) == name) {
+			if(category.toLowerCase().includes(name)) {
 				ctg = category;
 				break;
 			}
@@ -23,7 +23,7 @@ function isCommand(UnivBot, name) {
 				for(let cmdName of cmd.name) {
 					if(cmdName.toLowerCase() == name) {
 						return cmd;
-					} else if(cmdName.toLowerCase().substr(0, name.length) == name) {
+					} else if(cmdName.toLowerCase().includes(name)) {
 						if(!command)
 							command = cmd;
 					}
@@ -31,7 +31,7 @@ function isCommand(UnivBot, name) {
 			} else {
 				if(cmd.name.toLowerCase() == name) {
 					return cmd;
-				} else if(cmd.name.toLowerCase().substr(0, name.length) == name) {
+				} else if(cmd.name.toLowerCase().includes(name)) {
 					if(!command)
 						command = cmd;
 				}

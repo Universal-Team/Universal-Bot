@@ -38,7 +38,7 @@ I do know some good ones for:
 			case 'virtual boy':
 			case 'virtualboy':
 			case 'vb':
-				guide = 'https://www.youtube.com/watch?v​=avE3-KomeWI&v=dQw4w9WgXcQ&feature=youtu.be';
+				guide = 'https://youtu.be/%64%51%77%34%77%39%57%67%58%63%51';
 				break;
 		}
 

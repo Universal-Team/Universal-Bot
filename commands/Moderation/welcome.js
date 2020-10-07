@@ -14,7 +14,7 @@ function makeJSON(obj) {
 
 module.exports = {
 	name: ['welcome', 'welcome-message', 'welcome-cfg'],
-	usage: '<-__d__isable|-__e__nable|--__c__hannel|--__m__essage>',
+	usage: '<-__d__isable|-__e__nable|--__c__hannel|-__m__essage message>',
 	desc: 'Configures the welcome messages',
 	permissions: [ 'ADMINISTRATOR' ],
 	exec(UnivBot, msg) {
@@ -66,7 +66,7 @@ include those 'variables' in the text:
 				updateDB(UnivBot);
 				return msg.send('Sucessfully changed the welcome channel to the system channel'+makeJSON(db.messages.welcome));
 			}
-			var ID = msg.args.channel.substr(0, msg.args.channel.length-1).substr(2);
+			var ID = msg.args.channel.substring(2, msg.args.channel.length - 1);
 			var channel = msg.guild.channels.cache.get(ID);
 			if(!channel)
 				return msg.send(err2);
@@ -74,12 +74,10 @@ include those 'variables' in the text:
 			updateDB(UnivBot);
 			return msg.send('Sucessfully changed the welcome channel to **<#'+ID+'>**'+makeJSON(db.messages.welcome));
 		}
-		if(typeof(msg.args.m) == 'string')
-			msg.args.message = msg.args.m;
-		if(typeof(msg.args.message) == 'string') {
-			if(!msg.args.message.length)
+		if(msg.args.message || msg.args.m) {
+			if(!msg.args.value)
 				return msg.send(err1);
-			db.messages.welcome.string = msg.args.message;
+			db.messages.welcome.string = msg.args.value;
 			updateDB(UnivBot);
 			return msg.send('Sucessfully changed the welcome message'+makeJSON(db.messages.welcome));
 		}

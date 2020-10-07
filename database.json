@@ -30,8 +30,8 @@
 		"prefix": "?",
 		"messages": {
 			"welcome": {
-				"channel": "sys",
-				"string": "Welcome **${user.ping}** to **${guild.name}**!, hope you enjoy your stay! The amount of members now is **${guild.amount}**",
+				"channel": "619685268320026634",
+				"string": "Member join: ${user.ping}",
 				"enabled": true
 			},
 			"goodbye": {
@@ -76,12 +76,12 @@
 		"messages": {
 			"welcome": {
 				"channel": "614278143527878658",
-				"string": "${guild.name}へようこそ、${user.ping}さん！今のメンバー量は${guild.amount}人です。",
+				"string": "${guild.name}へようこそ、${user.ping}さん！現在のメンバー数は${guild.amount}人です。",
 				"enabled": true
 			},
 			"goodbye": {
 				"channel": "614278143527878658",
-				"string": "さよなら、${user.tag}さん…今のメンバー量は${guild.amount}人です。",
+				"string": "さようなら、${user.tag}さん…現在のメンバー数は${guild.amount}人です。",
 				"enabled": true
 			}
 		}
@@ -252,6 +252,21 @@
 		}
 	},
 	"740975675158298705": {
+		"prefix": "?",
+		"messages": {
+			"welcome": {
+				"channel": "sys",
+				"string": "Welcome **${user.ping}** to **${guild.name}**!, hope you enjoy your stay! The amount of members now is **${guild.amount}**",
+				"enabled": true
+			},
+			"goodbye": {
+				"channel": "sys",
+				"string": "Goodbye **${user.tag}**... The amount of members now is **${guild.amount}**",
+				"enabled": true
+			}
+		}
+	},
+	"762450786646491166": {
 		"prefix": "?",
 		"messages": {
 			"welcome": {

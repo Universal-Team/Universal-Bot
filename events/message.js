@@ -98,7 +98,7 @@ module.exports = async function(UnivBot, msg, nmsg) {
 	msg.content = msg.content.substr(msg.content.match(RegExp(msg.prefix.replace(/[.^$*+?()[\]{}\\|/]/g, r => "\\" + r) +"\\s*([^\\s]+)"))[0].length);
 	msg.args = {value: msg.content.split(/\s-[^-\s]+|\s--[^\s]+\s+[^\s]+/g).join("").trim()};
 	msg.content.match(/\s-[^-\s]+|\s--[^\s]+\s+[^\s]+/g)?.forEach(r => {
-		msg.args[r.match(/[^- ]+/)] = r.match(/\s+(.+)/) ? r.match(/\s+(.+)/)[1] : true;
+		msg.args[r.match(/[^- ]+/)] = r.trim().match(/\s+(.+)/) ? r.trim().match(/\s+(.+)/)[1] : true;
 	});
 
 	// In case of robot revolution: Uncomment

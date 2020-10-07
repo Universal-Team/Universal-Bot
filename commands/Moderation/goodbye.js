@@ -15,7 +15,7 @@ function makeJSON(obj) {
 
 module.exports = {
 	name: ['goodbye', 'goodbye-message', 'goodbye-cfg'],
-	usage: '<-__d__isable|-__e__nable|--__c__hannel|--__m__essage>',
+	usage: '<-__d__isable|-__e__nable|--__c__hannel|-__m__essage message>',
 	desc: 'Configures the goodbye messages',
 	permissions: [ 'ADMINISTRATOR' ],
 	exec(UnivBot, msg) {
@@ -70,7 +70,7 @@ include those 'variables' in the text:
 				updateDB(UnivBot);
 				return msg.send('Sucessfully changed the goodbye channel to the system channel'+makeJSON(db.messages.goodbye));
 			}
-			var ID = msg.args.channel.substr(0, msg.args.channel.length-1).substr(2);
+			var ID = msg.args.channel.substring(2, msg.args.channel.length - 1);
 			var channel = msg.guild.channels.cache.get(ID);
 			if(!channel)
 				return msg.send(err2);
@@ -80,12 +80,10 @@ include those 'variables' in the text:
 		}
 
 		// Check for message
-		if(typeof(msg.args.m) == 'string')
-			msg.args.message = msg.args.m;
-		if(typeof(msg.args.message) == 'string') {
-			if(!msg.args.message)
+		if(msg.args.message || msg.args.m) {
+			if(!msg.args.value)
 				return msg.send(err1);
-			db.messages.goodbye.string = msg.args.message;
+			db.messages.goodbye.string = msg.args.value;
 			updateDB(UnivBot);
 			return msg.send('Sucessfully changed the goodbye message'+makeJSON(db.messages.goodbye));
 		}

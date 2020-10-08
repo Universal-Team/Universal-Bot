@@ -37,6 +37,19 @@ module.exports = async function(UnivBot, msg, nmsg) {
 	if(nmsg)
 		msg = nmsg;
 
+	// Automatically publish messages by MonitoRSS
+	if(msg.author.id == "268478587651358721" && msg.channel.type == "news") {
+		return require("node-fetch")(
+			`${UnivBot.client.rest.client.options.http.api}/v${UnivBot.client.rest.client.options.http.version}/channels/${msg.channel.id}/messages/${msg.id}/crosspost`,
+			{
+				method: 'POST',
+				headers: {
+					'Authorization': `${UnivBot.client.rest.tokenPrefix} ${UnivBot.client.token}`,
+				},
+			},
+		);
+	}
+
 	// Check for prefixes
 	if(!msg.guild && msg.content.startsWith('?'))
 		msg.content = msg.content.substr(1);

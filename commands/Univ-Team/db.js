@@ -17,7 +17,7 @@ module.exports = {
 			let out = [];
 			// Search titles
 			json.some(app => {
-				if(app.title && app.title.toLowerCase().includes(query.toLowerCase())) {
+				if(app.title?.toLowerCase().includes(query.toLowerCase())) {
 					out.push(app);
 					return !(msg.args.all || msg.args.a || msg.args.search || msg.args.s);
 				}
@@ -26,7 +26,18 @@ module.exports = {
 			if(out.length == 0 || msg.args.all || msg.args.a || msg.args.search || msg.args.s) {
 				// Search descriptions
 				json.some(app => {
-					if(app.description && app.description.toLowerCase().includes(query.toLowerCase())) {
+					if(app.description?.toLowerCase().includes(query.toLowerCase())) {
+						if(!out.includes(app))
+							out.push(app);
+						return !(msg.args.all || msg.args.a);
+					}
+				});
+			}
+
+			if(out.length == 0 || msg.args.all || msg.args.a || msg.args.search || msg.args.s) {
+				// Search authors
+				json.some(app => {
+					if(app.author?.toLowerCase().includes(query.toLowerCase())) {
 						if(!out.includes(app))
 							out.push(app);
 						return !(msg.args.all || msg.args.a);

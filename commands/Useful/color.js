@@ -29,9 +29,9 @@ module.exports = {
 				rgb[0] = Math.round(( val         & 0x1F) * 255 / 31);
 				rgb[1] = Math.round(((val >> 0x5) & 0x1F) * 255 / 31);
 				rgb[2] = Math.round(((val >> 0xA) & 0x1F) * 255 / 31);
-			} else if(string.split(" ").filter(r => r.madeOf(charsets.dec)).length == 3) { // Three dec numbers
+			} else if(string.split(/[\s,]/).filter(r => r.length > 0 && r.madeOf(charsets.dec)).length == 3) { // Three dec numbers
 				for(let i in rgb) {
-					rgb[i] = parseInt(string.split(" ")[i]);
+					rgb[i] = parseInt(string.split(/[\s,]/).filter(r => r.length > 0)[i]);
 				}
 			} else if(string && names.some(r => r.name.toLowerCase().includes(string.toLowerCase()))) {
 				let color = names.sort((a, b) => (a.name.length > b.name.length) ? 1 : -1).filter(r => r.name.toLowerCase().includes(string.toLowerCase()))[0].decimal;

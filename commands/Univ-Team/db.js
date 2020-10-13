@@ -61,7 +61,7 @@ module.exports = {
 					else return 0;
 				}).forEach(r => {
 					embed.embed.fields.push({
-						"name": r.title.replace(new RegExp(query, "gi"), "__" + query + "__"),
+						"name": r.title.replace(new RegExp(query, "gi"), "__" + query + "__") + " by " + r.author.replace(new RegExp(query, "gi"), "__" + query + "__"),
 						"value": r.description ? r.description.replace(new RegExp(query, "gi"), "__" + query + "__") : "---",
 					});
 				});

@@ -302,10 +302,25 @@
 			"welcome": {
 				"channel": "sys",
 				"string": "Welcome **${user.ping}** to **${guild.name}**!, hope you enjoy your stay! The amount of members now is **${guild.amount}**",
-				"enabled": true
+				"enabled": false
 			},
 			"goodbye": {
 				"channel": "sys",
+				"string": "Goodbye **${user.tag}**... The amount of members now is **${guild.amount}**",
+				"enabled": true
+			}
+		}
+	},
+	"742722234694631495": {
+		"prefix": "??",
+		"messages": {
+			"welcome": {
+				"channel": "764523040524337232",
+				"string": "Welcome **${user.ping}** to **${guild.name}**!, hope you enjoy your stay! The amount of members now is **${guild.amount}**",
+				"enabled": true
+			},
+			"goodbye": {
+				"channel": "764523040524337232",
 				"string": "Goodbye **${user.tag}**... The amount of members now is **${guild.amount}**",
 				"enabled": true
 			}

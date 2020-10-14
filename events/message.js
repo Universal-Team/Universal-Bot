@@ -130,7 +130,7 @@ module.exports = async function(UnivBot, msg, nmsg) {
 	let command;
 	for(var cmd of UnivBot.cmds) {
 		cmd = require("../" + cmd);
-		if(typeof cmd.name == 'string' && (cmd.name.toLowerCase() == msg.cmd) || (cmd.name instanceof Array) && (cmd.name.filter(name => name.toLowerCase() == msg.cmd)).length) {
+		if(typeof cmd.name == 'string' && (cmd.name.toLowerCase() == msg.cmd.toLowerCase()) || (cmd.name instanceof Array) && (cmd.name.filter(name => name.toLowerCase() == msg.cmd.toLowerCase())).length) {
 			command = cmd;
 			break;
 		}

@@ -14,7 +14,6 @@ module.exports = {
 			return msg.send('How am I supposed to make nothing look fancy?'.fancyFont(valid[Math.floor(Math.random() * valid.length)]));
 			
 		let index = parseInt(msg.args.i ?? msg.args.index ?? valid[Math.floor(Math.random() * valid.length)]);
-		console.log(index)
 
 		if(!valid.includes(index))
 			return msg.send(('Index must be ' + valid.join(", ") + '!').fancyFont(valid[Math.floor(Math.random() * valid.length)]));

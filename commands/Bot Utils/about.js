@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 module.exports = {
-	name: 'about',
+	name: ['about', 'invite'],
 	usage: '',
 	desc: 'Shows info about the bot',
 	DM: true,

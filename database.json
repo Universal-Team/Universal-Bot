@@ -307,7 +307,7 @@
 			"goodbye": {
 				"channel": "sys",
 				"string": "Goodbye **${user.tag}**... The amount of members now is **${guild.amount}**",
-				"enabled": true
+				"enabled": false
 			}
 		}
 	},

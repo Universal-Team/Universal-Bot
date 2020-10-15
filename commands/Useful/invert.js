@@ -10,7 +10,7 @@ module.exports = {
 	exec(UnivBot, msg) {
 		let link = msg.args.value;
 		if(msg.args.s || msg.args.self)
-			link = "https://cdn.discordapp.com/avatars/" + msg.author.id + "/" + msg.author.avatar + ".png";
+			link = "https://cdn.discordapp.com/avatars/" + msg.author.id + "/" + msg.author.avatar + ".png?size=1024";
 		else if(msg.attachments.first())
 			link = msg.attachments.first().attachment;
 

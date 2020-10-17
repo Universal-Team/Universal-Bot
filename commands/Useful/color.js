@@ -47,10 +47,10 @@ module.exports = {
 		let rgbColor = '``' + rgb.join(' ') + '``';
 
 		let bgr15 = ((Math.round(rgb[2] * 31 / 255) & 0x1F) << 10 | (Math.round(rgb[1] * 31 / 255) & 0x1F) << 5 | (Math.round(rgb[0] * 31 / 255) & 0x1F));
-		bgr15 = '``0x' + bgr15.toString(16).padStart(4, '0') + '``\n``0x' + (bgr15 | 1 << 15).toString(16) + '``';
+		bgr15 = '``0x' + bgr15.toString(16).padStart(4, '0').toUpperCase() + '`` ``0x' + (bgr15 | 1 << 15).toString(16).toUpperCase() + '``';
 
 		hex = "";
-		rgb.forEach(r => hex += r.toString(16).padStart(2, "0"))
+		rgb.forEach(r => hex += r.toString(16).padStart(2, "0").toUpperCase())
 		hexColor = '``#' + hex + '``';
 
 		let name = color(parseInt(hex, 16));
@@ -60,15 +60,18 @@ module.exports = {
 				fields: [
 					{
 						"name": "Hex color",
-						"value": hexColor
+						"value": hexColor,
+						"inline": true
 					},
 					{
 						"name": "RGB color",
-						"value": rgbColor
+						"value": rgbColor,
+						"inline": true
 					},
 					{
 						"name": "BGR15 color",
-						"value": bgr15
+						"value": bgr15,
+						"inline": true
 					}
 				],
 				color: parseInt(hex, 16)

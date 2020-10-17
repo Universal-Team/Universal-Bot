@@ -92,7 +92,7 @@ module.exports = {
 						"icon_url": res.icon || res.image,
 						"text": res.author ? "By: " + res.author: ""
 					},
-					"color": res.color ? parseInt(res.color.substr(1)) : 0x072f4f
+					"color": res.color ? parseInt(res.color.substr(1), 16) : 0x072f4f
 				}};
 				for(let item in res.downloads) {
 					embed.embed.fields.push({

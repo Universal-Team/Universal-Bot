@@ -57,14 +57,20 @@ module.exports = {
 		return msg.send({
 			embed: {
 				title: `Color: ${name.name}`,
-				description: `**Hex color** 
-${hexColor}
-
-**RGB color**
-${rgbColor}
-
-**BGR15 color**
-${bgr15}`,
+				fields: [
+					{
+						"name": "Hex color",
+						"value": hexColor
+					},
+					{
+						"name": "RGB color",
+						"value": rgbColor
+					},
+					{
+						"name": "BGR15 color",
+						"value": bgr15
+					}
+				],
 				color: parseInt(hex, 16)
 			}
 		});

@@ -2,16 +2,18 @@ function parseBytes(bytes) {
 	if(typeof(bytes) != "number")
 		bytes = parseInt(bytes);
 
+		console.log(bytes)
+
 	if(bytes == 1)
 		return bytes + " Byte";
-	else if(bytes < 1 << 10)
+	else if(bytes < (1 << 10))
 		return bytes + " Bytes";
-	else if(bytes < 1 << 20)
-		return bytes / 1 << 10 + " KiB";
-	else if(bytes < 1 << 30)
-		return bytes / 1 << 20 + " MiB";
+	else if(bytes < (1 << 20))
+		return Math.round(bytes / (1 << 10)) + " KiB";
+	else if(bytes < (1 << 30))
+		return Math.round(bytes / (1 << 20)) + " MiB";
 	else
-		return bytes / 1 << 30 + " GiB";
+		return Math.round(bytes / (1 << 30)) + " GiB";
 }
 
 module.exports = {
@@ -117,7 +119,7 @@ module.exports = {
 					embed.embed.fields.push({
 						"inline": true,
 						"name": item,
-						"value": "[Download](" + res.downloads[item].url + ")" + (res.downloads[item].size ? ("(" + parseBytes(res.downloads[item].size)) + ")" : "")
+						"value": "[Download](" + res.downloads[item].url + ")" + (res.downloads[item].size ? (" (" + parseBytes(res.downloads[item].size)) + ")" : "")
 					});
 				}
 

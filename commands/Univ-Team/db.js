@@ -1,3 +1,19 @@
+function parseBytes(bytes) {
+	if(typeof(bytes) != "number")
+		bytes = parseInt(bytes);
+
+	if(bytes == 1)
+		return bytes + " Byte";
+	else if(bytes < 1 << 10)
+		return bytes + " Bytes";
+	else if(bytes < 1 << 20)
+		return bytes / 1 << 10 + " KiB";
+	else if(bytes < 1 << 30)
+		return bytes / 1 << 20 + " MiB";
+	else
+		return bytes / 1 << 30 + " GiB";
+}
+
 module.exports = {
 	name: ['DB', 'UniversalDB'],
 	usage: '[-__a__ll|-__r__andom|-__s__earch] <app|description>',
@@ -74,10 +90,13 @@ module.exports = {
 					res.description += "\n[Also on " + res.systems[i] + "](https://db.universal-team.net/" + res.systems[i].toLowerCase() + "/" + Array.from(res.title.toLowerCase().replace(/ /g, "-")).filter(r => "abcdefghijklmnopqrstuvwxyz0123456789-_.".includes(r)).join("") + ")";
 
 				if(res.version) {
-					res.description += "\n" + "Version: " + res.version;
+					res.description += "\n" + "**Version**: " + res.version;
 					if(res.version_title)
 						res.description += ", " + res.version_title;
 				}
+
+				if(res.license)
+					res.description += "\n" + "**License**: " + res.license_name;
 
 				let embed = {"embed": {
 					"title": res.title,
@@ -98,7 +117,7 @@ module.exports = {
 					embed.embed.fields.push({
 						"inline": true,
 						"name": item,
-						"value": "[Download " + item + "](" + res.downloads[item].url + ")"
+						"value": "[Download](" + res.downloads[item].url + ")" + (res.downloads[item].size ? ("(" + parseBytes(res.downloads[item].size)) + ")" : "")
 					});
 				}
 

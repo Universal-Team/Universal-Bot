@@ -98,7 +98,7 @@ module.exports = {
 					embed.embed.fields.push({
 						"inline": true,
 						"name": item,
-						"value": "[Download " + item + "](" + res.downloads[item] + ")"
+						"value": "[Download " + item + "](" + res.downloads[item].url + ")"
 					});
 				}
 

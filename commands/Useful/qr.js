@@ -15,7 +15,7 @@ module.exports = {
 		if(!msg.args.value)
 			return msg.send('Enter some text!');
 
-		spawnSync('qrencode', ['-o', 'qr.png'].concat(msg.args.value.split(' ')), { encoding: 'utf-8' });
+		spawnSync('qrencode', ['-o', 'qr.png'].concat(msg.args.value), { encoding: 'utf-8' });
 		if(fs.existsSync('qr.png')) {
 			qr = fs.readFileSync('qr.png');
 			fs.unlinkSync('qr.png');

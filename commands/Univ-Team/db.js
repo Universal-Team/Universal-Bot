@@ -37,28 +37,28 @@ module.exports = {
 			json.some(app => {
 				if(app.title?.toLowerCase().includes(query.toLowerCase())) {
 					out.push(app);
-					return !(msg.args.all || msg.args.a || msg.args.search || msg.args.s);
+					return !(msg.args.search || msg.args.s);
 				}
 			});
 
-			if(out.length == 0 || msg.args.all || msg.args.a || msg.args.search || msg.args.s) {
+			if(out.length == 0 || msg.args.search || msg.args.s) {
 				// Search descriptions
 				json.some(app => {
 					if(app.description?.toLowerCase().includes(query.toLowerCase())) {
 						if(!out.includes(app))
 							out.push(app);
-						return !(msg.args.all || msg.args.a);
+						return !(msg.args.search || msg.args.s);
 					}
 				});
 			}
 
-			if(out.length == 0 || msg.args.all || msg.args.a || msg.args.search || msg.args.s) {
+			if(out.length == 0 || msg.args.search || msg.args.s) {
 				// Search authors
 				json.some(app => {
 					if(app.author?.toLowerCase().includes(query.toLowerCase())) {
 						if(!out.includes(app))
 							out.push(app);
-						return !(msg.args.all || msg.args.a);
+						return !(msg.args.search || msg.args.s);
 					}
 				});
 			}

@@ -332,12 +332,12 @@
 			"welcome": {
 				"channel": "sys",
 				"string": "Welcome **${user.ping}** to **${guild.name}**!, hope you enjoy your stay! The amount of members now is **${guild.amount}**",
-				"enabled": true
+				"enabled": false
 			},
 			"goodbye": {
 				"channel": "sys",
 				"string": "Goodbye **${user.tag}**... The amount of members now is **${guild.amount}**",
-				"enabled": true
+				"enabled": false
 			}
 		}
 	}

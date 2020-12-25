@@ -124,7 +124,9 @@ module.exports = {
 				}
 
 				for(let item in res.qr) {
-					embed.embed.image.url = res.qr[item];
+					// The "?version=xxx" does literally nothing except ensure that the URL
+					// is different to prevent Discord using an outdated one from cache
+					embed.embed.image.url = res.qr[item] + "?version=" + res.version;
 				}
 
 				msg.send(embed);

@@ -64,8 +64,13 @@ module.exports = async function(UnivBot, msg, nmsg) {
 	if(msg.guild)
 		cloneDB(UnivBot, msg.guild.id);
 
-	// Prevents bots from runinng commands
-	if(msg.author.bot)
+	// Handle DM messages
+	let db = { prefix: '' };
+	if(msg.guild)
+		db = UnivBot.db[msg.guild.id];
+
+	// Prevents bots from runinng commands unless in a webhook
+	if(msg.author.bot && (db.allowWebhooks ? !msg.webhookID : true))
 		return;
 
 	// Checks for dev perms
@@ -96,23 +101,21 @@ module.exports = async function(UnivBot, msg, nmsg) {
 	if(msg.guild)
 		msg.guild.bot = msg.guild.members.cache.get(UnivBot.client.user.id);
 
-	// Handle DM messages
-	let db = { prefix: '' };
-	if(msg.guild)
-		db = UnivBot.db[msg.guild.id];
-
 	// Check prefix
 	if(!msg.content.trim().startsWith(db.prefix))
 	return;
 
 	// Get the command and arguments
 	msg.prefix = db.prefix;
-	msg.cmd = msg.content.match(RegExp(msg.prefix.replace(/[.^$*+?()[\]{}\\|/]/g, r => "\\" + r) +"\\s*([^\\s]+)"))[1];
-	msg.content = msg.content.substr(msg.content.match(RegExp(msg.prefix.replace(/[.^$*+?()[\]{}\\|/]/g, r => "\\" + r) +"\\s*([^\\s]+)"))[0].length);
+	msg.cmd = msg.content.match(RegExp(msg.prefix.replace(/[.^$*+?()[\]{}\\|/]/g, r => "\\" + r) +"\\s*([^\\s]+)"))?.[1];
+	msg.content = msg.content.substr(msg.content.match(RegExp(msg.prefix.replace(/[.^$*+?()[\]{}\\|/]/g, r => "\\" + r) +"\\s*([^\\s]+)"))?.[0].length);
 	msg.args = {value: msg.content.split(/\s-[^-\s]+|\s--[^\s]+\s+[^\s]+/g).join("").trim()};
 	msg.content.match(/\s-[^-\s]+|\s--[^\s]+\s+[^\s]+/g)?.forEach(r => {
 		msg.args[r.match(/[^- ]+/)] = r.trim().match(/\s+(.+)/) ? r.trim().match(/\s+(.+)/)[1] : true;
 	});
+
+	if(!msg.cmd)
+		return;
 
 	// In case of robot revolution: Uncomment
 	// if(msg.cmd != "js") {

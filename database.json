@@ -39,7 +39,8 @@
 				"string": "Farewell, ${user.tag}",
 				"enabled": true
 			}
-		}
+		},
+		"allowWebhooks": true
 	},
 	"607895116413403137": {
 		"prefix": "?",
@@ -84,7 +85,8 @@
 				"string": "さようなら、${user.tag}さん…現在のメンバー数は${guild.amount}人です。",
 				"enabled": true
 			}
-		}
+		},
+		"allowWebhooks": true
 	},
 	"604318242315436062": {
 		"prefix": "?",

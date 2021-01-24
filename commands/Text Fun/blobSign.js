@@ -24,7 +24,8 @@ const letters = {
 	"W": "803001812331528234",
 	"X": "803001812176732192",
 	"Y": "803001812251967519",
-	"Z": "803001812386316319"
+	"Z": "803001812386316319",
+	" ": "803008763417853982"
 }
 
 module.exports = {
@@ -40,6 +41,6 @@ module.exports = {
 		if(!msg.args.value)
 			return msg.send("<:blobNo:667718424809439262>");
 
-		msg.send(msg.args.value.replace(/[A-Z]/gi, r => `<:blob${r.toUpperCase()}:${letters[r.toUpperCase()]}>`));
+		msg.send(msg.args.value.replace(/[A-Z ]/gi, r => `<:blob${r == " " ? "Template" : r.toUpperCase()}:${letters[r.toUpperCase()]}>`));
 	}
 }

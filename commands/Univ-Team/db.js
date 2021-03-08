@@ -2,8 +2,6 @@ function parseBytes(bytes) {
 	if(typeof(bytes) != "number")
 		bytes = parseInt(bytes);
 
-		console.log(bytes)
-
 	if(bytes == 1)
 		return bytes + " Byte";
 	else if(bytes < (1 << 10))
@@ -113,8 +111,10 @@ module.exports = {
 						"icon_url": res.icon || res.image,
 						"text": res.author ? "By: " + res.author: ""
 					},
-					"color": res.color ? parseInt(res.color.substr(1), 16) : 0x072f4f
+					"color": res.color ? parseInt(res.color.substr(1), 16) : 0x072f4f,
+					"timestamp": res.updated
 				}};
+				console.log(res.updated)
 				for(let item in res.downloads) {
 					embed.embed.fields.push({
 						"inline": true,

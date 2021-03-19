@@ -108,13 +108,12 @@ module.exports = {
 					"fields": [],
 					"image": {},
 					"footer": {
-						"icon_url": res.icon || res.image,
+						"icon_url": res.avatar || res.icon || res.image,
 						"text": res.author ? "By: " + res.author: ""
 					},
 					"color": res.color ? parseInt(res.color.substr(1), 16) : 0x072f4f,
 					"timestamp": res.updated
 				}};
-				console.log(res.updated)
 				for(let item in res.downloads) {
 					embed.embed.fields.push({
 						"inline": true,

@@ -25,8 +25,10 @@ module.exports = {
 		} catch(e) {
 			cCode = '**Oops!** Apparently your code has an error or you\'re using code unsupported by ts2c.js';
 		}
-		if(cCode.length > 1024)
-			return msg.send('**Here is your code transpiled to C**\n(The output has been trimmed to the first 1024 characters)\n'+cCode.substr(0, 1024)+'```', attachment);
-		return msg.send(cCode, attachment);
+		if(output.length >= 1024) {
+			msg.send("The output is too long, sending as attachment:", MessageAttachment(output, "output.txt"));
+		} else {
+			msg.send(output, {code: "js"});
+		}
 	}
 }

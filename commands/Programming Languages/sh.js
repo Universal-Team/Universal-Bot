@@ -31,14 +31,10 @@ module.exports = {
 		if(output.length == 0)
 			output = 'Successfully executed script without errors. Exit with code 0';
 
-		let config = new MessageAttachment(output, 'output.txt');
-		config.code = 'sh';
-
 		if(output.length >= 1024) {
-			await msg.send('The output has been trimmed to the first 1024 characters.');
-			msg.send(output.substr(0, 1024), config);
+			msg.send("The output is too long, sending as attachment:", MessageAttachment(output, "output.txt"));
 		} else {
-			msg.send(output, config);
+			msg.send(output, {code: "sh"});
 		}
 	}
 }

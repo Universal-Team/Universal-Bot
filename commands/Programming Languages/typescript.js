@@ -51,14 +51,10 @@ module.exports = {
 			return;
 		}
 
-		let config = new MessageAttachment(output, 'output.txt');
-		config.code = 'js';
-
 		if(output.length >= 1024) {
-			await msg.send('The output has been trimmed to the first 1024 characters.');
-			msg.send(output.substr(0, 1024), config);
+			msg.send("The output is too long, sending as attachment:", MessageAttachment(output, "output.txt"));
 		} else {
-			msg.send(output, config);
+			msg.send(output, {code: "js"});
 		}
 	}
 }

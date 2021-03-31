@@ -37,17 +37,12 @@ return 0;
 
 		output = object.stdout;
 		if(output.length == 0)
-			output = 'Successfully executed script without errors. Exit with code 0';
-
-		let options = new MessageAttachment(object.binary, 'binary');
-		options.push(output, 'output.txt');
-		options.code = 'c';
+		output = 'Successfully executed script without errors. Exit with code 0';
 
 		if(output.length >= 1024) {
-			await msg.send('The output has been trimmed to the first 1024 characters.');
-			msg.send(output.substr(0, 1024), options);
+			msg.send("The output is too long, sending as attachment:", MessageAttachment(output, "output.txt"));
 		} else {
-			msg.send(output, options);
+			msg.send(output, {code: "cpp"});
 		}
 	}
 }

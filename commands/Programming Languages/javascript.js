@@ -1,18 +1,18 @@
-const {VM} = require('vm2');
-const searchFlags = require('../../utils/searchFlags');
-const MessageAttachment = require('../../utils/MessageAttachment');
+const {VM} = require("vm2");
+const searchFlags = require("../../utils/searchFlags");
+const MessageAttachment = require("../../utils/MessageAttachment");
 
 module.exports = {
-	name: ['JavaScript', 'JS'],
-	usage: '[-__h__ide|-__s__tring|-__d__el|-de__v__] <code>',
-	desc: 'Executes JS code. Use -hide for hide the output, -string for not inspect the output and -del for delete the invocation message',
+	name: ["JavaScript", "JS"],
+	usage: "[-__h__ide|-__s__tring|-__d__el|-de__v__] <code>",
+	desc: "Executes JS code. Use -hide for hide the output, -string for not inspect the output and -del for delete the invocation message",
 	DM: true,
 	permissions: [],
 	async exec(UnivBot, msg) {
-		let stringify = require('util').inspect;
+		let stringify = require("util").inspect;
 
 		if(!msg.args.value)
-			return msg.send('**Oops!** You didn\'t provided enough arguments');
+			return msg.send("**Oops!** You didn't provided enough arguments");
 
 		if(msg.args.string || msg.args.s)
 			stringify = variable => variable.toString();
@@ -27,17 +27,17 @@ module.exports = {
 				}
 			} else {
 				const vm = new VM({timeout: 10000});
-				output = vm.run("eval(`" + msg.args.value.replace(/`/g, "\\`") +"`)");
+				output = vm.run(`eval(\`${msg.args.value.replace(/`/g, "\\`")}\`)`);
 			}
 		} catch(e) {
 			if(!(msg.args.hide || msg.args.h))
-				return msg.send(e.toString(), {code: 'js'});
+				return msg.send(e.toString(), {code: "js"});
 			return;
 		}
 
-		if(typeof output !== 'function')
+		if(typeof output !== "function")
 			output = stringify(output);
-		if(typeof output !== 'string')
+		if(typeof output !== "string")
 			output = output.toString();
 
 		if((msg.args.del || msg.args.d) && msg.guild) {

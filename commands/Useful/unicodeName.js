@@ -19,7 +19,7 @@ module.exports = {
 		if(Object.keys(names).length) {
 			let str = "";
 			for(let key in names) {
-				str += "`" + key + "`: " + names[key] + "\n";
+				str += `\`${key}\`: ${names[key]}\n`;
 			}
 			msg.send(str);
 		} else {

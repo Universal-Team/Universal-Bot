@@ -1,6 +1,6 @@
 // Setup vars
-const Discord = require('discord.js');
-const fs = require('fs');
+const Discord = require("discord.js");
+const fs = require("fs");
 
 function cloneDB(UnivBot, id) {
 	var db = UnivBot.db.default;
@@ -8,7 +8,7 @@ function cloneDB(UnivBot, id) {
 	db = JSON.parse(db);
 	if(!UnivBot.db[id]) {
 		UnivBot.db[id] = db;
-		fs.writeFileSync('database.json', JSON.stringify(UnivBot.db, null, '\t'));
+		fs.writeFileSync("database.json", JSON.stringify(UnivBot.db, null, "\t"));
 	}
 }
 
@@ -42,22 +42,22 @@ module.exports = async function(UnivBot, msg, nmsg) {
 		return require("node-fetch")(
 			`${UnivBot.client.rest.client.options.http.api}/v${UnivBot.client.rest.client.options.http.version}/channels/${msg.channel.id}/messages/${msg.id}/crosspost`,
 			{
-				method: 'POST',
+				method: "POST",
 				headers: {
-					'Authorization': `${UnivBot.client.rest.tokenPrefix} ${UnivBot.client.token}`,
+					"Authorization": `${UnivBot.client.rest.tokenPrefix} ${UnivBot.client.token}`,
 				},
 			},
 		);
 	}
 
 	// Check for prefixes
-	if(!msg.guild && msg.content.startsWith('?'))
+	if(!msg.guild && msg.content.startsWith("?"))
 		msg.content = msg.content.substr(1);
-	if(msg.content.startsWith('<@618835289531613205>')) {
+	if(msg.content.startsWith("<@618835289531613205>")) {
 		if(!msg.guild)
-			msg.content = msg.content.substr('<@618835289531613205>'.length).trim();
+			msg.content = msg.content.substr("<@618835289531613205>".length).trim();
 		if(msg.guild)
-			msg.content = UnivBot.db[msg.guild.id].prefix+msg.content.substr('<@618835289531613205>'.length).trim();
+			msg.content = UnivBot.db[msg.guild.id].prefix + msg.content.substr("<@618835289531613205>".length).trim();
 	}
 
 	// Create config if it doens't exists
@@ -65,7 +65,7 @@ module.exports = async function(UnivBot, msg, nmsg) {
 		cloneDB(UnivBot, msg.guild.id);
 
 	// Handle DM messages
-	let db = { prefix: '' };
+	let db = { prefix: "" };
 	if(msg.guild)
 		db = UnivBot.db[msg.guild.id];
 
@@ -78,10 +78,10 @@ module.exports = async function(UnivBot, msg, nmsg) {
 
 	// Setup msg.send and msg.reply
 	msg.send = function(string, config) {
-		var reg = new RegExp(process.env['TOKEN'], 'ig');
-		if(typeof string == 'string')
-			string = string.replace(reg, 'UnivBot.client.token').replace(/@everyone/g, '@/everyone').replace(/@here/g, '@/here').replace(/<@&.*>/g, 'role').replace(/<@&.*>/g, 'role').replace(/<@!.*>/g, 'person')
-			// .replace(/<@&.*>/g, '@/' + message.guild.roles.cache.find(r => r == "605585039417278465").name);
+		var reg = new RegExp(process.env["TOKEN"], "ig");
+		if(typeof string == "string")
+			string = string.replace(reg, "UnivBot.client.token").replace(/@everyone/g, "@/everyone").replace(/@here/g, "@/here").replace(/<@&.*>/g, "role").replace(/<@&.*>/g, "role").replace(/<@!.*>/g, "person")
+			// .replace(/<@&.*>/g, `@/${message.guild.roles.cache.find(r => r == "605585039417278465").name}`);
 		var message = this;
 		if(message.guild) {
 			return message.channel.send(string, config);
@@ -91,8 +91,8 @@ module.exports = async function(UnivBot, msg, nmsg) {
 	};
 	msg.reply = function(string, config) {
 		var message = this;
-		var ping = '<@'+message.author.id+'>';
-		return message.send(ping+', '+string, config);
+		var ping = `<@${message.author.id}>`;
+		return message.send(`${ping}, ${string}`, config);
 	};
 
 	// Setup large icon and bot
@@ -107,8 +107,8 @@ module.exports = async function(UnivBot, msg, nmsg) {
 
 	// Get the command and arguments
 	msg.prefix = db.prefix;
-	msg.cmd = msg.content.match(RegExp(msg.prefix.replace(/[.^$*+?()[\]{}\\|/]/g, r => "\\" + r) +"\\s*([^\\s]+)"))?.[1];
-	msg.content = msg.content.substr(msg.content.match(RegExp(msg.prefix.replace(/[.^$*+?()[\]{}\\|/]/g, r => "\\" + r) +"\\s*([^\\s]+)"))?.[0].length);
+	msg.cmd = msg.content.match(RegExp(msg.prefix.replace(/[.^$*+?()[\]{}\\|/]/g, r => `\\${r}`) + "\\s*([^\\s]+)"))?.[1];
+	msg.content = msg.content.substr(msg.content.match(RegExp(msg.prefix.replace(/[.^$*+?()[\]{}\\|/]/g, r => `\\${r}`) + "\\s*([^\\s]+)"))?.[0].length);
 	msg.args = {value: msg.content.split(/\s-[^-\s]+|\s--[^\s]+\s+[^\s]+/g).join("").trim()};
 	msg.content.match(/\s-[^-\s]+|\s--[^\s]+\s+[^\s]+/g)?.forEach(r => {
 		msg.args[r.match(/[^- ]+/)] = r.trim().match(/\s+(.+)/) ? r.trim().match(/\s+(.+)/)[1] : true;
@@ -132,8 +132,8 @@ module.exports = async function(UnivBot, msg, nmsg) {
 	// Get command
 	let command;
 	for(var cmd of UnivBot.cmds) {
-		cmd = require("../" + cmd);
-		if(typeof cmd.name == 'string' && (cmd.name.toLowerCase() == msg.cmd.toLowerCase()) || (cmd.name instanceof Array) && (cmd.name.filter(name => name.toLowerCase() == msg.cmd.toLowerCase())).length) {
+		cmd = require(`../${cmd}`);
+		if(typeof cmd.name == "string" && (cmd.name.toLowerCase() == msg.cmd.toLowerCase()) || (cmd.name instanceof Array) && (cmd.name.filter(name => name.toLowerCase() == msg.cmd.toLowerCase())).length) {
 			command = cmd;
 			break;
 		}
@@ -143,30 +143,30 @@ module.exports = async function(UnivBot, msg, nmsg) {
 
 	// Check for DM
 	if(!command.DM && !msg.guild)
-		return msg.reply('You can\'t use this command on DM!');
+		return msg.reply("You can't use this command on DM!");
 
 	// Get permissions
 	let lacks = [];
-	if(command.permissions.includes('DEV') && !msg.dev)
-		lacks.push('``BOT_DEVELOPER``');
-		var perms = command.permissions.filter(perm => perm !== 'DEV');
+	if(command.permissions.includes("DEV") && !msg.dev)
+		lacks.push("``BOT_DEVELOPER``");
+		var perms = command.permissions.filter(perm => perm !== "DEV");
 	if(!msg.guild && perms.length)
-		return msg.reply('You can\'t use this command on DM!');
+		return msg.reply("You can't use this command on DM!");
 	if(msg.guild) for(var perm of perms) {
 		if(!msg.member.hasPermission(perm))
-			lacks.push('``'+perm+'``');
+			lacks.push(`\`\`${perm}\`\``);
 	}
-	var lacksStr = lacks.join(', ');
+	var lacksStr = lacks.join(", ");
 
 	// Detect if lacks permissions
 	if(lacks.length)
-		return msg.reply('You lack the following permissions to run this command: '+lacksStr);
+		return msg.reply(`You lack the following permissions to run this command: ${lacksStr}`);
 
 	// Execute command
 	try {
 		command.exec(UnivBot, msg);
 	} catch(e) {
-		await msg.send('Oops! An error has occurred while executing this command.');
-		msg.send(e, {code:'js'});
+		await msg.send("Oops! An error has occurred while executing this command.");
+		msg.send(e, {code:"js"});
 	}
 }

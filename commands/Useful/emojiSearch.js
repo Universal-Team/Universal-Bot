@@ -1,12 +1,12 @@
 module.exports = {
-	name: ['emojiSearch', '絵文字Search'],
-	usage: '<search term>',
-	desc: 'Finds all emoji containing the entered term that Universal-Bot can access',
+	name: ["emojiSearch", "絵文字Search"],
+	usage: "<search term>",
+	desc: "Finds all emoji containing the entered term that Universal-Bot can access",
 	DM: true,
 	permissions: [],
 	exec(UnivBot, msg) {
 		if(!msg.args.value)
-			return msg.send('Nothing isn\'t an emoji...');
+			return msg.send("Nothing isn't an emoji...");
 
 		let emoji = [];
 		UnivBot.client.guilds.cache.some(guild => {
@@ -17,7 +17,7 @@ module.exports = {
 			});
 		});
 
-		let str = '';
+		let str = "";
 		emoji.sort((a, b) => {
 			let nameA = a.name.toLowerCase();
 			let nameB = b.name.toLowerCase();
@@ -28,12 +28,12 @@ module.exports = {
 			else
 				return 0;
 		}).forEach(r => {
-			out = '<' + (r.animated ? 'a' : '') + ':' + r.name + ':' + r.id + '> \\:' + r.name + '\\:\n';
+			out = `<${r.animated ? "a" : ""}:${r.name}:${r.id}> \\:${r.name}\\:\n`;
 			if(str.length + out.length <= 2000)
 				str += out
 		});
 		if(!str)
-			return msg.send('Aww, no emoji found...');
+			return msg.send("Aww, no emoji found...");
 
 		return msg.send("", {embed: {
 			title: "Results",

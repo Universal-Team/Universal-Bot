@@ -26,9 +26,9 @@ function findQuestion(name) {
 }
 
 module.exports = {
-	name: 'faq',
-	usage: '<faq>',
-	desc: 'Sends the specified faq',
+	name: "faq",
+	usage: "<faq>",
+	desc: "Sends the specified faq",
 	DM: true,
 	permissions: [],
 	exec(UnivBot, msg) {
@@ -41,14 +41,14 @@ module.exports = {
 			msg.send({
 				embed: {
 					color: 0x00c882,
-					title: "FAQ "+faqNo+": "+questions[faqNo-1],
-					description: answers[faqNo-1],
+					title: `FAQ ${faqNo}: ${questions[faqNo - 1]}`,
+					description: answers[faqNo - 1],
 				}
 			});
 		} else {
 			let qList = "";
-			for(let i=0;i<questions.length;i++) {
-				qList += "**"+(Number(i)+1).toString()+".** "+questions[i]+"\n";
+			for(let i = 0; i < questions.length; i++) {
+				qList += `**${(Number(i) + 1).toString()}.** ${questions[i]}\n`;
 			}
 
 			msg.send({

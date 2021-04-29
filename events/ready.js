@@ -1,5 +1,5 @@
-const fs = require('fs');
-const Discord = require('discord.js');
+const fs = require("fs");
+const Discord = require("discord.js");
 function noRepeat(array) {
 		let arr = [];
 		for(var item of array) {
@@ -12,26 +12,26 @@ function noRepeat(array) {
 module.exports = async (UnivBot) => {
 
 	// Tell the console
-	console.log(UnivBot.client.user.tag+' is ready');
+	console.log(`${UnivBot.client.user.tag} is ready`);
 
 	// Setup activities
-	var status = UnivBot.client.guilds.cache.size+' Servers | ?help';
+	var status = `${UnivBot.client.guilds.cache.size} Servers | ?help`;
 	if(UnivBot.client.guilds.cache.size == 1)
-		status = UnivBot.client.guilds.cache.size+' Server | ?help';
+		status = `${UnivBot.client.guilds.cache.size} Server | ?help`;
 	UnivBot.client.user.setActivity("Booted!");
 	setTimeout(() =>
 		UnivBot.client.user.setActivity(status, {
-			type: 'WATCHING'
+			type: "WATCHING"
 		})
 	, 3000);
 
 	// Make collection of commands
 	UnivBot.cmds = [];
-	UnivBot.categories = fs.readdirSync('commands/');
+	UnivBot.categories = fs.readdirSync("commands/");
 	for(var category of UnivBot.categories) {
-		var commands = fs.readdirSync('commands/'+category).filter(cmd => cmd.endsWith('.js'));
+		var commands = fs.readdirSync(`commands/${category}`).filter(cmd => cmd.endsWith(".js"));
 		for(var command of commands) {
-			UnivBot.cmds.push('commands/'+category+'/'+command);
+			UnivBot.cmds.push(`commands/${category}/${command}`);
 		}
 	}
 
@@ -45,14 +45,14 @@ module.exports = async (UnivBot) => {
 			var time = Math.abs((new Date().getTime() - reb.start) / 1000);
 			var msg = channel.fetchMessage(reb.msg)
 			msg.then(msg => {
-				msg.edit('Done rebooting! It took '+time+' seconds');
+				msg.edit(`Done rebooting! It took ${time} seconds`);
 				UnivBot.db.reboot = undefined;
-				fs.writeFileSync('database.json', JSON.stringify(UnivBot.db, null, '\t'));
+				fs.writeFileSync("database.json", JSON.stringify(UnivBot.db, null, "\t"));
 			});
 			msg.catch(() => {
-				user.send('Done rebooting! It took '+time+' seconds');
+				user.send(`Done rebooting! It took ${time} seconds`);
 				UnivBot.db.reboot = undefined;
-				fs.writeFileSync('database.json', JSON.stringify(UnivBot.db, null, '\t'));
+				fs.writeFileSync("database.json", JSON.stringify(UnivBot.db, null, "\t"));
 			});
 		} else {
 			var guild = UnivBot.client.guilds.cache.get(reb.guild);
@@ -60,14 +60,14 @@ module.exports = async (UnivBot) => {
 			var time = Math.abs((new Date().getTime() - reb.start) / 1000);
 			var msg = channel.messages.fetch(reb.msg)
 			msg.then(msg => {
-				msg.edit('Done rebooting! It took '+time+' seconds');
+				msg.edit(`Done rebooting! It took ${time} seconds`);
 				UnivBot.db.reboot = undefined;
-				fs.writeFileSync('database.json', JSON.stringify(UnivBot.db, null, '\t'));
+				fs.writeFileSync("database.json", JSON.stringify(UnivBot.db, null, "\t"));
 			});
 			msg.catch(() => {
-				channel.send('Done rebooting! It took '+time+' seconds');
+				channel.send(`Done rebooting! It took ${time} seconds`);
 				UnivBot.db.reboot = undefined;
-				fs.writeFileSync('database.json', JSON.stringify(UnivBot.db, null, '\t'));
+				fs.writeFileSync("database.json", JSON.stringify(UnivBot.db, null, "\t"));
 			});
 		}
 	}

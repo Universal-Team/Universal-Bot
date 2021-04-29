@@ -1,7 +1,7 @@
 module.exports = {
-	name: ['emoji', '絵文字'],
-	usage: '<emoji names>',
-	desc: 'Sends any Discord emoji from a guild Universal-Bot is in',
+	name: ["emoji", "絵文字"],
+	usage: "<emoji names>",
+	desc: "Sends any Discord emoji from a guild Universal-Bot is in",
 	DM: true,
 	permissions: [],
 	exec(UnivBot, msg) {
@@ -22,14 +22,14 @@ module.exports = {
 				});
 			});
 			if(emoji)
-				return '<' + (emoji.animated ? 'a' : '') + ':' + emoji.name + ':' + emoji.id + '> '
+				return `<${emoji.animated ? "a" : ""}:${emoji.name}:${emoji.id}> `;
 			else
 				return r;
 		});
 
 		if(out.length > 2000) {
 			out = out.substr(0, 2000);
-			out = out.substr(0, out.lastIndexOf('<') - 1);
+			out = out.substr(0, out.lastIndexOf("<") - 1);
 		}
 
 		msg.send(out);

@@ -1,6 +1,6 @@
-const eyes = ['O', 'o', 'U', 'u', '>', '^', '-', 'X', 'T', 'q'];
-const mouths = ['w', 'u', 'o', '\\_', '-', 'x', '///'];
-const extras = [['', ''], ['', ''], ['', ''], ['', '-☆'], ['=', '='], ['d', 'b♪']];
+const eyes = ["O", "o", "U", "u", ">", "^", "-", "X", "T", "q"];
+const mouths = ["w", "u", "o", "\\_", "-", "x", "///"];
+const extras = [["", ""], ["", ""], ["", ""], ["", "-☆"], ["=", "="], ["d", "b♪"]];
 
 function face() {
 	let eye = eyes[Math.floor(Math.random() * eyes.length)];
@@ -14,9 +14,9 @@ function face() {
 }
 
 module.exports = {
-	name: ['owo', 'owoify', 'uwu', 'uwuify'],
-	usage: '[-__l__ast] [message]',
-	desc: 'OwO-ify a message',
+	name: ["owo", "owoify", "uwu", "uwuify"],
+	usage: "[-__l__ast] [message]",
+	desc: "OwO-ify a message",
 	DM: true,
 	permissions: [],
 	exec(UnivBot, msg) {
@@ -24,7 +24,7 @@ module.exports = {
 			msg.args.value = msg.channel.messages.cache.array()[msg.channel.messages.cache.size - 2].content;
 
 		if(!msg.args.value)
-			return msg.send('ur no fun ' + face());
+			return msg.send(`ur no fun ${face()}`);
 
 		msg.send(OwOify(msg.args.value));
 	}
@@ -32,31 +32,31 @@ module.exports = {
 
 function OwOify(text) {
 	return text
-		.replace(/\bi['’]m\b/gi, 'im')
-		.replace(/\bi['’]ve/gi, 'ive')
-		.replace(/\bi\b/gi, 'me')
-		.replace(/\bmy\b/gi, 'me')
-		.replace(/\band\b/, 'an')
-		.replace(/need/gi, 'nweed')
-		.replace(/oh no/gi, 'ono')
-		.replace(/s's/gi, 's')
-		.replace(/speak/gi, 'spweak')
-		.replace(/stand/gi, 'stwand')
-		.replace(/(thanks|thank you)/gi, 'tankies')
-		.replace(/\bthe\b/gi, 'da')
-		.replace(/time/gi, 'tim')
-		.replace(/worse/gi, 'wose')
-		.replace(/your/gi, 'ur')
-		.replace(/you/gi, 'u')
-		.replace(/[rl]/g, 'w')
-		.replace(/[RL]/g, 'W')
-		.replace(/na/gi, 'nya')
-		.replace(/ove/gi, 'uv')
-		.replace(/\bth/gi, 'd')
-		.replace(/th/gi, 's')
-		.replace(/['’]/g, '')
+		.replace(/\bi['’]m\b/gi, "im")
+		.replace(/\bi['’]ve/gi, "ive")
+		.replace(/\bi\b/gi, "me")
+		.replace(/\bmy\b/gi, "me")
+		.replace(/\band\b/, "an")
+		.replace(/need/gi, "nweed")
+		.replace(/oh no/gi, "ono")
+		.replace(/s's/gi, "s")
+		.replace(/speak/gi, "spweak")
+		.replace(/stand/gi, "stwand")
+		.replace(/(thanks|thank you)/gi, "tankies")
+		.replace(/\bthe\b/gi, "da")
+		.replace(/time/gi, "tim")
+		.replace(/worse/gi, "wose")
+		.replace(/your/gi, "ur")
+		.replace(/you/gi, "u")
+		.replace(/[rl]/g, "w")
+		.replace(/[RL]/g, "W")
+		.replace(/na/gi, "nya")
+		.replace(/ove/gi, "uv")
+		.replace(/\bth/gi, "d")
+		.replace(/th/gi, "s")
+		.replace(/['’]/g, "")
 		.replace(/(?!([uox])\1\1)(\b[OUXTq][wuox][OUXTq]\b|[OUXTq>^\-][_\-/][OUXTq<^\-]|[>^\-][wuox][<^\-]|[;:]-*[)(pd]|[xb]-*[)(]|\b[xb]-*[pd]\b)/gi, () => face())
-		.replace(/\?/g, '?'.repeat(Math.ceil(Math.random() * 3)))
-		.replace(/\b(ha|hah|heh|hehe)+\b/g, 'hehe xD')
-		.trim() + ' ' + face();
+		.replace(/\?/g, "?".repeat(Math.ceil(Math.random() * 3)))
+		.replace(/\b(ha|hah|heh|hehe)+\b/g, "hehe xD")
+		.trim() + " " + face();
 }

@@ -1,29 +1,29 @@
-const { spawnSync } = require('child_process');
-const compiledFile  = 'utils/compile.bin';
-const fs            = require('fs');
+const { spawnSync } = require("child_process");
+const compiledFile  = "utils/compile.bin";
+const fs            = require("fs");
 
 function compile(code, type) {
-	let sourceFile    = 'utils/compile';
+	let sourceFile    = "utils/compile";
 
-	let extension = 'cpp';
+	let extension = "cpp";
 	switch(type.toLowerCase()) {
-		case 'asm':
-		case 'assembly':
-			extension = 's';
-			code += '\n';
+		case "asm":
+		case "assembly":
+			extension = "s";
+			code += "\n";
 			break;
 
-		case 'c':
-		case 'normal':
-			extension = 'c';
+		case "c":
+		case "normal":
+			extension = "c";
 			break;
 	}
 
-	sourceFile += '.' + extension;
+	sourceFile += `.${extension}`;
 	fs.writeFileSync(sourceFile, new Buffer.from(code));
-	let stdio = spawnSync('g++', ['-std=c++17', sourceFile, '-o', compiledFile], { encoding: 'utf-8' });
+	let stdio = spawnSync("g++", ["-std=c++17", sourceFile, "-o", compiledFile], { encoding: "utf-8" });
 
-	let exec = spawnSync(compiledFile, { encoding: 'utf-8' });
+	let exec = spawnSync(compiledFile, { encoding: "utf-8" });
 	fs.unlinkSync(sourceFile);
 
 	let binary;

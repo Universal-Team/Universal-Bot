@@ -1,5 +1,5 @@
 String.prototype.madeOf = function(charset) {
-	return this.split('').filter(letter => charset.includes(letter)).length == this.length;
+	return this.split("").filter(letter => charset.includes(letter)).length == this.length;
 }
 
 String.prototype.fancyFont = function(index) {

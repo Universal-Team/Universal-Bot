@@ -1,16 +1,16 @@
 module.exports = {
-	name: 'reload',
-	usage: '<command>',
-	desc: 'Reloads a command',
+	name: "reload",
+	usage: "<command>",
+	desc: "Reloads a command",
 	DM: true,
-	permissions: [ 'DEV' ],
+	permissions: [ "DEV" ],
 	exec(UnivBot, msg) {
 		if(!msg.args.value)
-			return msg.send('**Oops!** You didn\'t provided enough arguments');
+			return msg.send("**Oops!** You didn't provided enough arguments");
 
 		let command;
 		for(var path of UnivBot.cmds) {
-			path = "../../" + path;
+			path = `../../${path}`;
 			let cmd = require(path);
 			let name = cmd.name;
 
@@ -25,7 +25,7 @@ module.exports = {
 					command = path;
 					break;
 				}
-				name = name.join('/');
+				name = name.join("/");
 			}
 			if(name.toLowerCase() == msg.args.value) {
 				command = path;
@@ -35,9 +35,9 @@ module.exports = {
 
 		if(command) {
 			delete require.cache[require.resolve(command)]
-			msg.send('Successfully reloaded the ' + msg.args.value + ' command');
+			msg.send(`Successfully reloaded the ${msg.args.value} command`);
 		} else {
-			msg.send('Couldnt find that command!');
+			msg.send("Couldnt find that command!");
 		}
 	}
 }

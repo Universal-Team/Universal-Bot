@@ -1,4 +1,4 @@
-'use strict'
+"use strict"
 
 const firstFlag = function(target, flags) {
 	target = target.toLowerCase();
@@ -8,12 +8,12 @@ const firstFlag = function(target, flags) {
 			return flag;
 	}
 
-	return '';
+	return "";
 }
 
 /**
  * Finds all the matches of the array at the start of the string and removes them
- * @example searchFlags('--test --delete Hello world', [ '--DELETE', '--TEST' ]) => { flags: [ '--TEST', '--DELETE' ], string: 'Hello world' }
+ * @example searchFlags("--test --delete Hello world", [ "--DELETE", "--TEST" ]) => { flags: [ "--TEST", "--DELETE" ], string: "Hello world" }
  * @param {string} target
  * @param {array} flags
  */

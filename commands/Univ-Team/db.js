@@ -3,32 +3,32 @@ function parseBytes(bytes) {
 		bytes = parseInt(bytes);
 
 	if(bytes == 1)
-		return bytes + " Byte";
+		return `${bytes} Byte`;
 	else if(bytes < (1 << 10))
-		return bytes + " Bytes";
+		return `${bytes} Bytes`;
 	else if(bytes < (1 << 20))
-		return Math.round(bytes / (1 << 10)) + " KiB";
+		return `${Math.round(bytes / (1 << 10))} KiB`;
 	else if(bytes < (1 << 30))
-		return Math.round(bytes / (1 << 20)) + " MiB";
+		return `${Math.round(bytes / (1 << 20))} MiB`;
 	else
-		return Math.round(bytes / (1 << 30)) + " GiB";
+		return `${Math.round(bytes / (1 << 30))} GiB`;
 }
 
 module.exports = {
-	name: ['DB', 'UniversalDB'],
-	usage: '[-__a__ll|-__r__andom|-__s__earch] <app|description>',
-	desc: 'Search for an application on Universal DB',
+	name: ["DB", "UniversalDB"],
+	usage: "[-__a__ll|-__r__andom|-__s__earch] <app|description>",
+	desc: "Search for an application on Universal DB",
 	DM: true,
 	permissions: [],
 	exec(UnivBot, msg) {
 		let query = msg.args.value;
 		
-		require('node-fetch')("https://db.universal-team.net/data/full.json", {"method": "Get"}).then(r => r.json()).then(json => {
+		require("node-fetch")("https://db.universal-team.net/data/full.json", {"method": "Get"}).then(r => r.json()).then(json => {
 			if(msg.args.random || msg.args.r)
 				query = json[Math.floor(Math.random() * json.length)].title;
 
 			if(!query)
-				return msg.send('**Error:** Please enter a search term');
+				return msg.send("**Error:** Please enter a search term");
 
 			let out = [];
 			// Search titles
@@ -63,7 +63,7 @@ module.exports = {
 
 			if(msg.args.search || msg.args.s) {
 				let embed = {"embed": {
-					"title": 'Results',
+					"title": "Results",
 					"fields": []
 				}};
 
@@ -77,8 +77,8 @@ module.exports = {
 					else return 0;
 				}).forEach(r => {
 					embed.embed.fields.push({
-						"name": r.title.replace(new RegExp(query, "gi"), "__" + query + "__") + " by " + r.author.replace(new RegExp(query, "gi"), "__" + query + "__"),
-						"value": r.description ? r.description.replace(new RegExp(query, "gi"), "__" + query + "__") : "---",
+						"name": `${r.title.replace(new RegExp(query, "gi"), `__${query}__`)} by ${r.author.replace(new RegExp(query, "gi"), `__${query}__`)}`,
+						"value": r.description ? r.description.replace(new RegExp(query, "gi"), `__${query}__`) : "---",
 					});
 				});
 
@@ -87,20 +87,20 @@ module.exports = {
 
 			out.forEach(res => {
 				for(let i = 1; i < res.systems.length; i++)
-					res.description += "\n[Also on " + res.systems[i] + "](https://db.universal-team.net/" + res.systems[i].toLowerCase() + "/" + Array.from(res.title.toLowerCase().replace(/ /g, "-")).filter(r => "abcdefghijklmnopqrstuvwxyz0123456789-_.".includes(r)).join("") + ")";
+					res.description += `\n[Also on ${res.systems[i]}](https://db.universal-team.net/${res.systems[i].toLowerCase()}/${Array.from(res.title.toLowerCase().replace(/ /g, "-")).filter(r => "abcdefghijklmnopqrstuvwxyz0123456789-_.".includes(r)).join("")})`;
 
 				if(res.version) {
-					res.description += "\n" + "**Version**: " + res.version;
+					res.description += `\n**Version**:${res.version}`;
 					if(res.version_title)
-						res.description += ", " + res.version_title;
+						res.description += `, ${res.version_title}`;
 				}
 
 				if(res.license)
-					res.description += "\n" + "**License**: " + res.license_name;
+					res.description += `\n**License**:${res.license_name}`;
 
 				let embed = {"embed": {
 					"title": res.title,
-					"url": "https://db.universal-team.net/" + res.systems[0].toLowerCase() + "/" + Array.from(res.title.toLowerCase().replace(/ /g, "-")).filter(r => "abcdefghijklmnopqrstuvwxyz0123456789-_.".includes(r)).join(""),
+					"url": `https://db.universal-team.net/${res.systems[0].toLowerCase()}/${Array.from(res.title.toLowerCase().replace(/ /g, "-")).filter(r => "abcdefghijklmnopqrstuvwxyz0123456789-_.".includes(r)).join("")}`,
 					"thumbnail": {
 						"url": res.image || res.icon
 					},
@@ -109,7 +109,7 @@ module.exports = {
 					"image": {},
 					"footer": {
 						"icon_url": res.avatar || res.icon || res.image,
-						"text": res.author ? "By: " + res.author: ""
+						"text": res.author ? `By: ${res.author}` : ""
 					},
 					"color": res.color ? parseInt(res.color.substr(1), 16) : 0x072f4f,
 					"timestamp": res.updated
@@ -118,14 +118,14 @@ module.exports = {
 					embed.embed.fields.push({
 						"inline": true,
 						"name": item,
-						"value": "[Download](" + res.downloads[item].url + ")" + (res.downloads[item].size ? (" (" + parseBytes(res.downloads[item].size)) + ")" : "")
+						"value": `[Download](${res.downloads[item].url})${res.downloads[item].size ? ` (${parseBytes(res.downloads[item].size)})` : ""}`
 					});
 				}
 
 				for(let item in res.qr) {
 					// The "?version=xxx" does literally nothing except ensure that the URL
 					// is different to prevent Discord using an outdated one from cache
-					embed.embed.image.url = res.qr[item] + "?version=" + res.version;
+					embed.embed.image.url = `${res.qr[item]}?version=${res.version}`;
 				}
 
 				msg.send(embed);

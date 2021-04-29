@@ -1,18 +1,18 @@
 const charsets = {
-	hex: [ '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f' ],
-	dec: [ '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' ],
+	hex: [ "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f" ],
+	dec: [ "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" ],
 };
 
-const {color, names} = require('../../utils/color');
+const {color, names} = require("../../utils/color");
 
 module.exports = {
-	name: [ 'color', 'color-code' ],
-	usage: '[-__r__andom] [color]',
-	desc: 'Displays information about a color in #RGB, #RRGGBB, RRR GGG BBB, BGR15, or by name',
+	name: [ "color", "color-code" ],
+	usage: "[-__r__andom] [color]",
+	desc: "Displays information about a color in #RGB, #RRGGBB, RRR GGG BBB, BGR15, or by name",
 	DM: true,
 	permissions: [],
 	exec(UnivBot, msg) {
-		let string = msg.args.value.toLowerCase().replace(/\s+/g, ' ').replace(/#/g, '').replace(/0x/g, '');
+		let string = msg.args.value.toLowerCase().replace(/\s+/g, " ").replace(/#/g, "").replace(/0x/g, "");
 		let rgb = [0, 0, 0];
 
 		if(msg.args.random || msg.args.r) {
@@ -44,14 +44,14 @@ module.exports = {
 		if(!rgb.every(r => r >= 0 && r < 256))
 			return msg.send("**Error:** Invalid color!");
 
-		let rgbColor = '``' + rgb.join(' ') + '``';
+		let rgbColor = `\`\`${rgb.join(" ")}\`\``;
 
 		let bgr15 = ((Math.round(rgb[2] * 31 / 255) & 0x1F) << 10 | (Math.round(rgb[1] * 31 / 255) & 0x1F) << 5 | (Math.round(rgb[0] * 31 / 255) & 0x1F));
-		bgr15 = '``0x' + bgr15.toString(16).padStart(4, '0').toUpperCase() + '`` ``0x' + (bgr15 | 1 << 15).toString(16).toUpperCase() + '``';
+		bgr15 = `\`\`0x${bgr15.toString(16).padStart(4, "0").toUpperCase()}\`\` \`\`0x${(bgr15 | 1 << 15).toString(16).toUpperCase()}\`\``;
 
 		hex = "";
 		rgb.forEach(r => hex += r.toString(16).padStart(2, "0").toUpperCase())
-		hexColor = '``#' + hex + '``';
+		hexColor = `\`\`#${hex}\`\``;
 
 		let name = color(parseInt(hex, 16));
 		return msg.send({

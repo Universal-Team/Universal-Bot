@@ -38,9 +38,9 @@ function findRule(name) {
 	}
 }
 module.exports = {
-	name: 'rule',
-	usage: '<rule>',
-	desc: 'Sends the specified rule',
+	name: "rule",
+	usage: "<rule>",
+	desc: "Sends the specified rule",
 	DM: true,
 	permissions: [],
 	exec(UnivBot, msg) {
@@ -53,14 +53,14 @@ module.exports = {
 			msg.send({
 				embed: {
 					color: 0x00c882,
-					title: "Rule "+ruleNo,
-					description: rules[ruleNo-1],
+					title: `Rule ${ruleNo}`,
+					description: rules[ruleNo - 1],
 				}
 			});
 		} else {
 			let rList = "";
-			for(let i=0;i<rulesBrief.length;i++) {
-				rList += "**"+(Number(i)+1).toString()+".** "+rulesBrief[i]+"\n";
+			for(let i = 0; i < rulesBrief.length; i++) {
+				rList += `**${(Number(i) + 1).toString()}.** ${rulesBrief[i]}\n`;
 			}
 
 			msg.send({

@@ -4,9 +4,9 @@ function findRole(msg, name) {
 }
 
 module.exports = {
-	name: 'role',
-	usage: '[-__a__ll] <role names, comma separated>',
-	desc: 'Adds/removes roles. Sends a list if no roles given',
+	name: "role",
+	usage: "[-__a__ll] <role names, comma separated>",
+	desc: "Adds/removes roles. Sends a list if no roles given",
 	permissions: [],
 	async exec(UnivBot, msg) {
 		// Send lists if no roles requested
@@ -17,11 +17,11 @@ module.exports = {
 			let out = "";
 			if(possibleAdd.size) {
 				out += "\n\n__**The following roles can be added:**__";
-				possibleAdd.forEach(r => out += "\n" + r.name);
+				possibleAdd.forEach(r => out += `\n${r.name}`);
 			}
 			if(possibleRemove.size) {
 				out += "\n\n__**The following roles can be removed:**__";
-				possibleRemove.forEach(r => out += "\n" + r.name);
+				possibleRemove.forEach(r => out += `\n${r.name}`);
 			}
 			return msg.send(out);
 		}
@@ -34,7 +34,7 @@ module.exports = {
 			msg.guild.roles.cache.filter(r => r.editable && r.id != msg.guild.id && msg.member.roles.cache.has(r.id)).forEach(r => removeRoles.push(r));
 			msg.guild.roles.cache.filter(r => r.editable && r.id != msg.guild.id && !msg.member.roles.cache.has(r.id)).forEach(r => addRoles.push(r));
 		} else {
-			msg.args.value.toLowerCase().split(',').forEach(r => {
+			msg.args.value.toLowerCase().split(",").forEach(r => {
 				let role = findRole(msg, r.trim());
 				if(role && role.editable && role.id != msg.guild.id) {
 					(msg.member.roles.cache.has(role.id) ? removeRoles : addRoles).push(role);
@@ -53,11 +53,11 @@ module.exports = {
 		let out = "";
 		if(addRoles.length) {
 			out += "\n\n__**The following roles have been added:**__";
-			addRoles.forEach(r => out += "\n" + r.name);
+			addRoles.forEach(r => out += `\n${r.name}`);
 		}
 		if(removeRoles.length) {
 			out += "\n\n__**The following roles have been removed:**__";
-			removeRoles.forEach(r => out += "\n" + r.name);
+			removeRoles.forEach(r => out += `\n${r.name}`);
 		}
 		if(notRoles.length) {
 			out += "\n\n__**The following roles can't be added/removed:**__\n";

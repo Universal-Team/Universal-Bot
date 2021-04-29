@@ -1,17 +1,17 @@
 // ===========================================================
 // Setup variables
 // ===========================================================
-const fs = require('fs');
-const Discord = require('discord.js');
-require('./utils/Prototypes');
-require('dotenv').config();
+const fs = require("fs");
+const Discord = require("discord.js");
+require("./utils/Prototypes");
+require("dotenv").config();
 
 // ===========================================================
 // Client
 // ===========================================================
 const UnivBot = { client: new Discord.Client() };
-UnivBot.db = require('./database.json');
-UnivBot.client.login(process.env['TOKEN']);
+UnivBot.db = require("./database.json");
+UnivBot.client.login(process.env["TOKEN"]);
 
 // ===========================================================
 // Handle the events

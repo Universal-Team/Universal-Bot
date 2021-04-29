@@ -1,7 +1,7 @@
 module.exports = {
-	name: 'dbsuggest',
-	usage: '',
-	desc: 'Suggest an application for Universal DB',
+	name: "dbsuggest",
+	usage: "",
+	desc: "Suggest an application for Universal DB",
 	DM: true,
 	permissions: [],
 	exec(UnivBot, msg) {

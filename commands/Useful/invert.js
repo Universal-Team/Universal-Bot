@@ -1,5 +1,5 @@
 const Jimp = require("jimp");
-const MessageAttachment = require('../../utils/MessageAttachment');
+const MessageAttachment = require("../../utils/MessageAttachment");
 
 module.exports = {
 	name: ["invert", "negate"],
@@ -10,7 +10,7 @@ module.exports = {
 	exec(UnivBot, msg) {
 		let link = msg.args.value;
 		if(msg.args.s || msg.args.self)
-			link = "https://cdn.discordapp.com/avatars/" + msg.author.id + "/" + msg.author.avatar + ".png?size=1024";
+			link = `https://cdn.discordapp.com/avatars/${msg.author.id}/${msg.author.avatar}.png?size=1024`;
 		else if(msg.attachments.first())
 			link = msg.attachments.first().attachment;
 
@@ -23,6 +23,6 @@ module.exports = {
 		Jimp.read({url: link}).then(img => {
 			img.invert();
 			img.getBufferAsync(Jimp.MIME_PNG).then(r => msg.send("", MessageAttachment(r, "image.png")));
-		}).catch(e => msg.send("Invalid URL! (" + e + ")"));
+		}).catch(e => msg.send(`Invalid URL! (${e})`));
 	}
 }

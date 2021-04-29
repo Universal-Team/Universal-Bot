@@ -1,1 +1,1 @@
-module.exports = require('./message');
+module.exports = require("./message");

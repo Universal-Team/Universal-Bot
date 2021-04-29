@@ -1,19 +1,19 @@
-const fs = require('fs');
+const fs = require("fs");
 function updateDB(UnivBot) {
-	fs.writeFileSync('database.json', JSON.stringify(UnivBot.db, null, '\t'));
+	fs.writeFileSync("database.json", JSON.stringify(UnivBot.db, null, "\t"));
 }
 
 module.exports = {
-	name: ['setprefix', 'prefix', 'prefix-cfg'],
-	usage: '<prefix>',
-	desc: 'Changes the prefix for commands on the server',
-	permissions: [ 'ADMINISTRATOR' ],
+	name: ["setprefix", "prefix", "prefix-cfg"],
+	usage: "<prefix>",
+	desc: "Changes the prefix for commands on the server",
+	permissions: [ "ADMINISTRATOR" ],
 	exec(UnivBot, msg) {
 		if(!msg.args.value)
-			return msg.send('Can\'t use an empty prefix!');
+			return msg.send("Can't use an empty prefix!");
 		var db = UnivBot.db[msg.guild.id];
 		db.prefix = msg.args.value;
 		updateDB(UnivBot);
-		return msg.send('Sucessfully changed the prefix for the server!');
+		return msg.send("Sucessfully changed the prefix for the server!");
 	}
 }

@@ -11,7 +11,7 @@ module.exports = {
 		var link = "https://discordapp.com/oauth2/authorize?client_id=618835289531613205&scope=bot&permissions=8";
 		let embed = new Discord.MessageEmbed()
 			.setColor(8557055)
-			.setDescription(`**${UnivBot.client.user.username}** is a simple bot made for Universal-Team`)
+			.setDescription(`**${UnivBot.client.user.username}** is a simple bot made for Universal-Team.\n\nNote: If you add Universal-Bot to your server it will allow all of your server's emoji to be accessed by the emoji commands including seeing the server name in ?emojiInfo. It will also allow toggling all roles it has access to with ?role.`)
 			.setThumbnail(UnivBot.client.user.avatarURL)
 			.setImage(UnivBot.client.user.avatarURL)
 			.setURL(link)

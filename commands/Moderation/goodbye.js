@@ -47,7 +47,7 @@ List of variables
 \${guild.name} Name of the server
 \${guild.id} ID of the server
 \${guild.amount} Amount of users in the server\`\`\`
-\`${msg.prefix}goodbye --message <Text for goodbye message>\``
+\`${msg.prefix}goodbye -message <Text for goodbye message>\``
 
 		// Check for enable and disable
 		if(msg.args.enable || msg.args.e) {

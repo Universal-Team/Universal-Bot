@@ -46,7 +46,7 @@ include those 'variables' in the text:
 \${guild.name} Name of the server
 \${guild.id} ID of the server
 \${guild.amount} Amount of users in the server\`\`\`
-\`${msg.prefix}welcome --message <Text for welcome message>\``
+\`${msg.prefix}welcome -message <Text for welcome message>\``
 
 		// Check for enable and disable
 		if(msg.args.enable || msg.args.e) {

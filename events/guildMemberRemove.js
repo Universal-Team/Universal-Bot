@@ -28,7 +28,7 @@ function rep(string, member) {
 
 	string = string.split("${guild.name}").join(member.guild.name);
 	string = string.split("${guild.id}").join(member.guild.id);
-	string = string.split("${guild.amount}").join(member.guild.membersCount);
+	string = string.split("${guild.amount}").join(member.guild.memberCount);
 
 	return string;
 }

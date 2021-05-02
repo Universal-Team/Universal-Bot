@@ -31,12 +31,12 @@
 		"messages": {
 			"welcome": {
 				"channel": "619685268320026634",
-				"string": "Member join: ${user.ping}",
+				"string": "Member join: ${user.ping} (${guild.amount} members)",
 				"enabled": true
 			},
 			"goodbye": {
 				"channel": "sys",
-				"string": "Farewell, ${user.tag}",
+				"string": "Member leave: ${user.ping} (${guild.amount} members)",
 				"enabled": true
 			}
 		},

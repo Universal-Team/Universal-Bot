@@ -46,7 +46,6 @@ module.exports = {
 			out += row.join(" ") + "\n";
 		}
 
-		console.log(out.length)
 		msg.send(out);
 	}
 }

@@ -14,9 +14,9 @@ function face() {
 }
 
 module.exports = {
-	name: ["owo", "owoify", "uwu", "uwuify"],
+	name: ["uwu", "uwuify", "owo", "owoify"],
 	usage: "[-__l__ast] [message]",
-	desc: "OwO-ify a message",
+	desc: "UwU-ify a message",
 	DM: true,
 	permissions: [],
 	exec(UnivBot, msg) {
@@ -31,11 +31,11 @@ module.exports = {
 			msg.args.value = msg.args.value.caseReplaceAll(member[1].user.username, `${member[1].user.username}-chan`);
 		}
 
-		msg.send(OwOify(msg.args.value));
+		msg.send(uwuify(msg.args.value));
 	}
 }
 
-function OwOify(text) {
+function uwuify(text) {
 	return text
 		.replace(/\bi['’]m\b/gi, "im")
 		.replace(/\bi['’]ve/gi, "ive")

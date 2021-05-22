@@ -27,7 +27,8 @@ module.exports = {
 			return msg.send(`ur no fun ${face()}`);
 
 		for(let member of msg.guild.members.cache) {
-			msg.args.value = msg.args.value.caseReplaceAll(member[1].nickname, `${member[1].nickname}-chan`);
+			if(member[1].nickname)
+				msg.args.value = msg.args.value.caseReplaceAll(member[1].nickname, `${member[1].nickname}-chan`);
 			msg.args.value = msg.args.value.caseReplaceAll(member[1].user.username, `${member[1].user.username}-chan`);
 		}
 

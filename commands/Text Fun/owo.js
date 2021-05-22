@@ -26,6 +26,11 @@ module.exports = {
 		if(!msg.args.value)
 			return msg.send(`ur no fun ${face()}`);
 
+		for(let member of msg.guild.members.cache) {
+			msg.args.value = msg.args.value.caseReplaceAll(member[1].nickname, `${member[1].nickname}-chan`);
+			msg.args.value = msg.args.value.caseReplaceAll(member[1].user.username, `${member[1].user.username}-chan`);
+		}
+
 		msg.send(OwOify(msg.args.value));
 	}
 }
@@ -48,14 +53,34 @@ function OwOify(text) {
 		.replace(/worse/gi, "wose")
 		.replace(/your/gi, "ur")
 		.replace(/you/gi, "u")
-		.replace(/[rl]/g, "w")
-		.replace(/[RL]/g, "W")
+		.replace(/\bone/gi, "wun")
+		.replace(/\bonce/gi, "wuns")
+		.replace(/\buse/gi, "yus")
+		.replace(/((?<!q)ue|ew)/gi, "yu")
+		.replace(/((?<!q)uil)/gi, "il")
+		.replace(/[aueo]r\b/gi, "a")
+		.replace(/wo/gi, "u")
+		.replace(/air\b/gi, "ea")
 		.replace(/na/gi, "nya")
 		.replace(/ove/gi, "uv")
 		.replace(/\bth/gi, "d")
 		.replace(/th/gi, "s")
+		.replace(/v/gi, "b")
+		.replace(/ck/gi, "k")
+		.replace(/n([auo])/gi, "ny$1")
+		.replace(/c([ie])/gi, "s$1")
+		.replace(/tion/gi, "shon")
+		.replace(/ough/gi, "u")
+		.replace(/i(.)e\b/gi, "ai$1")
+		.replace(/(?<!e)ese\b/gi, "ees")
+		.replace(/(?<=\w\w\w)e\b/gi, "")
+		.replace(/wh\b/gi, "w")
+		.replace(/ch\b/gi, "t")
+		.replace(/ch\b/gi, "t")
+		.replace(/ng\b/gi, "n")
+		.replace(/[rl](?!\b)/gi, "w")
 		.replace(/['’]/g, "")
-		.replace(/(?!([uox])\1\1)(\b[OUXTq][wuox][OUXTq]\b|[OUXTq>^\-][_\-/][OUXTq<^\-]|[>^\-][wuox][<^\-]|[;:]-*[)(pd]|[xb]-*[)(]|\b[xb]-*[pd]\b)/gi, () => face())
+		.replace(/(?!([uox])\1\1)(\b([OUXTq])[wuox]\4\b|[OUXTq>^\-][_\-/][OUXTq<^\-]|[>^\-][wuox][<^\-]|[;:]-*[)(pd]|[xb]-*[)(]|\b[xb]-*[pd]\b)/gi, () => face())
 		.replace(/\?/g, "?".repeat(Math.ceil(Math.random() * 3)))
 		.replace(/\b(ha|hah|heh|hehe)+\b/g, "hehe xD")
 		.trim() + " " + face();

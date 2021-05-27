@@ -40,7 +40,33 @@
 				"enabled": true
 			}
 		},
-		"allowWebhooks": true
+		"allowWebhooks": true,
+		"toggleableRoles": {
+			"778912641237123084": {
+				"name": "Composers"
+			},
+			"586153260683886597": {
+				"name": "Designers"
+			},
+			"586153452695060481": {
+				"name": "Coders"
+			},
+			"605646834593169419": {
+				"name": "Translators"
+			},
+			"611313743263170586": {
+				"name": "DS Updates"
+			},
+			"643227999746916372": {
+				"name": "Universal-DB Updates"
+			},
+			"680935307192959201": {
+				"name": "Online Players"
+			},
+			"695420217584648202": {
+				"name": "3DS Updates"
+			}
+		}
 	},
 	"607895116413403137": {
 		"prefix": "?",
@@ -86,7 +112,18 @@
 				"enabled": true
 			}
 		},
-		"allowWebhooks": true
+		"allowWebhooks": true,
+		"toggleableRoles": {
+			"620368306901090304": {
+				"name": "pinkish, test"
+			},
+			"745589471004852235": {
+				"name": "purple"
+			},
+			"745589481897197570": {
+				"name": "orange"
+			}
+		}
 	},
 	"604318242315436062": {
 		"prefix": "?",

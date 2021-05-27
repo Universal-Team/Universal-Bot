@@ -1,13 +1,13 @@
 {
 	"name": "univ-bot",
-	"version": "0.0.1",
-	"description": "A simple discord bot.",
+	"version": "1.0.0",
+	"description": "Universal-Team's Discord Bot.",
 	"main": "server.js",
 	"scripts": {
 		"start": "node univ-bot.js"
 	},
 	"dependencies": {
-		"discord.js": "^12.3.1",
+		"discord.js": "^12.5.3",
 		"dotenv": "^8.2.0",
 		"jimp": "^0.14.0",
 		"node-fetch": "^2.6.1",

@@ -34,8 +34,17 @@ function isDev(UnivBot, user) {
 // Event handler
 module.exports = async function(UnivBot, msg, nmsg) {
 	// If edit, use new message
-	if(nmsg)
+	if(nmsg) {
 		msg = nmsg;
+	} else {
+		// Convert BMP images to PNG (but not for edits)
+		if(msg.attachments.first() && msg.attachments.first().name.match(/\.(bmp|tiff)$/)) {
+			const Jimp = require("jimp");
+			Jimp.read({url: msg.attachments.first().attachment}).then(img => {
+				img.getBufferAsync(Jimp.MIME_PNG).then(r => msg.send("", new Discord.MessageAttachment(r, msg.attachments.first().name.replace(/\.(bmp|tiff)$/, ".png"))));
+			});
+		}
+	}
 
 	// Automatically publish messages by MonitoRSS
 	if(msg.author.id == "268478587651358721" && msg.channel.type == "news") {

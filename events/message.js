@@ -37,7 +37,7 @@ module.exports = async function(UnivBot, msg, nmsg) {
 	if(nmsg) {
 		msg = nmsg;
 	} else {
-		// Convert BMP images to PNG (but not for edits)
+		// Convert BMP and TIFF images to PNG (but not for edits)
 		if(msg.attachments.first() && msg.attachments.first().name.match(/\.(bmp|tiff)$/)) {
 			const Jimp = require("jimp");
 			Jimp.read({url: msg.attachments.first().attachment}).then(img => {

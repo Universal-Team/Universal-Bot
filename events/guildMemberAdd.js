@@ -47,8 +47,8 @@ module.exports = (UnivBot, member) => {
 	}
 
 	// For Universal-Server, assign @New Member
-	if(member.guild.id == "568119817320792074") {
-		member.roles.add("786627089301504010");
-		member.guild.channels.cache.get(db.messages.welcome.channel).send("Role added: New member");
-	}
+	// if(member.guild.id == "568119817320792074") {
+	// 	member.roles.add("786627089301504010");
+	// 	member.guild.channels.cache.get(db.messages.welcome.channel).send("Role added: New member");
+	// }
 }

@@ -30,10 +30,12 @@ module.exports = {
 			if(!query)
 				return msg.send("**Error:** Please enter a search term");
 
+			let regex = new RegExp(query.regexEscape().replace(/\\?./g, "$&.*").replace(/[-_ ]/, "[-_ ]"), "gi");
+
 			let out = [];
 			// Search titles
 			json.some(app => {
-				if(app.title?.toLowerCase().includes(query.toLowerCase())) {
+				if(app.title?.match(regex)) {
 					out.push(app);
 					return !(msg.args.search || msg.args.s);
 				}
@@ -76,8 +78,19 @@ module.exports = {
 						return 1;
 					else return 0;
 				}).forEach(r => {
+					// Add underlining to title
+					for(let i = 0, c = 0; i < r.title.length && c < query.length; i++) {
+						if(r.title[i].match(new RegExp(query[c].regexEscape().replace(/[-_ ]/, "[-_ ]"), "gi"))) {
+							c++;
+							let j = i + 1;
+							while(j < r.title.length && c < query.length && r.title[j].match(new RegExp(query[c].regexEscape().replace(/[-_ ]/, "[-_ ]"), "gi"))) j++, c++;
+							r.title = `${r.title.substring(0, i)}__${r.title.substring(i, j)}__${r.title.substring(j)}`;
+							i = j + 3;
+						}
+					}
+
 					embed.embed.fields.push({
-						"name": `${r.title.replace(new RegExp(query, "gi"), `__${query}__`)} by ${r.author.replace(new RegExp(query, "gi"), `__${query}__`)}`,
+						"name": `${r.title} by ${r.author.replace(new RegExp(query, "gi"), `__${query}__`)}`,
 						"value": r.description ? r.description.replace(new RegExp(query, "gi"), `__${query}__`) : "---",
 					});
 				});

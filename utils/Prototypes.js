@@ -13,3 +13,7 @@ String.prototype.caseReplaceAll = function(strReplace, strWith) {
 	var reg = new RegExp(esc, 'ig');
 	return this.replace(reg, strWith);
 }
+
+String.prototype.regexEscape = function() {
+	return this.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}

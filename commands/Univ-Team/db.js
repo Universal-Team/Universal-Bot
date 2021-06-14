@@ -105,13 +105,13 @@ module.exports = {
 					res.description += `\n[Also on ${res.systems[i]}](https://db.universal-team.net/${res.systems[i].toLowerCase()}/${Array.from(res.title.toLowerCase().replace(/ /g, "-")).filter(r => "abcdefghijklmnopqrstuvwxyz0123456789-_.".includes(r)).join("")})`;
 
 				if(res.version) {
-					res.description += `\n**Version**:${res.version}`;
+					res.description += `\n**Version**: ${res.version}`;
 					if(res.version_title)
 						res.description += `, ${res.version_title}`;
 				}
 
 				if(res.license)
-					res.description += `\n**License**:${res.license_name}`;
+					res.description += `\n**License**: ${res.license_name}`;
 
 				let embed = {"embed": {
 					"title": res.title,

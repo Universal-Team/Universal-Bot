@@ -8,12 +8,11 @@ String.prototype.fancyFont = function(index) {
 }
 
 String.prototype.caseReplaceAll = function(strReplace, strWith) {
-	// See http://stackoverflow.com/a/3561711/556609
-	var esc = strReplace.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
-	var reg = new RegExp(esc, 'ig');
+	var reg = new RegExp(strReplace.regexEscape(), "ig");
 	return this.replace(reg, strWith);
 }
 
 String.prototype.regexEscape = function() {
-	return this.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+	// See http://stackoverflow.com/a/3561711/556609
+	return this.replace(/[-\/\\^$*+?.()|[\]{}]/g, "\\$&");
 }

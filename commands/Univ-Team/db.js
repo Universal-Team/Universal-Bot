@@ -79,19 +79,21 @@ module.exports = {
 					else return 0;
 				}).forEach(r => {
 					// Add underlining to title
-					for(let i = 0, c = 0; i < r.title.length && c < query.length; i++) {
-						if(r.title[i].match(new RegExp(query[c].regexEscape().replace(/[-_ ]/, "[-_ ]"), "gi"))) {
-							c++;
-							let j = i + 1;
-							while(j < r.title.length && c < query.length && r.title[j].match(new RegExp(query[c].regexEscape().replace(/[-_ ]/, "[-_ ]"), "gi"))) j++, c++;
-							r.title = `${r.title.substring(0, i)}__${r.title.substring(i, j)}__${r.title.substring(j)}`;
-							i = j + 3;
+					if(r.title.match(regex)) {
+						for(let i = 0, c = 0; i < r.title.length && c < query.length; i++) {
+							if(r.title[i].match(new RegExp(query[c].regexEscape().replace(/[-_ ]/, "[-_ ]"), "gi"))) {
+								c++;
+								let j = i + 1;
+								while(j < r.title.length && c < query.length && r.title[j].match(new RegExp(query[c].regexEscape().replace(/[-_ ]/, "[-_ ]"), "gi"))) j++, c++;
+								r.title = `${r.title.substring(0, i)}__${r.title.substring(i, j)}__${r.title.substring(j)}`;
+								i = j + 3;
+							}
 						}
 					}
 
 					embed.embed.fields.push({
-						"name": `${r.title} by ${r.author.replace(new RegExp(query, "gi"), `__${query}__`)}`,
-						"value": r.description ? r.description.replace(new RegExp(query, "gi"), `__${query}__`) : "---",
+						"name": `${r.title} by ${r.author.caseReplaceAll(query, `__${query}__`)}`,
+						"value": r.description ? r.description.caseReplaceAll(query, `__${query}__`) : "---",
 					});
 				});
 

@@ -30,7 +30,9 @@ module.exports = {
 			if(!query)
 				return msg.send("**Error:** Please enter a search term");
 
-			let regex = new RegExp(query.regexEscape().replace(/\\?./g, "$&.*").replace(/[-_ ]/, "[-_ ]"), "gi");
+			let regex = new RegExp(query.regexEscape().replace(/\\?./g, "$&.*").replace(/\\-|_| /, "[-_ ]"), "gi");
+
+			console.log(regex);
 
 			let out = [];
 			// Search titles

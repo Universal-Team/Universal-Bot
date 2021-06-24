@@ -32,8 +32,6 @@ module.exports = {
 
 			let regex = new RegExp(query.regexEscape().replace(/\\?./g, "$&.*").replace(/\\-|_| /, "[-_ ]"), "gi");
 
-			console.log(regex);
-
 			let out = [];
 			// Search titles
 			json.some(app => {

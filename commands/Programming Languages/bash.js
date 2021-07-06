@@ -14,9 +14,9 @@ module.exports = {
 
 		let output;
 		try {
-			output = terminal(msg.args.value, {shell: "/bin/bash"}).toString();
+		output = terminal(msg.args.value, {shell: "/bin/bash"});
 		} catch(e) {
-			if(!hide)
+			if(!msg.args.hide)
 				return msg.send(e.toString(), {code: "js"});
 			return;
 		}

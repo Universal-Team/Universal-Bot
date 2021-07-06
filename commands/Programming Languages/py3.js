@@ -16,7 +16,7 @@ module.exports = {
 		try {
 			output = terminal(`echo "${msg.args.value.replace(/"/g, "\\\"").replace(/`/g, "\\`")}" | python3`, {shell: "/bin/bash"}).toString();
 		} catch(e) {
-			if(!hide)
+			if(!msg.args.hide)
 				return msg.send(e.toString(), {code: "js"});
 			return;
 		}

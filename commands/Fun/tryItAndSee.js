@@ -5,6 +5,6 @@ module.exports = {
 	DM: true,
 	permissions: [],
 	exec(UnivBot, msg) {
-		msg.send("https://tryitands.ee");
+		msg.reply("https://tryitands.ee");
 	}
 }

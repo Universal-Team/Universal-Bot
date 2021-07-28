@@ -8,7 +8,7 @@ module.exports = {
 	permissions: [ "DEV" ],
 	async exec(UnivBot, msg) {	
 		if(!msg.args.value)
-			return msg.send("**Oops!** You didn't provided enough arguments");
+			return msg.reply("**Oops!** You didn't provided enough arguments");
 	
 		if((msg.args.del || msg.args.d) && msg.guild)
 			msg.delete();
@@ -20,11 +20,11 @@ module.exports = {
 			return;
 	
 		if(typeof object !== "object")
-			return msg.send("```js\n" + object + "```");
+			return msg.reply("```js\n" + object + "```");
 
 		output = object.stdout;
 		if(output.length >= 1024) {
-			msg.send({
+			msg.reply({
 				content: "The output is too long, sending as attachment:",
 				files: [{
 					attachment: Buffer.from(output),
@@ -32,7 +32,7 @@ module.exports = {
 				}]
 			});
 		} else {
-			msg.send("```js\n" + output + "```");
+			msg.reply("```js\n" + output + "```");
 		}
 	}
 }

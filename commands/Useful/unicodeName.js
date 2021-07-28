@@ -21,9 +21,9 @@ module.exports = {
 			for(let key in names) {
 				str += `\`${key}\`: ${names[key]}\n`;
 			}
-			msg.send(str);
+			msg.reply(str);
 		} else {
-			msg.send("Invalid input!");
+			msg.reply("Invalid input!");
 		}
 	}
 }

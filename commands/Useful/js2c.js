@@ -8,7 +8,7 @@ module.exports = {
 	permissions: [],
 	exec(UnivBot, msg) {
 		if(!msg.args.value)
-			return msg.send("**Oops!** Can't transpile the void :P");
+			return msg.reply("**Oops!** Can't transpile the void :P");
 		let output = "**Your code has an error**\n```js\nError: Code contains stuff not supported by ts2c yet```";
 		try {
 			output = ts2c.transpile(msg.args.value);
@@ -16,7 +16,7 @@ module.exports = {
 			cCode = "**Oops!** Apparently your code has an error or you're using code unsupported by ts2c.js";
 		}
 		if(output.length >= 1024) {
-			msg.send({
+			msg.reply({
 				content: "The output is too long, sending as attachment:",
 				files: [{
 					attachment: Buffer.from(output),
@@ -24,7 +24,7 @@ module.exports = {
 				}]
 			});
 		} else {
-			msg.send("```c\n" + output + "```");
+			msg.reply("```c\n" + output + "```");
 		}
 	}
 }

@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+
 module.exports = {
 	name: ["about", "invite"],
 	usage: "",
@@ -24,6 +25,6 @@ module.exports = {
 		embed.addField(":bulb: Amount of cmds", `__**${UnivBot.cmds.length}**__ Commands`, true);
 		embed.addField(":notebook_with_decorative_cover: Used modules", `**${modules.join("**, **")}**`, true)
 		embed.setFooter("• Coded using discord.js", UnivBot.client.user.avatarURL);
-		return msg.send(embed);
+		return msg.reply({embeds: [embed]});
 	}
 }

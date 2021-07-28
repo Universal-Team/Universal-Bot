@@ -9,8 +9,8 @@ module.exports = {
 			msg.args.value = msg.channel.messages.cache.array()[msg.channel.messages.cache.size - 2].content;
 
 			if(!msg.args.value.includes(" "))
-				return msg.send("One clap for you :clap:");
+				return msg.reply("One clap for you :clap:");
 
-		msg.send(msg.args.value.replace(/ /g, ":clap:"));
+		msg.reply(msg.args.value.replace(/ /g, ":clap:"));
 	}
 }

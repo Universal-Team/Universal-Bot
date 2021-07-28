@@ -10,7 +10,7 @@ module.exports = {
 		let stringify = require("util").inspect;
 
 		if(!msg.args.value)
-			return msg.send("**Oops!** You didn't provided enough arguments");
+			return msg.reply("**Oops!** You didn't provided enough arguments");
 
 		if(msg.args.string || msg.args.s)
 			stringify = variable => variable.toString();
@@ -29,7 +29,7 @@ module.exports = {
 			}
 		} catch(e) {
 			if(!(msg.args.hide || msg.args.h))
-				return msg.send("```js\n" + e.toString() + "```");
+				return msg.reply("```js\n" + e.toString() + "```");
 			return;
 		}
 
@@ -46,7 +46,7 @@ module.exports = {
 		}
 
 		if(output.length >= 1024) {
-			msg.send({
+			msg.reply({
 				content: "The output is too long, sending as attachment:",
 				files: [{
 					attachment: Buffer.from(output),
@@ -54,7 +54,7 @@ module.exports = {
 				}]
 			});
 		} else {
-			msg.send("```js\n" + output + "```");
+			msg.reply("```js\n" + output + "```");
 		}
 	}
 }

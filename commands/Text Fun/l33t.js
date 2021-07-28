@@ -9,9 +9,9 @@ module.exports = {
 			msg.args.value = msg.channel.messages.cache.array()[msg.channel.messages.cache.size - 2].content;
 
 		if(!msg.args.value)
-			return msg.send("git gut scrub");
+			return msg.reply("git gut scrub");
 
-		msg.send(l33t(msg.args.value));
+		msg.reply(l33t(msg.args.value));
 	}
 }
 

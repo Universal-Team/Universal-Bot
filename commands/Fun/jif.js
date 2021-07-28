@@ -5,6 +5,6 @@ module.exports = {
 	DM: true,
 	permissions: [],
 	exec(UnivBot, msg) {
-		msg.send("http://service.jmslinks.com/WebService/ProdAdminImage.ashx?id=230");
+		msg.reply("http://service.jmslinks.com/WebService/ProdAdminImage.ashx?id=230");
 	}
 }

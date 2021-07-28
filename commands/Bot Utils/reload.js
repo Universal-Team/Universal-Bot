@@ -6,7 +6,7 @@ module.exports = {
 	permissions: [ "DEV" ],
 	exec(UnivBot, msg) {
 		if(!msg.args.value)
-			return msg.send("**Oops!** You didn't provided enough arguments");
+			return msg.reply("**Oops!** You didn't provided enough arguments");
 
 		let command;
 		for(var path of UnivBot.cmds) {
@@ -35,9 +35,9 @@ module.exports = {
 
 		if(command) {
 			delete require.cache[require.resolve(command)]
-			msg.send(`Successfully reloaded the ${msg.args.value} command`);
+			msg.reply(`Successfully reloaded the ${msg.args.value} command`);
 		} else {
-			msg.send("Couldnt find that command!");
+			msg.reply("Couldnt find that command!");
 		}
 	}
 }

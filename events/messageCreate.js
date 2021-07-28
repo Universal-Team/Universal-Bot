@@ -41,7 +41,10 @@ module.exports = async function(UnivBot, msg, nmsg) {
 		if(msg.attachments.first() && msg.attachments.first().name.match(/\.(bmp|tiff)$/)) {
 			const Jimp = require("jimp");
 			Jimp.read({url: msg.attachments.first().attachment}).then(img => {
-				img.getBufferAsync(Jimp.MIME_PNG).then(r => msg.send("", new Discord.MessageAttachment(r, msg.attachments.first().name.replace(/\.(bmp|tiff)$/, ".png"))));
+				img.getBufferAsync(Jimp.MIME_PNG).then(r => msg.reply({files: [{
+					attachment: r,
+					name: msg.attachments.first().name.replace(/\.(bmp|tiff)$/, ".png")
+				}]}));
 			});
 		}
 	}
@@ -85,8 +88,8 @@ module.exports = async function(UnivBot, msg, nmsg) {
 	// Checks for dev perms
 	msg.dev = isDev(UnivBot, msg.author);
 
-	// Setup msg.send and msg.reply
-	msg.send = function(string, config) {
+	// Setup msg.send
+	msg.send = (string, config) => {
 		var reg = new RegExp(process.env["TOKEN"], "ig");
 		if(typeof string == "string")
 			string = string.replace(reg, "UnivBot.client.token").replace(/@everyone/g, "@/everyone").replace(/@here/g, "@/here").replace(/<@&.*>/g, "role").replace(/<@&.*>/g, "role").replace(/<@!.*>/g, "person")
@@ -98,6 +101,14 @@ module.exports = async function(UnivBot, msg, nmsg) {
 			return message.author.send(string, config);
 		}
 	};
+	msg._reply = msg.reply;
+	msg.reply = (string, config) => {
+		var reg = new RegExp(process.env["TOKEN"], "ig");
+		if(typeof string == "string")
+			string = string.replace(reg, "UnivBot.client.token").replace(/@everyone/g, "@/everyone").replace(/@here/g, "@/here").replace(/<@&.*>/g, "role").replace(/<@&.*>/g, "role").replace(/<@!.*>/g, "person")
+			// .replace(/<@&.*>/g, `@/${message.guild.roles.cache.find(r => r == "605585039417278465").name}`);
+		msg._reply(string, config);
+	}
 
 	// Setup large icon and bot
 	if(msg.guild)

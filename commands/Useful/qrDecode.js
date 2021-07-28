@@ -14,7 +14,7 @@ module.exports = {
 			link = msg.attachments.first().attachment;
 
 		if(!link)
-			return msg.send("Enter a link!");
+			return msg.reply("Enter a link!");
 
 		if(link[0] == "<" && link[link.length - 1] == ">")
 			link = link.substr(1, link.length - 2);
@@ -31,9 +31,9 @@ module.exports = {
 			if(fs.existsSync("qr.png")) {
 				fs.unlinkSync("qr.png");
 			}
-			return msg.send(out.stdout);
+			return msg.reply(out.stdout);
 		}).catch(e => {
-			return msg.send("Invalid URL!");
+			return msg.reply("Invalid URL!");
 		});
 
 	}

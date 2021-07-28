@@ -8,7 +8,7 @@ module.exports = {
 	DM: true,
 	permissions: [ "DEV" ],
 	exec(UnivBot, msg) {
-		var prom = msg.send("Rebooting...")
+		var prom = msg.reply("Rebooting...")
 		prom.then(message => {
 			if(msg.guild)
 				UnivBot.db.reboot = { msg: message.id, channel: message.channel.id, guild: message.guild.id, start: new Date().getTime() };

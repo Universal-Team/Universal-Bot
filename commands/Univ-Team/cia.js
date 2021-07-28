@@ -107,10 +107,10 @@ module.exports = {
 	exec(UnivBot, msg) {
 		const app = new Project(msg.args.value, projects);
 		if(app.invalid)
-		return msg.send(projects.embed());
+		return msg.reply(projects.embed());
 
 		const github = app.github();
-		msg.send({
+		msg.reply({
 			embeds: [{
 				color: app.color,
 				title: `${app.emoji} ${app.name}`,

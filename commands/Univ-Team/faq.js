@@ -38,7 +38,7 @@ module.exports = {
 		}
 
 		if(faqNo <= questions.length && faqNo > 0) {
-			msg.send({
+			msg.reply({
 				embeds: [{
 					color: 0x00c882,
 					title: `FAQ ${faqNo}: ${questions[faqNo - 1]}`,
@@ -51,7 +51,7 @@ module.exports = {
 				qList += `**${(Number(i) + 1).toString()}.** ${questions[i]}\n`;
 			}
 
-			msg.send({
+			msg.reply({
 				embeds: [{
 					color: 0x00c882,
 					title: "FAQ list",

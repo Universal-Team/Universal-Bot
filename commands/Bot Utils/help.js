@@ -83,7 +83,7 @@ module.exports = {
 				var desc = "No description yet"
 				var path = `commands/${category}/desc.txt`;
 				if(fs.existsSync(path))
-					desc = fs.readFileSync(path);
+					desc = fs.readFileSync(path).toString();
 				category += ` [${fs.readdirSync(`commands/${category}`).filter(cmd => cmd.endsWith(".js")).length}]`;
 				embed.addField(category, desc);
 			}
@@ -154,8 +154,6 @@ module.exports = {
 			}
 		}
 
-		msg.send({
-			embeds: [embed]
-		});
+		msg.reply({embeds: [embed]});
 	}
 }

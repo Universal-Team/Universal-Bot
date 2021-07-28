@@ -10,12 +10,12 @@ module.exports = {
 		let stringify = require("util").inspect;
 
 		if(!msg.args.value)
-			return msg.send("**Oops!** You didn't provided enough arguments");
+			return msg.reply("**Oops!** You didn't provided enough arguments");
 
 		if(msg.args.string || msg.args.s)
 			stringify = variable => variable.toString();
 
-		let message = await msg.send("Running typescript can be slow, please be patient...");
+		let message = await msg.reply("Running typescript can be slow, please be patient...");
 		let output = ts2js(msg.args.value);
 		message.delete({timeout: 1, reason: "Done running ts2js"});
 
@@ -28,7 +28,7 @@ module.exports = {
 				err = "typescript.ts(0,0): error: The given code has errors.";
 
 			if(!(msg.args.hide || msg.args.h))
-				return msg.send("```ts\n" + err + "```");
+				return msg.reply("```ts\n" + err + "```");
 			return;
 		}
 
@@ -40,7 +40,7 @@ module.exports = {
 				output = output.toString();
 		} catch(e) {
 			if(!(msg.args.hide || msg.args.h))
-				return msg.send("```js\n" + e.toString() + "```");
+				return msg.reply("```js\n" + e.toString() + "```");
 			return;
 		}
 
@@ -52,7 +52,7 @@ module.exports = {
 		}
 
 		if(output.length >= 1024) {
-			msg.send({
+			msg.reply({
 				content: "The output is too long, sending as attachment:",
 				files: [{
 					attachment: Buffer.from(output),
@@ -60,7 +60,7 @@ module.exports = {
 				}]
 			});
 		} else {
-			msg.send("```js\n" + output + "```");
+			msg.reply("```js\n" + output + "```");
 		}
 	}
 }

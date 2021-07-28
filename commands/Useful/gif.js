@@ -12,16 +12,16 @@ module.exports = {
 			link = msg.attachments.first().attachment;
 
 		if(!link)
-			return msg.send("Enter a link!");
+			return msg.reply("Enter a link!");
 
 		if(link[0] == "<" && link[link.length - 1] == ">")
 			link = link.substr(1, link.length - 2);
 
 		Jimp.read({url: link}).then(img => {
-			img.getBufferAsync(Jimp.MIME_GIF).then(r => msg.send({files: [{
+			img.getBufferAsync(Jimp.MIME_GIF).then(r => msg.reply({files: [{
 				attachment: r,
 				name: "image.gif"
 			}]}));
-		}).catch(e => msg.send(`Invalid URL! (${e})`));
+		}).catch(e => msg.reply(`Invalid URL! (${e})`));
 	}
 }

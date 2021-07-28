@@ -6,7 +6,7 @@ module.exports = {
 	permissions: [],
 	exec(UnivBot, msg) {
 		if(!(msg.args.value || msg.args.random || msg.args.r))
-			return msg.send("Nothing isn't an emoji...");
+			return msg.reply("Nothing isn't an emoji...");
 
 		let out = "";
 		if(msg.args.random || msg.args.r) {
@@ -43,6 +43,6 @@ module.exports = {
 			out = out.substr(0, out.lastIndexOf("<") - 1);
 		}
 
-		msg.send(out);
+		msg.reply(out);
 	}
 }

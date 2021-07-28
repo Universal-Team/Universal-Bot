@@ -13,6 +13,6 @@ module.exports = {
 	exec(UnivBot, msg) {
 		let dst = new Date().stdTimezoneOffset() > new Date().getTimezoneOffset();
 
-		msg.send(dst ? "Yeah\n(*in us central time at least*)" : "Nope\n(*in us central time at least*)");
+		msg.reply(dst ? "Yeah\n(*in us central time at least*)" : "Nope\n(*in us central time at least*)");
 	}
 }

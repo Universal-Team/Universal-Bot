@@ -13,10 +13,10 @@ module.exports = {
 
 		let str = out.join(", ");
 		if(str.length <= 2000) {
-			msg.send(str);
+			msg.reply(str);
 		} else {
 			str = str.substr(0, 2000);
-			msg.send(str.substr(0, str.lastIndexOf(",")));
+			msg.reply(str.substr(0, str.lastIndexOf(",")));
 		}
 	}
 }

@@ -108,10 +108,10 @@ module.exports = {
 	exec(UnivBot, msg) {
 		const app = new Project(msg.args.value, projects);
 		if(app.invalid)
-			return msg.send(projects.embed());
+			return msg.reply(projects.embed());
 
 		const github = app.github();
-		msg.send({
+		msg.reply({
 			embeds: [{
 				color: app.color,
 				description: `${app.emoji} You can get the latest release of ${app} [here](${github.release.file})`,

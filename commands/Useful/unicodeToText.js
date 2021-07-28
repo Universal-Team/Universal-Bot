@@ -10,8 +10,8 @@ module.exports = {
 			msg.args.value.split(" ").forEach(r => {
 				message += String.fromCodePoint(parseInt(r.replace(/U\+/gi, "0x")));
 			});
-			return msg.send(message);
+			return msg.reply(message);
 		}
-		return msg.send("I can't convert nothing...");
+		return msg.reply("I can't convert nothing...");
 	}
 }

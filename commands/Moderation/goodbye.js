@@ -53,12 +53,12 @@ List of variables
 		if(msg.args.enable || msg.args.e) {
 			db.messages.goodbye.enabled = true;
 			updateDB(UnivBot);
-			return msg.send(`Enabled goodbye messages ${makeJSON(db.messages.goodbye)}`);
+			return msg.reply(`Enabled goodbye messages ${makeJSON(db.messages.goodbye)}`);
 		}
 		if(msg.args.disable || msg.args.d) {
 			db.messages.goodbye.enabled = false;
 			updateDB(UnivBot);
-			return msg.send(`Disabled goodbye messages ${makeJSON(db.messages.goodbye)}`);
+			return msg.reply(`Disabled goodbye messages ${makeJSON(db.messages.goodbye)}`);
 		}
 
 		// Check for channel
@@ -68,27 +68,27 @@ List of variables
 			if(msg.args.channel.toLowerCase() == "default") {
 				db.messages.goodbye.channel = "sys";
 				updateDB(UnivBot);
-				return msg.send(`Sucessfully changed the goodbye channel to the system channel ${makeJSON(db.messages.goodbye)}`);
+				return msg.reply(`Sucessfully changed the goodbye channel to the system channel ${makeJSON(db.messages.goodbye)}`);
 			}
 			var ID = msg.args.channel.substring(2, msg.args.channel.length - 1);
 			var channel = msg.guild.channels.cache.get(ID);
 			if(!channel)
-				return msg.send(err2);
+				return msg.reply(err2);
 			db.messages.goodbye.channel = ID;
 			updateDB(UnivBot);
-			return msg.send(`Sucessfully changed the goodbye channel to **<#${ID}>** ${makeJSON(db.messages.goodbye)}`);
+			return msg.reply(`Sucessfully changed the goodbye channel to **<#${ID}>** ${makeJSON(db.messages.goodbye)}`);
 		}
 
 		// Check for message
 		if(msg.args.message || msg.args.m) {
 			if(!msg.args.value)
-				return msg.send(err1);
+				return msg.reply(err1);
 			db.messages.goodbye.string = msg.args.value;
 			updateDB(UnivBot);
-			return msg.send(`Sucessfully changed the goodbye message ${makeJSON(db.messages.goodbye)}`);
+			return msg.reply(`Sucessfully changed the goodbye message ${makeJSON(db.messages.goodbye)}`);
 		}
 
 		// Send list of options
-		return msg.send(err3);
+		return msg.reply(err3);
 	}
 }

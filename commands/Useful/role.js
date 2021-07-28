@@ -21,9 +21,9 @@ module.exports = {
 						out += role.name + "\n";
 					}
 				});
-				return msg.send(out);
+				return msg.reply(out);
 			} else {
-				return msg.send("You must have the MANAGE_ROLES permission to manage toggleable roles!");
+				return msg.reply("You must have the MANAGE_ROLES permission to manage toggleable roles!");
 			}
 		}
 
@@ -38,9 +38,9 @@ module.exports = {
 						out += role.name + "\n";
 					}
 				});
-				return msg.send(out);
+				return msg.reply(out);
 			} else {
-				return msg.send("You must have the MANAGE_ROLES permission to manage toggleable roles!");
+				return msg.reply("You must have the MANAGE_ROLES permission to manage toggleable roles!");
 			}
 		}
 
@@ -58,7 +58,7 @@ module.exports = {
 				out += "\n\n__**The following roles can be removed:**__";
 				possibleRemove.forEach(id => out += `\n${db.toggleableRoles[id].name}`);
 			}
-			return msg.send(out != "" ? out : "No roles can be toggled in this server.");
+			return msg.reply(out != "" ? out : "No roles can be toggled in this server.");
 		}
 
 		let addRoles = [];
@@ -93,7 +93,7 @@ module.exports = {
 			out += "\n\n__**The following roles can't be added/removed:**__\n";
 			out += notRoles.join("\n");
 		}
-		msg.send(out);
+		msg.reply(out);
 	}
 }
 

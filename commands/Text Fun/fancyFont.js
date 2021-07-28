@@ -11,13 +11,13 @@ module.exports = {
 			msg.args.value = msg.channel.messages.cache.array()[msg.channel.messages.cache.size - 2].content;
 
 		if(!msg.args.value)
-			return msg.send("How am I supposed to make nothing look fancy?".fancyFont(valid[Math.floor(Math.random() * valid.length)]));
+			return msg.reply("How am I supposed to make nothing look fancy?".fancyFont(valid[Math.floor(Math.random() * valid.length)]));
 			
 		let index = parseInt(msg.args.i ?? msg.args.index ?? valid[Math.floor(Math.random() * valid.length)]);
 
 		if(!valid.includes(index))
-			return msg.send((`Index must be ${valid.join(", ")}!`).fancyFont(valid[Math.floor(Math.random() * valid.length)]));
+			return msg.reply((`Index must be ${valid.join(", ")}!`).fancyFont(valid[Math.floor(Math.random() * valid.length)]));
 
-		msg.send(msg.args.value.fancyFont(index));
+		msg.reply(msg.args.value.fancyFont(index));
 	}
 }

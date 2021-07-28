@@ -28,7 +28,7 @@ module.exports = {
 				query = json[Math.floor(Math.random() * json.length)].title;
 
 			if(!query)
-				return msg.send("**Error:** Please enter a search term");
+				return msg.reply("**Error:** Please enter a search term");
 
 			let regex = new RegExp(query.regexEscape().replace(/\\?./g, "$&.*").replace(/\\-|_| /g, "[-_ ]"), "gi");
 
@@ -97,7 +97,7 @@ module.exports = {
 					});
 				});
 
-				return msg.send({embeds: [embed]});
+				return msg.reply({embeds: [embed]});
 			}
 
 			out.forEach(res => {
@@ -143,11 +143,11 @@ module.exports = {
 					embed.embeds[0].image.url = `${res.qr[item]}?version=${res.version}`;
 				}
 
-				msg.send(embed);
+				msg.reply(embed);
 			});
 
 			if(out.length == 0) {
-				msg.send("No results found!");
+				msg.reply("No results found!");
 			}
 		});
 	}

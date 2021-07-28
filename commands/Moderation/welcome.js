@@ -52,11 +52,11 @@ include those 'variables' in the text:
 		if(msg.args.enable || msg.args.e) {
 			db.messages.welcome.enabled = true;
 			updateDB(UnivBot);
-			return msg.send(`Enabled welcome messages ${makeJSON(db.messages.welcome)}`);
+			return msg.reply(`Enabled welcome messages ${makeJSON(db.messages.welcome)}`);
 		} else if(msg.args.disable || msg.args.d) {
 			db.messages.welcome.enabled = false;
 			updateDB(UnivBot);
-			return msg.send(`Disabled welcome messages ${makeJSON(db.messages.welcome)}`);
+			return msg.reply(`Disabled welcome messages ${makeJSON(db.messages.welcome)}`);
 		}
 		if(typeof(msg.args.c) == "string")
 			msg.args.channel = msg.args.c;
@@ -64,25 +64,25 @@ include those 'variables' in the text:
 			if(msg.args.channel.toLowerCase() == "default") {
 				db.messages.welcome.channel = "sys";
 				updateDB(UnivBot);
-				return msg.send(`Sucessfully changed the welcome channel to the system channel ${makeJSON(db.messages.welcome)}`);
+				return msg.reply(`Sucessfully changed the welcome channel to the system channel ${makeJSON(db.messages.welcome)}`);
 			}
 			var ID = msg.args.channel.substring(2, msg.args.channel.length - 1);
 			var channel = msg.guild.channels.cache.get(ID);
 			if(!channel)
-				return msg.send(err2);
+				return msg.reply(err2);
 			db.messages.welcome.channel = ID;
 			updateDB(UnivBot);
-			return msg.send(`Sucessfully changed the welcome channel to **<#${ID}>** ${makeJSON(db.messages.welcome)}`);
+			return msg.reply(`Sucessfully changed the welcome channel to **<#${ID}>** ${makeJSON(db.messages.welcome)}`);
 		}
 		if(msg.args.message || msg.args.m) {
 			if(!msg.args.value)
-				return msg.send(err1);
+				return msg.reply(err1);
 			db.messages.welcome.string = msg.args.value;
 			updateDB(UnivBot);
-			return msg.send(`Sucessfully changed the welcome message ${makeJSON(db.messages.welcome)}`);
+			return msg.reply(`Sucessfully changed the welcome message ${makeJSON(db.messages.welcome)}`);
 		}
 
 		// Send list of options
-		return msg.send(err3);
+		return msg.reply(err3);
 	}
 }

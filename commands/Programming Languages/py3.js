@@ -8,14 +8,14 @@ module.exports = {
 	permissions: [ "DEV" ],
 	async exec(UnivBot, msg) {
 		if(!msg.args.value)
-			return msg.send("**Oops!** You didn't provided enough arguments");
+			return msg.reply("**Oops!** You didn't provided enough arguments");
 
 		let output;
 		try {
 			output = terminal(`echo "${msg.args.value.replace(/"/g, "\\\"").replace(/`/g, "\\`")}" | python3`, {shell: "/bin/bash"}).toString();
 		} catch(e) {
 			if(!msg.args.hide)
-				return msg.send("```js\n" + e.toString() + "```");
+				return msg.reply("```js\n" + e.toString() + "```");
 			return;
 		}
 
@@ -30,7 +30,7 @@ module.exports = {
 			output = "Successfully executed script without errors. Exit with code 0";
 
 			if(output.length >= 1024) {
-				msg.send({
+				msg.reply({
 					content: "The output is too long, sending as attachment:",
 					files: [{
 						attachment: Buffer.from(output),
@@ -38,7 +38,7 @@ module.exports = {
 					}]
 				});
 			} else {
-				msg.send("```py\n" + output + "```");
+				msg.reply("```py\n" + output + "```");
 			}
 	}
 }

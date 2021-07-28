@@ -50,7 +50,7 @@ module.exports = {
 		}
 
 		if(ruleNo <= rules.length && ruleNo > 0) {
-			msg.send({
+			msg.reply({
 				embeds: [{
 					color: 0x00c882,
 					title: `Rule ${ruleNo}`,
@@ -63,7 +63,7 @@ module.exports = {
 				rList += `**${(Number(i) + 1).toString()}.** ${rulesBrief[i]}\n`;
 			}
 
-			msg.send({
+			msg.reply({
 				embeds: [{
 					color: 0x00c882,
 					title: "Rule list",

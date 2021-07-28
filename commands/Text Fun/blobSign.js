@@ -39,8 +39,8 @@ module.exports = {
 			msg.args.value = msg.channel.messages.cache.array()[msg.channel.messages.cache.size - 2].content;
 
 		if(!msg.args.value)
-			return msg.send("<:blobNo:667718424809439262>");
+			return msg.reply("<:blobNo:667718424809439262>");
 
-		msg.send(msg.args.value.replace(/[A-Z ]/gi, r => `<:blob${r == " " ? "Template" : r.toUpperCase()}:${letters[r.toUpperCase()]}>`));
+		msg.reply(msg.args.value.replace(/[A-Z ]/gi, r => `<:blob${r == " " ? "Template" : r.toUpperCase()}:${letters[r.toUpperCase()]}>`));
 	}
 }

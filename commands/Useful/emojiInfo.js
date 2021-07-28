@@ -6,7 +6,7 @@ module.exports = {
 	permissions: [],
 	exec(UnivBot, msg) {
 		if(!msg.args.value)
-			return msg.send("Nothing isn't an emoji...");
+			return msg.reply("Nothing isn't an emoji...");
 
 		if(msg.args.value.match(/<:.*:.*>/))
 			msg.args.value = msg.args.value.substr(msg.args.value.indexOf(":") + 1, msg.args.value.lastIndexOf(":") - msg.args.value.indexOf(":") - 1);
@@ -25,7 +25,7 @@ module.exports = {
 		});
 
 		if(emoji) {
-			msg.send({embeds: [{
+			msg.reply({embeds: [{
 				title: `\\:${emoji.name}\\: info`,
 				fields: [
 					{
@@ -43,7 +43,7 @@ module.exports = {
 				color: 0xffce3a
 			}]});
 		} else {
-			msg.send("Aww, no emoji found...");
+			msg.reply("Aww, no emoji found...");
 		}
 	}
 }

@@ -6,7 +6,7 @@ module.exports = {
 	permissions: [],
 	exec(UnivBot, msg) {
 		if(!msg.args.value)
-			return msg.send("Nothing isn't an emoji...");
+			return msg.reply("Nothing isn't an emoji...");
 
 		let emoji = [];
 		UnivBot.client.guilds.cache.some(guild => {
@@ -33,9 +33,9 @@ module.exports = {
 				str += out
 		});
 		if(!str)
-			return msg.send("Aww, no emoji found...");
+			return msg.reply("Aww, no emoji found...");
 
-		return msg.send({embeds: [{
+		return msg.reply({embeds: [{
 			title: "Results",
 			color: 0xffce3a,
 			description: str

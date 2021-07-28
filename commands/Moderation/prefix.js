@@ -10,10 +10,10 @@ module.exports = {
 	permissions: [ "ADMINISTRATOR" ],
 	exec(UnivBot, msg) {
 		if(!msg.args.value)
-			return msg.send("Can't use an empty prefix!");
+			return msg.reply("Can't use an empty prefix!");
 		var db = UnivBot.db[msg.guild.id];
 		db.prefix = msg.args.value;
 		updateDB(UnivBot);
-		return msg.send("Sucessfully changed the prefix for the server!");
+		return msg.reply("Sucessfully changed the prefix for the server!");
 	}
 }

@@ -12,7 +12,7 @@ module.exports = {
 			msg.args.value = msg.attachments.first().attachment;
 
 		if(!msg.args.value)
-			return msg.send("Enter some text!");
+			return msg.reply("Enter some text!");
 
 		spawnSync("qrencode", ["-o", "qr.png"].concat(msg.args.value), { encoding: "utf-8" });
 		if(fs.existsSync("qr.png")) {
@@ -20,7 +20,7 @@ module.exports = {
 			fs.unlinkSync("qr.png");
 		}
 
-		msg.send({files: [{
+		msg.reply({files: [{
 			attachment: qr,
 			name: "qr.png"
 		}]});

@@ -24,7 +24,7 @@ module.exports = {
 			msg.args.value = msg.channel.messages.cache.array()[msg.channel.messages.cache.size - 2].content;
 
 		if(!msg.args.value)
-			return msg.send(`ur no fun ${face()}`);
+			return msg.reply(`ur no fun ${face()}`);
 
 		for(let member of msg.guild.members.cache) {
 			if(member[1].nickname)
@@ -32,7 +32,7 @@ module.exports = {
 			msg.args.value = msg.args.value.caseReplaceAll(member[1].user.username, `${member[1].user.username}-chan`);
 		}
 
-		msg.send(uwuify(msg.args.value));
+		msg.reply(uwuify(msg.args.value));
 	}
 }
 

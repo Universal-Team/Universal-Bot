@@ -5,7 +5,7 @@ module.exports = {
 	DM: true,
 	permissions: [],
 	async exec(UnivBot, msg) {
-		let m = await msg.send("Okay!");
+		let m = await msg.reply("Okay!");
 		setTimeout(() => m.edit("nvm, I don't feel like it"), 3000);
 	}
 }

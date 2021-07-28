@@ -8,7 +8,7 @@ module.exports = {
 	permissions: [ "DEV" ],
 	async exec(UnivBot, msg) {
 		if(!msg.args.value)
-			return msg.send("**Oops!** You didn't provided enough arguments");
+			return msg.reply("**Oops!** You didn't provided enough arguments");
 
 		if(msg.args.template || msg.args.t)
 			msg.args.value = `
@@ -32,14 +32,14 @@ return 0;
 			return;
 
 		if(typeof object !== "object")
-			return msg.send("```js\n" + object + "```");
+			return msg.reply("```js\n" + object + "```");
 
 		output = object.stdout;
 		if(output.length == 0)
 		output = "Successfully executed script without errors. Exit with code 0";
 
 		if(output.length >= 1024) {
-			msg.send({
+			msg.reply({
 				content: "The output is too long, sending as attachment:",
 				files: [{
 					attachment: Buffer.from(output),
@@ -47,7 +47,7 @@ return 0;
 				}]
 			});
 		} else {
-			msg.send("```c\n" + output + "```");
+			msg.reply("```c\n" + output + "```");
 		}
 	}
 }

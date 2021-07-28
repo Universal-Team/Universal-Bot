@@ -46,6 +46,6 @@ module.exports = {
 			out += row.join(" ") + "\n";
 		}
 
-		msg.send(out);
+		msg.reply(out);
 	}
 }

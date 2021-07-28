@@ -9,9 +9,9 @@ module.exports = {
 			msg.args.value = msg.channel.messages.cache.array()[msg.channel.messages.cache.size - 2].content;
 
 		if(!msg.args.value)
-			return msg.send("no bruh for bruh you");
+			return msg.reply("no bruh for bruh you");
 
-		msg.send(bruhify(msg.args.value));
+		msg.reply(bruhify(msg.args.value));
 	}
 }
 

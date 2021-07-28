@@ -9,8 +9,8 @@ module.exports = {
 			msg.args.value = msg.channel.messages.cache.array()[msg.channel.messages.cache.size - 2].content;
 
 		if(!msg.args.value)
-			return msg.send("The void is not angry");
+			return msg.reply("The void is not angry");
 
-		msg.send(`***${msg.args.value.toUpperCase().split("").join(" ")}***`);
+		msg.reply(`***${msg.args.value.toUpperCase().split("").join(" ")}***`);
 	}
 }

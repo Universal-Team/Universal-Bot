@@ -55,7 +55,7 @@ module.exports = {
 
 		let name = color(parseInt(hex, 16));
 		return msg.send({
-			embed: {
+			embeds: [{
 				title: `Color: ${name.name}`,
 				fields: [
 					{
@@ -75,7 +75,7 @@ module.exports = {
 					}
 				],
 				color: parseInt(hex, 16)
-			}
+			}]
 		});
 	}
 }

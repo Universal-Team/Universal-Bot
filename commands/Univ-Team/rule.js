@@ -51,11 +51,11 @@ module.exports = {
 
 		if(ruleNo <= rules.length && ruleNo > 0) {
 			msg.send({
-				embed: {
+				embeds: [{
 					color: 0x00c882,
 					title: `Rule ${ruleNo}`,
 					description: rules[ruleNo - 1],
-				}
+				}]
 			});
 		} else {
 			let rList = "";
@@ -64,11 +64,11 @@ module.exports = {
 			}
 
 			msg.send({
-				embed: {
+				embeds: [{
 					color: 0x00c882,
 					title: "Rule list",
 					description: rList,
-				}
+				}]
 			});
 		}
 	}

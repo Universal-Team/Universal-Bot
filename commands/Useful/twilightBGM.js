@@ -1,7 +1,6 @@
 const { spawnSync }     = require("child_process");
 const fetch             = require("node-fetch");
 const fs                = require("fs");
-const MessageAttachment = require("../../utils/MessageAttachment");
 
 module.exports = {
 	name: ["TWiLightBGM", "TWiLightMusic", "twlbgm"],
@@ -26,7 +25,7 @@ module.exports = {
 
 		let m = await msg.send("Downloading... (This may take a bit)");
 
-		fetch(link, {"method": "Get"}).then(r => {
+		fetch(link, {method: "Get"}).then(r => {
 			if(r.status >= 200 && r.status <= 299) {
 				return r.buffer();
 			} else {
@@ -40,10 +39,15 @@ module.exports = {
 				fs.unlinkSync(name);
 			}
 			m.edit("Sending... (This may take a bit)");
-			msg.send("", MessageAttachment(fs.readFileSync("bgm.pcm.raw"), "bgm.pcm.raw")).then(() => m.edit("Done!"));
-			if(fs.existsSync("bgm.pcm.raw")) {
-				fs.unlinkSync("bgm.pcm.raw");
-			}
+			msg.send({files: [{
+				attachment: "bgm.pcm.raw",
+				name: "bgm.pcm.raw"
+			}]}).then(() => {
+				m.edit("Done!")
+				if(fs.existsSync("bgm.pcm.raw")) {
+					fs.unlinkSync("bgm.pcm.raw");
+				}
+			});
 		}).catch(e => {
 			return msg.send(`Invalid URL: ${e}`);
 		});

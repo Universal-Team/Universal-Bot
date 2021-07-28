@@ -43,14 +43,14 @@ I do know some good ones for:
 		}
 
 		if(guide)
-			msg.send("", {"embed": {
+			msg.send({embeds: [{
 				"title": "Video Guide",
 				"description": `[Hey look, I actually found a good one!](${guide})`
-			}});
+			}]});
 		else
-			msg.send("", {"embed": {
+			msg.send({embeds: [{
 				"title": "Video Guide",
 				"description": "Darn, there don't seem to be any good ones, just look for a good text guide ;P"
-			}});
+			}]});
 	}
 }

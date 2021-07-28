@@ -98,11 +98,6 @@ module.exports = async function(UnivBot, msg, nmsg) {
 			return message.author.send(string, config);
 		}
 	};
-	msg.reply = function(string, config) {
-		var message = this;
-		var ping = `<@${message.author.id}>`;
-		return message.send(`${ping}, ${string}`, config);
-	};
 
 	// Setup large icon and bot
 	if(msg.guild)
@@ -175,7 +170,6 @@ module.exports = async function(UnivBot, msg, nmsg) {
 	try {
 		command.exec(UnivBot, msg);
 	} catch(e) {
-		await msg.send("Oops! An error has occurred while executing this command.");
-		msg.send(e, {code:"js"});
+		msg.send("Oops! An error has occurred while executing this command. ```js\n" + e + "```");
 	}
 }

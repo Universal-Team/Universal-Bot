@@ -25,7 +25,7 @@ module.exports = {
 		});
 
 		if(emoji) {
-			msg.send("", {embed: {
+			msg.send({embeds: [{
 				title: `\\:${emoji.name}\\: info`,
 				fields: [
 					{
@@ -41,7 +41,7 @@ module.exports = {
 					url: `https://cdn.discordapp.com/emojis/${emoji.id + (emoji.animated ? ".gif" : ".png")}`
 				},
 				color: 0xffce3a
-			}});
+			}]});
 		} else {
 			msg.send("Aww, no emoji found...");
 		}

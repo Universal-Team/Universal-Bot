@@ -1,5 +1,3 @@
-const searchFlags = require("../../utils/searchFlags");
-const MessageAttachment = require("../../utils/MessageAttachment");
 const compile = require("../../utils/compile");
 
 module.exports = {
@@ -33,16 +31,22 @@ return 0;
 			return;
 
 		if(typeof object !== "object")
-			return msg.send(object, {code: "js"});
+			return msg.send("```js\n" + object + "```");
 
 		output = object.stdout;
 		if(output.length == 0)
 		output = "Successfully executed script without errors. Exit with code 0";
 
 		if(output.length >= 1024) {
-			msg.send("The output is too long, sending as attachment:", MessageAttachment(output, "output.txt"));
+			msg.send({
+				content: "The output is too long, sending as attachment:",
+				files: [{
+					attachment: Buffer.from(output),
+					name: "output.txt"
+				}]
+			});
 		} else {
-			msg.send(output, {code: "cpp"});
+			msg.send("```cpp\n" + output + "```");
 		}
 	}
 }

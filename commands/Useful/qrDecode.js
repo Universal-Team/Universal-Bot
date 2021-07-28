@@ -1,5 +1,4 @@
 const { spawnSync }     = require("child_process");
-const MessageAttachment = require("../../utils/MessageAttachment");
 const fs                = require("fs");
 const fetch             = require("node-fetch");
 
@@ -20,7 +19,7 @@ module.exports = {
 		if(link[0] == "<" && link[link.length - 1] == ">")
 			link = link.substr(1, link.length - 2);
 
-		fetch(link, {"method": "Get"}).then(r => {
+		fetch(link, {method: "Get"}).then(r => {
 			if(r.status >= 200 && r.status <= 299) {
 				return r.buffer();
 			} else {

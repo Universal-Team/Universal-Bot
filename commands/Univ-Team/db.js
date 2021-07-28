@@ -23,7 +23,7 @@ module.exports = {
 	exec(UnivBot, msg) {
 		let query = msg.args.value;
 		
-		require("node-fetch")("https://db.universal-team.net/data/full.json", {"method": "Get"}).then(r => r.json()).then(json => {
+		require("node-fetch")("https://db.universal-team.net/data/full.json", {method: "Get"}).then(r => r.json()).then(json => {
 			if(msg.args.random || msg.args.r)
 				query = json[Math.floor(Math.random() * json.length)].title;
 
@@ -64,13 +64,13 @@ module.exports = {
 			}
 
 			if(msg.args.search || msg.args.s) {
-				let embed = {"embed": {
+				let embed = {
 					"title": "Results",
 					"fields": []
-				}};
+				};
 
 				if(out.length == 0)
-					embed.embed.description = "No results found"
+					embed.description = "No results found"
 				else out.sort((a, b) => {
 					if(a.title < b.title)
 						return -1;
@@ -91,13 +91,13 @@ module.exports = {
 						}
 					}
 
-					embed.embed.fields.push({
-						"name": `${r.title} by ${r.author.caseReplaceAll(query, `__${query}__`)}`,
-						"value": r.description ? r.description.caseReplaceAll(query, `__${query}__`) : "---",
+					embed.fields.push({
+						name: `${r.title} by ${r.author.caseReplaceAll(query, `__${query}__`)}`,
+						value: r.description ? r.description.caseReplaceAll(query, `__${query}__`) : "---",
 					});
 				});
 
-				return msg.send("", embed);
+				return msg.send({embeds: [embed]});
 			}
 
 			out.forEach(res => {
@@ -113,34 +113,34 @@ module.exports = {
 				if(res.license)
 					res.description += `\n**License**: ${res.license_name}`;
 
-				let embed = {"embed": {
-					"title": res.title,
-					"url": `https://db.universal-team.net/${res.systems[0].toLowerCase()}/${Array.from(res.title.toLowerCase().replace(/ /g, "-")).filter(r => "abcdefghijklmnopqrstuvwxyz0123456789-_.".includes(r)).join("")}`,
-					"thumbnail": {
-						"url": res.image || res.icon
+				let embed = {embeds: [{
+					title: res.title,
+					url: `https://db.universal-team.net/${res.systems[0].toLowerCase()}/${Array.from(res.title.toLowerCase().replace(/ /g, "-")).filter(r => "abcdefghijklmnopqrstuvwxyz0123456789-_.".includes(r)).join("")}`,
+					thumbnail: {
+						url: res.image || res.icon
 					},
-					"description": res.description,
-					"fields": [],
-					"image": {},
-					"footer": {
-						"icon_url": res.avatar || res.icon || res.image,
-						"text": res.author ? `By: ${res.author}` : ""
+					description: res.description,
+					fields: [],
+					image: {},
+					footer: {
+						icon_url: res.avatar || res.icon || res.image,
+						text: res.author ? `By: ${res.author}` : ""
 					},
-					"color": res.color ? parseInt(res.color.substr(1), 16) : 0x072f4f,
-					"timestamp": res.updated
-				}};
+					color: res.color ? parseInt(res.color.substr(1), 16) : 0x072f4f,
+					timestamp: res.updated
+				}]};
 				for(let item in res.downloads) {
-					embed.embed.fields.push({
-						"inline": true,
-						"name": item,
-						"value": `[Download](${res.downloads[item].url})${res.downloads[item].size ? ` (${parseBytes(res.downloads[item].size)})` : ""}`
+					embed.embeds[0].fields.push({
+						inline: true,
+						name: item,
+						value: `[Download](${res.downloads[item].url})${res.downloads[item].size ? ` (${parseBytes(res.downloads[item].size)})` : ""}`
 					});
 				}
 
 				for(let item in res.qr) {
 					// The "?version=xxx" does literally nothing except ensure that the URL
 					// is different to prevent Discord using an outdated one from cache
-					embed.embed.image.url = `${res.qr[item]}?version=${res.version}`;
+					embed.embeds[0].image.url = `${res.qr[item]}?version=${res.version}`;
 				}
 
 				msg.send(embed);

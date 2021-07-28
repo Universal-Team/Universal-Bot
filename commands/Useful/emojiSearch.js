@@ -35,10 +35,10 @@ module.exports = {
 		if(!str)
 			return msg.send("Aww, no emoji found...");
 
-		return msg.send("", {embed: {
+		return msg.send({embeds: [{
 			title: "Results",
 			color: 0xffce3a,
 			description: str
-		}});
+		}]});
 	}
 }

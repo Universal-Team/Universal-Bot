@@ -39,11 +39,11 @@ module.exports = {
 
 		if(faqNo <= questions.length && faqNo > 0) {
 			msg.send({
-				embed: {
+				embeds: [{
 					color: 0x00c882,
 					title: `FAQ ${faqNo}: ${questions[faqNo - 1]}`,
 					description: answers[faqNo - 1],
-				}
+				}]
 			});
 		} else {
 			let qList = "";
@@ -52,11 +52,11 @@ module.exports = {
 			}
 
 			msg.send({
-				embed: {
+				embeds: [{
 					color: 0x00c882,
 					title: "FAQ list",
 					description: qList,
-				}
+				}]
 			});
 		}
 	}

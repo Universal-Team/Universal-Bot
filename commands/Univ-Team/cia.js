@@ -13,11 +13,11 @@ projects.embed = function() {
 	this.forEach(object => description.push(`${object.emoji} **${object.name}**`));
 
 	return {
-		embed: {
+		embeds: [{
 			color: 0x00c882,
 			title: "Invalid project name!",
 			description: description.join("\n")
-		}
+		}]
 	};
 }
 
@@ -111,12 +111,12 @@ module.exports = {
 
 		const github = app.github();
 		msg.send({
-			embed: {
+			embeds: [{
 				color: app.color,
 				title: `${app.emoji} ${app.name}`,
 				description: "Use the link or QR above to install the cia",
 				url: github.cia.file
-			},
+			}],
 			files: [github.cia.QR]
 		});
 	}

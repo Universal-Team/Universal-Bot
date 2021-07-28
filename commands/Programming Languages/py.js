@@ -1,6 +1,4 @@
 const terminal = require("child_process").execSync;
-const searchFlags = require("../../utils/searchFlags");
-const MessageAttachment = require("../../utils/MessageAttachment");
 
 module.exports = {
 	name: ["Py", "Py2", "Python", "Python2"],
@@ -17,7 +15,7 @@ module.exports = {
 			output = terminal(`echo "${msg.args.value.replace(/"/g, "\\\"").replace(/`/g, "\\`")}" | python2`, {shell: "/bin/bash"}).toString();
 		} catch(e) {
 			if(!msg.args.hide)
-				return msg.send(e.toString(), {code: "js"});
+				return msg.send("```js\n" + e.toString() + "```");
 			return;
 		}
 
@@ -31,10 +29,16 @@ module.exports = {
 		if(output.length == 0)
 			output = "Successfully executed script without errors. Exit with code 0";
 
-		if(output.length >= 1024) {
-			msg.send("The output is too long, sending as attachment:", MessageAttachment(output, "output.txt"));
-		} else {
-			msg.send(output, {code: "py"});
-		}
+			if(output.length >= 1024) {
+				msg.send({
+					content: "The output is too long, sending as attachment:",
+					files: [{
+						attachment: Buffer.from(output),
+						name: "output.txt"
+					}]
+				});
+			} else {
+				msg.send("```py\n" + output + "```");
+			}
 	}
 }

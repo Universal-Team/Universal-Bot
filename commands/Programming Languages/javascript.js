@@ -1,6 +1,4 @@
 const {VM} = require("vm2");
-const searchFlags = require("../../utils/searchFlags");
-const MessageAttachment = require("../../utils/MessageAttachment");
 
 module.exports = {
 	name: ["JavaScript", "JS"],
@@ -31,7 +29,7 @@ module.exports = {
 			}
 		} catch(e) {
 			if(!(msg.args.hide || msg.args.h))
-				return msg.send(e.toString(), {code: "js"});
+				return msg.send("```js\n" + e.toString() + "```");
 			return;
 		}
 
@@ -48,9 +46,15 @@ module.exports = {
 		}
 
 		if(output.length >= 1024) {
-			msg.send("The output is too long, sending as attachment:", MessageAttachment(output, "output.txt"));
+			msg.send({
+				content: "The output is too long, sending as attachment:",
+				files: [{
+					attachment: Buffer.from(output),
+					name: "output.txt"
+				}]
+			});
 		} else {
-			msg.send(output, {code: "js"});
+			msg.send("```js\n" + output + "```");
 		}
 	}
 }

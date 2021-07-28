@@ -2,14 +2,14 @@
 // Setup variables
 // ===========================================================
 const fs = require("fs");
-const Discord = require("discord.js");
+const { Client, Intents } = require("discord.js");
 require("./utils/Prototypes");
 require("dotenv").config();
 
 // ===========================================================
 // Client
 // ===========================================================
-const UnivBot = { client: new Discord.Client() };
+const UnivBot = { client: new Client({intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES]}) };
 UnivBot.db = require("./database.json");
 UnivBot.client.login(process.env["TOKEN"]);
 

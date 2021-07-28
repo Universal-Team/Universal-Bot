@@ -12,11 +12,11 @@ projects.embed = function() {
 	this.forEach(object => description.push(`${object.emoji} **${object.name}**`));
 
 	return {
-		embed: {
+		embeds: [{
 			color: 0x00c882,
 			title: "Invalid project name!",
 			description: description.join("\n")
-		}
+		}]
 	};
 }
 
@@ -110,10 +110,10 @@ module.exports = {
 
 		const github = app.github();
 		msg.send({
-			embed: {
+			embeds: [{
 				color: app.color,
 				description: `${app.emoji} You find the wiki for ${app} [here](${github.wiki})`,
-			}
+			}]
 		});
 	}
 }

@@ -7,7 +7,7 @@
 		"start": "node univ-bot.js"
 	},
 	"dependencies": {
-		"discord.js": "^12.5.3",
+		"discord.js": "dev",
 		"dotenv": "^8.2.0",
 		"jimp": "^0.14.0",
 		"node-fetch": "^2.6.1",

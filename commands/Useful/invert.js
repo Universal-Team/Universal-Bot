@@ -1,5 +1,4 @@
 const Jimp = require("jimp");
-const MessageAttachment = require("../../utils/MessageAttachment");
 
 module.exports = {
 	name: ["invert", "negate"],
@@ -22,7 +21,10 @@ module.exports = {
 
 		Jimp.read({url: link}).then(img => {
 			img.invert();
-			img.getBufferAsync(Jimp.MIME_PNG).then(r => msg.send("", MessageAttachment(r, "image.png")));
+			img.getBufferAsync(Jimp.MIME_PNG).then(r => msg.send({files: [{
+				attachment: r,
+				name: "image.png"
+			}]}));
 		}).catch(e => msg.send(`Invalid URL! (${e})`));
 	}
 }

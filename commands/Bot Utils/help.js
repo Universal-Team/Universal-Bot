@@ -155,7 +155,7 @@ module.exports = {
 		}
 
 		msg.send({
-			embed: embed
+			embeds: [embed]
 		});
 	}
 }

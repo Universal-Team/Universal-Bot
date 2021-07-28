@@ -1,5 +1,4 @@
 const { spawnSync }     = require("child_process");
-const MessageAttachment = require("../../utils/MessageAttachment");
 const fs                = require("fs");
 
 module.exports = {
@@ -21,6 +20,9 @@ module.exports = {
 			fs.unlinkSync("qr.png");
 		}
 
-		msg.send("", MessageAttachment(qr, "qr.png"))
+		msg.send({files: [{
+			attachment: qr,
+			name: "qr.png"
+		}]});
 	}
 }

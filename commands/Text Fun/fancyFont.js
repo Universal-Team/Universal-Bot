@@ -2,7 +2,7 @@ const valid = [0, 2, 4, 7, 8, 9, 10, 11, 12];
 
 module.exports = {
 	name: [ "fancyFont", "fancyText"],
-	usage: `[-__l__ast] [--__i__ndex ${valid.join(", ")}] [message]`,
+	usage: `[-__l__ast] [--__i__ndex-${valid.join("-")}] [message]`,
 	desc: "Uses mathematical letters to make text look like a different font",
 	DM: true,
 	permissions: [],

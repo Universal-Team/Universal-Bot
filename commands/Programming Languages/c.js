@@ -2,7 +2,7 @@ const compile = require("../../utils/compile");
 
 module.exports = {
 	name: "C",
-	usage: "[-__h__ide|-__d__el|-__t__emplate] <code>",
+	usage: "[-__h__ide] [-__d__el] [-__t__emplate] <code>",
 	desc: "Executes C code. Use -hide for hide the output, -del for delete the invocation message and -template for automatically add stdio.h, main and booleans.",
 	DM: true,
 	permissions: [ "DEV" ],

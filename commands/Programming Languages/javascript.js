@@ -2,7 +2,7 @@ const {VM} = require("vm2");
 
 module.exports = {
 	name: ["JavaScript", "JS"],
-	usage: "[-__h__ide|-__s__tring|-__d__el|-de__v__] <code>",
+	usage: "[-__h__ide] [-__s__tring] [-__d__el] [-de__v__] <code>",
 	desc: "Executes JS code. Use -hide for hide the output, -string for not inspect the output and -del for delete the invocation message",
 	DM: true,
 	permissions: [],

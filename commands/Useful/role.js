@@ -1,6 +1,6 @@
 module.exports = {
 	name: "role",
-	usage: "[-__a__dd] [-__r__emove] <role names, comma separated>",
+	usage: "[-__a__dd] [-__r__emove] <comma-separated-role-names>",
 	desc: "Toggles roles, sends a list if no roles given. Use -__a__dd and -__r__emove to choose which roles are toggleable.",
 	permissions: [],
 	async exec(UnivBot, msg) {

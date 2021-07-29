@@ -1,6 +1,6 @@
 module.exports = {
 	name: ["unicodeToText", "utt", "text"],
-	usage: "<character codes>",
+	usage: "<character-codes>",
 	desc: "Converts unicode character codes to their characters",
 	DM: true,
 	permissions: [],

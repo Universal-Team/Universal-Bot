@@ -15,7 +15,7 @@ function makeJSON(obj) {
 
 module.exports = {
 	name: ["goodbye", "goodbye-message", "goodbye-cfg"],
-	usage: "<-__d__isable|-__e__nable|--__c__hannel|-__m__essage message>",
+	usage: "[-__d__isable] [-__e__nable] [--__c__hannel] [--__m__essage]",
 	desc: "Configures the goodbye messages",
 	permissions: [ "ADMINISTRATOR" ],
 	exec(UnivBot, msg) {

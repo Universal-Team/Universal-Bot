@@ -2,7 +2,7 @@ const compile = require("../../utils/compile");
 
 module.exports = {
 	name: ["ASM", "Assembly", "ARM"],
-	usage: "[-__h__ide|-__d__el] <code>",
+	usage: "[-__h__ide] [-__d__el] <code>",
 	desc: "Executes ARM* assembly code. Use -hide for hide the output and -del for delete the invocation message.\n* (only ARM if running on an ARM server)",
 	DM: true,
 	permissions: [ "DEV" ],

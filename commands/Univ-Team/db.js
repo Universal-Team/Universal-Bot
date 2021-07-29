@@ -16,7 +16,7 @@ function parseBytes(bytes) {
 
 module.exports = {
 	name: ["DB", "UniversalDB"],
-	usage: "[-__a__ll|-__r__andom|-__s__earch] <app|description>",
+	usage: "[-__a__ll] [-__r__andom] [-__s__earch] <app|description>",
 	desc: "Search for an application on Universal DB",
 	DM: true,
 	permissions: [],

@@ -1,6 +1,6 @@
 module.exports = {
 	name: ["emoji", "絵文字"],
-	usage: "[-__r__andom] <emoji names>",
+	usage: "[-__r__andom] <names>",
 	desc: "Sends any Discord emoji from a guild Universal-Bot is in",
 	DM: true,
 	permissions: [],

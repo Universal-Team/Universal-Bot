@@ -2,7 +2,7 @@ const terminal = require("child_process").execSync;
 
 module.exports = {
 	name: ["Py", "Py2", "Python", "Python2"],
-	usage: "[-__h__ide|-__d__el] <code>",
+	usage: "[-__h__ide] [-__d__el] <code>",
 	desc: "Executes Python 2 code. Use -hide for hide the output and -del for delete the invocation message",
 	DM: true,
 	permissions: [ "DEV" ],

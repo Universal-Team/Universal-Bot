@@ -1,6 +1,6 @@
 module.exports = {
 	name: "purge",
-	usage: "<number of messages to delete>",
+	usage: "<number-of-messages-to-delete>",
 	desc: "Deletes a certain amount of messages",
 	permissions: [ "MANAGE_MESSAGES" ],
 	async exec(UnivBot, msg) {

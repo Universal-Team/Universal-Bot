@@ -2,7 +2,7 @@ const ts2js = require("../../utils/ts2js");
 
 module.exports = {
 	name: ["TypeScript", "TS"],
-	usage: "[-__h__ide|-__s__tring|-__d__el] <code>",
+	usage: "[-__h__ide] [-__s__tring] [-__d__el] <code>",
 	desc: "Executes TS code. Use -hide for hide the output, -string for not inspect the output and -del for delete the invocation message",
 	DM: true,
 	permissions: [ "DEV" ],

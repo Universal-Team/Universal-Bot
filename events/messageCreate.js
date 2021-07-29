@@ -23,14 +23,6 @@ function isOnDB(UnivBot, id) {
 	return result;
 }
 
-function isDev(UnivBot, user) {
-	let id = user.id;
-	let db = UnivBot.db;
-	if(db.developers.includes(id))
-		return true;
-	return false;
-}
-
 // Event handler
 module.exports = async function(UnivBot, msg, nmsg) {
 	// If edit, use new message
@@ -86,7 +78,7 @@ module.exports = async function(UnivBot, msg, nmsg) {
 		return;
 
 	// Checks for dev perms
-	msg.dev = isDev(UnivBot, msg.author);
+	msg.dev = UnivBot.db.developers.includes(msg.author.id);
 
 	// Setup msg.send
 	msg.send = (string, config) => {
@@ -142,6 +134,8 @@ module.exports = async function(UnivBot, msg, nmsg) {
 	}
 	if(!command)
 		return
+
+	console.log((new Date()).toLocaleString(), msg.author.username, command.name);
 
 	// Check for DM
 	if(!command.DM && !msg.guild)

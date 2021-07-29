@@ -9,7 +9,12 @@ require("dotenv").config();
 // ===========================================================
 // Client
 // ===========================================================
-const UnivBot = { client: new Client({intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES]}) };
+const UnivBot = {
+	client: new Client({
+		intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES],
+		allowedMentions: { parse: [], repliedUser: false }
+	})
+};
 UnivBot.db = require("./database.json");
 UnivBot.client.login(process.env["TOKEN"]);
 

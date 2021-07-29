@@ -90,25 +90,12 @@ module.exports = async function(UnivBot, msg, nmsg) {
 
 	// Setup msg.send
 	msg.send = (string, config) => {
-		var reg = new RegExp(process.env["TOKEN"], "ig");
-		if(typeof string == "string")
-			string = string.replace(reg, "UnivBot.client.token").replace(/@everyone/g, "@/everyone").replace(/@here/g, "@/here").replace(/<@&.*>/g, "role").replace(/<@&.*>/g, "role").replace(/<@!.*>/g, "person")
-			// .replace(/<@&.*>/g, `@/${message.guild.roles.cache.find(r => r == "605585039417278465").name}`);
-		var message = this;
-		if(message.guild) {
-			return message.channel.send(string, config);
+		if(msg.guild) {
+			return msg.channel.send(string, config);
 		} else {
-			return message.author.send(string, config);
+			return msg.author.send(string, config);
 		}
 	};
-	msg._reply = msg.reply;
-	msg.reply = (string, config) => {
-		var reg = new RegExp(process.env["TOKEN"], "ig");
-		if(typeof string == "string")
-			string = string.replace(reg, "UnivBot.client.token").replace(/@everyone/g, "@/everyone").replace(/@here/g, "@/here").replace(/<@&.*>/g, "role").replace(/<@&.*>/g, "role").replace(/<@!.*>/g, "person")
-			// .replace(/<@&.*>/g, `@/${message.guild.roles.cache.find(r => r == "605585039417278465").name}`);
-		msg._reply(string, config);
-	}
 
 	// Setup large icon and bot
 	if(msg.guild)

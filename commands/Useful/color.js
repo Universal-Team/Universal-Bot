@@ -20,7 +20,7 @@ module.exports = {
 		} else {
 			if(string.length == 3 && string.madeOf(charsets.hex)) { // Three digit hex
 				for(let i in rgb)
-				rgb[i] = parseInt(string[i] + string[i], 16);
+					rgb[i] = parseInt(string[i] + string[i], 16);
 			} else if(string.length == 6 && string.madeOf(charsets.hex)) { // Six digit hex
 				for(let i in rgb)
 					rgb[i] = parseInt(string.substr(i * 2, 2), 16);

@@ -1,4 +1,5 @@
 const {VM} = require("vm2");
+const {Formatters} = require("discord.js");
 
 module.exports = {
 	name: ["JavaScript", "JS"],
@@ -29,7 +30,7 @@ module.exports = {
 			}
 		} catch(e) {
 			if(!(msg.args.hide || msg.args.h))
-				return msg.reply("```js\n" + e.toString() + "```");
+				return msg.reply(Formatters.codeBlock("js", e.toString()));
 			return;
 		}
 
@@ -54,7 +55,7 @@ module.exports = {
 				}]
 			});
 		} else {
-			msg.reply("```js\n" + output + "```");
+			msg.reply(Formatters.codeBlock("js", output));
 		}
 	}
 }

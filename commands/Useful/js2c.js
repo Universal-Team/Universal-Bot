@@ -1,4 +1,5 @@
 const ts2c = require("ts2c");
+const {Formatters} = require("discord.js");
 
 module.exports = {
 	name: ["js2c", "ts2c"],
@@ -9,7 +10,7 @@ module.exports = {
 	exec(UnivBot, msg) {
 		if(!msg.args.value)
 			return msg.reply("**Oops!** Can't transpile the void :P");
-		let output = "**Your code has an error**\n```js\nError: Code contains stuff not supported by ts2c yet```";
+		let output = "**Your code has an error**\n" + Formatters.codeBlock("js", "Error: Code contains stuff not supported by ts2c yet");
 		try {
 			output = ts2c.transpile(msg.args.value);
 		} catch(e) {
@@ -24,7 +25,7 @@ module.exports = {
 				}]
 			});
 		} else {
-			msg.reply("```c\n" + output + "```");
+			msg.reply(Formatters.codeBlock("c", output));
 		}
 	}
 }

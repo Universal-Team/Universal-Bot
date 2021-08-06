@@ -1,4 +1,5 @@
 const ts2js = require("../../utils/ts2js");
+const {Formatters} = require("discord.js");
 
 module.exports = {
 	name: ["TypeScript", "TS"],
@@ -28,7 +29,7 @@ module.exports = {
 				err = "typescript.ts(0,0): error: The given code has errors.";
 
 			if(!(msg.args.hide || msg.args.h))
-				return msg.reply("```ts\n" + err + "```");
+				return msg.reply(Formatters.codeBlock("ts", err));
 			return;
 		}
 
@@ -40,7 +41,7 @@ module.exports = {
 				output = output.toString();
 		} catch(e) {
 			if(!(msg.args.hide || msg.args.h))
-				return msg.reply("```js\n" + e.toString() + "```");
+				return msg.reply(Formatters.codeBlock("js", e.toString()));
 			return;
 		}
 
@@ -60,7 +61,7 @@ module.exports = {
 				}]
 			});
 		} else {
-			msg.reply("```js\n" + output + "```");
+			msg.reply(Formatters.codeBlock("js", output));
 		}
 	}
 }

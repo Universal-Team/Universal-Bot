@@ -1,4 +1,5 @@
 const terminal = require("child_process").execSync;
+const {Formatters} = require("discord.js");
 
 module.exports = {
 	name: ["Py", "Py2", "Python", "Python2"],
@@ -15,7 +16,7 @@ module.exports = {
 			output = terminal(`echo "${msg.args.value.replace(/"/g, "\\\"").replace(/`/g, "\\`")}" | python2`, {shell: "/bin/bash"}).toString();
 		} catch(e) {
 			if(!msg.args.hide)
-				return msg.reply("```js\n" + e.toString() + "```");
+				return msg.reply(Formatters.codeBlock("js", e.toString()));
 			return;
 		}
 
@@ -38,7 +39,7 @@ module.exports = {
 					}]
 				});
 			} else {
-				msg.reply("```py\n" + output + "```");
+				msg.reply(Formatters.codeBlock("py", output));
 			}
 	}
 }

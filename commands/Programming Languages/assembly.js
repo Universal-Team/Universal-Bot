@@ -1,4 +1,5 @@
 const compile = require("../../utils/compile");
+const {Formatters} = require("discord.js");
 
 module.exports = {
 	name: ["ASM", "Assembly", "ARM"],
@@ -20,7 +21,7 @@ module.exports = {
 			return;
 	
 		if(typeof object !== "object")
-			return msg.reply("```js\n" + object + "```");
+			return msg.reply(Formatters.codeBlock("js", object));
 
 		output = object.stdout;
 		if(output.length >= 1024) {
@@ -32,7 +33,7 @@ module.exports = {
 				}]
 			});
 		} else {
-			msg.reply("```js\n" + output + "```");
+			msg.reply(Formatters.codeBlock("js", output));
 		}
 	}
 }

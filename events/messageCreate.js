@@ -1,5 +1,5 @@
 // Setup vars
-const Discord = require("discord.js");
+const {Formatters} = require("discord.js");
 const fs = require("fs");
 
 function cloneDB(UnivBot, id) {
@@ -144,13 +144,13 @@ module.exports = async function(UnivBot, msg, nmsg) {
 	// Get permissions
 	let lacks = [];
 	if(command.permissions.includes("DEV") && !msg.dev)
-		lacks.push("``BOT_DEVELOPER``");
+		lacks.push(Formatters.inlineCode(BOT_DEVELOPER));
 		var perms = command.permissions.filter(perm => perm !== "DEV");
 	if(!msg.guild && perms.length)
 		return msg.reply("You can't use this command on DM!");
 	if(msg.guild) for(var perm of perms) {
 		if(!msg.member.hasPermission(perm))
-			lacks.push(`\`\`${perm}\`\``);
+			lacks.push(Formatters.inlineCode(perm));
 	}
 	var lacksStr = lacks.join(", ");
 
@@ -162,6 +162,6 @@ module.exports = async function(UnivBot, msg, nmsg) {
 	try {
 		command.exec(UnivBot, msg);
 	} catch(e) {
-		msg.send("Oops! An error has occurred while executing this command. ```js\n" + e + "```");
+		msg.send(`Oops! An error has occurred while executing this command. ${Formatters.codeBlock("js", e)}`);
 	}
 }

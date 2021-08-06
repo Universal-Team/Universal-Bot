@@ -1,4 +1,5 @@
 var terminal = require("child_process").execSync;
+const {Formatters} = require("discord.js");
 
 module.exports = {
 	name: "sh",
@@ -15,7 +16,7 @@ module.exports = {
 			output = terminal(msg.args.value, {shell: "/bin/sh"}).toString();
 		} catch(e) {
 			if(!msg.args.hide)
-				return msg.reply("```js\n" + e.toString() + "```");
+				return msg.reply(Formatters.codeBlock("js", e.toString()));
 			return;
 		}
 
@@ -38,7 +39,7 @@ module.exports = {
 					}]
 				});
 			} else {
-				msg.reply("```sh\n" + output + "```");
+				msg.reply(Formatters.codeBlock("sh", output));
 			}
 	}
 }

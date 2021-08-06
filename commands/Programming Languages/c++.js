@@ -1,4 +1,5 @@
 const compile = require("../../utils/compile");
+const {Formatters} = require("discord.js");
 
 module.exports = {
 	name: ["CPP", "C++"],
@@ -31,7 +32,7 @@ return 0;
 			return;
 
 		if(typeof object !== "object")
-			return msg.reply("```js\n" + object + "```");
+			return msg.reply(Formatters.codeBlock("js", object));
 
 		output = object.stdout;
 		if(output.length == 0)
@@ -46,7 +47,7 @@ return 0;
 				}]
 			});
 		} else {
-			msg.reply("```cpp\n" + output + "```");
+			msg.reply(Formatters.codeBlock("cpp", output));
 		}
 	}
 }

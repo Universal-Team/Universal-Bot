@@ -42,7 +42,7 @@ module.exports = async function(UnivBot, msg, nmsg) {
 	}
 
 	// Automatically publish messages by MonitoRSS
-	if(msg.author.id == "268478587651358721" && msg.channel.type == "news")
+	if(msg.author.id == "268478587651358721" && msg.channel.type == "GUILD_NEWS")
 		msg.crosspost();
 
 	// Check for prefixes

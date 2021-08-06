@@ -7,7 +7,7 @@
 		"start": "node univ-bot.js"
 	},
 	"dependencies": {
-		"discord.js": "dev",
+		"discord.js": "^13.0.0",
 		"dotenv": "^8.2.0",
 		"jimp": "^0.14.0",
 		"node-fetch": "^2.6.1",
@@ -16,7 +16,7 @@
 		"vm2": "^3.9.2"
 	},
 	"engines": {
-		"node": "13.0.1"
+		"node": ">=16.6.0"
 	},
 	"repository": {
 		"url": "https://glitch.com/edit/#!/univ-bot"

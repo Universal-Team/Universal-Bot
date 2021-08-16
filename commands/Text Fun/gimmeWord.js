@@ -9,6 +9,8 @@ module.exports = {
 		let count = parseInt(msg.args.count || msg.args.c);
 		if(isNaN(count) || count < 1)
 			count = 1;
+		if(count > 100)
+			return msg.reply("No thanks, that's too much work");
 
 		let out = [];
 
@@ -18,6 +20,6 @@ module.exports = {
 			out.push(str[Math.floor(Math.random() * str.length)].toLowerCase());
 		}
 
-		msg.reply(out.join(" "));
+		msg.reply(out.join(" ").substr(0, 2000));
 	}
 }

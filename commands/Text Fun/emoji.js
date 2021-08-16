@@ -10,10 +10,10 @@ module.exports = {
 
 		let out = "";
 		if(msg.args.random || msg.args.r) {
-			let guild = UnivBot.client.guilds.cache.array();
+			let guild = UnivBot.client.guilds.cache.map(r => r);
 			guild = guild[Math.floor(Math.random() * guild.length)];
 
-			let emoji = guild.emojis.cache.array();
+			let emoji = guild.emojis.cache.map(r => r);
 			emoji = emoji[Math.floor(Math.random() * emoji.length)];
 
 			out = `<${emoji.animated ? "a" : ""}:${emoji.name}:${emoji.id}> `;

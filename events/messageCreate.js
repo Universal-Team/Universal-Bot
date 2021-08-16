@@ -135,7 +135,7 @@ module.exports = async function(UnivBot, msg, nmsg) {
 	// Get permissions
 	let lacks = [];
 	if(command.permissions.includes("DEV") && !msg.dev)
-		lacks.push(Formatters.inlineCode(BOT_DEVELOPER));
+		lacks.push(Formatters.inlineCode("BOT_DEVELOPER"));
 		var perms = command.permissions.filter(perm => perm !== "DEV");
 	if(!msg.guild && perms.length)
 		return msg.reply("You can't use this command on DM!");
@@ -143,11 +143,10 @@ module.exports = async function(UnivBot, msg, nmsg) {
 		if(!msg.member.hasPermission(perm))
 			lacks.push(Formatters.inlineCode(perm));
 	}
-	var lacksStr = lacks.join(", ");
 
 	// Detect if lacks permissions
 	if(lacks.length)
-		return msg.reply(`You lack the following permissions to run this command: ${lacksStr}`);
+		return msg.reply(`You lack the following permissions to run this command: ${lacks.join(", ")}`);
 
 	// Execute command
 	try {

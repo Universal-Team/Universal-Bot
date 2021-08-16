@@ -6,7 +6,7 @@ module.exports = {
 	permissions: [],
 	exec(UnivBot, msg) {
 		if(msg.args.last || msg.args.l)
-			msg.args.value = msg.channel.messages.cache.array()[msg.channel.messages.cache.size - 2].content;
+			msg.args.value = msg.channel.messages.cache.map(r => r)[msg.channel.messages.cache.size - 2].content;
 
 		if(!msg.args.value)
 			return msg.reply("no bruh for bruh you");

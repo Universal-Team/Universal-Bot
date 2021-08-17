@@ -1,3 +1,5 @@
+const {CommandInteraction} = require("discord.js");
+
 module.exports = {
 	name: ["leet", "l33t", "1337", "h4x0r"],
 	usage: "[-__l__ast] [message]",
@@ -6,7 +8,7 @@ module.exports = {
 	permissions: [],
 	exec(UnivBot, msg) {
 		if(msg.args.last || msg.args.l)
-			msg.args.value = msg.channel.messages.cache.map(r => r)[msg.channel.messages.cache.size - 2].content;
+			msg.args.value = msg.channel.messages.cache.map(r => r)[msg.channel.messages.cache.size - (msg instanceof CommandInteraction ? 1 : 2)].content;
 
 		if(!msg.args.value)
 			return msg.reply("git gut scrub");

@@ -1,3 +1,5 @@
+const {CommandInteraction} = require("discord.js");
+
 const valid = [0, 2, 4, 7, 8, 9, 10, 11, 12];
 
 module.exports = {
@@ -8,7 +10,7 @@ module.exports = {
 	permissions: [],
 	exec(UnivBot, msg) {
 		if(msg.args.last || msg.args.l)
-			msg.args.value = msg.channel.messages.cache.map(r => r)[msg.channel.messages.cache.size - 2].content;
+			msg.args.value = msg.channel.messages.cache.map(r => r)[msg.channel.messages.cache.size - (msg instanceof CommandInteraction ? 1 : 2)].content;
 
 		if(!msg.args.value)
 			return msg.reply("How am I supposed to make nothing look fancy?".fancyFont(valid[Math.floor(Math.random() * valid.length)]));

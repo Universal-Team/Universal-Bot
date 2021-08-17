@@ -1,3 +1,5 @@
+const {CommandInteraction} = require("discord.js");
+
 const eyes = ["O", "o", "U", "u", ">", "^", "-", "X", "T", "q"];
 const mouths = ["w", "u", "o", "\\_", "-", "x", "///"];
 const extras = [["", ""], ["", ""], ["", ""], ["", "-☆"], ["=", "="], ["d", "b♪"]];
@@ -21,7 +23,7 @@ module.exports = {
 	permissions: [],
 	exec(UnivBot, msg) {
 		if(msg.args.last || msg.args.l)
-			msg.args.value = msg.channel.messages.cache.map(r => r)[msg.channel.messages.cache.size - 2].content;
+			msg.args.value = msg.channel.messages.cache.map(r => r)[msg.channel.messages.cache.size - (msg instanceof CommandInteraction ? 1 : 2)].content;
 
 		if(!msg.args.value)
 			return msg.reply(`ur no fun ${face()}`);

@@ -1,3 +1,5 @@
+const {CommandInteraction} = require("discord.js");
+
 module.exports = {
 	name: "angry",
 	usage: "[-__l__ast] [message]",
@@ -6,7 +8,7 @@ module.exports = {
 	permissions: [],
 	exec(UnivBot, msg) {
 		if(msg.args.last || msg.args.l)
-			msg.args.value = msg.channel.messages.cache.map(r => r)[msg.channel.messages.cache.size - 2].content;
+			msg.args.value = msg.channel.messages.cache.map(r => r)[msg.channel.messages.cache.size - (msg instanceof CommandInteraction ? 1 : 2)].content;
 
 		if(!msg.args.value)
 			return msg.reply("The void is not angry");

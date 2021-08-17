@@ -1,3 +1,5 @@
+const {CommandInteraction} = require("discord.js");
+
 module.exports = {
 	name: ["gimmeWord", "randomWord"],
 	usage: "[--__c__ount]",

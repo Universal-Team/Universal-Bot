@@ -1,3 +1,5 @@
+const {CommandInteraction} = require("discord.js");
+
 const letters = {
 	"A": "803001811119505418",
 	"B": "803001811229343755",
@@ -36,7 +38,7 @@ module.exports = {
 	permissions: [],
 	exec(UnivBot, msg) {
 		if(msg.args.last || msg.args.l)
-			msg.args.value = msg.channel.messages.cache.map(r => r)[msg.channel.messages.cache.size - 2].content;
+			msg.args.value = msg.channel.messages.cache.map(r => r)[msg.channel.messages.cache.size - (msg instanceof CommandInteraction ? 1 : 2)].content;
 
 		if(!msg.args.value)
 			return msg.reply("<:blobNo:667718424809439262>");

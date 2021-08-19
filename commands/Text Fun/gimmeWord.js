@@ -9,9 +9,11 @@ module.exports = {
 	exec(UnivBot, msg) {
 
 		let count = parseInt(msg.args.count || msg.args.c);
-		if(isNaN(count) || count < 1)
+		if(isNaN(count))
 			count = 1;
-		if(count > 100)
+		else if(count < 1)
+			return msg.reply("Why ask if you don't even want a word?");
+		else if(count > 100)
 			return msg.reply("No thanks, that's too much work");
 
 		let out = [];

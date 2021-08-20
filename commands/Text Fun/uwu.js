@@ -54,6 +54,7 @@ function uwuify(text) {
 		.replace(/(thanks|thank you)/gi, "tankies")
 		.replace(/\bthe\b/gi, "da")
 		.replace(/\bis\b/gi, "iz")
+		.replace(/\bcow\b/gi, "mooo")
 		.replace(/time/gi, "tim")
 		.replace(/worse/gi, "wose")
 		.replace(/your/gi, "ur")

@@ -25,6 +25,8 @@ module.exports = {
 			} else {
 				db.activeThreads.push(id);
 				added.push(id);
+
+				msg.guild.channels.fetch(id).then(r => r.setArchived(false));
 			}
 		}
 

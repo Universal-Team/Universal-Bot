@@ -10,7 +10,7 @@ module.exports = {
 
 		let threads = msg.args.value.split(",");
 		if(threads[0] == "")
-			return msg.reply("I can't make nothing active...");
+			return msg.reply(`__**The following threads are being kept active:**__\n<#${db.activeThreads.join(">\n<#")}>`);
 
 		let added = [], removed = [];
 

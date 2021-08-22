@@ -94,6 +94,6 @@ function uwuify(text) {
 		.replace(/(.)\1(?!\1)/gi, "$1")
 		.replace(/(?!([uox])\1\1)(?:\b([OUXTq])[wuox]\2\b|[OUXTq>^\-][_\-/][OUXTq<^\-]|[>^\-][wuox][<^\-]|[;:]-*[)(pd]|[xb]-*[)(]|\b[xb]-*[pd]\b)/gi, () => face())
 		.replace(/\?/g, "?".repeat(Math.ceil(Math.random() * 3)))
-		.replace(/\b((bwa|ha|hah|heh|hehe) ?)+\b/g, "hehe xD")
+		.replace(/\b((bwa|ha|hah|heh|hehe|wol|wmao|wmfao) ?)+\b/g, "hehe xD")
 		.trim() + " " + face();
 }

@@ -13,6 +13,6 @@ module.exports = {
 		if(!msg.args.value)
 			return msg.reply("Moooooooooooooh");
 
-		msg.reply(msg.args.value.replace(/\b\w*?[aiueoy]/g, msg.cmd));
+		msg.reply(msg.args.value.replace(/\b\w*?[aiueoy]/gi, msg.cmd));
 	}
 }

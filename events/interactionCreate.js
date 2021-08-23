@@ -23,7 +23,7 @@ module.exports = async function(UnivBot, interaction) {
 		if(!interaction.guild && perms.length)
 			return interaction.reply("You can't use this command on DM!");
 		if(interaction.guild) for(var perm of perms) {
-			if(!interaction.member.hasPermission(perm))
+			if(!interaction.member.permissions.has(perm))
 				lacks.push(`\`\`${perm}\`\``);
 		}
 		var lacksStr = lacks.join(", ");

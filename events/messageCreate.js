@@ -140,7 +140,7 @@ module.exports = async function(UnivBot, msg, nmsg) {
 	if(!msg.guild && perms.length)
 		return msg.reply("You can't use this command on DM!");
 	if(msg.guild) for(var perm of perms) {
-		if(!msg.member.hasPermission(perm))
+		if(!msg.member.permissions.has(perm))
 			lacks.push(Formatters.inlineCode(perm));
 	}
 

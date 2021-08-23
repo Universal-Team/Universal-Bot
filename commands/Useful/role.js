@@ -10,7 +10,7 @@ module.exports = {
 
 		// Add role to toggleable list
 		if(msg.args.add || msg.args.a) {
-			if(await msg.guild.members.fetch(msg.author).then(r => r.hasPermission("MANAGE_ROLES"))) {
+			if(await msg.guild.members.fetch(msg.author).then(r => r.permissions.has("MANAGE_ROLES"))) {
 				let out = "__**The following roles have been made toggleable:**__\n";
 				msg.args.value.toLowerCase().split(",").forEach(r => {
 					let role = msg.guild.roles.cache.sort((a, b) => (a.length < b.length) ? -1 : 1).find(role => role.editable && role.name.toLowerCase().includes(r.trim().toLowerCase()));
@@ -29,7 +29,7 @@ module.exports = {
 
 		// Remove role to toggleable list
 		if(msg.args.remove || msg.args.r) {
-			if(await msg.guild.members.fetch(msg.author).then(r => r.hasPermission("MANAGE_ROLES"))) {
+			if(await msg.guild.members.fetch(msg.author).then(r => r.permissions.has("MANAGE_ROLES"))) {
 				let out = "__**The following roles have been made untoggleable:**__\n";
 				msg.args.value.toLowerCase().split(",").forEach(r => {
 					let role = msg.guild.roles.cache.sort((a, b) => (a.length < b.length) ? -1 : 1).find(role => role.editable && role.name.toLowerCase().includes(r.trim().toLowerCase()));

@@ -65,7 +65,7 @@ module.exports = async function(UnivBot, msg, nmsg) {
 		db = UnivBot.db[msg.guild.id];
 
 	// Prevents bots from runinng commands unless in a webhook
-	if(msg.author.bot && (db.allowWebhooks ? !msg.webhookID : true))
+	if(msg.author.bot && (db.allowWebhooks ? !msg.webhookId : true))
 		return;
 
 	// Checks for dev perms

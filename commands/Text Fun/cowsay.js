@@ -17,6 +17,6 @@ module.exports = {
 		if(!msg.args.value)
 			return msg.reply(Formatters.codeBlock(terminal("cowsay You\\'ve gotta give me something to say...", {shell: "/bin/bash"}).toString()));
 
-		msg.reply(Formatters.codeBlock(terminal(`cowsay ${msg.args.value.replace(/['"`]/g, "\\$&")}`, {shell: "/bin/bash"}).toString()));
+		msg.reply(Formatters.codeBlock(terminal(`cowsay ${msg.args.value.replace(/[!"#$&'()*,;<>?[\\\]^`{|}]/g, "\\$&")}`, {shell: "/bin/bash"}).toString()));
 	}
 }

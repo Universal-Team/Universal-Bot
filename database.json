@@ -450,5 +450,20 @@
 				"enabled": true
 			}
 		}
+	},
+	"879675504725221426": {
+		"prefix": "?",
+		"messages": {
+			"welcome": {
+				"channel": "879682742860787713",
+				"string": "Welcome **${user.ping}** to **${guild.name}**!, hope you enjoy your stay! The amount of members now is **${guild.amount}**",
+				"enabled": true
+			},
+			"goodbye": {
+				"channel": "sys",
+				"string": "Goodbye **${user.tag}**... The amount of members now is **${guild.amount}**",
+				"enabled": true
+			}
+		}
 	}
 }

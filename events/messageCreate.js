@@ -94,10 +94,6 @@ module.exports = async function(UnivBot, msg, nmsg) {
 	msg.prefix = db.prefix;
 	msg.cmd = msg.content.match(RegExp(msg.prefix.replace(/[.^$*+?()[\]{}\\|/]/g, r => `\\${r}`) + "\\s*([^\\s]+)"))?.[1];
 	msg.content = msg.content.substr(msg.content.match(RegExp(msg.prefix.replace(/[.^$*+?()[\]{}\\|/]/g, r => `\\${r}`) + "\\s*([^\\s]+)"))?.[0].length);
-	msg.args = {value: msg.content.split(/\s-[^-\s]+|\s--[^\s]+\s+[^\s]+/g).join("").trim()};
-	msg.content.match(/\s-[^-\s]+|\s--[^\s]+\s+[^\s]+/g)?.forEach(r => {
-		msg.args[r.match(/[^- ]+/)] = r.trim().match(/\s+(.+)/) ? r.trim().match(/\s+(.+)/)[1] : true;
-	});
 
 	if(!msg.cmd)
 		return;
@@ -127,6 +123,16 @@ module.exports = async function(UnivBot, msg, nmsg) {
 		return
 
 	console.log((new Date()).toLocaleString(), msg.author.username, command.name);
+
+	// Parse args
+	if(command.ignoreArgs) {
+		msg.args = {value: msg.content.trim()};
+	} else {
+		msg.args = {value: msg.content.split(/\s-[^-\s]+|\s--[^\s]+\s+[^\s]+/g).join("").trim()};
+		msg.content.match(/\s-[^-\s]+|\s--[^\s]+\s+[^\s]+/g)?.forEach(r => {
+			msg.args[r.match(/[^- ]+/)] = r.trim().match(/\s+(.+)/) ? r.trim().match(/\s+(.+)/)[1] : true;
+		});
+	}
 
 	// Check for DM
 	if(!command.DM && !msg.guild)

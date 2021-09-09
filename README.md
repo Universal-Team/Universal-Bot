@@ -16,3 +16,16 @@ The bot for the Universal-Team Discord server
 ### Running in the background
 6. Install `pm2` with `npm install -g pm2`
 7. Start Universal-Bot with `pm2 start univ-bot.js`
+
+### Required programs
+You will also need to install the following programs (and have them in your PATH) for the commands they're used in to work:
+
+- `qrencode` for ?qr and ?binaryQR
+- `zbarimg` for ?qrDecode
+- `ffmpeg` for ?twilightBGM
+- `gcc`/`g++` for ?c and ?cpp
+- `python`/`python3` for ?py and ?py3
+- `bash`/`sh` for ?bash and ?sh
+- `tsc` for ?typescript
+- `pm2` for ?reboot (bot must be run from pm2)
+- `cowsay`/`cowthink` for ?cowsay and ?cowthink

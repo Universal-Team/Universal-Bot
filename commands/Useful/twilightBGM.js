@@ -14,16 +14,16 @@ module.exports = {
 			link = msg.attachments.first().attachment;
 
 		if(!link)
-			return msg.replyy("Enter a link!");
+			return msg.reply("Enter a link!");
 
 		if(link[0] == "<" && link[link.length - 1] == ">")
 			link = link.substr(1, link.length - 2);
 
 		let name = link.match(/.*\/(.*)/)?.[1];
 		if(!name)
-			return msg.replyy("Invalid file name!");
+			return msg.reply("Invalid file name!");
 
-		let m = await msg.replyy("Downloading... (This may take a bit)");
+		let m = await msg.reply("Downloading... (This may take a bit)");
 
 		fetch(link, {method: "Get"}).then(r => {
 			if(r.status >= 200 && r.status <= 299) {
@@ -39,7 +39,7 @@ module.exports = {
 				fs.unlinkSync(name);
 			}
 			m.edit("Sending... (This may take a bit)");
-			msg.replyy({files: [{
+			msg.reply({files: [{
 				attachment: "bgm.pcm.raw",
 				name: "bgm.pcm.raw"
 			}]}).then(() => {
@@ -49,7 +49,7 @@ module.exports = {
 				}
 			});
 		}).catch(e => {
-			return msg.replyy(`Invalid URL: ${e}`);
+			return msg.reply(`Invalid URL: ${e}`);
 		});
 	}
 }

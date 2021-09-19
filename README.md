@@ -17,6 +17,11 @@ The bot for the Universal-Team Discord server
 6. Install `pm2` with `npm install -g pm2`
 7. Start Universal-Bot with `pm2 start univ-bot.js`
 
+### .env
+You must have a file called `.env` with the API token Universal-Bot needs:
+- `TOKEN` Discord token, needed for the bot to work at all
+- `DEEPL_TOKEN` DeepL free token, for ?translate
+
 ### Required programs
 You will also need to install the following programs (and have them in your PATH) for the commands they're used in to work:
 

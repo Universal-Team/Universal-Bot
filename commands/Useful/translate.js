@@ -1,8 +1,9 @@
 const fetch = require("node-fetch");
+const {CommandInteraction} = require("discord.js");
 
 module.exports = {
 	name: ["translate", "DeepL"],
-	usage: "[--__s__ource] [--__t__arget] <string>",
+	usage: "[--__s__ource] [--__t__arget] [-__l__ast]<string>",
 	desc: "Translates a string using DeepL translator",
 	DM: true,
 	permissions: [],

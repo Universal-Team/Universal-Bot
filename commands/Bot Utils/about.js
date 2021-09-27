@@ -9,7 +9,7 @@ module.exports = {
 	exec(UnivBot, msg) {
 		var modules = require("../../package.json").dependencies;
 		modules = Object.keys(modules);
-		var link = "https://discordapp.com/oauth2/authorize?client_id=618835289531613205&scope=bot&permissions=8";
+		var link = "https://discordapp.com/oauth2/authorize?client_id=618835289531613205&scope=bot&permissions=0";
 		let embed = new Discord.MessageEmbed()
 			.setColor(8557055)
 			.setDescription(`**${UnivBot.client.user.username}** is a simple bot made for Universal-Team.\n\nNote: If you add Universal-Bot to your server it will allow all of your server's emoji to be accessed by the emoji commands including seeing the server name in ?emojiInfo.`)

@@ -480,5 +480,20 @@
 				"enabled": false
 			}
 		}
+	},
+	"866557067828789278": {
+		"prefix": "?",
+		"messages": {
+			"welcome": {
+				"channel": "892174947764551730",
+				"string": "Member join: ${user.ping} (${guild.amount} members)",
+				"enabled": true
+			},
+			"goodbye": {
+				"channel": "892174947764551730",
+				"string": "Member leave: ${user.ping} (${guild.amount} members)",
+				"enabled": true
+			}
+		}
 	}
 }

@@ -20,18 +20,36 @@ module.exports = {
 		}
 
 		out += msg.args.value.replace(/[^\s]+/g, r => {
-			let emoji;
-			UnivBot.client.guilds.cache.some(guild => {
-				return guild.emojis.cache.some(e => {
-					if(e.name.toLowerCase() == r.toLowerCase()) {
-						emoji = e;
-						return true;
-					} else if(e.name.toLowerCase().includes(r.toLowerCase())) {
-						if(!emoji)
+			let emoji = undefined;
+			let name = r.split(":")[0].toLowerCase(), guildName = r.split(":")[1]?.toLowerCase();
+			if(guildName) {
+				let guild = UnivBot.client.guilds.cache.find(r => r.name.toLowerCase().includes(guildName));
+				if(guild) {
+					guild.emojis.cache.some(e => {
+						console.log(e.name);
+						if(e.name.toLowerCase() == name) {
 							emoji = e;
-					}
+							return true;
+						} else if(e.name.toLowerCase().includes(name)) {
+							if(!emoji)
+								emoji = e;
+						}
+					});
+				}
+			} else {
+				UnivBot.client.guilds.cache.some(guild => {
+					return guild.emojis.cache.some(e => {
+						if(e.name.toLowerCase() == name) {
+							emoji = e;
+							return true;
+						} else if(e.name.toLowerCase().includes(name)) {
+							if(!emoji)
+								emoji = e;
+						}
+					});
 				});
-			});
+			}
+
 			if(emoji)
 				return `<${emoji.animated ? "a" : ""}:${emoji.name}:${emoji.id}> `;
 			else

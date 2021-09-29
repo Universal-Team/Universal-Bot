@@ -11,18 +11,35 @@ module.exports = {
 		if(msg.args.value.match(/<:.*:.*>/))
 			msg.args.value = msg.args.value.substr(msg.args.value.indexOf(":") + 1, msg.args.value.lastIndexOf(":") - msg.args.value.indexOf(":") - 1);
 
-		let emoji;
-		UnivBot.client.guilds.cache.some(guild => {
-			return guild.emojis.cache.some(e => {
-				if(e.name.toLowerCase() == msg.args.value.toLowerCase()) {
-					emoji = e;
-					return true;
-				} else if(e.name.toLowerCase().includes(msg.args.value.toLowerCase())) {
-					if(!emoji)
+		let emoji = undefined;
+		let name = msg.args.value.split(":")[0].toLowerCase(), guildName = msg.args.value.split(":")[1]?.toLowerCase();
+		if(guildName) {
+			let guild = UnivBot.client.guilds.cache.find(r => r.name.toLowerCase().includes(guildName));
+			if(guild) {
+				guild.emojis.cache.some(e => {
+					console.log(e.name);
+					if(e.name.toLowerCase() == name) {
 						emoji = e;
-				}
+						return true;
+					} else if(e.name.toLowerCase().includes(name)) {
+						if(!emoji)
+							emoji = e;
+					}
+				});
+			}
+		} else {
+			UnivBot.client.guilds.cache.some(guild => {
+				return guild.emojis.cache.some(e => {
+					if(e.name.toLowerCase() == name) {
+						emoji = e;
+						return true;
+					} else if(e.name.toLowerCase().includes(name)) {
+						if(!emoji)
+							emoji = e;
+					}
+				});
 			});
-		});
+		}
 
 		if(emoji) {
 			msg.reply({embeds: [{

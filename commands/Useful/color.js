@@ -53,23 +53,25 @@ module.exports = {
 		rgb.forEach(r => hex += r.toString(16).padStart(2, "0").toUpperCase())
 		hexColor = `\`\`#${hex}\`\``;
 
+		let colorWord = msg.cmd.toLowerCase().includes("color") ? "Color" : "Colour";
+
 		let name = color(parseInt(hex, 16));
 		return msg.reply({
 			embeds: [{
-				title: `${msg.cmd.toLowerCase().includes("color") ? "Color" : "Colour"}: ${name.name}`,
+				title: `${colorWord}: ${name.name}`,
 				fields: [
 					{
-						"name": "Hex color",
+						"name": `Hex ${colorWord}`,
 						"value": hexColor,
 						"inline": true
 					},
 					{
-						"name": "RGB color",
+						"name": `RGB ${colorWord}`,
 						"value": rgbColor,
 						"inline": true
 					},
 					{
-						"name": "BGR15 color",
+						"name": `BGR15 ${colorWord}`,
 						"value": bgr15,
 						"inline": true
 					}

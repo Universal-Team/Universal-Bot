@@ -14,5 +14,5 @@ String.prototype.caseReplaceAll = function(strReplace, strWith) {
 
 String.prototype.regexEscape = function() {
 	// See http://stackoverflow.com/a/3561711/556609
-	return this.replace(/[-\/\\^$*+?.()|[\]{}]/g, "\\$&");
+	return this.replace(/[\-\/\\^$*+?.()|[\]{}]/g, "\\$&");
 }

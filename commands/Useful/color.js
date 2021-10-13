@@ -56,7 +56,7 @@ module.exports = {
 		let name = color(parseInt(hex, 16));
 		return msg.reply({
 			embeds: [{
-				title: `Color: ${name.name}`,
+				title: `${msg.cmd.toLowerCase().includes("color") ? "Color" : "Colour"}: ${name.name}`,
 				fields: [
 					{
 						"name": "Hex color",

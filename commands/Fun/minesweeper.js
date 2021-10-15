@@ -41,7 +41,7 @@ module.exports = {
 			}
 		}
 
-		let out = "";
+		let out = `Total mines: ${mines}\n`;
 		for(let row of board) {
 			out += row.join(" ") + "\n";
 		}

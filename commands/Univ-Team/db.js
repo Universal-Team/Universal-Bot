@@ -115,7 +115,7 @@ module.exports = {
 
 				let embed = {embeds: [{
 					title: res.title,
-					url: `https://db.universal-team.net/${res.systems[0].toLowerCase()}/${Array.from(res.title.toLowerCase().replace(/ /g, "-")).filter(r => "abcdefghijklmnopqrstuvwxyz0123456789-_.".includes(r)).join("")}`,
+					url: `https://db.universal-team.net/${res.systems[0].toLowerCase()}/${Array.from(res.title.toLowerCase().replace(/[ .]/g, "-")).filter(r => "abcdefghijklmnopqrstuvwxyz0123456789-_".includes(r)).join("")}`,
 					thumbnail: {
 						url: res.image || res.icon
 					},

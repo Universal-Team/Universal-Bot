@@ -154,6 +154,23 @@ module.exports = async function(UnivBot, msg, nmsg) {
 	if(lacks.length)
 		return msg.reply(`You lack the following permissions to run this command: ${lacks.join(", ")}`);
 
+	// Bump command usage count
+	if(!db.statsDisabled) {
+		if(!("cmdStats" in db))
+			db.cmdStats = {};
+		if(!("userStats" in db))
+			db.userStats = {};
+
+		let commandName = typeof command.name == "string" ? command.name : command.name[0];
+		if(!(commandName in db.cmdStats))
+			db.cmdStats[commandName] = 0;
+		db.cmdStats[commandName]++;
+
+		if(!(msg.author.id in db.userStats))
+			db.userStats[msg.author.id] = 0;
+		db.userStats[msg.author.id]++;
+	}
+
 	// Execute command
 	try {
 		command.exec(UnivBot, msg);

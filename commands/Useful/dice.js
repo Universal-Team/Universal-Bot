@@ -1,6 +1,6 @@
 module.exports = {
 	name: ["dice", "die"],
-	usage: "[-__s__ides] [-__c__ount]",
+	usage: "[--__s__ides] [--__c__ount]",
 	desc: "Rolls dice",
 	DM: true,
 	permissions: [],

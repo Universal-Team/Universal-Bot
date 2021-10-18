@@ -30,7 +30,7 @@ module.exports = async function(UnivBot, interaction) {
 
 		// Detect if lacks permissions
 		if(lacks.length)
-			return msg.reply(`You lack the following permissions to run this command: ${lacksStr}`);
+			return interaction.reply(`You lack the following permissions to run this command: ${lacksStr}`);
 
 		interaction.prefix = "/";
 		interaction.cmd = interaction.commandName;
@@ -50,16 +50,16 @@ module.exports = async function(UnivBot, interaction) {
 				db.cmdStats[commandName] = 0;
 			db.cmdStats[commandName]++;
 
-			if(!(msg.author.id in db.userStats))
-				db.userStats[msg.author.id] = 0;
-			db.userStats[msg.author.id]++;
+			if(!(interaction.author.id in db.userStats))
+				db.userStats[interaction.author.id] = 0;
+			db.userStats[interaction.author.id]++;
 		}
 
 		// Execute command
 		try {
 			command.exec(UnivBot, interaction);
 		} catch(e) {
-			msg.send(`Oops! An error has occurred while executing this command. ${Formatters.codeBlock("js", e)}`);
+			interaction.reply(`Oops! An error has occurred while executing this command. ${Formatters.codeBlock("js", e)}`);
 		}
 	} else if(interaction.isButton()) { // Button
 		interaction.reply(`hi ${interaction.user.username}!`);

@@ -175,6 +175,6 @@ module.exports = async function(UnivBot, msg, nmsg) {
 	try {
 		command.exec(UnivBot, msg);
 	} catch(e) {
-		msg.send(`Oops! An error has occurred while executing this command. ${Formatters.codeBlock("js", e)}`);
+		msg.reply(`Oops! An error has occurred while executing this command. ${Formatters.codeBlock("js", e)}`);
 	}
 }

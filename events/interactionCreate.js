@@ -38,7 +38,29 @@ module.exports = async function(UnivBot, interaction) {
 		interaction.args = {};
 		interaction.options.data.forEach(r => interaction.args[r.name] = r.value);
 
-		command.exec(UnivBot, interaction);
+		// Bump command usage count
+		if(!db.statsDisabled) {
+			if(!("cmdStats" in db))
+				db.cmdStats = {};
+			if(!("userStats" in db))
+				db.userStats = {};
+
+			let commandName = typeof command.name == "string" ? command.name : command.name[0];
+			if(!(commandName in db.cmdStats))
+				db.cmdStats[commandName] = 0;
+			db.cmdStats[commandName]++;
+
+			if(!(msg.author.id in db.userStats))
+				db.userStats[msg.author.id] = 0;
+			db.userStats[msg.author.id]++;
+		}
+
+		// Execute command
+		try {
+			command.exec(UnivBot, interaction);
+		} catch(e) {
+			msg.send(`Oops! An error has occurred while executing this command. ${Formatters.codeBlock("js", e)}`);
+		}
 	} else if(interaction.isButton()) { // Button
 		interaction.reply(`hi ${interaction.user.username}!`);
 	}

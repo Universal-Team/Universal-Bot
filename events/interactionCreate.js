@@ -38,6 +38,11 @@ module.exports = async function(UnivBot, interaction) {
 		interaction.args = {};
 		interaction.options.data.forEach(r => interaction.args[r.name] = r.value);
 
+		// Handle DM messages
+		let db = { prefix: "" };
+		if(interaction.guild)
+			db = UnivBot.db[interaction.guild.id];
+
 		// Bump command usage count
 		if(!db.statsDisabled) {
 			if(!("cmdStats" in db))
@@ -50,9 +55,9 @@ module.exports = async function(UnivBot, interaction) {
 				db.cmdStats[commandName] = 0;
 			db.cmdStats[commandName]++;
 
-			if(!(interaction.author.id in db.userStats))
-				db.userStats[interaction.author.id] = 0;
-			db.userStats[interaction.author.id]++;
+			if(!(interaction.member.id in db.userStats))
+				db.userStats[interaction.member.id] = 0;
+			db.userStats[interaction.member.id]++;
 		}
 
 		// Execute command

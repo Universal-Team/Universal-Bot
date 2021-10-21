@@ -79,7 +79,7 @@ Project.prototype.github = function() {
 		target = "null";
 
 	let object = {};
-	let io = `https://universal-team.github.io/${target.toLowerCase()}`;
+	let utnet = `https://universal-team.net/projects/${target.toLowerCase()}`;
 	let url = `https://github.com/Universal-Team/${target}`;
 	let raw = `https://raw.githubusercontent.com/Universal-Team/extras/master/builds/${target}`;
 	object.cia = {
@@ -93,7 +93,7 @@ Project.prototype.github = function() {
 		file: `${url}/releases/latest`
 	};
 	object.wiki = `${url}/wiki`;
-	object.site = io;
+	object.site = utnet;
 
 	return object;
 }

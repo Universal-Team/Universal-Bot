@@ -32,7 +32,7 @@ module.exports = {
 
 		return msg.reply({
 			embeds: [{
-				title: `Number: ${number}`,
+				title: `Number: ${number.toLocaleString()}`,
 				fields: [
 					{
 						"name": "Hexadecimal (Base 16)",

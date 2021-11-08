@@ -37,9 +37,6 @@ module.exports = {
 			return msg.reply("Stats are disabled in this guild :pensive:");
 		}
 
-		console.log(db.cmdStats);
-		console.log(db.userStats);
-
 		let cmdStats = Object.entries(db.cmdStats).sort((a, b) => b[1] - a[1]);
 		let userStats = Object.entries(db.userStats).sort((a, b) => b[1] - a[1]);
 

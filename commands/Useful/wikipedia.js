@@ -14,8 +14,7 @@ module.exports = {
 		if(!msg.args.value)
 			return msg.reply("https://en.wikipedia.org/wiki/Nothing");
 
-		fetch(`https://${msg.args.language ?? msg.args.a ?? "en"}.wikipedia.org/w/api.php?action=opensearch&limit=1&namespace=0&format=json&search=${encodeURIComponent(msg.args.value)}`).then(r => r.json()).then(json => {
-			console.log(json);
+		fetch(`https://${msg.args.language ?? msg.args.a ?? "en"}.wikipedia.org/w/api.php?action=opensearch&limit=1&namespace=0&format=json&redirects=resolve&search=${encodeURIComponent(msg.args.value)}`).then(r => r.json()).then(json => {
 			if(json[3][0])
 				msg.reply(json[3][0]);
 			else

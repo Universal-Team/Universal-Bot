@@ -30,8 +30,8 @@ module.exports = {
 				return msg.reply("Invalid target language!");
 		}
 
-		fetch(`https://api-free.deepl.com/v2/translate?auth_key=${process.env["DEEPL_TOKEN"]}&target_lang=${target}&source_lang=${source}&text=${encodeURIComponent(msg.args.value)}`).then(r => r.json().then( j => {
+		fetch(`https://api-free.deepl.com/v2/translate?auth_key=${process.env["DEEPL_TOKEN"]}&target_lang=${target}&source_lang=${source}&text=${encodeURIComponent(msg.args.value)}`).then(r => r.json()).then(j => {
 			msg.reply(j.translations[0].text);
-		})).catch(e => msg.reply(`Translation failed! (${e})`));
+		}).catch(e => msg.reply(`Translation failed! (${e})`));
 	}
 }

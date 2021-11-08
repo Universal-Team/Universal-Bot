@@ -17,7 +17,6 @@ module.exports = {
 			let guild = UnivBot.client.guilds.cache.find(r => r.name.toLowerCase().includes(guildName));
 			if(guild) {
 				guild.emojis.cache.some(e => {
-					console.log(e.name);
 					if(e.name.toLowerCase() == name) {
 						emoji = e;
 						return true;

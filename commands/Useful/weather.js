@@ -74,7 +74,7 @@ module.exports = {
 
 			let data = result[0];
 
-			if(msg.args.webhookId) {
+			if(msg.webhookId) {
 				msg.reply(`Weather in ${data.location.name}:
 Temperature: ${data.current.temperature + degreeSymbol}
 Feels Like: ${data.current.feelslike + degreeSymbol}

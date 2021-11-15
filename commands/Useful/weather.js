@@ -74,45 +74,53 @@ module.exports = {
 
 			let data = result[0];
 
-			msg.reply({embeds: [{
-				color: colors[data.current.skycode],
-				title: `Weather in ${data.location.name}`,
-				thumbnail: {
-					url: data.current.imageUrl
-				},
-				fields: [
-					{
-						name: "Temperature",
-						value: data.current.temperature + degreeSymbol,
-						inline: true
+			if(msg.args.webhookId) {
+				msg.reply(`Weather in ${data.location.name}:
+Temperature: ${data.current.temperature + degreeSymbol}
+Feels Like: ${data.current.feelslike + degreeSymbol}
+Humidity: ${data.current.humidity}%
+Wind: ${data.current.winddisplay}`);
+			} else {
+				msg.reply({embeds: [{
+					color: colors[data.current.skycode],
+					title: `Weather in ${data.location.name}`,
+					thumbnail: {
+						url: data.current.imageUrl
 					},
-					{
-						name: "Feels Like",
-						value: data.current.feelslike + degreeSymbol,
-						inline: true
-					},
-					{
-						name: "_ _", // Empty field for a 2x2 grid
-						value: "_ _",
-						inline: true
-					},
-					{
-						name: "Humidity",
-						value: `${data.current.humidity}%`,
-						inline: true
-					},
-					{
-						name: "Wind",
-						value: data.current.winddisplay,
-						inline: true
-					},
-					{
-						name: "_ _", // Empty field for a 2x2 grid
-						value: "_ _",
-						inline: true
-					}
-				]
-			}]});
+					fields: [
+						{
+							name: "Temperature",
+							value: data.current.temperature + degreeSymbol,
+							inline: true
+						},
+						{
+							name: "Feels Like",
+							value: data.current.feelslike + degreeSymbol,
+							inline: true
+						},
+						{
+							name: "_ _", // Empty field for a 2x2 grid
+							value: "_ _",
+							inline: true
+						},
+						{
+							name: "Humidity",
+							value: `${data.current.humidity}%`,
+							inline: true
+						},
+						{
+							name: "Wind",
+							value: data.current.winddisplay,
+							inline: true
+						},
+						{
+							name: "_ _", // Empty field for a 2x2 grid
+							value: "_ _",
+							inline: true
+						}
+					]
+				}]});
+			}
 		});
 	}
 }

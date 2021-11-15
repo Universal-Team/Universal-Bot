@@ -98,7 +98,7 @@ module.exports = {
 					},
 					{
 						name: "Humidity",
-						value: data.current.humidity,
+						value: `${data.current.humidity}%`,
 						inline: true
 					},
 					{

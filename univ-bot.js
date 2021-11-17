@@ -22,7 +22,7 @@ if(fs.existsSync("database.json")) {
 } else {
 	UnivBot.db = {
 		"default": {
-			"prefix": ",",
+			"prefix": "?",
 			"messages": {
 				"welcome": {
 					"channel": "sys",

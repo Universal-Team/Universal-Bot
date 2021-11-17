@@ -1,6 +1,15 @@
 module.exports = {
 	name: ["dice", "die"],
-	usage: "[--__s__ides] [--__c__ount]",
+	args: {
+		sides: {
+			letter: "s",
+			value: true
+		},
+		count: {
+			letter: "c",
+			value: true
+		}
+	},
 	desc: "Rolls dice",
 	DM: true,
 	permissions: [],

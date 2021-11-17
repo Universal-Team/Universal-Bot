@@ -1,6 +1,6 @@
 module.exports = {
 	name: "dbsuggest",
-	usage: "",
+	args: {},
 	desc: "Suggest an application for Universal DB",
 	DM: true,
 	permissions: [],

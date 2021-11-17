@@ -1,6 +1,11 @@
 module.exports = {
 	name: ["textToUnicode", "ttu", "unicode"],
-	usage: "<text>",
+	args: {
+		value: {
+			title: "text",
+			required: true
+		}
+	},
 	desc: "Converts text to their unicode character codes",
 	DM: true,
 	permissions: [],

@@ -1,6 +1,11 @@
 module.exports = {
 	name: ["emojiInfo", "絵文字Info"],
-	usage: "<name>",
+	args: {
+		value: {
+			title: "name",
+			required: true
+		}
+	},
 	desc: "Sends info about an emoji in a guild Universal-Bot is in",
 	DM: true,
 	permissions: [],

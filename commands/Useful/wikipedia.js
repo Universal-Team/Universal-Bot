@@ -3,7 +3,18 @@ const {CommandInteraction} = require("discord.js");
 
 module.exports = {
 	name: "Wikipedia",
-	usage: "[-__l__ast] [--l__a__nguage] <query>",
+	args: {
+		last: {
+			letter: "l"
+		},
+		language: {
+			letter: "a",
+			value: true
+		},
+		value: {
+			title: "query"
+		}
+	},
 	desc: "Searches Wikipedia and sends the page if found",
 	DM: true,
 	permissions: [],

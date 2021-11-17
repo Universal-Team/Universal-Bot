@@ -2,7 +2,14 @@ const Jimp = require("jimp");
 
 module.exports = {
 	name: ["invert", "negate"],
-	usage: "[-__s__elf] [link]",
+	args: {
+		self: {
+			letter: "s"
+		},
+		value: {
+			title: "link"
+		}
+	},
 	desc: "Inverts an image",
 	DM: true,
 	permissions: [],

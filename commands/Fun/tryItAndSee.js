@@ -1,6 +1,6 @@
 module.exports = {
 	name: ["tryItAndSee", "tias"],
-	usage: "",
+	args: {},
 	desc: "Lets you know that you should try it and see",
 	DM: true,
 	permissions: [],

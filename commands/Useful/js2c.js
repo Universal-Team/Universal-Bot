@@ -3,7 +3,12 @@ const {Formatters} = require("discord.js");
 
 module.exports = {
 	name: ["js2c", "ts2c"],
-	usage: "<code>",
+	args: {
+		value: {
+			title: "code",
+			required: true
+		}
+	},
 	desc: "Uses andrei's ts2c module for transpile TS/JS to C",
 	DM: true,
 	permissions: [],

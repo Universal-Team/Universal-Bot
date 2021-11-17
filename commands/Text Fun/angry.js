@@ -2,7 +2,14 @@ const {CommandInteraction} = require("discord.js");
 
 module.exports = {
 	name: "angry",
-	usage: "[-__l__ast] [message]",
+	args: {
+		last: {
+			letter: "l"
+		},
+		value: {
+			title: "message"
+		}
+	},
 	desc: "Makes the message look angry",
 	DM: true,
 	permissions: [],

@@ -1,6 +1,6 @@
 module.exports = {
 	name: ["work"],
-	usage: "",
+	args: {},
 	desc: "Fixes all problems, removes all the bugs, run when anything doesn't work!",
 	DM: true,
 	permissions: [],

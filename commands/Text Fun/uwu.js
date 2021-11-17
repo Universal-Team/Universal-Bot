@@ -17,7 +17,14 @@ function face() {
 
 module.exports = {
 	name: ["uwu", "uwuify", "owo", "owoify"],
-	usage: "[-__l__ast] [message]",
+	args: {
+		last: {
+			letter: "l"
+		},
+		value: {
+			title: "message"
+		}
+	},
 	desc: "UwU-ify a message",
 	DM: true,
 	permissions: [],

@@ -3,7 +3,21 @@ const {Formatters} = require("discord.js");
 
 module.exports = {
 	name: "PHP",
-	usage: "[-__t__emplate] <code>",
+	args: {
+		hide: {
+			letter: "h",
+		},
+		del: {
+			letter: "d"
+		},
+		template: {
+			letter: "t"
+		},
+		value: {
+			title: "code",
+			required: true
+		}
+	},
 	desc: "Executes PHP code.",
 	DM: true,
 	permissions: [ "DEV" ],

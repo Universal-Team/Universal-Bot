@@ -1,6 +1,11 @@
 module.exports = {
 	name: "reload",
-	usage: "<command>",
+	args: {
+		value: {
+			title: "command",
+			required: true
+		}
+	},
 	desc: "Reloads a command",
 	DM: true,
 	permissions: [ "DEV" ],

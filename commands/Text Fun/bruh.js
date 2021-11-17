@@ -2,7 +2,14 @@ const {CommandInteraction} = require("discord.js");
 
 module.exports = {
 	name: "bruh",
-	usage: "[-__l__ast] [message]",
+	args: {
+		last: {
+			letter: "l"
+		},
+		value: {
+			title: "message"
+		}
+	},
 	desc: "Replaces all the spaces with a nice bruh",
 	DM: true,
 	permissions: [],

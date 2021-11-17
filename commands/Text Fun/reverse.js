@@ -2,7 +2,14 @@ const {CommandInteraction} = require("discord.js");
 
 module.exports = {
 	name: [ "reverse", "backwards" ],
-	usage: "[-__l__ast] [message]",
+	args: {
+		last: {
+			letter: "l"
+		},
+		value: {
+			title: "message"
+		}
+	},
 	desc: "Reverses the message",
 	DM: true,
 	permissions: [],

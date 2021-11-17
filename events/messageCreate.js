@@ -125,14 +125,27 @@ module.exports = async function(UnivBot, msg, nmsg) {
 	console.log((new Date()).toLocaleString(), msg.author.username, command.name);
 
 	// Parse args
-	if(command.ignoreArgs) {
-		msg.args = {value: msg.content.trim()};
-	} else {
-		msg.args = {value: msg.content.split(/\s-[^-\s]+|\s--[^\s]+\s+[^\s]+/g).join("").trim()};
-		msg.content.match(/\s-[^-\s]+|\s--[^\s]+\s+[^\s]+/g)?.forEach(r => {
-			msg.args[r.match(/[^- ]+/)] = r.trim().match(/\s+(.+)/) ? r.trim().match(/\s+(.+)/)[1] : true;
-		});
+	msg.args = {value: msg.content};
+	for(let item in command.args) {
+		if(item == "value")
+			continue;
+
+		let arg = command.args[item];
+		if(arg.value) {
+			let match = msg.args.value.match(new RegExp(`\\s(?:--${(arg.title ?? item).regexEscape()}${arg.letter ? `|-${arg.letter}` : ""}) ?([^\\s]+)`, "i"));
+			if(match) {
+				msg.args[item] = match[1];
+				msg.args.value = msg.args.value.replace(match[0], "");
+			}
+		} else {
+			let match = msg.args.value.match(new RegExp(`\\s(?:--${(arg.title ?? item).regexEscape()}${arg.letter ? `|-${arg.letter}` : ""})`, "i"));
+			if(match) {
+				msg.args[item] = true;
+				msg.args.value = msg.args.value.replace(match[0], "");
+			}
+		}
 	}
+	msg.args.value = msg.args.value.trim();
 
 	// Check for DM
 	if(!command.DM && !msg.guild)

@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 
 module.exports = {
 	name: ["about", "invite"],
-	usage: "",
+	args: {},
 	desc: "Shows info about the bot",
 	DM: true,
 	permissions: [],

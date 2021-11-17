@@ -3,7 +3,18 @@ const {Formatters} = require("discord.js");
 
 module.exports = {
 	name: "Bash",
-	usage: "[-__h__ide] [-__d__el] <code>",
+	args: {
+		hide: {
+			letter: "h",
+		},
+		del: {
+			letter: "d"
+		},
+		value: {
+			title: "code",
+			required: true
+		}
+	},
 	desc: "Executes Bash code. Use -hide for hide the output and -del for delete the invocation message",
 	DM: true,
 	permissions: [ "DEV" ],

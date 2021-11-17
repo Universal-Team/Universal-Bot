@@ -1,6 +1,13 @@
 module.exports = {
 	name: ["stats", "statistics"],
-	usage: "[-__d__isable] [-__e__nable]",
+	args: {
+		disable: {
+			letter: "d"
+		},
+		enable: {
+			letter: "e"
+		}
+	},
 	desc: "Shows command usage stats for this server",
 	DM: true,
 	permissions: [],

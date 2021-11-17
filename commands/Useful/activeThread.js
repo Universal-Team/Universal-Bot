@@ -1,6 +1,11 @@
 module.exports = {
 	name: "activeThread",
-	usage: "<comma-separated-thread-mentions>",
+	args: {
+		value: {
+			title: "comma separated thread mentions",
+			required: true,
+		}
+	},
 	desc: "Makes threads never archive",
 	permissions: [],
 	async exec(UnivBot, msg) {

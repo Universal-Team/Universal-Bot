@@ -3,7 +3,12 @@ const fs                = require("fs");
 
 module.exports = {
 	name: [ "qr", "qrencode" ],
-	usage: "<text>",
+	args: {
+		value: {
+			title: "text",
+			required: true
+		}
+	},
 	desc: "Generates a QR code of the provided text",
 	DM: true,
 	permissions: [],

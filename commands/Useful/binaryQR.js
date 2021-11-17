@@ -4,7 +4,12 @@ const fs            = require("fs");
 
 module.exports = {
 	name: ["binaryQR", "binQR"],
-	usage: "<link-to-file>",
+	args: {
+		value: {
+			title: "link to file",
+			required: true
+		}
+	},
 	desc: "Generates a QR code from the linked or attached file",
 	DM: true,
 	permissions: [],

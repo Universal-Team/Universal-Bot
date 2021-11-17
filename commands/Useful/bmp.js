@@ -2,7 +2,12 @@ const Jimp = require("jimp");
 
 module.exports = {
 	name: ["bmp", "bmpify"],
-	usage: "<link>",
+	args: {
+		value: {
+			title: "link",
+			required: true
+		}
+	},
 	desc: "Converts a jpg, gif, png, or tiff to a bmp",
 	DM: true,
 	permissions: [],

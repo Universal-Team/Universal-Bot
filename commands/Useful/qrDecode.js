@@ -4,7 +4,12 @@ const fetch             = require("node-fetch");
 
 module.exports = {
 	name: [ "qrDecode", "barcodeDecode", "deQR", "zbarimg" ],
-	usage: "<link>",
+	args: {
+		value: {
+			title: "link",
+			required: true
+		}
+	},
 	desc: "Decodes the linked or attached QR/barcode",
 	DM: true,
 	permissions: [],

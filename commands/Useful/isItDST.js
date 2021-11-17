@@ -6,7 +6,7 @@ Date.prototype.stdTimezoneOffset = function () {
 
 module.exports = {
 	name: ["isItDST", "isItDST?"],
-	usage: "",
+	args: {},
 	desc: "Lets you know if its Daylight Savings Time. Currently only works for the time zone where the bot is hosted (US Central time)",
 	DM: true,
 	permissions: [],

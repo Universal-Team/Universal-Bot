@@ -3,13 +3,19 @@ const {CommandInteraction, Formatters} = require("discord.js");
 
 module.exports = {
 	name: ["cowsay", "cowthink"],
-	usage: "[-__l__ast] <args>",
+	args: {
+		last: {
+			letter: "l"
+		},
+		value: {
+			title: "args"
+		}
+	},
 	desc: "Runs cowsay",
 	DM: true,
 	permissions: [],
-	ignoreArgs: true,
 	exec(UnivBot, msg) {
-		if(msg.args.value.includes("-l") || msg.args.value.includes("-last"))
+		if(msg.args.last)
 			msg.args.value = msg.channel.messages.cache.map(r => r)[msg.channel.messages.cache.size - (msg instanceof CommandInteraction ? 1 : 2)].content;
 
 		if(!msg.args.value)

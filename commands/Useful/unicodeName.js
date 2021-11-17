@@ -1,6 +1,11 @@
 module.exports = {
 	name: ["unicodeName", "charName", "uniName"],
-	usage: "<character>",
+	args: {
+		value: {
+			title: "character",
+			required: true
+		}
+	},
 	desc: "Gets the unicode name of a character or code point",
 	DM: true,
 	permissions: [],

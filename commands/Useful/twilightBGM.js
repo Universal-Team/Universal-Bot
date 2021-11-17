@@ -4,7 +4,12 @@ const fs                = require("fs");
 
 module.exports = {
 	name: ["TWiLightBGM", "TWiLightMusic", "twlbgm"],
-	usage: "<link>",
+	args: {
+		value: {
+			title: "link",
+			required: true
+		}
+	},
 	desc: "Converts audio to TWiLight Menu++'s BGM format",
 	DM: true,
 	permissions: [],

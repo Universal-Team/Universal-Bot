@@ -3,7 +3,21 @@ const {Formatters} = require("discord.js");
 
 module.exports = {
 	name: ["CPP", "C++"],
-	usage: "[-__h__ide] [-__d__el] [-__t__emplate] <code>",
+	args: {
+		hide: {
+			letter: "h",
+		},
+		del: {
+			letter: "d"
+		},
+		template: {
+			letter: "t"
+		},
+		value: {
+			title: "code",
+			required: true
+		}
+	},
 	desc: "Executes C++ code. Use -hide for hide the output, -del for delete the invocation message and -template for automatically add stdio.h, string, and vector.",
 	DM: true,
 	permissions: [ "DEV" ],

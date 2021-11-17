@@ -3,7 +3,24 @@ const {Formatters} = require("discord.js");
 
 module.exports = {
 	name: ["JavaScript", "JS"],
-	usage: "[-__h__ide] [-__s__tring] [-__d__el] [-de__v__] <code>",
+	args: {
+		hide: {
+			letter: "h",
+		},
+		string: {
+			lettter: "s"
+		},
+		del: {
+			letter: "d"
+		},
+		dev: {
+			letter: "v"
+		},
+		value: {
+			title: "code",
+			required: true
+		}
+	},
 	desc: "Executes JS code. Use -hide for hide the output, -string for not inspect the output and -del for delete the invocation message",
 	DM: true,
 	permissions: [],

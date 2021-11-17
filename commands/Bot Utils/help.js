@@ -41,9 +41,32 @@ function isCommand(UnivBot, name) {
 	return command;
 }
 
+function formatArgs(args) {
+	let usage = [];
+	for(let item in args) {
+		let arg = args[item];
+		let argStr = (item == "value" ? "" : "--") + (arg.title ?? item);
+		if(arg.letter)
+			argStr = argStr.replace(arg.letter, "__$&__");
+
+		if(arg.hint)
+			argStr += ` <${arg.hint}>`;
+		else if(arg.value)
+			argStr += " <arg>";
+		
+		usage.push(arg.required ? `<${argStr}>` : `[${argStr}]`);
+	}
+
+	return usage.join(" ");
+}
+
 module.exports = {
 	name: [ "help", "cmds", "commands" ],
-	usage: "[category]",
+	args: {
+		value: {
+			title: "command/category"
+		}
+	},
 	desc: "Gives info about a the categories, a category, or a command",
 	DM: true,
 	permissions: [],
@@ -132,12 +155,12 @@ module.exports = {
 				var name = require(`../../commands/${category}/${command}`).name;
 				if((name instanceof Array)) {
 					var nameStr = name[0];
-					nameStr += ` ${require(`../../commands/${category}/${command}`).usage}`;
+					nameStr += " " + formatArgs(require(`../../commands/${category}/${command}`).args);
 					nameStr = msg.prefix + nameStr;
 					desc += `\n(Other names: **${name.slice(1).join("**, **")}**)`
 					embed.addField(nameStr, desc);
 				} else {
-					name += ` ${require(`../../commands/${category}/${command}`).usage}`;
+					name += " " + formatArgs(require(`../../commands/${category}/${command}`).args);
 					name = msg.prefix + name;
 					embed.addField(name, desc);
 				}
@@ -146,10 +169,10 @@ module.exports = {
 		if(type == "cmd") {
 			let cmd = isCommand(UnivBot, msg.args.value);
 			if((cmd.name instanceof Array)) {
-				var nameStr = `${msg.prefix + cmd.name[0]} ${cmd.usage}`;
+				var nameStr = `${msg.prefix + cmd.name[0]} ${formatArgs(cmd.args)}`;
 				embed.addField(nameStr, cmd.desc + `\n(Other names: **${cmd.name.slice(1).join("**, **")}**)`);
 			} else {
-				name = `${msg.prefix + cmd.name} ${cmd.usage}`;
+				name = `${msg.prefix + cmd.name} ${formatArgs(cmd.args)}`;
 				embed.addField(name, cmd.desc);
 			}
 		}

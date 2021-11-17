@@ -32,7 +32,14 @@ const letters = {
 
 module.exports = {
 	name: "blobSign",
-	usage: "[-__l__ast] <message>",
+	args: {
+		last: {
+			letter: "l"
+		},
+		value: {
+			title: "message"
+		}
+	},
 	desc: "Writes using blob signs",
 	DM: true,
 	permissions: [],

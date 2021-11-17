@@ -6,6 +6,7 @@ function compile(code, type) {
 	let sourceFile    = "utils/compile";
 
 	let extension = "cpp";
+	let compiler = "g++";
 	switch(type.toLowerCase()) {
 		case "asm":
 		case "assembly":
@@ -16,12 +17,13 @@ function compile(code, type) {
 		case "c":
 		case "normal":
 			extension = "c";
+			compiler = "gcc";
 			break;
 	}
 
 	sourceFile += `.${extension}`;
 	fs.writeFileSync(sourceFile, new Buffer.from(code));
-	let stdio = spawnSync("g++", ["-std=c++17", sourceFile, "-o", compiledFile], { encoding: "utf-8" });
+	let stdio = spawnSync(compiler, [compiler == "g++" ? "-std=c++17" : "-std=c11", sourceFile, "-o", compiledFile], { encoding: "utf-8" });
 
 	let exec = spawnSync(compiledFile, { encoding: "utf-8" });
 	fs.unlinkSync(sourceFile);

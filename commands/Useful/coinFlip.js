@@ -1,6 +1,10 @@
 module.exports = {
 	name: ["coinFlip", "coin"],
-	usage: "[-__c__ount]",
+	args: {
+		count: {
+			letter: "c"
+		}
+	},
 	desc: "Flips a coin",
 	DM: true,
 	permissions: [],

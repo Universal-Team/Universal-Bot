@@ -27,7 +27,12 @@ function findQuestion(name) {
 
 module.exports = {
 	name: "faq",
-	usage: "<faq>",
+	args: {
+		value: {
+			title: "faq",
+			required: true
+		}
+	},
 	desc: "Sends the specified faq",
 	DM: true,
 	permissions: [],

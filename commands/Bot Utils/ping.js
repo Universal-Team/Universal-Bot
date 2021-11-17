@@ -1,6 +1,6 @@
 module.exports = {
 	name: "ping",
-	usage: "",
+	args: {},
 	desc: "Checks the speed of the bot",
 	DM: true,
 	permissions: [],

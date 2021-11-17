@@ -1,6 +1,6 @@
 module.exports = {
 	name: ["jif", "gif-but-wrong"],
-	usage: "",
+	args: {},
 	desc: "Converts anything to a jif",
 	DM: true,
 	permissions: [],

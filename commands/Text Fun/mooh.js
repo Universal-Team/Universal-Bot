@@ -2,7 +2,14 @@ const {CommandInteraction} = require("discord.js");
 
 module.exports = {
 	name: ["mooh", "muuh", "moo"],
-	usage: "[-__l__ast] [message]",
+	args: {
+		last: {
+			letter: "l"
+		},
+		value: {
+			title: "message"
+		}
+	},
 	desc: "Mooh-ify a message",
 	DM: true,
 	permissions: [],

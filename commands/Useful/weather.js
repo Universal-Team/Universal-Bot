@@ -53,7 +53,15 @@ const colors = [
 
 module.exports = {
 	name: ["weather", "temperature", "temp"],
-	usage: "[-__f__ahrenheit] <location>",
+	args: {
+		fahrenheit: {
+			letter: "f"
+		},
+		value: {
+			title: "location",
+			required: true
+		}
+	},
 	desc: "Gets the weather at a given location. Weather data from MSN.",
 	DM: true,
 	permissions: [],

@@ -2,7 +2,14 @@ const {CommandInteraction} = require("discord.js");
 
 module.exports = {
 	name: ["leet", "l33t", "1337", "h4x0r"],
-	usage: "[-__l__ast] [message]",
+	args: {
+		last: {
+			letter: "l"
+		},
+		value: {
+			title: "message"
+		}
+	},
 	desc: "l33t pr0gr4m1ng sp33ch",
 	DM: true,
 	permissions: [],

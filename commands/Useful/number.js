@@ -1,6 +1,13 @@
 module.exports = {
 	name: [ "number", "hex", "decimal", "octal", "binary" ],
-	usage: "[-__r__andom] [number]",
+	args: {
+		random: {
+			letter: "r"
+		},
+		value: {
+			title: "number"
+		}
+	},
 	desc: "Shows a number in various bases",
 	DM: true,
 	permissions: [],
@@ -22,7 +29,6 @@ module.exports = {
 			}
 		}
 		let number = parseInt(msg.args.value, base);
-		console.log(number);
 
 		if(msg.args.random || msg.args.r)
 			number = Math.floor(Math.random() * 0x10000);

@@ -10,7 +10,6 @@ function noRepeat(array) {
 }
 
 module.exports = async (UnivBot) => {
-
 	// Tell the console
 	console.log(`${UnivBot.client.user.tag} is ready`);
 
@@ -36,20 +35,21 @@ module.exports = async (UnivBot) => {
 			// Register slash command
 			let cmd = require(`../commands/${category}/${command}`);
 			let options = undefined;
-			if(cmd.usage) {
+			if(cmd.args) {
 				options = []
-				cmd.usage.split(" ").forEach(r => {
+				for(let item in cmd.args) {
+					let arg = cmd.args[item];
 					let o = {
-						name: r.includes("-") ? r.replace(/[\[\]\<\>\-_]/g, "") : "value",
-						description: r.replace(/[\[\]\<\>\-_]/g, ""),
-						type: (r.includes("--") || !r.includes("-")) ? "STRING" : "BOOLEAN",
-						required: r[0] == "<",
+						name: (arg.title ?? item).replace(/[ \/]/g, "-"),
+						description: arg.hint ?? arg.title ?? item,
+						type: (arg.value || item == "value") ? "STRING" : "BOOLEAN",
+						required: arg.required == true,
 					}
-					if(o.required)
+					if(arg.required)
 						options.unshift(o);
 					else
 						options.push(o);
-				});
+				}
 			}
 
 			UnivBot.client.application?.commands.create({

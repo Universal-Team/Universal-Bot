@@ -1,6 +1,11 @@
 module.exports = {
 	name: ["emojiSearch", "絵文字Search"],
-	usage: "<query>",
+	args: {
+		value: {
+			title: "query",
+			required: true
+		}
+	},
 	desc: "Finds all emoji containing the entered term that Universal-Bot can access",
 	DM: true,
 	permissions: [],

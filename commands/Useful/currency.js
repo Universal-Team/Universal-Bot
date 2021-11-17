@@ -3,11 +3,23 @@ const {CommandInteraction} = require("discord.js");
 
 module.exports = {
 	name: ["currency", "$", "€", "£", "¥"],
-	usage: "[--__t__arget] [-__l__ast] <value>",
+	args: {
+		target: {
+			letter: "t",
+			value: true,
+		},
+		last: {
+			letter: "l"
+		},
+		value: {}
+	},
 	desc: "Converts from one currency to another",
 	DM: true,
 	permissions: [],
 	async exec(UnivBot, msg) {
+		if(!process.env.CURRENCY_TOKEN)
+			return msg.reply("Please set `CURRENCY_TOKEN` in your `.env`.");
+
 		if(msg.args.last || msg.args.l)
 			msg.args.value = msg.channel.messages.cache.map(r => r)[msg.channel.messages.cache.size - (msg instanceof CommandInteraction ? 1 : 2)].content;
 

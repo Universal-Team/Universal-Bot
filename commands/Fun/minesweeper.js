@@ -1,6 +1,11 @@
 module.exports = {
 	name: "minesweeper",
-	usage: "[--__m__ines]",
+	args: {
+		mines: {
+			letter: "m",
+			value: true
+		}
+	},
 	desc: "Generates a spoiler-based minesweeper board",
 	DM: true,
 	permissions: [],

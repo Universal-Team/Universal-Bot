@@ -3,7 +3,7 @@ const fs = require("fs");
 
 module.exports = {
 	name: ["reboot","restart","refresh"],
-	usage: "",
+	args: {},
 	desc: "Reboots the bot",
 	DM: true,
 	permissions: [ "DEV" ],

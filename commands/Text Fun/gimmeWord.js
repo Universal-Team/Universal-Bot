@@ -2,12 +2,17 @@ const {CommandInteraction} = require("discord.js");
 
 module.exports = {
 	name: ["gimmeWord", "randomWord"],
-	usage: "[--__c__ount]",
+	args: {
+		count: {
+			letter: "c",
+			value: true,
+			hint: "1-100"
+		}
+	},
 	desc: "Gives a random word",
 	DM: true,
 	permissions: [],
 	exec(UnivBot, msg) {
-
 		let count = parseInt(msg.args.count || msg.args.c);
 		if(isNaN(count))
 			count = 1;

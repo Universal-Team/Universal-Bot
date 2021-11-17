@@ -7,7 +7,14 @@ const {color, names} = require("../../utils/color");
 
 module.exports = {
 	name: [ "color", "color-code", "colour", "colour-code" ],
-	usage: "[-__r__andom] [color]",
+	args: {
+		random: {
+			letter: "r",
+		},
+		value: {
+			title: "color"
+		}
+	},
 	desc: "Displays information about a color in #RGB, #RRGGBB, RRR GGG BBB, BGR15, or by name",
 	DM: true,
 	permissions: [],

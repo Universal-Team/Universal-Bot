@@ -5,6 +5,7 @@
 // ===========================================================
 const fs = require("fs");
 const { Client, Intents } = require("discord.js");
+const L = require("list");
 require("./utils/Prototypes");
 require("dotenv").config();
 
@@ -15,7 +16,8 @@ const UnivBot = {
 	client: new Client({
 		intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MEMBERS, Intents.FLAGS.GUILD_MESSAGES],
 		allowedMentions: { parse: [], repliedUser: false }
-	})
+	}),
+	data: {}
 };
 if(fs.existsSync("database.json")) {
 	UnivBot.db = require("./database.json");
@@ -51,6 +53,8 @@ if(fs.existsSync("database.json")) {
 	}
 }
 UnivBot.client.login(process.env.TOKEN);
+
+UnivBot.data.unicodeNames = L.from(Object.entries(require("./data/unicode-names.json")));
 
 // ===========================================================
 // Handle the events

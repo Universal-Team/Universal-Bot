@@ -1,4 +1,5 @@
 const {CommandInteraction} = require("discord.js");
+const L = require("list");
 
 module.exports = {
 	name: ["gimmeWord", "randomWord"],
@@ -22,17 +23,11 @@ module.exports = {
 			return msg.reply("No thanks, that's too much work");
 
 		let out = [];
-
-		let reply = await msg.reply("working on it...");
-
-		const names = require("../../data/unicode-names.json");
 		for(let i = 0; i < count; i++) {
-			let str = names[Object.keys(names)[Math.floor(Math.random() * Object.keys(names).length)]].split(/\b/).filter(r => r.match(/\b/));
+			let str = L.nth(Math.floor(Math.random() * UnivBot.data.unicodeNames.length), UnivBot.data.unicodeNames)[1].split(/\b/).filter(r => r.match(/\b/));
 			out.push(str[Math.floor(Math.random() * str.length)].toLowerCase());
-			if(i == 50)
-				await reply.edit("why's this json so big...");
 		}
 
-		reply.edit(out.join(" ").substr(0, 2000));
+		msg.reply(out.join(" ").substr(0, 2000));
 	}
 }

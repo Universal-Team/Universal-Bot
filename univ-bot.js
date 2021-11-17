@@ -17,8 +17,40 @@ const UnivBot = {
 		allowedMentions: { parse: [], repliedUser: false }
 	})
 };
-UnivBot.db = require("./database.json");
-UnivBot.client.login(process.env["TOKEN"]);
+if(fs.existsSync("database.json")) {
+	UnivBot.db = require("./database.json");
+} else {
+	UnivBot.db = {
+		"default": {
+			"prefix": ",",
+			"messages": {
+				"welcome": {
+					"channel": "sys",
+					"string": "Welcome **${user.ping}** to **${guild.name}**!, hope you enjoy your stay! The amount of members now is **${guild.amount}**",
+					"enabled": true
+				},
+				"goodbye": {
+					"channel": "sys",
+					"string": "Goodbye **${user.tag}**... The amount of members now is **${guild.amount}**",
+					"enabled": true
+				}
+			}
+		},
+		"developers": [
+			"327757456673472523",
+			"404682150370082817",
+			"398661839182888960",
+			"545821283372498944",
+			"260277536464961537",
+			"293573287697580034",
+			"178261738364338177",
+			"625056514666659880",
+			"644449298087411732",
+			"305817665082097665"
+		]
+	}
+}
+UnivBot.client.login(process.env.TOKEN);
 
 // ===========================================================
 // Handle the events

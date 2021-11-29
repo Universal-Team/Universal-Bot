@@ -14,7 +14,8 @@ require("dotenv").config();
 // ===========================================================
 const UnivBot = {
 	client: new Client({
-		intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MEMBERS, Intents.FLAGS.GUILD_MESSAGES],
+		intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MEMBERS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.DIRECT_MESSAGES],
+		partials: ["CHANNEL"],
 		allowedMentions: { parse: [], repliedUser: false }
 	}),
 	data: {}

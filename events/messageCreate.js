@@ -148,7 +148,7 @@ module.exports = async function(UnivBot, msg, nmsg) {
 	msg.args.value = msg.args.value.trim();
 
 	// Check for DM
-	if(!command.DM && !msg.guild)
+	if(!command.DM && !msg.channel.type == "DM")
 		return msg.reply("You can't use this command on DM!");
 
 	// Get permissions

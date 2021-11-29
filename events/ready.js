@@ -31,32 +31,6 @@ module.exports = async (UnivBot) => {
 		var commands = fs.readdirSync(`commands/${category}`).filter(cmd => cmd.endsWith(".js"));
 		for(var command of commands) {
 			UnivBot.cmds.push(`commands/${category}/${command}`);
-
-			// Register slash command
-			let cmd = require(`../commands/${category}/${command}`);
-			let options = undefined;
-			if(cmd.args) {
-				options = []
-				for(let item in cmd.args) {
-					let arg = cmd.args[item];
-					let o = {
-						name: (arg.title ?? item).replace(/[ \/]/g, "-"),
-						description: arg.hint ?? arg.title ?? item,
-						type: (arg.value || item == "value") ? "STRING" : "BOOLEAN",
-						required: arg.required == true,
-					}
-					if(arg.required)
-						options.unshift(o);
-					else
-						options.push(o);
-				}
-			}
-
-			UnivBot.client.application?.commands.create({
-				name: (typeof cmd.name == "string" ? cmd.name : cmd.name[0]).toLowerCase(),
-				description: cmd.desc.substr(0, 100),
-				options: options
-			}).then(r => console.log("registed command", r.name));
 		}
 	}
 

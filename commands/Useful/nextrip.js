@@ -5,6 +5,9 @@ const {parseString} = require("xml2js");
 module.exports = {
 	name: ["NexTrip", "mt"],
 	args: {
+		text: {
+			letter: "t"
+		},
 		value: {
 			title: "stop number",
 			required: true
@@ -29,8 +32,8 @@ module.exports = {
 
 			for(let departure of j) {
 				embed.fields.push({
-					name: `Route ${departure.Route} (${departure.RouteDirection})`,
-					value: `<t:${departure.DepartureTime.match(/\d+/)[0] / 1000}:R>`,
+					name: `Route ${departure.Route}${departure.Terminal ?? ""} (${departure.RouteDirection})`,
+					value: msg.args.text ? departure.DepartureText : `<t:${departure.DepartureTime.match(/\d+/)[0] / 1000}:R>`,
 					inline: true
 				});
 			}

@@ -43,7 +43,7 @@ module.exports = {
 				}
 			} else {
 				const vm = new VM({timeout: 10000});
-				output = vm.run(`eval(\`${msg.args.value.replace(/`/g, "\\`")}\`)`);
+				output = vm.run(`eval(\`${msg.args.value.replace(/[`\$\\]/g, "\\$&")}\`)`);
 			}
 		} catch(e) {
 			if(!(msg.args.hide || msg.args.h))

@@ -1,3 +1,5 @@
+const {CommandInteraction} = require("discord.js");
+
 module.exports = {
 	name: ["8-ball", "8ball", "magicball"],
 	args: {

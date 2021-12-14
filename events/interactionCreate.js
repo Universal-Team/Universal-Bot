@@ -1,3 +1,5 @@
+const {Formatters} = require("discord.js");
+
 module.exports = async function(UnivBot, interaction) {
 	if(interaction.isCommand()) { // Slash Command
 		let command;
@@ -36,7 +38,7 @@ module.exports = async function(UnivBot, interaction) {
 		interaction.cmd = interaction.commandName;
 		interaction.content = "";
 		interaction.args = {};
-		interaction.options.data.forEach(r => interaction.args[r.name] = r.value);
+		interaction.options.data.forEach(r => interaction.args[cmd.args.value?.title == r.name ? "value" : r.name] = r.value);
 
 		// Handle DM messages
 		let db = { prefix: "" };

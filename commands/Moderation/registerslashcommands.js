@@ -6,7 +6,7 @@ module.exports = {
 	args: {},
 	desc: "Registers all the slash commands",
 	DM: true,
-	permissions: [],
+	permissions: [ "DEV" ],
 	exec(UnivBot, msg) {
 		msg.reply("reloading :thumbsup:");
 

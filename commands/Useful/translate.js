@@ -15,6 +15,9 @@ module.exports = {
 		last: {
 			letter: "l"
 		},
+		random: {
+			letter: "r"
+		},
 		value: {
 			title: "string"
 		}
@@ -41,11 +44,14 @@ module.exports = {
 		}
 
 		let target = "EN";
+		const targets = ["BG", "CS", "DA", "DE", "EL", "EN-GB", "EN-US", "EN", "ES", "ET", "FI", "FR", "HU", "IT", "JA", "LT", "LV", "NL", "PL", "PT-PT", "PT-BR", "PT", "RO", "RU", "SK", "SL", "SV", "ZH"];
 		if(msg.args.target) {
-			if(["BG", "CS", "DA", "DE", "EL", "EN-GB", "EN-US", "EN", "ES", "ET", "FI", "FR", "HU", "IT", "JA", "LT", "LV", "NL", "PL", "PT-PT", "PT-BR", "PT", "RO", "RU", "SK", "SL", "SV", "ZH"].includes((msg.args.target || msg.args.t).toUpperCase()))
+			if(targets.includes((msg.args.target || msg.args.t).toUpperCase()))
 				target = encodeURIComponent(msg.args.target).toUpperCase();
 			else
 				return msg.reply("Invalid target language!");
+		} else if(msg.args.random) {
+			target = targets[Math.floor(Math.random() * targets.length)];
 		}
 
 		fetch(`https://api-free.deepl.com/v2/translate?auth_key=${process.env.DEEPL_TOKEN}&target_lang=${target}&source_lang=${source}&text=${encodeURIComponent(msg.args.value)}`).then(r => r.json()).then(j => {

@@ -8,12 +8,11 @@ module.exports = {
 	DM: true,
 	permissions: [ "DEV" ],
 	exec(UnivBot, msg) {
-		var prom = msg.reply("Rebooting...")
-		prom.then(message => {
-			if(msg.guild)
-				UnivBot.db.reboot = { msg: message.id, channel: message.channel.id, guild: message.guild.id, start: new Date().getTime() };
-			if(!msg.guild)
-				UnivBot.db.reboot = { msg: message.id, author: msg.author.id, start: new Date().getTime() };
+		msg.reply("Rebooting...").then(message => {
+			if(message)
+				UnivBot.db.reboot = { msg: message.id, channel: message.channel.id, guild: message.guild?.id, start: new Date().getTime() };
+			else
+				UnivBot.db.reboot = { msg: null, channel: msg.channel.id, guild: msg.guild?.id, start: new Date().getTime() };
 			fs.writeFileSync("database.json", JSON.stringify(UnivBot.db, null, "\t"));
 			terminal("pm2 restart univ-bot");
 		});

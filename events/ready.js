@@ -45,12 +45,11 @@ module.exports = async (UnivBot) => {
 			var msg = channel.fetchMessage(reb.msg)
 			msg.then(msg => {
 				msg.edit(`Done rebooting! It took ${time} seconds`);
-				UnivBot.db.reboot = undefined;
+				delete UnivBot.db.reboot;
 				fs.writeFileSync("database.json", JSON.stringify(UnivBot.db, null, "\t"));
-			});
-			msg.catch(() => {
+			}).catch(() => {
 				user.send(`Done rebooting! It took ${time} seconds`);
-				UnivBot.db.reboot = undefined;
+				delete UnivBot.db.reboot;
 				fs.writeFileSync("database.json", JSON.stringify(UnivBot.db, null, "\t"));
 			});
 		} else {
@@ -60,12 +59,11 @@ module.exports = async (UnivBot) => {
 			var msg = channel.messages.fetch(reb.msg)
 			msg.then(msg => {
 				msg.edit(`Done rebooting! It took ${time} seconds`);
-				UnivBot.db.reboot = undefined;
+				delete UnivBot.db.reboot;
 				fs.writeFileSync("database.json", JSON.stringify(UnivBot.db, null, "\t"));
-			});
-			msg.catch(() => {
+			}).catch(() => {
 				channel.send(`Done rebooting! It took ${time} seconds`);
-				UnivBot.db.reboot = undefined;
+				delete UnivBot.db.reboot;
 				fs.writeFileSync("database.json", JSON.stringify(UnivBot.db, null, "\t"));
 			});
 		}

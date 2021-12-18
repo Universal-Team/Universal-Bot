@@ -37,7 +37,7 @@ module.exports = async function(UnivBot, interaction) {
 		interaction.prefix = "/";
 		interaction.cmd = interaction.commandName;
 		interaction.content = "";
-		interaction.args = {};
+		interaction.args = {value: ""};
 		interaction.options.data.forEach(r => interaction.args[cmd.args.value?.title == r.name ? "value" : r.name] = r.value);
 
 		// Handle DM messages

@@ -36,7 +36,7 @@ module.exports = {
 			value = 1;
 
 		let currencies = await fetch(`https://free.currconv.com/api/v7/currencies?apiKey=${process.env.CURRENCY_TOKEN}`).then(r => r.json());
-		let source = Object.values(currencies.results).find(r => msg.args.source.toUppserCase().includes(r.id))?.id;
+		let source = Object.values(currencies.results).find(r => msg.args.source.toUpperCase().includes(r.id))?.id;
 		if(!source)
 			return msg.reply("Invalid source currency!");
 

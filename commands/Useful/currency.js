@@ -4,9 +4,14 @@ const {CommandInteraction} = require("discord.js");
 module.exports = {
 	name: ["currency", "$", "€", "£", "¥"],
 	args: {
+		source: {
+			letter: "s",
+			value: true,
+			required: true
+		},
 		target: {
 			letter: "t",
-			value: true,
+			value: true
 		},
 		last: {
 			letter: "l"
@@ -20,7 +25,7 @@ module.exports = {
 		if(!process.env.CURRENCY_TOKEN)
 			return msg.reply("Please set `CURRENCY_TOKEN` in your `.env`.");
 
-		if(msg.args.last || msg.args.l)
+		if(msg.args.last)
 			msg.args.value = msg.channel.messages.cache.map(r => r)[msg.channel.messages.cache.size - (msg instanceof CommandInteraction ? 1 : 2)].content;
 
 		if(!msg.args.value)
@@ -31,14 +36,14 @@ module.exports = {
 			value = 1;
 
 		let currencies = await fetch(`https://free.currconv.com/api/v7/currencies?apiKey=${process.env.CURRENCY_TOKEN}`).then(r => r.json());
-		let source = Object.values(currencies.results).find(r => msg.args.value.includes(r.id))?.id;
+		let source = Object.values(currencies.results).find(r => msg.args.source.toUppserCase().includes(r.id))?.id;
 		if(!source)
 			return msg.reply("Invalid source currency!");
 
 		let target;
-		if(msg.args.target || msg.args.t) {
-			if((msg.args.target || msg.args.t).toUpperCase() in currencies.results)
-				target = (msg.args.target || msg.args.t).toUpperCase();
+		if(msg.args.target) {
+			if((msg.args.target).toUpperCase() in currencies.results)
+				target = (msg.args.target).toUpperCase();
 			else
 				return msg.reply("Invalid target currency!");
 		} else {

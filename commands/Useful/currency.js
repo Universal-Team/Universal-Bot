@@ -31,6 +31,9 @@ module.exports = {
 		if(!msg.args.value)
 			return msg.reply("I can't assign a price to nothing");
 
+		if(!msg.args.source)
+			return msg.reply("I can't convert from nothing");
+
 		let value = parseFloat(msg.args.value.match(/[0-9.,]+/)?.[0].replace(/,/, ""));
 		if(isNaN(value))
 			value = 1;

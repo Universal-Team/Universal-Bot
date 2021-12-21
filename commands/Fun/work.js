@@ -1,3 +1,5 @@
+const {CommandInteraction} = require("discord.js");
+
 module.exports = {
 	name: ["work"],
 	args: {},
@@ -5,7 +7,11 @@ module.exports = {
 	DM: true,
 	permissions: [],
 	async exec(UnivBot, msg) {
-		let m = await msg.reply("Okay!");
-		setTimeout(() => m.edit("nvm, I don't feel like it"), 3000);
+		if(msg instanceof CommandInteraction) {
+			msg.reply("No thanks, /commands are dumb");
+		} else {
+			let m = await msg.reply("Okay!");
+			setTimeout(() => m.edit("nvm, I don't feel like it"), 3000);
+		}
 	}
 }

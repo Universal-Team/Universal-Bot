@@ -25,15 +25,23 @@ module.exports = {
 	desc: "Translates a string using DeepL translator",
 	DM: true,
 	permissions: [],
-	exec(UnivBot, msg) {
+	async exec(UnivBot, msg) {
 		if(!process.env.DEEPL_TOKEN)
 			return msg.reply("Please set `DEEPL_TOKEN` in your `.env`.");
 
 		if(msg.args.last)
 			msg.args.value = msg.channel.messages.cache.map(r => r)[msg.channel.messages.cache.size - (msg instanceof CommandInteraction ? 1 : 2)].content;
 
-		if(!msg.args.value)
-			return msg.reply("何もないを翻訳できません…");
+		if(!msg.args.value) {
+			let str = "何もないを翻訳できません…";
+			console.log(msg.locale);
+			if(msg.locale) {
+				await fetch(`https://api-free.deepl.com/v2/translate?auth_key=${process.env.DEEPL_TOKEN}&target_lang=${msg.locale.toUpperCase()}&source_lang=JA&text=${str}`).then(r => r.json()).then(j => {
+					str = j.translations[0].text;
+				}).catch(e => e);
+			}
+			return msg.reply(str);
+		}
 
 		let source = "";
 		if(msg.args.source) {

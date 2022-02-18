@@ -10,7 +10,7 @@ module.exports = {
 			title: "message"
 		}
 	},
-	desc: "Reverses the message",
+	desc: "Shuffles the words of the message to sound like Emperor Xizzle from The Sims 2 (GBA)",
 	DM: true,
 	permissions: [],
 	exec(UnivBot, msg) {

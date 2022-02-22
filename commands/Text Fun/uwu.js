@@ -30,7 +30,7 @@ module.exports = {
 	permissions: [],
 	face: face,
 	exec(UnivBot, msg) {
-		if(msg.args.last || msg.args.l)
+		if(msg.args.last)
 			msg.args.value = msg.channel.messages.cache.map(r => r)[msg.channel.messages.cache.size - (msg instanceof CommandInteraction ? 1 : 2)].content;
 
 		if(!msg.args.value)

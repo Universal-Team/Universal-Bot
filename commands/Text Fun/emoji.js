@@ -12,11 +12,11 @@ module.exports = {
 	DM: true,
 	permissions: [],
 	exec(UnivBot, msg) {
-		if(!(msg.args.value || msg.args.random || msg.args.r))
+		if(!(msg.args.value || msg.args.random))
 			return msg.reply("Nothing isn't an emoji...");
 
 		let out = "";
-		if(msg.args.random || msg.args.r) {
+		if(msg.args.random) {
 			let guild = UnivBot.client.guilds.cache.map(r => r);
 			guild = guild[Math.floor(Math.random() * guild.length)];
 

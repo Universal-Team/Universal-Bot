@@ -22,7 +22,7 @@ module.exports = {
 		let string = msg.args.value.toLowerCase().replace(/\s+/g, " ").replace(/#/g, "").replace(/0x/g, "");
 		let rgb = [0, 0, 0];
 
-		if(msg.args.random || msg.args.r) {
+		if(msg.args.random) {
 			rgb = [Math.floor(Math.random() * 256), Math.floor(Math.random() * 256), Math.floor(Math.random() * 256)];
 		} else {
 			if(string.length == 3 && string.madeOf(charsets.hex)) { // Three digit hex

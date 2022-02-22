@@ -14,7 +14,7 @@ module.exports = {
 	async exec(UnivBot, msg) {
 		const db = UnivBot.db[msg.guild.id];
 
-		if(msg.args.enable || msg.args.e) {
+		if(msg.args.enable) {
 			if(await msg.guild.members.fetch(msg.author).then(r => r.permissions.has("ADMINISTRATOR"))) {
 				if(!db.statsDisabled) {
 					return msg.reply("stats are already enabled...");
@@ -25,7 +25,7 @@ module.exports = {
 			} else {
 				return msg.reply("You must have ADMINISTRATOR permission to enable stats!")
 			}
-		} else if(msg.args.disable || msg.args.d) {
+		} else if(msg.args.disable) {
 			if(await msg.guild.members.fetch(msg.author).then(r => r.permissions.has("ADMINISTRATOR"))) {
 				if(db.statsDisabled) {
 					return msg.reply("stats are already disabled...");

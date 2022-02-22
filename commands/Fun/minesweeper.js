@@ -15,7 +15,7 @@ module.exports = {
 		let board = [];
 		let width = 9;
 		let height = 9;
-		let mines = Math.min(msg.args.mines ?? msg.args.m ?? Math.round(width * height / 7), width * height - 1);
+		let mines = Math.min(msg.args.mines ?? Math.round(width * height / 7), width * height - 1);
 
 		for(let i = 0; i < height; i++) {
 			board[i] = [];

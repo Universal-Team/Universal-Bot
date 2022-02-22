@@ -25,7 +25,7 @@ module.exports = {
 		if(!msg.args.value)
 			return msg.reply("**Oops!** You didn't provided enough arguments");
 
-		if(msg.args.template || msg.args.t)
+		if(msg.args.template)
 			msg.args.value = `<?php ${msg.args.value} ?>`;
 
 		let output;
@@ -37,10 +37,10 @@ module.exports = {
 			return;
 		}
 
-		if((msg.args.del || msg.args.d) && msg.guild) {
+		if(msg.args.del && msg.guild) {
 			msg.delete();
 		}
-		if(msg.args.hide || msg.args.h) {
+		if(msg.args.hide) {
 			return;
 		}
 

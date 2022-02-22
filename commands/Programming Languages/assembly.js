@@ -22,13 +22,13 @@ module.exports = {
 		if(!msg.args.value)
 			return msg.reply("**Oops!** You didn't provided enough arguments");
 	
-		if((msg.args.del || msg.args.d) && msg.guild)
+		if(msg.args.del && msg.guild)
 			msg.delete();
 
 		let output;
 		let object = compile(msg.args.value, "asm");
 	
-		if(msg.args.hide || msg.args.h)
+		if(msg.args.hide)
 			return;
 	
 		if(typeof object !== "object")

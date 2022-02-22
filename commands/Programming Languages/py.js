@@ -31,10 +31,10 @@ module.exports = {
 			return;
 		}
 
-		if((msg.args.del || msg.args.d) && msg.guild) {
+		if(msg.args.del && msg.guild) {
 			msg.delete();
 		}
-		if(msg.args.hide || msg.args.h) {
+		if(msg.args.hide) {
 			return;
 		}
 

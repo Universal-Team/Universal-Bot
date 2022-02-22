@@ -30,12 +30,12 @@ module.exports = {
 		if(!msg.args.value)
 			return msg.reply("**Oops!** You didn't provided enough arguments");
 
-		if(msg.args.string || msg.args.s)
+		if(msg.args.string)
 			stringify = variable => variable.toString();
 
 		let output;
 		try {
-			if(msg.args.dev || msg.args.v) {
+			if(msg.args.dev) {
 				if(msg.dev) {
 					output = await eval(msg.args.value);
 				} else {
@@ -46,7 +46,7 @@ module.exports = {
 				output = vm.run(`eval(\`${msg.args.value.replace(/[`\$\\]/g, "\\$&")}\`)`);
 			}
 		} catch(e) {
-			if(!(msg.args.hide || msg.args.h))
+			if(!msg.args.hide)
 				return msg.reply(Formatters.codeBlock("js", e.toString()));
 			return;
 		}
@@ -56,10 +56,10 @@ module.exports = {
 		if(typeof output !== "string")
 			output = output.toString();
 
-		if((msg.args.del || msg.args.d) && msg.guild) {
+		if(msg.args.del && msg.guild) {
 			msg.delete();
 		}
-		if(msg.args.hide || msg.args.h) {
+		if(msg.args.hide) {
 			return;
 		}
 

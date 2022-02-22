@@ -45,7 +45,7 @@ module.exports = {
 
 		let source = "";
 		if(msg.args.source) {
-			if(["BG", "CS", "DA", "DE", "EL", "EN", "ES", "ET", "FI", "FR", "HU", "IT", "JA", "LT", "LV", "NL", "PL", "PT", "RO", "RU", "SK", "SL", "SV", "ZH"].includes((msg.args.source || msg.args.s).toUpperCase()))
+			if(["BG", "CS", "DA", "DE", "EL", "EN", "ES", "ET", "FI", "FR", "HU", "IT", "JA", "LT", "LV", "NL", "PL", "PT", "RO", "RU", "SK", "SL", "SV", "ZH"].includes(msg.args.source.toUpperCase()))
 				source = encodeURIComponent(msg.args.source).toUpperCase();
 			else
 				return msg.reply("Invalid source language!");
@@ -54,7 +54,7 @@ module.exports = {
 		let target = "EN";
 		const targets = ["BG", "CS", "DA", "DE", "EL", "EN-GB", "EN-US", "EN", "ES", "ET", "FI", "FR", "HU", "IT", "JA", "LT", "LV", "NL", "PL", "PT-PT", "PT-BR", "PT", "RO", "RU", "SK", "SL", "SV", "ZH"];
 		if(msg.args.target) {
-			if(targets.includes((msg.args.target || msg.args.t).toUpperCase()))
+			if(targets.includes(msg.args.target.toUpperCase()))
 				target = encodeURIComponent(msg.args.target).toUpperCase();
 			else
 				return msg.reply("Invalid target language!");

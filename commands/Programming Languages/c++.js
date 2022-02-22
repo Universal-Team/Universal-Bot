@@ -25,7 +25,7 @@ module.exports = {
 		if(!msg.args.value)
 			return msg.reply("**Oops!** You didn't provided enough arguments");
 
-		if(msg.args.template || msg.args.t)
+		if(msg.args.template)
 			msg.args.value = `
 #include <stdio.h>
 #include <string>
@@ -36,13 +36,13 @@ ${msg.args.value}
 return 0;
 }`;
 
-		if((msg.args.delete || msg.args.d) && msg.guild)
+		if(msg.args.delete && msg.guild)
 			msg.delete();
 
 		let output;
 		let object = compile(msg.args.value, "cpp");
 
-		if(msg.args.hide || msg.args.h)
+		if(msg.args.hide)
 			return;
 
 		if(typeof object !== "object")

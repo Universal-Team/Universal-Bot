@@ -19,7 +19,7 @@ module.exports = {
 			db.toggleableRoles = {};
 
 		// Add role to toggleable list
-		if(msg.args.add || msg.args.a) {
+		if(msg.args.add) {
 			if(await msg.guild.members.fetch(msg.author).then(r => r.permissions.has("MANAGE_ROLES"))) {
 				let out = "__**The following roles have been made toggleable:**__\n";
 				msg.args.value.toLowerCase().split(",").forEach(r => {
@@ -38,7 +38,7 @@ module.exports = {
 		}
 
 		// Remove role to toggleable list
-		if(msg.args.remove || msg.args.r) {
+		if(msg.args.remove) {
 			if(await msg.guild.members.fetch(msg.author).then(r => r.permissions.has("MANAGE_ROLES"))) {
 				let out = "__**The following roles have been made untoggleable:**__\n";
 				msg.args.value.toLowerCase().split(",").forEach(r => {

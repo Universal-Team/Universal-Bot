@@ -30,7 +30,7 @@ module.exports = {
 		}
 		let number = parseInt(msg.args.value, base);
 
-		if(msg.args.random || msg.args.r)
+		if(msg.args.random)
 			number = Math.floor(Math.random() * 0x10000);
 
 		if(isNaN(number))

@@ -65,20 +65,18 @@ List of variables
 \`${msg.prefix}goodbye -message <Text for goodbye message>\``
 
 		// Check for enable and disable
-		if(msg.args.enable || msg.args.e) {
+		if(msg.args.enable) {
 			db.messages.goodbye.enabled = true;
 			updateDB(UnivBot);
 			return msg.reply(`Enabled goodbye messages ${makeJSON(db.messages.goodbye)}`);
 		}
-		if(msg.args.disable || msg.args.d) {
+		if(msg.args.disable) {
 			db.messages.goodbye.enabled = false;
 			updateDB(UnivBot);
 			return msg.reply(`Disabled goodbye messages ${makeJSON(db.messages.goodbye)}`);
 		}
 
 		// Check for channel
-		if(typeof(msg.args.c) == "string")
-			msg.args.channel = msg.args.c;
 		if(typeof(msg.args.channel) == "string") {
 			if(msg.args.channel.toLowerCase() == "default") {
 				db.messages.goodbye.channel = "sys";
@@ -95,7 +93,7 @@ List of variables
 		}
 
 		// Check for message
-		if(msg.args.message || msg.args.m) {
+		if(msg.args.message) {
 			if(!msg.args.value)
 				return msg.reply(err1);
 			db.messages.goodbye.string = msg.args.value;

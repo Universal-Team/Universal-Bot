@@ -37,7 +37,7 @@ module.exports = {
 		let query = msg.args.value;
 		
 		require("node-fetch")("https://db.universal-team.net/data/full.json", {method: "Get"}).then(r => r.json()).then(json => {
-			if(msg.args.random || msg.args.r)
+			if(msg.args.random)
 				query = json[Math.floor(Math.random() * json.length)].title;
 
 			if(!query)
@@ -50,33 +50,33 @@ module.exports = {
 			json.some(app => {
 				if(app.title?.match(regex)) {
 					out.push(app);
-					return !(msg.args.search || msg.args.s);
+					return !msg.args.search;
 				}
 			});
 
-			if(out.length == 0 || msg.args.search || msg.args.s) {
+			if(out.length == 0 || msg.args.search) {
 				// Search descriptions
 				json.some(app => {
 					if(app.description?.toLowerCase().includes(query.toLowerCase())) {
 						if(!out.includes(app))
 							out.push(app);
-						return !(msg.args.search || msg.args.s);
+						return !(msg.args.search);
 					}
 				});
 			}
 
-			if(out.length == 0 || msg.args.search || msg.args.s) {
+			if(out.length == 0 || msg.args.search) {
 				// Search authors
 				json.some(app => {
 					if(app.author?.toLowerCase().includes(query.toLowerCase())) {
 						if(!out.includes(app))
 							out.push(app);
-						return !(msg.args.search || msg.args.s);
+						return !msg.args.search;
 					}
 				});
 			}
 
-			if(msg.args.search || msg.args.s) {
+			if(msg.args.search) {
 				let embed = {
 					"title": "Results",
 					"fields": []

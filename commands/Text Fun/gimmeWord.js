@@ -14,7 +14,7 @@ module.exports = {
 	DM: true,
 	permissions: [],
 	async exec(UnivBot, msg) {
-		let count = parseInt(msg.args.count || msg.args.c);
+		let count = parseInt(msg.args.count);
 		if(isNaN(count))
 			count = 1;
 		else if(count < 1)

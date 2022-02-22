@@ -64,17 +64,15 @@ include those 'variables' in the text:
 \`${msg.prefix}welcome -message <Text for welcome message>\``
 
 		// Check for enable and disable
-		if(msg.args.enable || msg.args.e) {
+		if(msg.args.enable) {
 			db.messages.welcome.enabled = true;
 			updateDB(UnivBot);
 			return msg.reply(`Enabled welcome messages ${makeJSON(db.messages.welcome)}`);
-		} else if(msg.args.disable || msg.args.d) {
+		} else if(msg.args.disable) {
 			db.messages.welcome.enabled = false;
 			updateDB(UnivBot);
 			return msg.reply(`Disabled welcome messages ${makeJSON(db.messages.welcome)}`);
 		}
-		if(typeof(msg.args.c) == "string")
-			msg.args.channel = msg.args.c;
 		if(typeof(msg.args.channel) == "string") {
 			if(msg.args.channel.toLowerCase() == "default") {
 				db.messages.welcome.channel = "sys";
@@ -89,7 +87,7 @@ include those 'variables' in the text:
 			updateDB(UnivBot);
 			return msg.reply(`Sucessfully changed the welcome channel to **<#${ID}>** ${makeJSON(db.messages.welcome)}`);
 		}
-		if(msg.args.message || msg.args.m) {
+		if(msg.args.message) {
 			if(!msg.args.value)
 				return msg.reply(err1);
 			db.messages.welcome.string = msg.args.value;

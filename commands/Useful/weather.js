@@ -66,14 +66,14 @@ module.exports = {
 	DM: true,
 	permissions: [],
 	async exec(UnivBot, msg) {
-		const fahrenheit = msg.args.fahrenheit || msg.args.f;
+		const fahrenheit = msg.args.fahrenheit;
 		const degreeSymbol = fahrenheit ? "°F" : "°C";
 
 		if(!msg.args.value)
 			return msg.reply(`It is currently ${fahrenheit ? "-459.67" : "-273.15"}${degreeSymbol} in the void`);
 
 
-		weather.find({search: msg.args.value, degreeType: (msg.args.fahrenheit || msg.args.f) ? "F" : "C"}, (err, result) => {
+		weather.find({search: msg.args.value, degreeType: msg.args.fahrenheit ? "F" : "C"}, (err, result) => {
 			if(err)
 				return msg.reply(`Error: ${err}`);
 

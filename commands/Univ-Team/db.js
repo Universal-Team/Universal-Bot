@@ -26,6 +26,12 @@ module.exports = {
 		search: {
 			letter: "s"
 		},
+		prerelease: {
+			letter: "p"
+		},
+		nightly: {
+			letter: "n"
+		},
 		value: {
 			title: "app title/description"
 		}
@@ -114,6 +120,23 @@ module.exports = {
 			}
 
 			out.forEach(res => {
+				if(msg.args.prerelease) {
+					if(res.prerelease) {
+						for(item in res.prerelease)
+							res[item] = res.prerelease[item];
+					} else {
+						return msg.reply(`No prerelease found for ${res.title}`);;
+					}
+				} else if(msg.args.nightly) {
+					if(res.nightly) {
+						for(item in res.nightly)
+						res[item] = res.nightly[item];
+					} else {
+						return msg.reply(`No nightly found for ${res.title}`);;
+					}
+				}
+
+
 				for(let i = 1; i < res.systems.length; i++)
 					res.description += `\n[Also on ${res.systems[i]}](https://db.universal-team.net/${res.systems[i].toLowerCase()}/${Array.from(res.title.toLowerCase().replace(/[ .]/g, "-")).filter(r => "abcdefghijklmnopqrstuvwxyz0123456789-_".includes(r)).join("")})`;
 

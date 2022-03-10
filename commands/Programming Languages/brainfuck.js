@@ -20,8 +20,6 @@ module.exports = {
 	DM: true,
 	permissions: [],
 	async exec(UnivBot, msg) {
-		let stringify = require("util").inspect;
-
 		if(!msg.args.value)
 			return msg.reply(Formatters.codeBlock("bf", "++++++++++[>+++++++++++<-]>.+."));
 
@@ -36,8 +34,6 @@ module.exports = {
 
 		if(res.output == "")
 			res.output = "Program finished successfully.";
-
-		console.log(res);
 
 		let files = [];
 

@@ -22,6 +22,9 @@ module.exports = {
 		let string = msg.args.value.toLowerCase().replace(/\s+/g, " ").replace(/#/g, "").replace(/0x/g, "");
 		let rgb = [0, 0, 0];
 
+		if(!msg.args.value)
+			string = "36393F"; // Discord dark theme BG
+
 		if(msg.args.random) {
 			rgb = [Math.floor(Math.random() * 256), Math.floor(Math.random() * 256), Math.floor(Math.random() * 256)];
 		} else {
@@ -64,6 +67,7 @@ module.exports = {
 
 		let name = color(parseInt(hex, 16));
 		return msg.reply({
+			content: msg.args.value ? "" : "What is the color of nothing... wait I think I've got it",
 			embeds: [{
 				title: `${colorWord}: ${name.name}`,
 				fields: [

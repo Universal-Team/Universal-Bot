@@ -67,7 +67,7 @@ module.exports = {
 
 		let name = color(parseInt(hex, 16));
 		return msg.reply({
-			content: msg.args.value ? undefined : "What is the color of nothing... wait I think I've got it",
+			content: (msg.args.value || msg.args.random) ? undefined : "What is the color of nothing... wait I think I've got it",
 			embeds: [{
 				title: `${colorWord}: ${name.name}`,
 				fields: [

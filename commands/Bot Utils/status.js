@@ -16,7 +16,7 @@ module.exports = {
 	exec(UnivBot, msg) {
 		if(msg.args.random) {
 			let out = [];
-			let count = Math.floor(Math.random() * 10);
+			let count = Math.floor(Math.random() * 9) + 1;
 			for(let i = 0; i < count; i++) {
 				let str = L.nth(Math.floor(Math.random() * UnivBot.data.unicodeNames.length), UnivBot.data.unicodeNames)[1].split(/\b/).filter(r => r.match(/\b/));
 				out.push(str[Math.floor(Math.random() * str.length)].toLowerCase());

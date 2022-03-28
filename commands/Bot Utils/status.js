@@ -1,5 +1,7 @@
 const L = require("list");
 
+const punctuation = [",", ".", ":", ";", "...", "!", "?"];
+
 module.exports = {
 	name: "status",
 	args: {
@@ -19,7 +21,12 @@ module.exports = {
 			let count = Math.floor(Math.random() * 9) + 1;
 			for(let i = 0; i < count; i++) {
 				let str = L.nth(Math.floor(Math.random() * UnivBot.data.unicodeNames.length), UnivBot.data.unicodeNames)[1].split(/\b/).filter(r => r.match(/\b/));
-				out.push(str[Math.floor(Math.random() * str.length)].toLowerCase());
+				str = str[Math.floor(Math.random() * str.length)].toLowerCase();
+
+				if(Math.random() < 0.2) // 1 in 5 chance
+					str += punctuation[Math.floor(Math.random() * punctuation.length)];
+
+				out.push(str);
 			}
 
 			let str = out.join(" ");

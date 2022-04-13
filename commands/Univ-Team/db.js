@@ -53,31 +53,28 @@ module.exports = {
 
 			let out = [];
 			// Search titles
-			json.some(app => {
+			json.forEach(app => {
 				if(app.title?.match(regex)) {
 					out.push(app);
-					return !msg.args.search;
 				}
 			});
 
 			if(out.length == 0 || msg.args.search) {
 				// Search descriptions
-				json.some(app => {
+				json.forEach(app => {
 					if(app.description?.toLowerCase().includes(query.toLowerCase())) {
 						if(!out.includes(app))
 							out.push(app);
-						return !(msg.args.search);
 					}
 				});
 			}
 
 			if(out.length == 0 || msg.args.search) {
 				// Search authors
-				json.some(app => {
+				json.forEach(app => {
 					if(app.author?.toLowerCase().includes(query.toLowerCase())) {
 						if(!out.includes(app))
 							out.push(app);
-						return !msg.args.search;
 					}
 				});
 			}
@@ -119,7 +116,11 @@ module.exports = {
 				return msg.reply({embeds: [embed]});
 			}
 
-			out.forEach(res => {
+			if(out.length > 0) {
+				let res = out.find(r => r.title.toLowerCase() == msg.args.value.toLowerCase());
+				if(!res)
+					res = out[0];
+
 				if(msg.args.prerelease) {
 					if(res.prerelease) {
 						for(item in res.prerelease)
@@ -180,9 +181,7 @@ module.exports = {
 				}
 
 				msg.reply(embed);
-			});
-
-			if(out.length == 0) {
+			} else {
 				msg.reply("No results found!");
 			}
 		});

@@ -15,6 +15,8 @@ module.exports = {
 		if(msg.args.value == "")
 			msg.args.value = "void";
 
+		msg.args.value = msg.args.value.replace(/[\\`]/g, ""); // Remove \ and `, to allow avoiding markdown
+
 		const level = msg.args.value.match(/\*[*\s]*/)?.[0].trim().length || 0; // Pointer level (* count)
 		const type = msg.args.value.match(/^[^*\s]+/)?.[0] || "void"; // Pointer type
 

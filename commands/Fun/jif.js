@@ -5,6 +5,6 @@ module.exports = {
 	DM: true,
 	permissions: [],
 	exec(UnivBot, msg) {
-		msg.reply("http://service.jmslinks.com/WebService/ProdAdminImage.ashx?id=230");
+		msg.reply("https://tenor.com/view/jif-jif-peanut-butter-gif-19213921");
 	}
 }

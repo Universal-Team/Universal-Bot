@@ -43,7 +43,12 @@ module.exports = {
 			"Ah, hmm... I guess",
 			"Ehh, no"
 		];
-		let answer = answers[Math.floor(Math.random() * answers.length)];
+
+		let input = msg.args.value.toLowerCase().replace(/[\s'`;:,._]/g, "");
+		let val = 0;
+		for(let i = 0; i < input.length; i++)
+			val += input.codePointAt(i);
+		let answer = answers[val % answers.length];
 
 		if(msg instanceof CommandInteraction)
 			msg.reply(`> ${msg.args.value}\n:8ball: **||** ${answer}`);
@@ -51,3 +56,4 @@ module.exports = {
 			msg.reply(`:8ball: **||** ${answer}`);
 	}
 }
+

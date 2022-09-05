@@ -53,7 +53,7 @@ module.exports = {
 				}
 			} else {
 				const timeout = parseInt(msg.dev ? msg.args.timeout : Math.min(msg.args.timeout, 10000)) || 10000;
-				const vm = new VM({timeout: timeout, compiler: msg.args.coffee ? "coffeescript" : "javascript"});
+				const vm = new VM({timeout: timeout, compiler: msg.args.coffeee ? "coffeescript" : "javascript"});
 				output = vm.run(`eval(\`${msg.args.value.replace(/[`\$\\]/g, "\\$&")}\`)`);
 			}
 		} catch(e) {

@@ -16,9 +16,6 @@ module.exports = {
 		dev: {
 			letter: "v"
 		},
-		coffee: {
-			letter: "c"
-		},
 		timeout: {
 			letter: "t",
 			value: true
@@ -43,9 +40,6 @@ module.exports = {
 		let output;
 		try {
 			if(msg.args.dev) {
-				if(msg.args.coffee)
-					return msg.reply("CoffeeScript cannot be used in dev mode!");
-
 				if(msg.dev) {
 					output = await eval(msg.args.value);
 				} else {
@@ -53,7 +47,7 @@ module.exports = {
 				}
 			} else {
 				const timeout = parseInt(msg.dev ? msg.args.timeout : Math.min(msg.args.timeout, 10000)) || 10000;
-				const vm = new VM({timeout: timeout, compiler: msg.args.coffeee ? "coffeescript" : "javascript"});
+				const vm = new VM({timeout: timeout});
 				output = vm.run(`eval(\`${msg.args.value.replace(/[`\$\\]/g, "\\$&")}\`)`);
 			}
 		} catch(e) {

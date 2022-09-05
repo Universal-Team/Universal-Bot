@@ -2,7 +2,7 @@ const terminal = require("child_process").execSync;
 const {Formatters} = require("discord.js");
 
 module.exports = {
-	name: ["Flake8"],
+	name: "Flake8",
 	args: {
 		ignore: {
 			letter: "i",
@@ -20,7 +20,7 @@ module.exports = {
 		if(!msg.args.value)
 			return msg.reply("**Oops!** You didn't provided enough arguments");
 
-		let ignore = msg.args.ignore?.replace(/^[\d\w]/g, "") ?? "";
+		let ignore = msg.args.ignore?.replace(/[^\d\w]/g, "") ?? "";
 
 		let output;
 		try {

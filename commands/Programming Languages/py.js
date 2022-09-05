@@ -41,16 +41,16 @@ module.exports = {
 		if(output.length == 0)
 			output = "Successfully executed script without errors. Exit with code 0";
 
-			if(output.length >= 1024) {
-				msg.reply({
-					content: "The output is too long, sending as attachment:",
-					files: [{
-						attachment: Buffer.from(output),
-						name: "output.txt"
-					}]
-				});
-			} else {
-				msg.reply(Formatters.codeBlock("py", output));
-			}
+		if(output.length >= 1024) {
+			msg.reply({
+				content: "The output is too long, sending as attachment:",
+				files: [{
+					attachment: Buffer.from(output),
+					name: "output.txt"
+				}]
+			});
+		} else {
+			msg.reply(Formatters.codeBlock("py", output));
+		}
 	}
 }

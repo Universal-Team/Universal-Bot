@@ -2,44 +2,37 @@ const terminal = require("child_process").execSync;
 const {Formatters} = require("discord.js");
 
 module.exports = {
-	name: ["Py3", "Python3"],
+	name: ["Flake8"],
 	args: {
-		hide: {
-			letter: "h",
-		},
-		del: {
-			letter: "d"
+		ignore: {
+			letter: "i",
+			value: true
 		},
 		value: {
 			title: "code",
 			required: true
 		}
 	},
-	desc: "Executes Python 3 code. Use -hide for hide the output and -del for delete the invocation message",
+	desc: "Runs flake8 on Python code",
 	DM: true,
-	permissions: [ "DEV" ],
+	permissions: [],
 	async exec(UnivBot, msg) {
 		if(!msg.args.value)
 			return msg.reply("**Oops!** You didn't provided enough arguments");
 
+		let ignore = msg.args.ignore?.replace(/^[\d\w]/g, "") ?? "";
+
 		let output;
 		try {
-			output = terminal(`echo "${msg.args.value.replace(/"/g, "\\\"").replace(/`/g, "\\`")}" | python3`, {shell: "/bin/bash"}).toString();
+			
+			console.log(`echo "${msg.args.value.replace(/"/g, "\\\"").replace(/`/g, "\\`")}" | flake8 --ignore='${ignore}'`);
+			output = terminal(`echo "${msg.args.value.replace(/"/g, "\\\"").replace(/`/g, "\\`")}" | flake8 --ignore='${ignore}' - || true`, {shell: "/bin/bash"}).toString();
 		} catch(e) {
-			if(!msg.args.hide)
-				return msg.reply(Formatters.codeBlock("js", e.toString()));
-			return;
-		}
-
-		if(msg.args.del && msg.guild) {
-			msg.delete();
-		}
-		if(msg.args.hide) {
-			return;
+			return msg.reply(Formatters.codeBlock("js", e.toString()));
 		}
 
 		if(output.length == 0)
-			output = "Successfully executed script without errors. Exit with code 0";
+			output = "No issues found";
 
 		if(output.length >= 1024) {
 			msg.reply({

@@ -45,7 +45,7 @@ module.exports = {
 					return msg.reply("You need BOT_DEVELOPER permission to run this command!");
 				}
 			} else {
-				const timeout = parseInt(msg.dev ? args.timeout : Math.min(args.timeout, 10000)) || 10000;
+				const timeout = parseInt(msg.dev ? msg.args.timeout : Math.min(msg.args.timeout, 10000)) || 10000;
 				const vm = new VM({timeout: timeout});
 				output = vm.run(`eval(\`${msg.args.value.replace(/[`\$\\]/g, "\\$&")}\`)`);
 			}

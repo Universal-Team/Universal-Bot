@@ -17,7 +17,8 @@ module.exports = {
 			letter: "v"
 		},
 		timeout: {
-			letter: "t"
+			letter: "t",
+			value: true
 		},
 		value: {
 			title: "code",

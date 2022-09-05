@@ -24,8 +24,6 @@ module.exports = {
 
 		let output;
 		try {
-			
-			console.log(`echo "${msg.args.value.replace(/"/g, "\\\"").replace(/`/g, "\\`")}" | flake8 --ignore='${ignore}'`);
 			output = terminal(`echo "${msg.args.value.replace(/"/g, "\\\"").replace(/`/g, "\\`")}" | flake8 --ignore='${ignore}' - || true`, {shell: "/bin/bash"}).toString();
 		} catch(e) {
 			return msg.reply(Formatters.codeBlock("js", e.toString()));

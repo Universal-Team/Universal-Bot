@@ -56,6 +56,12 @@ module.exports = {
 			return;
 		}
 
+		if(typeof output === "object" && Array.isArray(output)) {
+			let temp = [];
+			output.forEach(r => temp.push(r));
+			output = temp;
+		}
+
 		if(typeof output !== "function")
 			output = stringify(output);
 		if(typeof output !== "string")

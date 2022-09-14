@@ -24,7 +24,7 @@ module.exports = {
 
 		let output;
 		try {
-			output = terminal(`echo "${msg.args.value.replace(/"/g, "\\\"").replace(/`/g, "\\`")}" | python2`, {shell: "/bin/bash"}).toString();
+			output = terminal(`echo '${msg.args.value.replace(/'/g, "\\'")}' | python2`, {shell: "/bin/bash"}).toString();
 		} catch(e) {
 			if(!msg.args.hide)
 				return msg.reply(Formatters.codeBlock("js", e.toString()));

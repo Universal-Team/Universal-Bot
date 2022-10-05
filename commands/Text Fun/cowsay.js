@@ -26,6 +26,6 @@ module.exports = {
 			return msg.reply("Invalid cowfile");
 		}
 
-		msg.reply(Formatters.codeBlock(output));
+		msg.reply(Formatters.codeBlock(output.replaceAll("```", "")));
 	}
 }

@@ -42,10 +42,10 @@ module.exports = {
 			if(await msg.guild.members.fetch(msg.author).then(r => r.permissions.has("MANAGE_ROLES"))) {
 				let out = "__**The following roles have been made untoggleable:**__\n";
 				msg.args.value.toLowerCase().split(",").forEach(r => {
-					let role = msg.guild.roles.cache.sort((a, b) => (a.length < b.length) ? -1 : 1).find(role => role.editable && role.name.toLowerCase().includes(r.trim().toLowerCase()));
-					if(role && role.id in db.toggleableRoles) {
-						delete db.toggleableRoles[role.id];
-						out += role.name + "\n";
+					let role = Object.entries(db.toggleableRoles).sort((a, b) => (a.length < b.length) ? -1 : 1).find(role => role[1].name.toLowerCase().includes(r.trim().toLowerCase()));
+					if(role) {
+						delete db.toggleableRoles[role[0]];
+						out += role[1].name + "\n";
 					}
 				});
 				return msg.reply(out);

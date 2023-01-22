@@ -75,7 +75,7 @@ Wind: ${fromMps(data.wind.speed)} ${msg.args.fahrenheit ? "mph" : "km/h"}`);
 				title: `Weather in ${city.name}, ${city.country}`,
 				description: data.weather[0].description,
 				thumbnail: {
-					url: `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`
+					url: `http://openweathermap.org/img/wn/${data.weather[0].icon}.png`
 				},
 				fields: [
 					{

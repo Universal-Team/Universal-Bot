@@ -45,6 +45,9 @@ module.exports = {
 	DM: true,
 	permissions: [],
 	async exec(UnivBot, msg) {
+		if(!process.env.WEATHER_TOKEN)
+			return msg.reply("Please set `WEATHER_TOKEN` in your `.env`.");
+
 		const degreeSymbol = msg.args.fahrenheit ? "°F" : "°C";
 		const fromKelvin = msg.args.fahrenheit ? kToF : kToC;
 		const fromMps = msg.args.fahrenheit ? mpsToMph : mpsToKmph;

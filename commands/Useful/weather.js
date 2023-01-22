@@ -1,55 +1,34 @@
-const weather = require("weather-js");
+const fetch = require("node-fetch");
 
-const colors = [
-	0x00008B, // Thunderstorm
-	0x00008B, // Thunderstorm
-	0x00008B, // Thunderstorm
-	0x00008B, // Thunderstorm
-	0x00008B, // Thunderstorm
-	0xADD8E6, // Rain/Snow mix
-	0xADD8E6, // Sleet/Snow mix
-	0xADD8E6, // Rain/Sleet/Snow mix
-	0xADD8E6, // Icy
-	0xADD8E6, // Icy
-	0x4169E1, // Rain/Sleet mix
-	0x4169E1, // Light Rain
-	0x4169E1, // Rain
-	0xFFFFFF, // Light Snow
-	0xFFFFFF, // Snow
-	0xFFFFFF, // Blizzard
-	0xFFFFFF, // Snow
-	0x00008B, // Thunderstorm
-	0x4169E1, // Showers
-	0xF5F5DC, // Dust
-	0xA9A9A9, // Fog
-	0xA9A9A9, // Haze
-	0x808080, // Smoke
-	0xD3D3D3, // Windy
-	0xD3D3D3, // Windy
-	0xADD8E6, // Frigid
-	0xD3D3D3, // Cloudy
-	0xD3D3D3, // Partly Cloudy (night)
-	0xD3D3D3, // Partly Cloudy
-	0xD3D3D3, // Partly Cloudy (night)
-	0xD3D3D3, // Partly Cloudy
-	0x202020, // Clear (night)
-	0x87CEEB, // Clear
-	0xD3D3D3, // Partly Cloudy (night)
-	0xD3D3D3, // Partly Cloudy
-	0x00008B, // Thunderstorm
-	0xFFA500, // Hot
-	0x00008B, // Scattered Thunderstorms
-	0x00008B, // Scattered Thunderstorms
-	0x4169E1, // Scattered Showers
-	0x4169E1, // Showers
-	0xADD8E6, // Scattered Snow Showers
-	0xFFFFFF, // Snow
-	0xFFFFFF, // Snow
-	0xFF00FF, // N/A
-	0x4169E1, // Scattered Rain Showers (night)
-	0xFFFFFF, // Scattered Snow Showers (night)
-	0x00008B  // Scattered Thunderstorms (night)
-];
+function skyColor(id, night) {
+	if(id >= 200 && id < 300) {
+		return 0x00008B; // Thunderstorm
+	} else if(id >= 300 && id < 600) {
+		return 0x4169E1; // Rain
+	} else if(id >= 600 && id < 700) {
+		if(id == 615 || id == 616)
+			return 0xADD8E6; // Rain and snow
+		return 0xFFFFFF; // Snow
+	} else if(id >= 700 && id < 900) {
+		if(id == 711)
+			return 0x808080; // Smoke
+		else if(id == 721 || id == 741)
+			return 0xA9A9A9; // Haze/Fog
+		else if(id == 761)
+			return 0xF5F5DC; // Dust
+		else if(id == 800)
+			return night ? 0x202020 : 0x87CEEB; // Clear
+		return 0xD3D3D3; // Cloudy
+	}
+
+	return 0xFF00FF; // Error
+}
+
+function kToC(k) { return Math.round(k - 273.15); }
+function kToF(k) { return Math.round((k - 273.15) * 9 / 5 + 32); }
+
+function mpsToKmph(mps) { return Math.round(mps * 3.6); }
+function mpsToMph(mps) { return Math.round(mps * 2.23693629); }
 
 module.exports = {
 	name: ["weather", "temperature", "temp"],
@@ -62,73 +41,72 @@ module.exports = {
 			required: true
 		}
 	},
-	desc: "Gets the weather at a given location. Weather data from MSN.",
+	desc: "Gets the weather at a given location. Weather data from OpenWeatherMap.",
 	DM: true,
 	permissions: [],
 	async exec(UnivBot, msg) {
-		const fahrenheit = msg.args.fahrenheit;
-		const degreeSymbol = fahrenheit ? "°F" : "°C";
+		const degreeSymbol = msg.args.fahrenheit ? "°F" : "°C";
+		const fromKelvin = msg.args.fahrenheit ? kToF : kToC;
+		const fromMps = msg.args.fahrenheit ? mpsToMph : mpsToKmph;
 
 		if(!msg.args.value)
-			return msg.reply(`It is currently ${fahrenheit ? "-459.67" : "-273.15"}${degreeSymbol} in the void`);
+			return msg.reply(`It is currently ${fromKelvin(0)}${degreeSymbol} in the void`);
 
+		let result = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${encodeURIComponent(msg.args.value)}&cnt=1&appid=${process.env.WEATHER_TOKEN}`).then(r => r.json());
+		if(result.cod != 200)
+			return msg.reply(`No weather data found for that location (Error ${result.cod})`);
 
-		weather.find({search: msg.args.value, degreeType: msg.args.fahrenheit ? "F" : "C"}, (err, result) => {
-			if(err)
-				return msg.reply(`Error: ${err}`);
+		const data = result.list[0];
+		const city = result.city;
 
-			if(result.length == 0)
-				return msg.reply("No weather data found for that location");
-
-			let data = result[0];
-
-			if(msg.webhookId) {
-				msg.reply(`Weather in ${data.location.name}:
-Temperature: ${data.current.temperature + degreeSymbol}
-Feels Like: ${data.current.feelslike + degreeSymbol}
-Humidity: ${data.current.humidity}%
-Wind: ${data.current.winddisplay}`);
-			} else {
-				msg.reply({embeds: [{
-					color: colors[data.current.skycode],
-					title: `Weather in ${data.location.name}`,
-					thumbnail: {
-						url: data.current.imageUrl
+		if(msg.webhookId) {
+			msg.reply(`Weather in ${city.name}, ${city.country}:
+Temperature: ${fromKelvin(data.main.temp)}${degreeSymbol}
+Feels Like: ${fromKelvin(data.main.feels_like)}${degreeSymbol}
+Min/Max: ${fromKelvin(data.main.temp_min)}${degreeSymbol}/${fromKelvin(data.main.temp_max)}${degreeSymbol}
+Humidity: ${data.main.humidity}%
+Wind: ${fromMps(data.wind.speed)} ${msg.args.fahrenheit ? "mph" : "km/h"}`);
+		} else {
+			msg.reply({embeds: [{
+				color: skyColor(data.weather[0].id, data.weather[0].icon[2] == "n"),
+				title: `Weather in ${city.name}, ${city.country}`,
+				description: data.weather[0].description,
+				thumbnail: {
+					url: `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`
+				},
+				fields: [
+					{
+						name: "Temperature",
+						value: fromKelvin(data.main.temp) + degreeSymbol,
+						inline: true
 					},
-					fields: [
-						{
-							name: "Temperature",
-							value: data.current.temperature + degreeSymbol,
-							inline: true
-						},
-						{
-							name: "Feels Like",
-							value: data.current.feelslike + degreeSymbol,
-							inline: true
-						},
-						{
-							name: "_ _", // Empty field for a 2x2 grid
-							value: "_ _",
-							inline: true
-						},
-						{
-							name: "Humidity",
-							value: `${data.current.humidity}%`,
-							inline: true
-						},
-						{
-							name: "Wind",
-							value: data.current.winddisplay,
-							inline: true
-						},
-						{
-							name: "_ _", // Empty field for a 2x2 grid
-							value: "_ _",
-							inline: true
-						}
-					]
-				}]});
-			}
-		});
+					{
+						name: "Feels Like",
+						value: fromKelvin(data.main.feels_like) + degreeSymbol,
+						inline: true
+					},
+					{
+						name: "Min/Max",
+						value: `${fromKelvin(data.main.temp_min)}${degreeSymbol}/${fromKelvin(data.main.temp_max)}${degreeSymbol}`,
+						inline: true
+					},
+					{
+						name: "Humidity",
+						value: data.main.humidity + "%",
+						inline: true
+					},
+					{
+						name: "Wind",
+						value: fromMps(data.wind.speed) + (msg.args.fahrenheit ? " mph" : " km/h"),
+						inline: true
+					},
+					{
+						name: "Sunrise/Sunset",
+						value: `<t:${city.sunrise}:t> (<t:${city.sunrise}:R>)\n<t:${city.sunset}:t> (<t:${city.sunset}:R>)`,
+						inline: true
+					}
+				]
+			}]});
+		}
 	}
 }

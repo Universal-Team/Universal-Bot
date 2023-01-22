@@ -22,6 +22,7 @@ You must have a file called `.env` with the API tokens Universal-Bot uses:
 - `TOKEN` Discord token, needed for the bot to work at all
 - `DEEPL_TOKEN` [DeepL free](https://www.deepl.com) token, for ?translate
 - `CURRENCY_TOKEN` [Free Currency Converter API](https://free.currencyconverterapi.com) token, for ?currency
+- `WEATHER_TOKEN` [OpenWeatherMap Free API](https://openweathermap.org/) token, for ?weather
 
 ### Required programs
 You will also need to install the following programs (and have them in your PATH) for the commands they're used in to work:

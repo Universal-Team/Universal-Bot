@@ -11,7 +11,7 @@
 		"brainfuck-node": "^1.0.2",
 		"discord.js": "^13.6.0",
 		"dotenv": "^8.2.0",
-		"jimp": "^0.22.10",
+		"jimp": "^1.6.1",
 		"list": "^2.0.19",
 		"node-fetch": "^2.6.7",
 		"ts2c": "^2.2.7",

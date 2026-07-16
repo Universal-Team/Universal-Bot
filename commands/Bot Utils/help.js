@@ -84,12 +84,12 @@ module.exports = {
 
 		// Create embed
 		let color = 8557055;
-		let image = UnivBot.client.user.avatarURL;
+		let image = UnivBot.client.user.displayAvatarURL();
 		if(msg.guild)
 			image = msg.guild.image;
 		if(msg.guild)
 			color = msg.guild.bot.displayHexColor;
-		let embed = new Discord.MessageEmbed()
+		let embed = new Discord.EmbedBuilder()
 			.setColor(color)
 			.setDescription(`Here you can get info on commands. To see the categories, use \`\`${msg.prefix}help\`\`, to see commands in a category, do \`\`${msg.prefix}help <Category Name>\`\`, or to see info on a command, do \`\`${msg.prefix}help <Command Name>\`\`.`)
 			.setThumbnail(image)
@@ -101,14 +101,14 @@ module.exports = {
 
 		// Add commands/categories to embed
 		if(type == "dir") {
-			embed.setFooter(`• Amount of categories: ${UnivBot.categories.length}`, UnivBot.client.user.avatarURL);
+			embed.setFooter({text: `• Amount of categories: ${UnivBot.categories.length}`, iconURL: UnivBot.client.user.displayAvatarURL()});
 			for(var category of UnivBot.categories) {
 				var desc = "No description yet"
 				var path = `commands/${category}/desc.txt`;
 				if(fs.existsSync(path))
 					desc = fs.readFileSync(path).toString();
 				category += ` [${fs.readdirSync(`commands/${category}`).filter(cmd => cmd.endsWith(".js")).length}]`;
-				embed.addField(category, desc);
+				embed.addFields({name: category, value: desc});
 			}
 
 			let usefulCommands = [];
@@ -144,12 +144,12 @@ module.exports = {
 			}
 
 			if(usefulCommands.length)
-				embed.addField("Useful Commands", usefulCommands.join("\n"))
+				embed.addFields({name: "Useful Commands", value: usefulCommands.join("\n")})
 		}
 		if(type == "file") {
 			var category = isCategory(UnivBot, msg.args.value);
 			var commands = fs.readdirSync(`commands/${category}`).filter(cmd => cmd.endsWith(".js"));
-			embed.setFooter(`• Amount of commands in ${category}: ${commands.length}`, UnivBot.client.user.avatarURL);
+			embed.setFooter({text: `• Amount of commands in ${category}: ${commands.length}`, iconURL: UnivBot.client.user.displayAvatarURL()});
 			for(var command of commands) {
 				var desc = require(`../../commands/${category}/${command}`).desc;
 				var name = require(`../../commands/${category}/${command}`).name;
@@ -158,11 +158,11 @@ module.exports = {
 					nameStr += " " + formatArgs(require(`../../commands/${category}/${command}`).args);
 					nameStr = msg.prefix + nameStr;
 					desc += `\n(Other names: **${name.slice(1).join("**, **")}**)`
-					embed.addField(nameStr, desc);
+					embed.addFields({name: nameStr, value: desc});
 				} else {
 					name += " " + formatArgs(require(`../../commands/${category}/${command}`).args);
 					name = msg.prefix + name;
-					embed.addField(name, desc);
+					embed.addFields({name: name, value: desc});
 				}
 			}
 		}
@@ -170,10 +170,10 @@ module.exports = {
 			let cmd = isCommand(UnivBot, msg.args.value);
 			if((cmd.name instanceof Array)) {
 				var nameStr = `${msg.prefix + cmd.name[0]} ${formatArgs(cmd.args)}`;
-				embed.addField(nameStr, cmd.desc + `\n(Other names: **${cmd.name.slice(1).join("**, **")}**)`);
+				embed.addFields({name: nameStr, value: cmd.desc + `\n(Other names: **${cmd.name.slice(1).join("**, **")}**)`});
 			} else {
 				name = `${msg.prefix + cmd.name} ${formatArgs(cmd.args)}`;
-				embed.addField(name, cmd.desc);
+				embed.addFields({name: name, value: cmd.desc});
 			}
 		}
 

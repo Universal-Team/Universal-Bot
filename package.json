@@ -9,7 +9,7 @@
 	"dependencies": {
 		"befunge": "^0.0.6",
 		"brainfuck-node": "^1.0.2",
-		"discord.js": "^13.6.0",
+		"discord.js": "^14.27.0",
 		"dotenv": "^8.2.0",
 		"jimp": "^1.6.1",
 		"list": "^2.0.19",

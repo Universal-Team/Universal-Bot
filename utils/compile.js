@@ -34,11 +34,14 @@ function compile(code, type) {
 		fs.unlinkSync(compiledFile);
 	}
 
-	if(!stdio.stderr.length)
+	if(stdio.stderr === undefined) {
+		return "gcc not found";
+	} else if(!stdio.stderr.length) {
 		if(!exec.stderr.length)
 			return { binary: binary, path: compiledFile, stdout: exec.stdout }
 		else
 			return exec.stderr;
+	}
 
 	return stdio.stderr;
 }

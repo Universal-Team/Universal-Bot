@@ -4,7 +4,7 @@
 // Setup variables
 // ===========================================================
 const fs = require("fs");
-const { Client, Intents } = require("discord.js");
+const { Client, GatewayIntentBits } = require("discord.js");
 const L = require("list");
 require("./utils/Prototypes");
 require("dotenv").config();
@@ -14,7 +14,7 @@ require("dotenv").config();
 // ===========================================================
 const UnivBot = {
 	client: new Client({
-		intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MEMBERS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.DIRECT_MESSAGES],
+		intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers, GatewayIntentBits.MessageContent, GatewayIntentBits.GuildMessages, GatewayIntentBits.DirectMessages],
 		partials: ["CHANNEL"],
 		allowedMentions: { parse: [], repliedUser: false }
 	}),

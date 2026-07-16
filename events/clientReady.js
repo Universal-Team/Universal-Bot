@@ -1,5 +1,5 @@
 const fs = require("fs");
-const Discord = require("discord.js");
+const { Discord, ActivityType } = require("discord.js");
 function noRepeat(array) {
 		let arr = [];
 		for(var item of array) {
@@ -20,7 +20,7 @@ module.exports = async (UnivBot) => {
 	UnivBot.client.user.setActivity("Booted!");
 	setTimeout(() =>
 		UnivBot.client.user.setActivity(status, {
-			type: "WATCHING"
+			type: ActivityType.Watching
 		})
 	, 3000);
 

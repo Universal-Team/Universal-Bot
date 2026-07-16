@@ -13,22 +13,24 @@ module.exports = {
 		var modules = require("../../package.json").dependencies;
 		modules = Object.keys(modules);
 		var link = "https://discordapp.com/oauth2/authorize?client_id=618835289531613205&scope=bot&permissions=0";
-		let embed = new Discord.MessageEmbed()
+		let embed = new Discord.EmbedBuilder()
 			.setColor(8557055)
 			.setDescription(`**${UnivBot.client.user.username}** is a simple bot made for Universal-Team's Discord server.\n\nNote: If you add Universal-Bot to your server it will allow all of your server's emoji to be accessed by the emoji commands including seeing the server name in ?emojiInfo.`)
-			.setThumbnail(UnivBot.client.user.avatarURL)
-			.setImage(UnivBot.client.user.avatarURL)
+			.setThumbnail(UnivBot.client.user.displayAvatarURL())
+			.setImage(UnivBot.client.user.displayAvatarURL())
 			.setURL(link)
 			.setTitle(`${UnivBot.client.user.username}'s Information`);
-		embed.addField(":pencil2: Language used", "**JavaScript** (Node.js)", true);
-		embed.addField(":busts_in_silhouette: Coders", "**Javier107**, **Pk11** and **StackZ**", true);
-		embed.addField(":bell: Add bot to server", `[Click here to invite](${link})`, true);
-		embed.addField(":clipboard: Database used", "**J**ava**S**cript **O**bject **N**otation", true);
-		embed.addField(":satellite: Host used", "[Raspberry Pi](https://www.raspberrypi.org)", true);
-		embed.addField(":bulb: Command count", `**${UnivBot.cmds.length}** Commands`, true);
-		embed.addField(":hash: Version", `[${version.substr(0, 7)}](https://github.com/Universal-Team/Universal-Bot/commit/${version})`, true);
-		embed.addField(":notebook_with_decorative_cover: Modules used", `**${modules.join("**, **")}**`, true);
-		embed.setFooter("• Coded using discord.js", UnivBot.client.user.avatarURL);;
+		embed.addFields(
+			{name: ":pencil2: Language used", value: "**JavaScript** (Node.js)", inline: true},
+			{name: ":busts_in_silhouette: Coders", value: "**Javier107**, **Pk11** and **StackZ**", inline: true},
+			{name: ":bell: Add bot to server", value: `[Click here to invite](${link})`, inline: true},
+			{name: ":clipboard: Database used", value: "**J**ava**S**cript **O**bject **N**otation", inline: true},
+			{name: ":satellite: Host used", value: "AMD Ryzen 9 5900X", inline: true},
+			{name: ":bulb: Command count", value: `**${UnivBot.cmds.length}** Commands`, inline:true},
+			{name: ":hash: Version", value: `[${version.substr(0, 7)}](https://github.com/Universal-Team/Universal-Bot/commit/${version})`, inline: true},
+			{name: ":notebook_with_decorative_cover: Modules used", value: `**${modules.join("**, **")}**`, inline: true}
+		);
+		embed.setFooter({text: "• Coded using discord.js", iconURL: UnivBot.client.user.displayAvatarURL()});
 		return msg.reply({embeds: [embed]});
 	}
 }

@@ -25,6 +25,7 @@ function isOnDB(UnivBot, id) {
 
 // Event handler
 module.exports = async function(UnivBot, msg, nmsg) {
+	console.log(msg);
 	// If edit, use new message
 	if(nmsg) {
 		msg = nmsg;

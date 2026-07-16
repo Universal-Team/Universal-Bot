@@ -1,4 +1,4 @@
-const Jimp = require("jimp");
+const { Jimp, JimpMime } = require("jimp");
 
 module.exports = {
 	name: ["gif", "gifify"],
@@ -22,8 +22,8 @@ module.exports = {
 		if(link[0] == "<" && link[link.length - 1] == ">")
 			link = link.substr(1, link.length - 2);
 
-		Jimp.read({url: link}).then(img => {
-			img.getBufferAsync(Jimp.MIME_GIF).then(r => msg.reply({files: [{
+		Jimp.read(link).then(img => {
+			img.getBuffer(JimpMime.gif).then(r => msg.reply({files: [{
 				attachment: r,
 				name: "image.gif"
 			}]}));

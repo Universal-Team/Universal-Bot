@@ -1,4 +1,4 @@
-const Jimp = require("jimp");
+const { Jimp, JimpMime } = require("jimp");
 
 module.exports = {
 	name: ["invert", "negate"],
@@ -26,9 +26,9 @@ module.exports = {
 		if(link[0] == "<" && link[link.length - 1] == ">")
 			link = link.substr(1, link.length - 2);
 
-		Jimp.read({url: link}).then(img => {
+		Jimp.read(link).then(img => {
 			img.invert();
-			img.getBufferAsync(Jimp.MIME_PNG).then(r => msg.reply({files: [{
+			img.getBuffer(JimpMime.png).then(r => msg.reply({files: [{
 				attachment: r,
 				name: "image.png"
 			}]}));

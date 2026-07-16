@@ -25,16 +25,15 @@ function isOnDB(UnivBot, id) {
 
 // Event handler
 module.exports = async function(UnivBot, msg, nmsg) {
-	console.log(msg);
 	// If edit, use new message
 	if(nmsg) {
 		msg = nmsg;
 	} else {
 		// Convert BMP and TIFF images to PNG (but not for edits)
 		if(msg.attachments.first() && msg.attachments.first().name.match(/\.(bmp|tiff)$/i)) {
-			const Jimp = require("jimp");
-			Jimp.read({url: msg.attachments.first().attachment}).then(img => {
-				img.getBufferAsync(Jimp.MIME_PNG).then(r => msg.reply({files: [{
+			const { Jimp, JimpMime } = require("jimp");
+			Jimp.read(msg.attachments.first().attachment).then(img => {
+				img.getBuffer(JimpMime.png).then(r => msg.reply({files: [{
 					attachment: r,
 					name: msg.attachments.first().name.replace(/\.(bmp|tiff)$/i, ".png")
 				}]}));

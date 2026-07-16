@@ -1,4 +1,4 @@
-const Jimp = require("jimp");
+const { Jimp, JimpMime, loadFont, measureText } = require("jimp");
 
 module.exports = {
 	name: ["pointer", "*"],
@@ -26,17 +26,16 @@ module.exports = {
 			return msg.reply("That's... quite a long type :cold_sweat:");
 
 		let img = await Jimp.read("data/pointer.jpg");
-		let font = await Jimp.loadFont("data/Consolas.fnt");
-		
+		let font = await loadFont("data/Consolas.fnt");
+
 		// Calculate width of output
 		let outWidth = 10, imgWidth = img.bitmap.width;
 		for(let i = 0; i < level; i++) {
 			outWidth += imgWidth;
-			imgWidth *= 0.7;
 		}
-		outWidth += Math.max(Jimp.measureText(font, type), imgWidth);
+		outWidth += Math.max(measureText(font, type), imgWidth);
 
-		let out = await new Jimp(outWidth, img.bitmap.height, 0x1e1e1cff);
+		let out = new Jimp({width: outWidth, height: img.bitmap.height, color: 0x1e1e1cff});
 
 		// Draw pointers
 		let xpos = outWidth - img.bitmap.width;
@@ -45,7 +44,7 @@ module.exports = {
 			out.composite(img, xpos, ypos);
 
 			let str = type + "".padEnd((level - i), "*");
-			out.print(font, xpos + (img.bitmap.width - Jimp.measureText(font, str)) / 2, ypos - (i % 2 == 0 ? 35 : 55) + img.bitmap.height * 0.1, str);
+			out.print({font, x: xpos + (img.bitmap.width - measureText(font, str)) / 2, y: ypos - (i % 2 == 0 ? 35 : 55) + img.bitmap.height * 0.1, text: str});
 
 			img.scale(0.7);
 			xpos -= img.bitmap.width;
@@ -53,12 +52,11 @@ module.exports = {
 
 		// Draw type
 		let ypos = (out.bitmap.height - img.bitmap.height) * 0.2;
-		xpos = img.bitmap.width < Jimp.measureText(font, type) ? 4 : xpos + (img.bitmap.width - Jimp.measureText(font, type)) / 2;
-		out.print(font, xpos, ypos - 10 + img.bitmap.height * 0.3, type);
+		xpos = img.bitmap.width < measureText(font, type) ? 4 : xpos + (img.bitmap.width - measureText(font, type)) / 2;
+		out.print({font, x: xpos, y: ypos - 10 + img.bitmap.height * 0.3, text: type});
 
-		let buffer = await out.getBufferAsync(Jimp.MIME_PNG);
 		msg.reply({files: [{
-			attachment: buffer,
+			attachment: await out.getBuffer(JimpMime.png),
 			name: "pointer.png"
 		}]});
 	}

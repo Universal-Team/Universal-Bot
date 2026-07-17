@@ -17,8 +17,8 @@ module.exports = {
 			return msg.reply("Only 100 messages can be deleted at a time.");
 
 		// Delete messages
-		await msg.delete();
 		try {
+			await msg.delete();
 			await msg.channel.bulkDelete(number, true);
 		} catch(e) {
 			msg.reply("There was an error when attempting to bulk delete the messages.");

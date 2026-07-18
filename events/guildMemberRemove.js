@@ -43,6 +43,10 @@ module.exports = (UnivBot, member) => {
 		let channel = member.guild.systemChannel;
 		if(db.messages.goodbye.channel !== "sys")
 			channel = member.guild.channels.cache.get(db.messages.goodbye.channel);
-		channel.send(rep(db.messages.goodbye.string, member))
+		try {
+			channel.send(rep(db.messages.goodbye.string, member))
+		} catch(e) {
+			console.log((new Date()).toLocaleString(), "Error sending goodbye message:", e.toString());
+		}
 	}
 }

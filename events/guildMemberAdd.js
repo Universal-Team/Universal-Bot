@@ -43,7 +43,11 @@ module.exports = (UnivBot, member) => {
 		let channel = member.guild.systemChannel;
 		if(db.messages.welcome.channel !== "sys")
 			channel = member.guild.channels.cache.get(db.messages.welcome.channel);
-		channel.send(rep(db.messages.welcome.string, member))
+		try {
+			channel.send(rep(db.messages.welcome.string, member))
+		} catch(e) {
+			console.log((new Date()).toLocaleString(), "Error sending welcome message:", e.toString());
+		}
 	}
 
 	// For Universal-Server, assign @New Member

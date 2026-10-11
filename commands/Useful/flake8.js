@@ -1,4 +1,4 @@
-const terminal = require("child_process").execSync;
+const { spawnSync } = require("child_process");
 const {Formatters} = require("discord.js");
 
 module.exports = {
@@ -22,12 +22,11 @@ module.exports = {
 
 		let ignore = msg.args.ignore?.replace(/[^\d\w]/g, "") ?? "";
 
-		let output;
-		try {
-			output = terminal(`echo "${msg.args.value.replace(/"/g, "\\\"").replace(/`/g, "\\`")}" | flake8 --ignore='${ignore}' - || true`, {shell: "/bin/bash"}).toString();
-		} catch(e) {
-			return msg.reply(Formatters.codeBlock("js", e.toString()));
-		}
+		let result = spawnSync("flake8", [`--ignore=${ignore}`, "-"], {input: msg.args.value, encoding: "utf-8"});
+		if(result.error)
+			return msg.reply(Formatters.codeBlock("js", result.error.toString()));
+
+		let output = result.stdout;
 
 		if(output.length == 0)
 			output = "No issues found";
